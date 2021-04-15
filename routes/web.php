@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +22,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('backend.dashboard');
 });
+
+Route::resource('product', ProductController::class);
+Route::resource('category', CategoryController::class);
+
+Route::get('/team',[FrontendController::class,'team'])->name('team');
