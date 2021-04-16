@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('sub_category')->nullable();
+            $table->string('ban_name')->nullable();
             $table->timestamps();
         });
     }

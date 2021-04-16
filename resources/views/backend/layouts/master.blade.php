@@ -4,8 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Dashboard</title>
-
-  
+<!-- DataTables -->
+  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
  <!-- Google Font: Source Sans Pro -->
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -14,11 +16,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('deshboard/plugins/fontawesome-free/css/all.min.css') }}">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('deshboard/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
-  <!-- Ionicons -->
+ <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
   <link rel="stylesheet" href="{{ asset('deshboard/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
@@ -72,9 +70,9 @@
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('deshboard/plugins/jquery-ui/jquery-ui.min.js')}}"> </script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
+<!-- <script>
   $.widget.bridge('uibutton', $.ui.button)
-</script>
+</script> -->
 <!-- Bootstrap 4 -->
 <script src="{{ asset('deshboard/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- ChartJS -->
@@ -97,10 +95,6 @@
 <script src="{{ asset('deshboard/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset('deshboard/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{ asset('deshboard/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{ asset('deshboard/dist/js/pages/dashboard.js')}}"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('deshboard/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('deshboard/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -133,6 +127,5 @@
     });
   });
 </script>
-
 </body>
 </html>
