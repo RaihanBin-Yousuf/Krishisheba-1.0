@@ -25,5 +25,3 @@ Route::get('/', function () {
 
 Route::resource('product', ProductController::class);
 Route::resource('category', CategoryController::class);
-
-Route::get('/team',[FrontendController::class,'team'])->name('team');
