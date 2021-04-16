@@ -1,4 +1,3 @@
-
 @extends('backend.layouts.master')
 @section('content')
 <!-- Content Header (Page header) -->
@@ -24,7 +23,6 @@
         <div class="row">
           <div class="col-12">
             <!-- /.card -->
-
             <div class="card">
               <div class="card-header">
                 <h3>All Product Table
@@ -33,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example2" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
                     <th>Name</th>
@@ -44,7 +42,6 @@
                   </thead>
                   <tbody>
                <tr>
-                  
                   <td>rice</td>
                   <td>boiled</td>
                   <td>eri</td>
@@ -56,8 +53,6 @@
                       </div>
                   </td>
                 </tr>
-
-                
                   </tbody>
                 </table>
               </div>
