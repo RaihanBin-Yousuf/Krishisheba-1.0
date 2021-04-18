@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3>All Post Table
-                <a class="btn btn-info float-right btn-sm" href="{{route('product.create')}}"><i class="fa fa-plus"> </i> Add </a>
+                <a class="btn btn-info float-right btn-sm"  href="{{route('manage_posts.create')}}"><i class="fa fa-plus"> </i> Add </a>
                 </h3>
               </div>
               <!-- /.card-header -->
