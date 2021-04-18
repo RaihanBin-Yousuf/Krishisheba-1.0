@@ -34,7 +34,12 @@
   <link rel="stylesheet" href="{{ asset('backend-asset/plugins/summernote/summernote-bs4.min.css')}}">
    <!-- Scripts -->
    <!-- <script src="{{ mix('js/app.js') }}" defer></script> -->
-
+   <style>
+.h4post{
+    color: #6d6d61eb;
+    font-size: 20px
+}
+</style>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

@@ -1,20 +1,5 @@
 @extends('backend.layouts.master')
 @section('content')
-
-<style>
-.product-color{
-color: #17a2b8;
-font-weight: bold;
-}
-.subh4{
-    color: #6d6d61eb;
-    font-size: 20px
-}
-.thispahelavels{
-  font-weight: 200;
-}
-</style>
-
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
@@ -34,25 +19,23 @@ font-weight: bold;
     <!-- Main content -->
     <div style="padding: 0 2rem;" class="content">
         <div class="container">  
-          <a class="btn btn-info float-right btn-sm" href="#"><i class="fa fa-list"> </i> Add New User</a>
+          <!-- <a class="btn btn-info float-right btn-sm" href="#"><i class="fa fa-list"> </i> Add New User</a> -->
             <div class="text-center">
-                  <h2 class="product-color">নতুন পণ্য যোগ করুন</h2>
+                  <h2 style="color: #17a2b8;font-weight: bold;">নতুন পণ্য যোগ করুন</h2>
             </div><br>
             <form >
               <div>
-                <h4 class="subh4">পণ্য সম্পর্কে</h4>
+                <h4 class="h4post">পণ্য সম্পর্কে</h4>
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label1 for="">পণ্য</label1>
+                      <h7 for="commidities">পণ্য</h7>
                       <select class="form-control select2bs4" required="required">
                         <option disabled selected value="">নির্বাচন করুন</option>                        
-                        <option selected value="1">ধান</option>
-                        <option value="4">চাল</option>
-                        <option value="13">গম</option>
-                        <option value="17">ভুট্টা</option>
-                        <option value="12">কাজুবাদাম</option>
-                        <option value="8">চা পাতা</option>
+                        <option selected value="ধান">ধান</option>
+                        <option value="চাল">চাল</option>
+                        <option value="গম">গম</option>
+                        <option value="ভুট্টা">ভুট্টা</option>
                       </select>
                     </div>
                   </div>
@@ -61,33 +44,34 @@ font-weight: bold;
                 <div class="row">
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label1 for="">মোট ওজন* </label1>
+                      <h7 for="">মোট ওজন* </h7>
                       <input class="form-control values-input" step="any" required="required" id="total-weight" type="number" name="" />
                     </div>
                   </div>
-    
                   <div class="col-md-3">
                     <div class="form-group" >
-                      <label1 for="weight_unit">ওজন ইউনিট</label1>*
+                      <h7 for="weight_unit">ওজন ইউনিট</h7>*
                       <select class="form-control">
                         <option disabled selected value="">নির্বাচন করুন</option>       
-                        <option value="MT">মেট্রিক টন</option>
-                        <option value="T">টন</option>
-                        <option value="KG">কেজি</option>
+                        <option value="মেট্রিক টন">মেট্রিক টন</option>
+                        <option value="টন">টন</option>
+                        <option value="কেজি">কেজি</option>
+                        <option value="কেজি">কেজি</option>
+                        <option value="পিস">পিস</option>
                       </select>
                     </div>
                   </div>
     
                   <div class="col-md-3">
                     <div class="form-group">
-                      <label1 for="">ইউনিট প্রতি মূল্য (৳)</label1>*
-                      <input class="form-control values-input" step="any" required="required"  type="number"  />
+                      <h7 for="">ইউনিট প্রতি মূল্য (৳)</h7>*
+                      <input class="form-control values-input" required="required"  type="number"  />
                     </div>
                   </div>
     
                   <div class="col-md-3">
                     <div class="form-group" >
-                      <label1 id="advance-label1" for="">অগ্রিম পরিশোধ (%)*</label1>
+                      <h7 for="advance_paid">অগ্রিম পরিশোধ (%)*</h7>
                       <select class="form-control">
                         <option selected="selected" value="0">0 (%)</option>
                         <option value="5">5 (%)</option>
@@ -101,103 +85,80 @@ font-weight: bold;
                   </div>
                 </div>
                
-                <h4 class="subh4">পণ্যের বিবরণ</h4>
+                <h4 class="h4post">পণ্যের বিবরণ</h4>
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                        <label1 class="thispahelavels" for=""> পণ্যের প্রকার</label1>*
+                        <h7 for="category"> পণ্যের প্রকার</h7>*
                         <select class="form-control" required="required">
                             <option disabled selected value="">নির্বাচন করুন</option>  
-                            <option value="5">আউশ ধান</option>
-                            <option value="4">আমন ধান</option>
-                            <option value="25">বোরো ধান</option></select>
+                            <option value="আউশ ধান">আউশ ধান</option>
+                            <option value="আমন ধান">আমন ধান</option>
+                            <option value="বোরো ধান">বোরো ধান</option></select>
                         </div>
                     </div>
 
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label1>পণ্যের জাত সমূহ</label1>*
+                        <h7 for="sub_category">পণ্যের জাত সমূহ</h7>*
                         <select class="form-control">
                         <option disabled selected value="">নির্বাচন করুন</option>  
-                        <option value="111">বিআর১ (চান্দিনা)</option>
-                        <option value="136">বিআর২ (মালা)</option>
-                        <option value="135">বিআর৩ (বিপ্লব)</option>
-                        <option value="134">বিআর৪ (ব্রিশাইল)</option>
-                        <option value="133">বিআর৫ (দুলাভোগ)</option>
-                        <option value="132">বিআর৬</option>
-                        <option value="131">বিআর৭(ব্রি বালাম)</option>
-                        <option value="130">বিআর৮ (আশা)</option>
-                        <option value="129">বিআর৯ (সুফলা)</option>
-                        <option value="128">বিআর১৯ (মঙ্গল)</option>
-                        <option value="54">বিআর২৩ (দিশারী)</option>
-                        <option value="979">বিআর২৫ (নয়াপাজাম)</option>
-                        <option value="775">ব্রি ধান২৮</option>
-                        <option value="774">ব্রি ধান২৯</option>                       
-                        <option value="772">ব্রি ধান৬১</option>
-                        <option value="771">ব্রি ধান৬২</option>
-                        <option value="770">ব্রি ধান৬৪</option>
-                        <option value="769">ব্রি ধান৭৪</option>
-                        <option value="768">ব্রি ধান৭৫</option>
-                        <option value="767">ব্রি ধান৮৩</option>
-                        <option value="400">ব্রি ধান৮৫</option>
-                        <option value="112">ব্রি হাইব্রিড ধান১</option>
-                        <option value="773">ব্রি ধান হাইব্রিড৩</option>
-                        <option value="923">ব্রি ধান হাইব্রিড২</option>
+                        <option value="বিআর১ (চান্দিনা)">বিআর১ (চান্দিনা)</option>
+                        <option value="বিআর২ (মালা">বিআর২ (মালা)</option>
+                        <option value="বিআর৩ (বিপ্লব)">বিআর৩ (বিপ্লব)</option>
+                        <option value="বিআর৪ (ব্রিশাইল)">বিআর৪ (ব্রিশাইল)</option>
+                        <option value="বিআর৫ (দুলাভোগ)">বিআর৫ (দুলাভোগ)</option>
+                        <option value="বিআর৬">বিআর৬</option>
+                        <option value="বিআর৭(ব্রি বালাম)">বিআর৭(ব্রি বালাম)</option>
+                        <option value="বিআর৮ (আশা)">বিআর৮ (আশা)</option>
+                        <option value="বিআর৯ (সুফলা)">বিআর৯ (সুফলা)</option>
+                        <option value="বিআর১৯ (মঙ্গল)">বিআর১৯ (মঙ্গল)</option>
+                        <option value="বিআর২৩ (দিশারী)">বিআর২৩ (দিশারী)</option>
                         </select>
                     </div>
                     </div>
 
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label1>উৎপাদনের ধরন</label1>
+                        <h7>উৎপাদনের ধরন</h7>
                         <select class="form-control">
                         <option disabled selected value="">নির্বাচন করুন</option>
-                        <option value="1">প্রচলিত উৎপাদন </option>
-                        <option value="3">জৈব উৎপাদন</option>
-                        <option value="2">রাসায়নিক উৎপাদন</option>
+                        <option value="প্রচলিত উৎপাদন">প্রচলিত উৎপাদন </option>
+                        <option value="জৈব উৎপাদন">জৈব উৎপাদন</option>
+                        <option value="রাসায়নিক উৎপাদন">রাসায়নিক উৎপাদন</option>
                         </select>
                     </div>
                     </div>
 
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label1 for=""> ফসল উৎপাদন সাল</label1>
-                        <input class="form-control" step="any" type="date"/>
+                        <h7 for=""> ফসল উৎপাদন সাল</h7>
+                        <input class="form-control" type="date"/>
                     </div>
                     </div>
 
                     <div class="col-md-4">
                     <div class="form-group">
-                        <label1 for="">প্যাকেজিং পদ্ধতি</label1>
+                        <h7 for="">প্যাকেজিং পদ্ধতি</h7>
                         <select class="form-control">
+                        <option disabled selected value="">নির্বাচন করুন</option>
                         <option disabled selected value="">নির্বাচন করুন</option>                          
-                        <option value="800">40 কেজি ব্যাগ</option>
-                        <option value="803">50 কেজি ব্যাগ</option>
-                        <option value="809">1 মেট্রিক টন</option>
-                        <option value="807">1 টন</option>
-                        <option value="810">অন্য প্যাকেজিং পদ্ধতি(মন্তব্যে উল্লেখ করুন)</option></select>
+                        <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
+                        <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
+                        <option value="1 মেট্রিক টন">1 মেট্রিক টন</option>
+                        <option value="1 টন">1 টন</option>
+                        <option disabled>অন্য প্যাকেজিং পদ্ধতি(মন্তব্যে উল্লেখ করুন)</option>
+                      </select>
                         </div>
                     </div>
                     </div>
                 </div>
-                   
-    
-                      
-                    <h4 class="subh4">অফার সম্পর্কে*</h4>
+                    <h4 class="h4post">অফার সম্পর্কে*</h4>
                       <div class="row">
                         <div class="col-md-4">
                           <div class="form-group">
                             <div class="form-group"> 
-                              <label1 for="" class="control-label1">প্রাথমিক বিতরণ তারিখ*</label1> 
-                              <input type="date" class="form-control" id="date" value="" required> 
-                            </div> 
-                          </div>
-                        </div>
-    
-                        <div class="col-md-4">
-                          <div class="form-group">
-                            <div class="form-group"> 
-                              <label1 for="finaldeliverydate" class="control-label1"> চূড়ান্ত বিতরণ তারিখ*</label1> 
+                              <h7 for="" class="control-h7">প্রাথমিক বিতরণ তারিখ*</h7> 
                               <input type="date" class="form-control" value="" required> 
                             </div> 
                           </div>
@@ -206,7 +167,16 @@ font-weight: bold;
                         <div class="col-md-4">
                           <div class="form-group">
                             <div class="form-group"> 
-                              <label1 for="" class="control-label1"> অফার শেষ হওয়ার তারিখ*</label1> 
+                              <h7 for="finaldeliverydate" class="control-h7"> চূড়ান্ত বিতরণ তারিখ*</h7> 
+                              <input type="date" class="form-control" value="" required> 
+                            </div> 
+                          </div>
+                        </div>
+    
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <div class="form-group"> 
+                              <h7 for="" class="control-h7"> অফার শেষ হওয়ার তারিখ*</h7> 
                               <input type="date" class="form-control" id="date" value="" required> 
                             </div> 
                           </div>
@@ -216,20 +186,20 @@ font-weight: bold;
     
                       <div class="row">
                         <div class="col-md-12">
-                          <h4 class="subh4">নিজস্ব যানবাহন আছে?</h4>
+                          <h4 class="h4post">নিজস্ব যানবাহন আছে?</h4>
                           <input id="quotation-yes" class="quotation-btn" type="radio" name="service-quotation" value="yes" ><span class="translation_missing" title="translation missing: en.bids.show_logistic.yes">  হ্যাঁ</span>
                           <input id="quotation-no" class="quotation-btn" type="radio" name="service-quotation" value="no" checked><span class="translation_missing" title="translation missing: en.bids.show_logistic.no">  না</span>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-6" style='margin-top: 20px'>
-                          <h4 class="subh4">আরো কিছু তথ্য দিন</h4>
+                          <h4 class="h4post">আরো কিছু তথ্য দিন</h4>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-md-4">
                          <div class="form-group"> 
-                          <label1 class="control-label1">বিভাগ*</label1> 
+                          <h7 class="control-h7">বিভাগ*</h7> 
                           <select name="divisions" id="divisions" required="required" class="form-control input-lg" onchange="divisionsList();" >
                            <option disabled selected value="">নির্বাচন করুন</option>
                            <option value="Barishal">বরিশাল</option>
@@ -246,7 +216,7 @@ font-weight: bold;
     
                      <div class="col-md-4"> 
                       <div class="form-group"> 
-                        <label1 class="control-label1">জেলা</label1> 
+                        <h7 class="control-h7">জেলা</h7> 
                         <select class="form-control input-lg" name="" id="distr" onchange="thanaList();">
                           <option disabled selected value="">নির্বাচন করুন</option>
                         </select>
@@ -254,7 +224,7 @@ font-weight: bold;
                     </div>
                     <div class="col-md-4">
                       <div class="form-group"> 
-                        <label1 for="field-5" class="control-label1">থানা</label1> 
+                        <h7 for="field-5" class="control-h7">থানা</h7> 
                         <select class="form-control input-lg" name="Police Station" id="polic_sta">
                           <option disabled selected>নির্বাচন করুন</option>
                         </select>
@@ -264,21 +234,21 @@ font-weight: bold;
     
                 <div class="row">
                     <div class="col-md-4">
-                      <label1 for="address" class="control-label1">গ্রাম/মহল্লা</label1> 
+                      <h7 for="address" class="control-h7">গ্রাম/মহল্লা</h7> 
                       <input type="text" class="form-control" id="address" placeholder="গ্রাম/মহল্লা" required>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                       <div class="form-group" style="margin-top: 10px;">
-                        <h4 class="subh4" for="additional_comments">সংযোজিত মন্তব্য</h4>
+                        <h4 class="h4post" for="additional_comments">সংযোজিত মন্তব্য</h4>
                         <textarea class="form-control" ></textarea>
                       </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
-                        <h4 class="subh4" for="files"> চিত্র আপলোড করুন:</h4>
+                        <h4 class="h4post" for="files"> চিত্র আপলোড করুন:</h4>
                         <input type="file" id="files" name="files" multiple>                     
                       </div>
                 </div>
@@ -298,10 +268,8 @@ font-weight: bold;
             </form>
         </div>
     </div>
-    
-          <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+    <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
     <!-- /.content -->
-<!-- Template Main JS File -->
-<script src="{{ asset('homepage-asset/home_page/js/main.js') }}"></script>
-
+<script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script>
+<script src="{{ mix('js/app.js') }}" defer></script>
 @endsection

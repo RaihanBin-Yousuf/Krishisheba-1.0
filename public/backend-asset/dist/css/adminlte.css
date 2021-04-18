@@ -10,7 +10,6 @@
  * Copyright 2011-2020 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-
  .main-sidebar { background-color: #fff !important }
 :root {
   --blue: #007bff;
@@ -32921,4 +32920,8 @@ a.text-muted:hover {
 .dark-mode .link-dark {
   color: #ced4da;
 }
+.h4post{
+  color: #6d6d61eb;
+  font-size: 20px
+ }
 /*# sourceMappingURL=adminlte.css.map */

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ManagePost;
+use App\Models\Sub_Category;
 use Illuminate\Http\Request;
 
-class ManagePostController extends Controller
+class SubCategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,9 @@ class ManagePostController extends Controller
      */
     public function index()
     {
-        // $data=Auth::user()->role;
-        return view('backend.manage_posts.index');
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,8 +24,15 @@ class ManagePostController extends Controller
      */
     public function create()
     {
-        return view('backend.manage_posts.create');
+        //
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         //
@@ -34,10 +41,10 @@ class ManagePostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ManagePost  $managePost
+     * @param  \App\Models\Sub_Category  $sub_Category
      * @return \Illuminate\Http\Response
      */
-    public function show(ManagePost $managePost)
+    public function show(Sub_Category $sub_Category)
     {
         //
     }
@@ -45,10 +52,10 @@ class ManagePostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ManagePost  $managePost
+     * @param  \App\Models\Sub_Category  $sub_Category
      * @return \Illuminate\Http\Response
      */
-    public function edit(ManagePost $managePost)
+    public function edit(Sub_Category $sub_Category)
     {
         //
     }
@@ -57,10 +64,10 @@ class ManagePostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ManagePost  $managePost
+     * @param  \App\Models\Sub_Category  $sub_Category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ManagePost $managePost)
+    public function update(Request $request, Sub_Category $sub_Category)
     {
         //
     }
@@ -68,10 +75,10 @@ class ManagePostController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ManagePost  $managePost
+     * @param  \App\Models\Sub_Category  $sub_Category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManagePost $managePost)
+    public function destroy(Sub_Category $sub_Category)
     {
         //
     }
