@@ -1,5 +1,6 @@
 @extends('backend.layouts.master')
 @section('content')
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">

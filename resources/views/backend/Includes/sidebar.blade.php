@@ -2,7 +2,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 ">
         <div class="text-center">
-          <h4 class="text-white" href="login.html"> DESHBOARD</h4>
+          <h4 class="text-white"> {{ Auth::user()->name }}</h4>
         </div>
       </div>
 
@@ -23,7 +23,6 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          @if(auth()->user()->role == 'admin')
           <li class="nav-item">
             <a href="{{route('deshboard')}}" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -32,8 +31,8 @@
               </p>
             </a>
           </li>
-          @endif
-          @if(auth()->user()->role == 'seller')
+        
+          @if(auth()->user()->role == 'admin')
           <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users-cog"></i>
@@ -57,7 +56,7 @@
               </li>
             </ul>
           </li>
-          @endif
+         
         <li class="nav-item">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
@@ -118,6 +117,8 @@
             </li>
           </ul>
         </li>
+        @endif
+
         <li class="nav-item">
           <a href="" class="nav-link">
           <i class="nav-icon fas fa-user-secret"></i>
@@ -164,10 +165,9 @@
                     document.getElementById('logout-form').submit();">
                     <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                    @csrf
-                </form>
-          </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
         </li>
         </ul>
       </nav>
