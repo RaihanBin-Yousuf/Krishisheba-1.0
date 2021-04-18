@@ -14,10 +14,10 @@ class UserSeeder extends Seeder
     public function run()
     {
         $all_users=[
-            [ "name" => "RAIHAN", "email" => "raihancox12@gmail.com", "mobile" => "01816064616","nid" => "5106894768","birth_date" => "02-07-1997","role" => "admin","password" => "12121212"],
-            [ "name" => "EMTIYAZ", "email" => "emtiyaz12@gmail.com", "mobile" => "01816064617","nid" => "345677544567","birth_date" => "10-11-2019","role" => "seller","password" => "12121212"],
-            [ "name" => "ROBIN", "email" => "robin12@gmail.com", "mobile" => "01816064618","nid" => "5106894769","birth_date" => "12-11-2017","role" => "buyer","password" => "12121212"],
-            [ "name" => "ABISHEK", "email" => "abishek12@gmail.com", "mobile" => "01816064619","nid" => "3456775445756","birth_date" => "11-10-2010","role" => "transport","password" => "12121212"],
+            [ "name" => "RAIHAN", "email" => "raihancox12@gmail.com", "mobile" => "01816064616","nid" => "5106894768","birth_date" => "02-07-1997","role" => "admin","password" => bcrypt('12121212')],
+            [ "name" => "EMTIYAZ", "email" => "emtiyaz12@gmail.com", "mobile" => "01816064617","nid" => "345677544567","birth_date" => "10-11-2019","role" => "seller","password" =>  bcrypt('12121212')],
+            [ "name" => "ROBIN", "email" => "robin12@gmail.com", "mobile" => "01816064618","nid" => "5106894769","birth_date" => "12-11-2017","role" => "buyer","password" =>  bcrypt('12121212')],
+            [ "name" => "ABISHEK", "email" => "abishek12@gmail.com", "mobile" => "01816064619","nid" => "3456775445756","birth_date" => "11-10-2010","role" => "transport","password" =>  bcrypt('12121212')],
         ];
 
         foreach($all_users as $users) {
