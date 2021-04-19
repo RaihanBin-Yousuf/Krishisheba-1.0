@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-
-
-class managePostCreate extends Component {
+class Create extends Component {
     render() {
         return (<>
             <div className="custom-post-form">
@@ -253,8 +251,8 @@ class managePostCreate extends Component {
         </>)
     }
 }
-export default managePostCreate;
+export default Create;
 
-if (document.getElementById('managePostCreate')) {
-    ReactDOM.render(<managePostCreate />, document.getElementById('managePostCreate'));
+if (document.getElementById('react_manage_posts')) {
+    ReactDOM.render(<Create />, document.getElementById('react_manage_posts'));
 }

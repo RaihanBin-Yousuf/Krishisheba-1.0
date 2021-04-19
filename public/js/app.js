@@ -1994,18 +1994,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var managePostCreate = /*#__PURE__*/function (_Component) {
-  _inherits(managePostCreate, _Component);
+var Create = /*#__PURE__*/function (_Component) {
+  _inherits(Create, _Component);
 
-  var _super = _createSuper(managePostCreate);
+  var _super = _createSuper(Create);
 
-  function managePostCreate() {
-    _classCallCheck(this, managePostCreate);
+  function Create() {
+    _classCallCheck(this, Create);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(managePostCreate, [{
+  _createClass(Create, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -2567,13 +2567,13 @@ var managePostCreate = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return managePostCreate;
+  return Create;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (managePostCreate);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Create);
 
-if (document.getElementById('managePostCreate')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("managePostCreate", {}), document.getElementById('managePostCreate'));
+if (document.getElementById('react_manage_posts')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Create, {}), document.getElementById('react_manage_posts'));
 }
 
 /***/ }),
