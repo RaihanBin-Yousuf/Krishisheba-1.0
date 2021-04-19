@@ -21,16 +21,19 @@ class SubCategoryController extends Controller
     {
        
         if (request()->ajax()) {
-            $sub_categoies = $this->sub_category->getAll();
+            // dd(request());
+            $input=request()->category_id;
+            $sub_categories = $this->sub_category->getAll($input);
+            // dd($sub_categories);
             if(request()->dropdown) {
-                return $this->sendResponse(['data'=>$sub_categoies]);
+                return $this->sendResponse(['data'=>$sub_categories]);
             }
-            return $this->sendResponse(['data'=>$sub_categoies, 'pages' => [
-                'total'=> $sub_categoies->total(),
-                'next_page_url' => $sub_categoies->nextPageUrl(),
-                'prev_page_url' => $sub_categoies->previousPageUrl(),
-                'last_page' 	=> $sub_categoies->lastPage(),
-                'current_page' 	=> $sub_categoies->currentPage(),
+            return $this->sendResponse(['data'=>$sub_categories, 'pages' => [
+                'total'=> $sub_categories->total(),
+                'next_page_url' => $sub_categories->nextPageUrl(),
+                'prev_page_url' => $sub_categories->previousPageUrl(),
+                'last_page' 	=> $sub_categories->lastPage(),
+                'current_page' 	=> $sub_categories->currentPage(),
             ]]);
         }
         return view('settings.categories.index');

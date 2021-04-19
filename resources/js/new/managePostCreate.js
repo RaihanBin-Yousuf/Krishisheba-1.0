@@ -24,6 +24,10 @@ class Create extends Component {
             };
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
+            this.categorySelect = this.categorySelect.bind(this);
+            this.getCategories = this.getCategories.bind(this);
+            this.getSubCategories = this.getSubCategories.bind(this);
+            this.subcategorySelect = this.subcategorySelect.bind(this);
         }
 
         componentDidMount(){
@@ -34,20 +38,35 @@ class Create extends Component {
            
         }
 
-        async getCategories() {
-            const res = await CategoryServices.dropdown({"type":"item"});
+        categorySelect(event) {
+            const target = event.target;
+             this.getCategories(target.value);
+
+        }
+        subcategorySelect(event) {
+            const target = event.target;
+             this.getSubCategories(target.value);
+
+        }
+        async getCategories(data) {
+            const res = await CategoryServices.dropdown({"product_id": data});
+            
             this.setState({
                 ['categories']: res,
             });
         }
-        async getSubCategories() {
-            const res = await SubcateoryService.dropdown({"type":"item"});
+        async getSubCategories(subcat) {
+            console.log('subcat');
+            console.log(subcat);
+            const res = await SubcateoryService.dropdown({"category_id":subcat});
+            console.log('inside');
+            console.log(res);
             this.setState({
                 ['subCategories']: res,
             });
         }
         async getProduct() {
-            const res = await ProductServices.dropdown({"type":"item"});
+            const res = await ProductServices.dropdown();
             this.setState({
                 ['products']: res,
             });
@@ -91,8 +110,28 @@ class Create extends Component {
     
 
     render() {
-        console.log('products');
-        console.log(this.state.products);
+        console.log('categoryies');
+        console.log(this.state.categories);
+        let productDropdown = [<option>নির্বাচন করুন</option>];
+        if (this.state.products) {
+                this.state.products.map(product=>(
+                    productDropdown.push(<option key={product.id} value={product.id}>{product.name}</option>)
+            ));
+        }
+
+        let categoryDropdown = [<option>নির্বাচন করুন</option>];
+        if (this.state.categories) {
+                this.state.categories.map(category=>(
+                    categoryDropdown.push(<option key={category.id} value={category.id}>{category.name}</option>)
+            ));
+        }
+
+        let subcategoryDropdown = [<option>নির্বাচন করুন</option>];
+        if (this.state.subCategories) {
+                this.state.subCategories.map(subcategory=>(
+                    subcategoryDropdown.push(<option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option>)
+            ));
+        }
         return (<>
             <div className="custom-post-form">
                 <form action="">
@@ -101,12 +140,13 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                             <h5 htmlFor="commidities">পণ্য</h5>
-                            <select className="form-control select2bs4" defaultValue={'DEFAULT'} required="required">
-                                <option disabled value="DEFAULT">নির্বাচন করুন</option>                        
+                            <select className="form-control select2bs4" onChange={this.categorySelect} required="required">
+                                {/* <option disabled value="DEFAULT">নির্বাচন করুন</option>                        
                                 <option value="ধান">ধান</option>
                                 <option value="চাল">চাল</option>
                                 <option value="গম">গম</option>
-                                <option value="ভুট্টা">ভুট্টা</option>
+                                <option value="ভুট্টা">ভুট্টা</option> */}
+                                {productDropdown}
                             </select>
                             </div>
                         </div>
@@ -161,11 +201,12 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor="category"> পণ্যের প্রকার*</h5>
-                                <select className="form-control" defaultValue={'DEFAULT'} required="required">
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>  
+                                <select className="form-control" onChange={this.subcategorySelect} required="required">
+                                    {/* <option disabled value="DEFAULT">নির্বাচন করুন</option>  
                                     <option value="আউশ ধান">আউশ ধান</option>
                                     <option value="আমন ধান">আমন ধান</option>
-                                    <option value="বোরো ধান">বোরো ধান</option>
+                                    <option value="বোরো ধান">বোরো ধান</option> */}
+                                    {categoryDropdown}
                                 </select>
                             </div>
                         </div>
@@ -173,8 +214,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor="sub_category">পণ্যের জাত সমূহ*</h5>
-                                <select className="form-control" defaultValue={'DEFAULT'}>
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>  
+                                <select className="form-control">
+                                    {/* <option disabled value="DEFAULT">নির্বাচন করুন</option>  
                                     <option value="বিআর১ (চান্দিনা)">বিআর১ (চান্দিনা)</option>
                                     <option value="বিআর২ (মালা">বিআর২ (মালা)</option>
                                     <option value="বিআর৩ (বিপ্লব)">বিআর৩ (বিপ্লব)</option>
@@ -185,7 +226,8 @@ class Create extends Component {
                                     <option value="বিআর৮ (আশা)">বিআর৮ (আশা)</option>
                                     <option value="বিআর৯ (সুফলা)">বিআর৯ (সুফলা)</option>
                                     <option value="বিআর১৯ (মঙ্গল)">বিআর১৯ (মঙ্গল)</option>
-                                    <option value="বিআর২৩ (দিশারী)">বিআর২৩ (দিশারী)</option>
+                                    <option value="বিআর২৩ (দিশারী)">বিআর২৩ (দিশারী)</option> */}
+                                    {subcategoryDropdown}
                                 </select>
                             </div>
                         </div>

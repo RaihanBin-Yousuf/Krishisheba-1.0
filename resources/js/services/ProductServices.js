@@ -11,8 +11,6 @@ const ProductService = {};
 ProductService.dropdown = async () => {
   const res = await axios.get("/product?dropdown=true")
   .then(response=> {
-      console.log('find data');
-      console.log(response.data.data.data);
       return response.data.data.data })
   .catch(error=>{ return error; })
   return res;

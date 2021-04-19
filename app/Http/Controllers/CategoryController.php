@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Traits\CommonTrait;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    use CommonTrait;
     public function __construct(Category $category)
     {
      $this->category = $category;
@@ -20,7 +21,9 @@ class CategoryController extends Controller
     {
        
         if (request()->ajax()) {
-            $categories = $this->category->getAll();
+            $input=request()->product_id;
+            
+            $categories = $this->category->getAll($input);
             if(request()->dropdown) {
                 return $this->sendResponse(['data'=>$categories]);
             }

@@ -14,7 +14,9 @@ class Sub_Category extends Model
     {
        
         if (request()->dropdown) {
-            $result = $result->latest()->where('category_id', $category_id)->get();  
+            // dd($input);
+            $result = $this->latest()->where('category_id', $input)->get();
+            // dd($result);
         } 
         return $result;
     }

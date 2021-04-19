@@ -2056,6 +2056,10 @@ var Create = /*#__PURE__*/function (_Component) {
     };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
+    _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
+    _this.getSubCategories = _this.getSubCategories.bind(_assertThisInitialized(_this));
+    _this.subcategorySelect = _this.subcategorySelect.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2067,9 +2071,21 @@ var Create = /*#__PURE__*/function (_Component) {
       this.getProduct(); // this.getPost();
     }
   }, {
+    key: "categorySelect",
+    value: function categorySelect(event) {
+      var target = event.target;
+      this.getCategories(target.value);
+    }
+  }, {
+    key: "subcategorySelect",
+    value: function subcategorySelect(event) {
+      var target = event.target;
+      this.getSubCategories(target.value);
+    }
+  }, {
     key: "getCategories",
     value: function () {
-      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -2077,7 +2093,7 @@ var Create = /*#__PURE__*/function (_Component) {
               case 0:
                 _context.next = 2;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_3__.default.dropdown({
-                  "type": "item"
+                  "product_id": data
                 });
 
               case 2:
@@ -2092,7 +2108,7 @@ var Create = /*#__PURE__*/function (_Component) {
         }, _callee, this);
       }));
 
-      function getCategories() {
+      function getCategories(_x) {
         return _getCategories.apply(this, arguments);
       }
 
@@ -2101,22 +2117,26 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "getSubCategories",
     value: function () {
-      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(subcat) {
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                console.log('subcat');
+                console.log(subcat);
+                _context2.next = 4;
                 return _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_6__.default.dropdown({
-                  "type": "item"
+                  "category_id": subcat
                 });
 
-              case 2:
+              case 4:
                 res = _context2.sent;
+                console.log('inside');
+                console.log(res);
                 this.setState(_defineProperty({}, 'subCategories', res));
 
-              case 4:
+              case 8:
               case "end":
                 return _context2.stop();
             }
@@ -2124,7 +2144,7 @@ var Create = /*#__PURE__*/function (_Component) {
         }, _callee2, this);
       }));
 
-      function getSubCategories() {
+      function getSubCategories(_x2) {
         return _getSubCategories.apply(this, arguments);
       }
 
@@ -2140,9 +2160,7 @@ var Create = /*#__PURE__*/function (_Component) {
             switch (_context3.prev = _context3.next) {
               case 0:
                 _context3.next = 2;
-                return _services_ProductServices__WEBPACK_IMPORTED_MODULE_5__.default.dropdown({
-                  "type": "item"
-                });
+                return _services_ProductServices__WEBPACK_IMPORTED_MODULE_5__.default.dropdown();
 
               case 2:
                 res = _context3.sent;
@@ -2237,7 +2255,7 @@ var Create = /*#__PURE__*/function (_Component) {
         }, _callee5, this);
       }));
 
-      function handleSubmit(_x) {
+      function handleSubmit(_x3) {
         return _handleSubmit.apply(this, arguments);
       }
 
@@ -2246,8 +2264,47 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('products');
-      console.log(this.state.products);
+      console.log('categoryies');
+      console.log(this.state.categories);
+      var productDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+        children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
+      })];
+
+      if (this.state.products) {
+        this.state.products.map(function (product) {
+          return productDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: product.id,
+            children: product.name
+          }, product.id));
+        });
+      }
+
+      var categoryDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+        children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
+      })];
+
+      if (this.state.categories) {
+        this.state.categories.map(function (category) {
+          return categoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: category.id,
+            children: category.name
+          }, category.id));
+        });
+      }
+
+      var subcategoryDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+        children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
+      })];
+
+      if (this.state.subCategories) {
+        this.state.subCategories.map(function (subcategory) {
+          return subcategoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: subcategory.id,
+            children: subcategory.name
+          }, subcategory.id));
+        });
+      }
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "custom-post-form",
@@ -2265,27 +2322,11 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     htmlFor: "commidities",
                     children: "\u09AA\u09A3\u09CD\u09AF"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control select2bs4",
-                    defaultValue: 'DEFAULT',
+                    onChange: this.categorySelect,
                     required: "required",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09A7\u09BE\u09A8",
-                      children: "\u09A7\u09BE\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u099A\u09BE\u09B2",
-                      children: "\u099A\u09BE\u09B2"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u0997\u09AE",
-                      children: "\u0997\u09AE"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AD\u09C1\u099F\u09CD\u099F\u09BE",
-                      children: "\u09AD\u09C1\u099F\u09CD\u099F\u09BE"
-                    })]
+                    children: productDropdown
                   })]
                 })
               })
@@ -2401,24 +2442,11 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     htmlFor: "category",
                     children: " \u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09AA\u09CD\u09B0\u0995\u09BE\u09B0*"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
-                    defaultValue: 'DEFAULT',
+                    onChange: this.subcategorySelect,
                     required: "required",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u0986\u0989\u09B6 \u09A7\u09BE\u09A8",
-                      children: "\u0986\u0989\u09B6 \u09A7\u09BE\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u0986\u09AE\u09A8 \u09A7\u09BE\u09A8",
-                      children: "\u0986\u09AE\u09A8 \u09A7\u09BE\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09CB\u09B0\u09CB \u09A7\u09BE\u09A8",
-                      children: "\u09AC\u09CB\u09B0\u09CB \u09A7\u09BE\u09A8"
-                    })]
+                    children: categoryDropdown
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2428,47 +2456,9 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     htmlFor: "sub_category",
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4 \u09B8\u09AE\u09C2\u09B9*"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
-                    defaultValue: 'DEFAULT',
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09E7 (\u099A\u09BE\u09A8\u09CD\u09A6\u09BF\u09A8\u09BE)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09E7 (\u099A\u09BE\u09A8\u09CD\u09A6\u09BF\u09A8\u09BE)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09E8 (\u09AE\u09BE\u09B2\u09BE",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09E8 (\u09AE\u09BE\u09B2\u09BE)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09E9 (\u09AC\u09BF\u09AA\u09CD\u09B2\u09AC)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09E9 (\u09AC\u09BF\u09AA\u09CD\u09B2\u09AC)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09EA (\u09AC\u09CD\u09B0\u09BF\u09B6\u09BE\u0987\u09B2)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09EA (\u09AC\u09CD\u09B0\u09BF\u09B6\u09BE\u0987\u09B2)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09EB (\u09A6\u09C1\u09B2\u09BE\u09AD\u09CB\u0997)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09EB (\u09A6\u09C1\u09B2\u09BE\u09AD\u09CB\u0997)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09EC",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09EC"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09ED(\u09AC\u09CD\u09B0\u09BF \u09AC\u09BE\u09B2\u09BE\u09AE)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09ED(\u09AC\u09CD\u09B0\u09BF \u09AC\u09BE\u09B2\u09BE\u09AE)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09EE (\u0986\u09B6\u09BE)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09EE (\u0986\u09B6\u09BE)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09EF (\u09B8\u09C1\u09AB\u09B2\u09BE)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09EF (\u09B8\u09C1\u09AB\u09B2\u09BE)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09E7\u09EF (\u09AE\u0999\u09CD\u0997\u09B2)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09E7\u09EF (\u09AE\u0999\u09CD\u0997\u09B2)"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AC\u09BF\u0986\u09B0\u09E8\u09E9 (\u09A6\u09BF\u09B6\u09BE\u09B0\u09C0)",
-                      children: "\u09AC\u09BF\u0986\u09B0\u09E8\u09E9 (\u09A6\u09BF\u09B6\u09BE\u09B0\u09C0)"
-                    })]
+                    children: subcategoryDropdown
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2862,22 +2852,26 @@ CategoryService.dropdown = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            console.log('inservice');
+            console.log(data);
+            _context.next = 4;
             return axios.get("/categories?dropdown=true", {
               params: {
-                "type": data.type
+                "product_id": data.product_id
               }
             }).then(function (response) {
+              console.log('find data');
+              console.log(response.data);
               return response.data.data.data;
             })["catch"](function (error) {
               return error;
             });
 
-          case 2:
+          case 4:
             res = _context.sent;
             return _context.abrupt("return", res);
 
-          case 4:
+          case 6:
           case "end":
             return _context.stop();
         }
@@ -2991,8 +2985,6 @@ ProductService.dropdown = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_ru
         case 0:
           _context.next = 2;
           return axios.get("/product?dropdown=true").then(function (response) {
-            console.log('find data');
-            console.log(response.data.data.data);
             return response.data.data.data;
           })["catch"](function (error) {
             return error;
@@ -3099,10 +3091,12 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            _context.next = 2;
+            console.log('services');
+            console.log(data);
+            _context.next = 4;
             return axios.get("/subcategories?dropdown=true", {
               params: {
-                "type": data.type
+                "category_id": data.category_id
               }
             }).then(function (response) {
               return response.data.data.data;
@@ -3110,11 +3104,11 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
               return error;
             });
 
-          case 2:
+          case 4:
             res = _context.sent;
             return _context.abrupt("return", res);
 
-          case 4:
+          case 6:
           case "end":
             return _context.stop();
         }

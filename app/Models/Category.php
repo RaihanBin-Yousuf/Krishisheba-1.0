@@ -14,8 +14,7 @@ class Category extends Model
     {
        
         if (request()->dropdown) {
-            $result = $result->latest()->where('product_id', $product_id)->get();
-           
+            $result = $this->latest()->where('product_id', $input)->get();
         } 
         return $result;
     }
