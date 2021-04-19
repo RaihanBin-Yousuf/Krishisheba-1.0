@@ -47,3 +47,6 @@ Route::prefix('Manage_Post')->group(function ()
 {
 Route::resource('manage_posts', ManagePostController::class);
 });
+
+// project task list
+// https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit
