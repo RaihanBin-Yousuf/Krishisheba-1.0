@@ -1,12 +1,12 @@
 @extends('backend.layouts.master')
 @section('content')
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+<link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-          </div>
+          </div> 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Add Product</a></li>
@@ -23,7 +23,9 @@
             <div class="text-center">
                   <h2 style="color: #17a2b8;font-weight: bold;">নতুন পণ্য যোগ করুন</h2>
             </div><br>
-            <form >
+            <div class="react-data" id="index"></div>
+            
+            {{-- <form >
                 <h4 class="h4post">পণ্য সম্পর্কে</h4>
                 <div class="row">
                   <div class="col-md-3">
@@ -39,7 +41,7 @@
                     </div>
                   </div>
                 </div>
-    
+    done
                 <div class="row">
                     <div class="col-md-3">
                       <div class="form-group">
@@ -83,7 +85,7 @@
                       </div>
                     </div>
                 </div>
-               
+            done    
                 <h4 class="h4post">পণ্যের বিবরণ</h4>
                 <div class="row">
                     <div class="col-md-4">
@@ -151,7 +153,7 @@
                         </div>
                     </div>
                 </div>
-
+done 
                 <h4 class="h4post">অফার সম্পর্কে*</h4>
                 <div class="row">
                   <div class="col-md-4">
@@ -182,7 +184,7 @@
                   </div>
 
                 </div>
-
+done 
                 <h4 class="h4post">নিজস্ব যানবাহন আছে?</h4>
                 <div class="row">
                   <div class="col-md-12">
@@ -192,7 +194,7 @@
                     </div>
                   </div>
                 </div>
-
+done
                 <h4 class="h4post">আরো কিছু তথ্য দিন</h4>
                 <div class="row">
                     <div class="col-md-4">
@@ -231,7 +233,7 @@
                       </div>
                     </div>
                 </div>
-    
+    done
                 <div class="row">
                     <div class="col-md-4">
                       <h7 for="address" class="control-h7">গ্রাম/মহল্লা</h7> 
@@ -252,6 +254,7 @@
                         <input type="file" id="files" name="files" multiple>                     
                       </div>
                 </div>
+                done
                 <div class="row">
                     <div class="col-md-9" style="margin-top:20px;">
                         <div class="form-group">
@@ -263,7 +266,7 @@
                         <button type="submit" class="btn btn-info btn-block">SUBMIT</button>
                     </div>
                 </div>
-            </form>
+            </form> --}}
         </div>
     </div>
     <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
