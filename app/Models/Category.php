@@ -10,4 +10,13 @@ class Category extends Model
     protected $fillable = [
         'name', 'product_id',
     ];
+    public function getAll($input)
+    {
+       
+        if (request()->dropdown) {
+            $result = $result->latest()->where('product_id', $product_id)->get();
+           
+        } 
+        return $result;
+    }
 }

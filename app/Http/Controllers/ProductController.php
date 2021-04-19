@@ -1,21 +1,45 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Traits\CommonTrait;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    use CommonTrait;
+    public function __construct(Product $product)
+    {
+     $this->product = $product;
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index()
     {
+       
+        if (request()->ajax()) {
+            $products = $this->product->getAll();
+            if(request()->dropdown) {
+                // dd($products);
+
+                return $this->sendResponse(['data'=>$products]);
+            }
+            return $this->sendResponse(['data'=>$products, 'pages' => [
+                'total'=> $products->total(),
+                'next_page_url' => $products->nextPageUrl(),
+                'prev_page_url' => $products->previousPageUrl(),
+                'last_page' 	=> $products->lastPage(),
+                'current_page' 	=> $products->currentPage(),
+            ]]);
+        }
         return view('backend.product.index');
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -23,7 +23,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.manage_users.add');
     }
 
     /**

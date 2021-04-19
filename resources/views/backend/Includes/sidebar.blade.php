@@ -36,10 +36,7 @@
               </p>
             </a>
           </li>
-        
-          @if(auth()->user()->role == 'admin')
-
-        <li class="nav-item {{ ($prefix == "/Product") ? 'menu-open':''}}">
+        <li class="nav-item">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users-cog"></i>
             <p>
@@ -49,26 +46,20 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('product.index')}}" class="nav-link {{($route=='product.index') ?'active':''}}">
+                <a href="{{route('product.index')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Product Names</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('product.create')}}" class="nav-link {{($route=='product.create') ?'active':''}}">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>Categories</p>
+                  <p>All Product</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Sub Categories</p>
+                  <p>Add Product</p>
                 </a>
               </li>
             </ul>
-          </li>
-         
+        </li>
+        @if(auth()->user()->role == 'admin')
         <li class="nav-item">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
@@ -107,7 +98,7 @@
           </ul>
         </li>
         
-        <li class="nav-item {{ ($prefix == "/Manage_Post") ? 'menu-open':''}}">
+        <li class="nav-item ">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
           <p>
@@ -117,13 +108,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('manage_posts.index')}}" class="nav-link {{($route=='manage_posts.index') ?'active':''}}">
+              <a href="{{route('manage_posts.index')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>All Product Posts</p>
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('manage_posts.create')}}" class="nav-link {{($route=='manage_posts.create') ?'active':''}}">
+            <a href="{{route('manage_posts.create')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Add Product Posts</p>
               </a>

@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
+
+    public function __construct(Sub_Category $sub_category)
+    {
+     $this->sub_category = $sub_category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,21 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+       
+        if (request()->ajax()) {
+            $sub_categoies = $this->sub_category->getAll();
+            if(request()->dropdown) {
+                return $this->sendResponse(['data'=>$sub_categoies]);
+            }
+            return $this->sendResponse(['data'=>$sub_categoies, 'pages' => [
+                'total'=> $sub_categoies->total(),
+                'next_page_url' => $sub_categoies->nextPageUrl(),
+                'prev_page_url' => $sub_categoies->previousPageUrl(),
+                'last_page' 	=> $sub_categoies->lastPage(),
+                'current_page' 	=> $sub_categoies->currentPage(),
+            ]]);
+        }
+        return view('settings.categories.index');
     }
 
     /**

@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3>All Users Table
-                <a class="btn btn-info float-right btn-sm" href="{{route('product.create')}}"><i class="fa fa-plus"> </i> Add </a>
+                <a class="btn btn-info float-right" href="{{route('users.create')}}"><i class="fa fa-plus"> </i> Add New User </a>
                 </h3>
               </div>
               <!-- /.card-header -->

@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public function __construct(Category $category)
+    {
+     $this->category = $category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +18,20 @@ class CategoryController extends Controller
      */
     public function index()
     {
+       
+        if (request()->ajax()) {
+            $categories = $this->category->getAll();
+            if(request()->dropdown) {
+                return $this->sendResponse(['data'=>$categories]);
+            }
+            return $this->sendResponse(['data'=>$categories, 'pages' => [
+                'total'=> $categories->total(),
+                'next_page_url' => $categories->nextPageUrl(),
+                'prev_page_url' => $categories->previousPageUrl(),
+                'last_page' 	=> $categories->lastPage(),
+                'current_page' 	=> $categories->currentPage(),
+            ]]);
+        }
         return view('backend.product.new');
     }
 

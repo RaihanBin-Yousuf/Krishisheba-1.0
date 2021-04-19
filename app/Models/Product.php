@@ -10,5 +10,16 @@ class Product extends Model
     protected $fillable = [
         'name',
     ];
-
+    public function getAll()
+    {
+       
+        if (request()->dropdown) 
+        {
+            $result = $this->latest()->get();
+        //    dd($result);
+        } 
+        return $result;
+    }
 }
+
+

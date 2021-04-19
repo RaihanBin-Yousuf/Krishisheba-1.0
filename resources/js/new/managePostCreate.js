@@ -1,7 +1,98 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
+import CategoryServices from '../services/CategoryService';
+import PostService from '../services/PostService';
+import ProductServices from '../services/ProductServices';
+import SubcateoryService from '../services/SubcateoryService';
 class Create extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            products: [],
+            categories: [],
+            subCategories: [],
+            post: {
+                total_weight: 0,
+                price_per_unit: '',
+                product_production_year: '',
+                initial_delivery_date: '',
+                final_delivery_date: '',
+                offer_end_date: '',
+                own_vehicle:0,
+                product_image:null,
+                },
+            };
+            this.handleSubmit = this.handleSubmit.bind(this);
+            this.handleInputChange = this.handleInputChange.bind(this);
+        }
+
+        componentDidMount(){
+            // this.getCategories();
+            // this.getSubCategories();
+            this.getProduct();
+            // this.getPost();
+           
+        }
+
+        async getCategories() {
+            const res = await CategoryServices.dropdown({"type":"item"});
+            this.setState({
+                ['categories']: res,
+            });
+        }
+        async getSubCategories() {
+            const res = await SubcateoryService.dropdown({"type":"item"});
+            this.setState({
+                ['subCategories']: res,
+            });
+        }
+        async getProduct() {
+            const res = await ProductServices.dropdown({"type":"item"});
+            this.setState({
+                ['products']: res,
+            });
+        }
+        async getPost() {
+            const res = await PostService.dropdown({"type":"item"});
+            this.setState({
+                ['post']: res,
+            });
+        }
+
+    
+        handleInputChange(event) {
+            const target = event.target;
+            let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
+            const name = target.name;
+            if (name == 'picture') {
+                value = target.files[0];
+            }
+               this.setState({
+                  item :{
+                    ...this.state.item,
+                  [name]: value
+                  }
+            });
+        }
+    
+        async handleSubmit(event) {
+            event.preventDefault();
+            console.log(this.state.item);
+            const citem = this.state.item;
+            let formdata = new FormData();
+            Object.keys(citem).map(key => {
+                formdata.append(key, citem[key]);
+            });
+            // const res = await itemServices.save(formdata);
+            // if (res.success) {
+            //     this.props.showForm(null);
+            // }
+        }
+    
+
     render() {
+        console.log('products');
+        console.log(this.state.products);
         return (<>
             <div className="custom-post-form">
                 <form action="">
@@ -25,7 +116,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">মোট ওজন* </h5>
-                                <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="" />
+                                <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" />
                             </div>
                         </div>
                         <div className="col-md-3">
@@ -45,7 +136,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
-                                <input className="form-control values-input" value="0" required="required"  type="number"  />
+                                <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" />
                             </div>
                         </div>
         
@@ -114,7 +205,7 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor=""> ফসল উৎপাদন সাল</h5>
-                                <input className="form-control" value="" type="date"/>
+                                <input className="form-control" value="" type="date" name="product_production_year"required="required"/>
                             </div>
                         </div>
 
@@ -139,7 +230,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7">প্রাথমিক বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" required/> 
+                                    <input type="date" className="form-control" value="" required name="initial_delivery_date"/> 
                                 </div> 
                             </div>
                         </div>
@@ -148,7 +239,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="finaldeliverydate" className="control-h7"> চূড়ান্ত বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" required/> 
+                                    <input type="date" className="form-control" value="" required name="final_delivery_date"/> 
                                 </div> 
                             </div>
                         </div>
@@ -157,7 +248,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7"> অফার শেষ হওয়ার তারিখ*</h5> 
-                                    <input type="date" className="form-control" id="date" value="" required/> 
+                                    <input type="date" className="form-control" id="date" value="" name="offer_end_date"required="required"/> 
                                 </div> 
                             </div>
                         </div>
@@ -167,8 +258,8 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <input id="quotation-yes" className="quotation-btn" type="radio" name="service-quotation" value="yes" /><span className="translation_missing" >  হ্যাঁ</span>
-                                <input id="quotation-no" className="quotation-btn" type="radio" name="service-quotation" value="no" checked/><span className="translation_missing" >  না</span>
+                                <input id="own_vehicle-yes" className="own_vehicle" type="radio" name="own_vehicle" value="1" /><span className="translation_missing" >  হ্যাঁ</span>
+                                <input id="own_vehicle-no" className="own_vehicle" type="radio" name="own_vehicle" value="0" checked/><span className="translation_missing" >  না</span>
                             </div>
                         </div>
                     </div>
@@ -196,7 +287,7 @@ class Create extends Component {
                         <div className="col-md-4"> 
                             <div className="form-group">
                                 <h5 className="control-h7">জেলা*</h5>
-                                <select className="form-control input-lg" name="" id="distr" defaultValue={'DEFAULT'}>
+                                <select className="form-control input-lg" name="district" id="distr" required="required" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                 </select>
                             </div>
@@ -205,7 +296,7 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group"> 
                                 <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
-                                <select className="form-control input-lg" defaultValue={'DEFAULT'} name="Police Station" id="polic_sta">
+                                <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required">
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                 </select>
                             </div>
@@ -215,7 +306,7 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <h5 htmlFor="address" className="control-h7">গ্রাম/মহল্লা*</h5> 
-                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value="" required/>
+                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege" required="required"/>
                         </div>
                     </div>
                     <div className="row">
@@ -223,14 +314,14 @@ class Create extends Component {
                             {/* <div className="form-group" style="margin-top: 10px;"> */}
                             <div className="form-group addtionalcmnt">
                                 <h4 className="h4post" htmlFor="additional_comments">সংযোজিত মন্তব্য</h4>
-                                <textarea className="form-control" ></textarea>
+                                <textarea className="form-control" name="comments"></textarea>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-4">
                             <h4 className="h4post" htmlFor="files"> চিত্র আপলোড করুন:</h4>
-                            <input type="file" id="files" name="files" value="" multiple/>                     
+                            <input type="file" id="files" name="product_image" value="" required/>                     
                         </div>
                     </div>
                     {/* done  */}
