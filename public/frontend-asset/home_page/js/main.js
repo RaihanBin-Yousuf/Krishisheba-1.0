@@ -10,6 +10,8 @@ function familyButtonClick(t,e){t.forEach(function(t){var i="#product_"+t,n="#bu
 
 // Only year input
 
+
+
 // Division Section select
 function divisionsList() {
 // get value from division lists
@@ -388,7 +390,7 @@ var thanaList = '<option disabled selected>নির্বাচন করুন
 
 document.getElementById("polic_sta").innerHTML= thanaList;
 }
-
+//end 
 
 !(function($) {
   "use strict";

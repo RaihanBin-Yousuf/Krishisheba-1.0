@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
-class Index extends Component {
+
+class managePostCreate extends Component {
     render() {
         return (<>
             <div className="custom-post-form">
@@ -31,7 +32,7 @@ class Index extends Component {
                         </div>
                         <div className="col-md-3">
                             <div className="form-group" >
-                                <h5 htmlFor="weight_unit">ওজন ইউনিট</h5>*
+                                <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
                                 <select className="form-control" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>       
                                     <option value="মেট্রিক টন">মেট্রিক টন</option>
@@ -45,7 +46,7 @@ class Index extends Component {
         
                         <div className="col-md-3">
                             <div className="form-group">
-                                <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)</h5>*
+                                <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
                                 <input className="form-control values-input" value="0" required="required"  type="number"  />
                             </div>
                         </div>
@@ -70,7 +71,7 @@ class Index extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">
-                                <h5 htmlFor="category"> পণ্যের প্রকার</h5>*
+                                <h5 htmlFor="category"> পণ্যের প্রকার*</h5>
                                 <select className="form-control" defaultValue={'DEFAULT'} required="required">
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>  
                                     <option value="আউশ ধান">আউশ ধান</option>
@@ -82,7 +83,7 @@ class Index extends Component {
 
                         <div className="col-md-4">
                             <div className="form-group">
-                                <h5 htmlFor="sub_category">পণ্যের জাত সমূহ</h5>*
+                                <h5 htmlFor="sub_category">পণ্যের জাত সমূহ*</h5>
                                 <select className="form-control" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>  
                                     <option value="বিআর১ (চান্দিনা)">বিআর১ (চান্দিনা)</option>
@@ -102,7 +103,7 @@ class Index extends Component {
 
                         <div className="col-md-4">
                             <div className="form-group">
-                                <h5>উৎপাদনের ধরন</h5>
+                                <h5>উৎপাদনের ধরন*</h5>
                                 <select className="form-control" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                     <option value="প্রচলিত উৎপাদন">প্রচলিত উৎপাদন </option>
@@ -121,7 +122,7 @@ class Index extends Component {
 
                         <div className="col-md-4">
                             <div className="form-group">
-                                <h5 htmlFor="">প্যাকেজিং পদ্ধতি</h5>
+                                <h5 htmlFor="">প্যাকেজিং পদ্ধতি*</h5>
                                 <select className="form-control" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
@@ -164,7 +165,7 @@ class Index extends Component {
                         </div>
                     </div>
                     {/* done  */}
-                    <h4 className="h4post">নিজস্ব যানবাহন আছে?</h4>
+                    <h4 className="h4post">নিজস্ব যানবাহন আছে?*</h4>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
@@ -196,7 +197,7 @@ class Index extends Component {
                         
                         <div className="col-md-4"> 
                             <div className="form-group">
-                                <h5 className="control-h7">জেলা</h5>
+                                <h5 className="control-h7">জেলা*</h5>
                                 <select className="form-control input-lg" name="" id="distr" defaultValue={'DEFAULT'}>
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                 </select>
@@ -205,7 +206,7 @@ class Index extends Component {
                         
                         <div className="col-md-4">
                             <div className="form-group"> 
-                                <h5 htmlFor="field-5" className="control-h7">থানা</h5> 
+                                <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
                                 <select className="form-control input-lg" defaultValue={'DEFAULT'} name="Police Station" id="polic_sta">
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                 </select>
@@ -215,7 +216,7 @@ class Index extends Component {
                     {/* done  */}
                     <div className="row">
                         <div className="col-md-4">
-                            <h5 htmlFor="address" className="control-h7">গ্রাম/মহল্লা</h5> 
+                            <h5 htmlFor="address" className="control-h7">গ্রাম/মহল্লা*</h5> 
                             <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value="" required/>
                         </div>
                     </div>
@@ -252,8 +253,8 @@ class Index extends Component {
         </>)
     }
 }
-export default Index;
+export default managePostCreate;
 
-if (document.getElementById('index')) {
-    ReactDOM.render(<Index />, document.getElementById('index'));
+if (document.getElementById('managePostCreate')) {
+    ReactDOM.render(<managePostCreate />, document.getElementById('managePostCreate'));
 }

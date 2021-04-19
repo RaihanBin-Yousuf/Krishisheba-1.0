@@ -23,7 +23,7 @@
             <div class="text-center">
                   <h2 style="color: #17a2b8;font-weight: bold;">নতুন পণ্য যোগ করুন</h2>
             </div><br>
-            <div class="react-data" id="index"></div>
+            <div class="managePostCreate" id="managePostCreate"></div>
             
             {{-- <form >
                 <h4 class="h4post">পণ্য সম্পর্কে</h4>

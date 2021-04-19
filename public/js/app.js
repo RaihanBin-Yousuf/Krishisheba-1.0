@@ -1855,7 +1855,7 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
-__webpack_require__(/*! ./new/Index */ "./resources/js/new/Index.js");
+__webpack_require__(/*! ./new/managePostCreate */ "./resources/js/new/managePostCreate.js");
 
 /***/ }),
 
@@ -1952,10 +1952,10 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
-/***/ "./resources/js/new/Index.js":
-/*!***********************************!*\
-  !*** ./resources/js/new/Index.js ***!
-  \***********************************/
+/***/ "./resources/js/new/managePostCreate.js":
+/*!**********************************************!*\
+  !*** ./resources/js/new/managePostCreate.js ***!
+  \**********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -1994,18 +1994,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Index = /*#__PURE__*/function (_Component) {
-  _inherits(Index, _Component);
+var managePostCreate = /*#__PURE__*/function (_Component) {
+  _inherits(managePostCreate, _Component);
 
-  var _super = _createSuper(Index);
+  var _super = _createSuper(managePostCreate);
 
-  function Index() {
-    _classCallCheck(this, Index);
+  function managePostCreate() {
+    _classCallCheck(this, managePostCreate);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Index, [{
+  _createClass(managePostCreate, [{
     key: "render",
     value: function render() {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
@@ -2073,8 +2073,8 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "weight_unit",
-                    children: "\u0993\u099C\u09A8 \u0987\u0989\u09A8\u09BF\u099F"
-                  }), "*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                    children: "\u0993\u099C\u09A8 \u0987\u0989\u09A8\u09BF\u099F*"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                     className: "form-control",
                     defaultValue: 'DEFAULT',
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
@@ -2105,8 +2105,8 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "",
-                    children: "\u0987\u0989\u09A8\u09BF\u099F \u09AA\u09CD\u09B0\u09A4\u09BF \u09AE\u09C2\u09B2\u09CD\u09AF (\u09F3)"
-                  }), "*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
+                    children: "\u0987\u0989\u09A8\u09BF\u099F \u09AA\u09CD\u09B0\u09A4\u09BF \u09AE\u09C2\u09B2\u09CD\u09AF (\u09F3)*"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                     className: "form-control values-input",
                     value: "0",
                     required: "required",
@@ -2159,8 +2159,8 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "category",
-                    children: " \u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09AA\u09CD\u09B0\u0995\u09BE\u09B0"
-                  }), "*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                    children: " \u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09AA\u09CD\u09B0\u0995\u09BE\u09B0*"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                     className: "form-control",
                     defaultValue: 'DEFAULT',
                     required: "required",
@@ -2186,8 +2186,8 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "sub_category",
-                    children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4 \u09B8\u09AE\u09C2\u09B9"
-                  }), "*", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
+                    children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4 \u09B8\u09AE\u09C2\u09B9*"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                     className: "form-control",
                     defaultValue: 'DEFAULT',
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("option", {
@@ -2235,7 +2235,7 @@ var Index = /*#__PURE__*/function (_Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
-                    children: "\u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8"
+                    children: "\u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                     className: "form-control",
                     defaultValue: 'DEFAULT',
@@ -2274,7 +2274,7 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "",
-                    children: "\u09AA\u09CD\u09AF\u09BE\u0995\u09C7\u099C\u09BF\u0982 \u09AA\u09A6\u09CD\u09A7\u09A4\u09BF"
+                    children: "\u09AA\u09CD\u09AF\u09BE\u0995\u09C7\u099C\u09BF\u0982 \u09AA\u09A6\u09CD\u09A7\u09A4\u09BF*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("select", {
                     className: "form-control",
                     defaultValue: 'DEFAULT',
@@ -2364,7 +2364,7 @@ var Index = /*#__PURE__*/function (_Component) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
               className: "h4post",
-              children: "\u09A8\u09BF\u099C\u09B8\u09CD\u09AC \u09AF\u09BE\u09A8\u09AC\u09BE\u09B9\u09A8 \u0986\u099B\u09C7?"
+              children: "\u09A8\u09BF\u099C\u09B8\u09CD\u09AC \u09AF\u09BE\u09A8\u09AC\u09BE\u09B9\u09A8 \u0986\u099B\u09C7?*"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
               className: "row",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -2448,7 +2448,7 @@ var Index = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     className: "control-h7",
-                    children: "\u099C\u09C7\u09B2\u09BE"
+                    children: "\u099C\u09C7\u09B2\u09BE*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
                     className: "form-control input-lg",
                     name: "",
@@ -2468,7 +2468,7 @@ var Index = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                     htmlFor: "field-5",
                     className: "control-h7",
-                    children: "\u09A5\u09BE\u09A8\u09BE"
+                    children: "\u09A5\u09BE\u09A8\u09BE*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("select", {
                     className: "form-control input-lg",
                     defaultValue: 'DEFAULT',
@@ -2489,7 +2489,7 @@ var Index = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h5", {
                   htmlFor: "address",
                   className: "control-h7",
-                  children: "\u0997\u09CD\u09B0\u09BE\u09AE/\u09AE\u09B9\u09B2\u09CD\u09B2\u09BE"
+                  children: "\u0997\u09CD\u09B0\u09BE\u09AE/\u09AE\u09B9\u09B2\u09CD\u09B2\u09BE*"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
                   type: "text",
                   className: "form-control",
@@ -2567,13 +2567,13 @@ var Index = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return Index;
+  return managePostCreate;
 }(react__WEBPACK_IMPORTED_MODULE_0__.Component);
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Index);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (managePostCreate);
 
-if (document.getElementById('index')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Index, {}), document.getElementById('index'));
+if (document.getElementById('managePostCreate')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("managePostCreate", {}), document.getElementById('managePostCreate'));
 }
 
 /***/ }),

@@ -1,3 +1,8 @@
+@php
+   $prefix = Request::route()->getPrefix();
+   $route = Route::current()->getName();
+ @endphp
+
 <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 ">
@@ -24,7 +29,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="{{route('deshboard')}}" class="nav-link">
+          <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Deshboard
@@ -33,25 +38,32 @@
           </li>
         
           @if(auth()->user()->role == 'admin')
-          <li class="nav-item">
+
+        <li class="nav-item {{ ($prefix == "/Product") ? 'menu-open':''}}">
             <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users-cog"></i>
             <p>
-              Manage commodities
+              Product Information
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('product.index')}}" class="nav-link ">
+                <a href="{{route('product.index')}}" class="nav-link {{($route=='product.index') ?'active':''}}">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>All commodities</p>
+                  <p>Product Names</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('product.create')}}" class="nav-link {{($route=='product.create') ?'active':''}}">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Categories</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Add commodities</p>
+                  <p>Sub Categories</p>
                 </a>
               </li>
             </ul>
@@ -94,7 +106,8 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        
+        <li class="nav-item {{ ($prefix == "/Manage_Post") ? 'menu-open':''}}">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
           <p>
@@ -104,13 +117,13 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('manage_posts.index')}}" class="nav-link ">
+              <a href="{{route('manage_posts.index')}}" class="nav-link {{($route=='manage_posts.index') ?'active':''}}">
                 <i class="fas fa-users nav-icon"></i>
                 <p>All Product Posts</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{route('manage_posts.create')}}" class="nav-link">
+            <a href="{{route('manage_posts.create')}}" class="nav-link {{($route=='manage_posts.create') ?'active':''}}">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Add Product Posts</p>
               </a>
@@ -124,6 +137,14 @@
           <i class="nav-icon fas fa-user-secret"></i>
           <p>
               Account Information
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-user-secret"></i>
+          <p>
+            গাড়ি নিবন্ধন করুন
             </p>
           </a>
         </li>
