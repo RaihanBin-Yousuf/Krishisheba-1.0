@@ -18,4 +18,10 @@ class Category extends Model
         } 
         return $result;
     }
+
+    public function getbyCategoryId($input)
+    {
+        $category = $this->where('id', $input)->get()->first();
+        return $category;
+    }
 }

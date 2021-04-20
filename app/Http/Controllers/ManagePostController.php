@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\ManagePost;
+use App\Models\Product;
+use App\Models\Category;
+use App\Models\Sub_Category;
 use Illuminate\Http\Request;
 
 class ManagePostController extends Controller
 {
+    public function __construct(Product $product, Category $category, Sub_Category $sub_category) {
+        $this->product = $product;
+        $this->category = $category;
+        $this->sub_category = $sub_category;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,7 +36,15 @@ class ManagePostController extends Controller
     }
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $product= $this->product->getbyProductId($input['product_id']);
+        $data['product_name'] =$product->name;
+        $category = $this->category->getbyCategoryId($input['category_id']);
+        $data['category'] = $category->name;
+        $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
+        $data['sub_category'] = $sub_category->name; 
+        dd($data);
+
     }
 
     /**

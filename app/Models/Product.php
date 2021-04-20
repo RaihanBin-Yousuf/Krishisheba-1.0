@@ -20,6 +20,13 @@ class Product extends Model
         } 
         return $result;
     }
+
+    public function getbyProductId($input)
+    {
+        // dd($input);
+        $product = $this->where('id', $input)->get()->first();
+        return $product;
+    }
 }
 
 

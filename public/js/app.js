@@ -1980,17 +1980,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _services_CategoryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/CategoryService */ "./resources/js/services/CategoryService.js");
 /* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/PostService */ "./resources/js/services/PostService.js");
-/* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_services_PostService__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _services_ProductServices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/ProductServices */ "./resources/js/services/ProductServices.js");
 /* harmony import */ var _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/SubcateoryService */ "./resources/js/services/SubcateoryService.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -2040,9 +2039,9 @@ var Create = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      products: [],
-      categories: [],
-      subCategories: [],
+      productslist: [],
+      categorieslist: [],
+      subCategorieslist: [],
       divisionList: [{
         name: 'Barishal',
         value: 'বরিশাল'
@@ -2069,16 +2068,38 @@ var Create = /*#__PURE__*/function (_Component) {
         value: 'সিলেট'
       }],
       post: {
+        product_id: '',
         total_weight: 0,
-        price_per_unit: '',
+        weight_unit: 0,
+        price_per_unit: 0,
+        advance_payment: 0,
+        category_id: 0,
+        sub_category_id: 0,
+        production_type: '',
         product_production_year: '',
+        packaging_method: '',
         initial_delivery_date: '',
         final_delivery_date: '',
         offer_end_date: '',
-        own_vehicle: 0,
-        product_image: null
+        own_vehicle: '',
+        divisions: '',
+        district: '',
+        thana: '',
+        villege: '',
+        comments: '',
+        product_image: ''
       }
-    };
+    }; // post: {
+    //     total_weight: 0,
+    //     price_per_unit: '',
+    //     product_production_year: '',
+    //     initial_delivery_date: '',
+    //     final_delivery_date: '',
+    //     offer_end_date: '',
+    //     own_vehicle:0,
+    //     product_image:null,
+    //     },
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
@@ -2087,15 +2108,14 @@ var Create = /*#__PURE__*/function (_Component) {
     _this.subcategorySelect = _this.subcategorySelect.bind(_assertThisInitialized(_this));
     _this.divisionsList = _this.divisionsList.bind(_assertThisInitialized(_this));
     _this.thanaList = _this.thanaList.bind(_assertThisInitialized(_this));
+    _this.getPost = _this.getPost.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Create, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.getCategories();
-      // this.getSubCategories();
-      this.getProduct(); // this.getPost();
+      this.getProduct();
     }
   }, {
     key: "categorySelect",
@@ -2112,7 +2132,9 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "getCategories",
     value: function () {
-      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(productId) {
+        var _objectSpread2, _this$setState;
+
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -2120,12 +2142,12 @@ var Create = /*#__PURE__*/function (_Component) {
               case 0:
                 _context.next = 2;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_3__.default.dropdown({
-                  "product_id": data
+                  "product_id": productId
                 });
 
               case 2:
                 res = _context.sent;
-                this.setState(_defineProperty({}, 'categories', res));
+                this.setState((_this$setState = {}, _defineProperty(_this$setState, 'categorieslist', res), _defineProperty(_this$setState, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'product_id', productId), _defineProperty(_objectSpread2, 'category_id', 0), _defineProperty(_objectSpread2, 'sub_category_id', 0), _objectSpread2))), _this$setState)); // this.getPost;
 
               case 4:
               case "end":
@@ -2144,26 +2166,24 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "getSubCategories",
     value: function () {
-      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(subcat) {
+      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(categoryId) {
+        var _objectSpread3, _this$setState2;
+
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('subcat');
-                console.log(subcat);
-                _context2.next = 4;
+                _context2.next = 2;
                 return _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_6__.default.dropdown({
-                  "category_id": subcat
+                  "category_id": categoryId
                 });
 
-              case 4:
+              case 2:
                 res = _context2.sent;
-                console.log('inside');
-                console.log(res);
-                this.setState(_defineProperty({}, 'subCategories', res));
+                this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'subCategorieslist', res), _defineProperty(_this$setState2, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread3 = {}, _defineProperty(_objectSpread3, 'category_id', categoryId), _defineProperty(_objectSpread3, 'sub_category_id', 0), _objectSpread3))), _this$setState2));
 
-              case 8:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -2191,7 +2211,7 @@ var Create = /*#__PURE__*/function (_Component) {
 
               case 2:
                 res = _context3.sent;
-                this.setState(_defineProperty({}, 'products', res));
+                this.setState(_defineProperty({}, 'productslist', res));
 
               case 4:
               case "end":
@@ -2211,26 +2231,15 @@ var Create = /*#__PURE__*/function (_Component) {
     key: "getPost",
     value: function () {
       var _getPost = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _services_PostService__WEBPACK_IMPORTED_MODULE_4___default().dropdown({
-                  "type": "item"
-                });
-
-              case 2:
-                res = _context4.sent;
-                this.setState(_defineProperty({}, 'post', res));
-
-              case 4:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee4);
       }));
 
       function getPost() {
@@ -2242,39 +2251,40 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleInputChange",
     value: function handleInputChange(event) {
-      var target = event.target;
-      var value = target.type === 'checkbox' ? target.checked ? target.value : 0 : target.value;
-      var name = target.name;
+      var target = event.target; // let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
 
-      if (name == 'picture') {
-        value = target.files[0];
-      }
+      var name = target.name;
+      var value = target.value; // if (name == 'picture') {
+      //     value = target.files[0];
+      // }
 
       this.setState({
-        item: _objectSpread(_objectSpread({}, this.state.item), {}, _defineProperty({}, name, value))
+        post: _objectSpread(_objectSpread({}, this.state.post), {}, _defineProperty({}, name, value))
       });
     }
   }, {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(event) {
-        var citem, formdata;
+        var cpost, formdata, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 event.preventDefault();
-                console.log(this.state.item);
-                citem = this.state.item;
+                console.log(this.state.post);
+                cpost = this.state.post;
                 formdata = new FormData();
-                Object.keys(citem).map(function (key) {
-                  formdata.append(key, citem[key]);
-                }); // const res = await itemServices.save(formdata);
-                // if (res.success) {
-                //     this.props.showForm(null);
-                // }
+                Object.keys(cpost).map(function (key) {
+                  formdata.append(key, cpost[key]);
+                });
+                _context5.next = 7;
+                return _services_PostService__WEBPACK_IMPORTED_MODULE_4__.default.save(formdata);
 
-              case 5:
+              case 7:
+                res = _context5.sent;
+
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -2535,14 +2545,14 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('categoryies');
-      console.log(this.state.categories);
+      console.log('post Data');
+      console.log(this.state.post);
       var productDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.products) {
-        this.state.products.map(function (product) {
+      if (this.state.productslist) {
+        this.state.productslist.map(function (product) {
           return productDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: product.id,
             children: product.name
@@ -2554,8 +2564,8 @@ var Create = /*#__PURE__*/function (_Component) {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.categories) {
-        this.state.categories.map(function (category) {
+      if (this.state.categorieslist) {
+        this.state.categorieslist.map(function (category) {
           return categoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: category.id,
             children: category.name
@@ -2567,8 +2577,8 @@ var Create = /*#__PURE__*/function (_Component) {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.subCategories) {
-        this.state.subCategories.map(function (subcategory) {
+      if (this.state.subCategorieslist) {
+        this.state.subCategorieslist.map(function (subcategory) {
           return subcategoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: subcategory.id,
             children: subcategory.name
@@ -2595,7 +2605,7 @@ var Create = /*#__PURE__*/function (_Component) {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "custom-post-form",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
-            action: "",
+            onSubmit: this.handleSubmit,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
               className: "h4post",
               children: "\u09AA\u09A3\u09CD\u09AF \u09B8\u09AE\u09CD\u09AA\u09B0\u09CD\u0995\u09C7"
@@ -2611,7 +2621,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control select2bs4",
                     onChange: this.categorySelect,
-                    required: "required",
                     children: productDropdown
                   })]
                 })
@@ -2628,7 +2637,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control values-input",
                     step: "any",
-                    required: "required",
                     id: "total-weight",
                     type: "number",
                     name: "total_weight"
@@ -2676,7 +2684,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control values-input",
                     value: "0",
-                    required: "required",
                     type: "number",
                     name: "price_per_unit"
                   })]
@@ -2731,7 +2738,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
                     onChange: this.subcategorySelect,
-                    required: "required",
                     children: categoryDropdown
                   })]
                 })
@@ -2744,6 +2750,8 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4 \u09B8\u09AE\u09C2\u09B9*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
+                    name: "sub_category_id",
+                    onChange: this.handleInputChange,
                     children: subcategoryDropdown
                   })]
                 })
@@ -2783,8 +2791,7 @@ var Create = /*#__PURE__*/function (_Component) {
                     className: "form-control",
                     value: "",
                     type: "date",
-                    name: "product_production_year",
-                    required: "required"
+                    name: "product_production_year"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2839,7 +2846,6 @@ var Create = /*#__PURE__*/function (_Component) {
                       type: "date",
                       className: "form-control",
                       value: "",
-                      required: true,
                       name: "initial_delivery_date"
                     })]
                   })
@@ -2858,7 +2864,6 @@ var Create = /*#__PURE__*/function (_Component) {
                       type: "date",
                       className: "form-control",
                       value: "",
-                      required: true,
                       name: "final_delivery_date"
                     })]
                   })
@@ -2878,8 +2883,7 @@ var Create = /*#__PURE__*/function (_Component) {
                       className: "form-control",
                       id: "date",
                       value: "",
-                      name: "offer_end_date",
-                      required: "required"
+                      name: "offer_end_date"
                     })]
                   })
                 })
@@ -2930,7 +2934,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     name: "divisions",
                     id: "divisions",
-                    required: "required",
                     className: "form-control input-lg",
                     onChange: this.divisionsList,
                     children: divisionListDropdown
@@ -2947,7 +2950,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     className: "form-control input-lg",
                     name: "district",
                     id: "distr",
-                    required: "required",
                     onChange: this.thanaList,
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       disabled: true,
@@ -2968,7 +2970,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     defaultValue: 'DEFAULT',
                     name: "thana",
                     id: "polic_sta",
-                    required: "required",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       disabled: true,
                       value: "DEFAULT",
@@ -2991,8 +2992,7 @@ var Create = /*#__PURE__*/function (_Component) {
                   id: "address",
                   placeholder: "\u0997\u09CD\u09B0\u09BE\u09AE/\u09AE\u09B9\u09B2\u09CD\u09B2\u09BE",
                   value: "",
-                  name: "villege",
-                  required: "required"
+                  name: "villege"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -3023,8 +3023,7 @@ var Create = /*#__PURE__*/function (_Component) {
                   type: "file",
                   id: "files",
                   name: "product_image",
-                  value: "",
-                  required: true
+                  value: ""
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -3039,7 +3038,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     value: "0"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "inline-block",
-                    required: "required",
                     type: "checkbox",
                     value: "1"
                   }), "\u09AA\u09A3\u09CD\u09AF \u0995\u09C7\u09A8\u09BE \u09AC\u09C7\u099A\u09BE\u09B0 \u099C\u09A8\u09CD\u09AF ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
@@ -3117,8 +3115,6 @@ CategoryService.dropdown = /*#__PURE__*/function () {
                 "product_id": data.product_id
               }
             }).then(function (response) {
-              console.log('find data');
-              console.log(response.data);
               return response.data.data.data;
             })["catch"](function (error) {
               return error;
@@ -3201,9 +3197,86 @@ CategoryService.dropdown = /*#__PURE__*/function () {
 /*!**********************************************!*\
   !*** ./resources/js/services/PostService.js ***!
   \**********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var PostService = {};
+
+PostService.save = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+    var urlProduct, urlProductUpdate, res, _res;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            urlProduct = "/Manage_Post/manage_posts";
+
+            if (!data.get('id')) {
+              _context.next = 9;
+              break;
+            }
+
+            urlProductUpdate = urlProduct + '/' + data.get('id') + "?_method=PUT";
+            _context.next = 5;
+            return axios.post(urlProductUpdate, data).then(function (response) {
+              $.notify({
+                message: 'Update Product'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 5:
+            res = _context.sent;
+            return _context.abrupt("return", res);
+
+          case 9:
+            _context.next = 11;
+            return axios.post(urlProduct, data).then(function (response) {
+              $.notify({
+                message: 'Product Saved'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 11:
+            _res = _context.sent;
+            return _context.abrupt("return", _res);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostService);
 
 /***/ }),
 
@@ -3348,9 +3421,7 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('services');
-            console.log(data);
-            _context.next = 4;
+            _context.next = 2;
             return axios.get("/subcategories?dropdown=true", {
               params: {
                 "category_id": data.category_id
@@ -3361,11 +3432,11 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
               return error;
             });
 
-          case 4:
+          case 2:
             res = _context.sent;
             return _context.abrupt("return", res);
 
-          case 6:
+          case 4:
           case "end":
             return _context.stop();
         }

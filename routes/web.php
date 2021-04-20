@@ -34,18 +34,14 @@ Route::get('home', function () {
 
 Route::resource('product', ProductController::class);
 
-
 Route::resource('categories', CategoryController::class);
 
 Route::resource('subcategories', SubCategoryController::class);
 
 Route::resource('users', UsersController::class);
 
-Route::prefix('Manage_Post')->group(function () 
-
-
-{
-Route::resource('manage_posts', ManagePostController::class);
+Route::prefix('Manage_Post')->group(function () {
+    Route::resource('manage_posts', ManagePostController::class);
 });
 
 // project task list

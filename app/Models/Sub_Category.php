@@ -20,5 +20,11 @@ class Sub_Category extends Model
         } 
         return $result;
     }
+
+    public function getbySubCategoryId($input)
+    {
+        $sub_category = $this->where('id', $input)->get()->first();
+        return $sub_category;
+    }
 }
 

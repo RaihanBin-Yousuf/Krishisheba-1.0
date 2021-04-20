@@ -8,22 +8,46 @@ class Create extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            products: [],
-            categories: [],
-            subCategories: [],
+            productslist: [],
+            categorieslist: [],
+            subCategorieslist: [],
             divisionList : [{name : 'Barishal', value : 'বরিশাল'},{name : 'Chattogram', value : 'চট্টগ্রাম'},{name : 'Dhaka', value : 'ঢাকা'},{name : 'Khulna', value : 'খুলনা'},{name : 'Mymensingh', value : 'ময়মনসিংহ'},{name : 'Rajshahi', value : 'রাজশাহী'},{name : 'Rangpur', value : 'রংপুর'},{name : 'Sylhet', value : 'সিলেট'}],
-            post: {
-                total_weight: 0,
-                price_per_unit: '',
-                product_production_year: '',
-                initial_delivery_date: '',
-                final_delivery_date: '',
-                offer_end_date: '',
-                own_vehicle:0,
-                product_image:null,
-
-                },
+            post : {
+                product_id : '',
+                total_weight : 0,
+                weight_unit : 0,
+                price_per_unit : 0,
+                advance_payment : 0,
+                category_id : 0,
+                sub_category_id : 0,
+                production_type : '',
+                product_production_year : '',
+                packaging_method : '',
+                initial_delivery_date : '',
+                final_delivery_date : '',
+                offer_end_date : '',
+                own_vehicle : '',
+                divisions : '',
+                district : '',
+                thana : '',
+                villege : '',
+                comments : '',
+                product_image : '',
+            }
+            
             };
+            // post: {
+
+            //     total_weight: 0,
+            //     price_per_unit: '',
+            //     product_production_year: '',
+            //     initial_delivery_date: '',
+            //     final_delivery_date: '',
+            //     offer_end_date: '',
+            //     own_vehicle:0,
+            //     product_image:null,
+
+            //     },
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
             this.categorySelect = this.categorySelect.bind(this);
@@ -32,67 +56,77 @@ class Create extends Component {
             this.subcategorySelect = this.subcategorySelect.bind(this);
             this.divisionsList = this.divisionsList.bind(this);
             this.thanaList = this.thanaList.bind(this);
+            this.getPost = this.getPost.bind(this);
         }
 
-        componentDidMount(){
-            // this.getCategories();
-            // this.getSubCategories();
+        componentDidMount() {
             this.getProduct();
-            // this.getPost();
-           
         }
 
         categorySelect(event) {
             const target = event.target;
-             this.getCategories(target.value);
-
+            this.getCategories(target.value);
         }
+
         subcategorySelect(event) {
             const target = event.target;
              this.getSubCategories(target.value);
+        }
 
+        async getCategories(productId) {
+            const res = await CategoryServices.dropdown({"product_id": productId});
+            this.setState({
+                ['categorieslist']: res,
+                post : {
+                    ...this.state.post,
+                    ['product_id'] : productId,
+                    ['category_id'] : 0,
+                    ['sub_category_id'] : 0
+                }
+            });
+            // this.getPost;
         }
-        async getCategories(data) {
-            const res = await CategoryServices.dropdown({"product_id": data});
+
+        async getSubCategories(categoryId) {
+            const res = await SubcateoryService.dropdown({"category_id": categoryId});
+            this.setState({
+                ['subCategorieslist']: res,
+                post : {
+                    ...this.state.post,
+                    ['category_id'] : categoryId,
+                    ['sub_category_id'] : 0
+                }
+            });
             
-            this.setState({
-                ['categories']: res,
-            });
         }
-        async getSubCategories(subcat) {
-            console.log('subcat');
-            console.log(subcat);
-            const res = await SubcateoryService.dropdown({"category_id":subcat});
-            console.log('inside');
-            console.log(res);
-            this.setState({
-                ['subCategories']: res,
-            });
-        }
+
         async getProduct() {
             const res = await ProductServices.dropdown();
             this.setState({
-                ['products']: res,
-            });
-        }
-        async getPost() {
-            const res = await PostService.dropdown({"type":"item"});
-            this.setState({
-                ['post']: res,
+                ['productslist']: res,
             });
         }
 
-    
+        async getPost() {
+            // console.log('post for new Data Data');
+            // console.log(this.state.post);
+            // const res = await PostService.dropdown({"type":"item"});
+            // this.setState({
+            //     ['post']: res,
+            // });
+        }
+
         handleInputChange(event) {
             const target = event.target;
-            let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
+            // let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
             const name = target.name;
-            if (name == 'picture') {
-                value = target.files[0];
-            }
+            const value = target.value;
+            // if (name == 'picture') {
+            //     value = target.files[0];
+            // }
                this.setState({
-                  item :{
-                    ...this.state.item,
+                  post :{
+                    ...this.state.post,
                   [name]: value
                   }
             });
@@ -100,13 +134,13 @@ class Create extends Component {
     
         async handleSubmit(event) {
             event.preventDefault();
-            console.log(this.state.item);
-            const citem = this.state.item;
+            console.log(this.state.post);
+            const cpost = this.state.post;
             let formdata = new FormData();
-            Object.keys(citem).map(key => {
-                formdata.append(key, citem[key]);
+            Object.keys(cpost).map(key => {
+                formdata.append(key, cpost[key]);
             });
-            // const res = await itemServices.save(formdata);
+            const res = await PostService.save(formdata);
             // if (res.success) {
             //     this.props.showForm(null);
             // }
@@ -488,25 +522,25 @@ class Create extends Component {
             document.getElementById("polic_sta").innerHTML= thanaList;
         }
     render() {
-        console.log('categoryies');
-        console.log(this.state.categories);
+        console.log('post Data');
+        console.log(this.state.post);
         let productDropdown = [<option>নির্বাচন করুন</option>];
-        if (this.state.products) {
-                this.state.products.map(product=>(
+        if (this.state.productslist) {
+                this.state.productslist.map(product=>(
                     productDropdown.push(<option key={product.id} value={product.id}>{product.name}</option>)
             ));
         }
 
         let categoryDropdown = [<option>নির্বাচন করুন</option>];
-        if (this.state.categories) {
-                this.state.categories.map(category=>(
+        if (this.state.categorieslist) {
+                this.state.categorieslist.map(category=>(
                     categoryDropdown.push(<option key={category.id} value={category.id}>{category.name}</option>)
             ));
         }
 
         let subcategoryDropdown = [<option>নির্বাচন করুন</option>];
-        if (this.state.subCategories) {
-                this.state.subCategories.map(subcategory=>(
+        if (this.state.subCategorieslist) {
+                this.state.subCategorieslist.map(subcategory=>(
                     subcategoryDropdown.push(<option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option>)
             ));
         };
@@ -518,13 +552,14 @@ class Create extends Component {
         };
         return (<>
             <div className="custom-post-form">
-                <form action="">
+                <form onSubmit={this.handleSubmit}>
                     <h4 className="h4post">পণ্য সম্পর্কে</h4>
                     <div className="row">
                         <div className="col-md-3">
                             <div className="form-group">
                             <h5 htmlFor="commidities">পণ্য</h5>
-                            <select className="form-control select2bs4" onChange={this.categorySelect} required="required">
+                            {/* <select className="form-control select2bs4" onChange={this.categorySelect} required="required"> */}
+                            <select className="form-control select2bs4" onChange={this.categorySelect} >
                                 {productDropdown}
                             </select>
                             </div>
@@ -535,7 +570,8 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">মোট ওজন* </h5>
-                                <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" />
+                                <input className="form-control values-input" step="any" id="total-weight" type="number" name="total_weight" />
+                                {/* <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" /> */}
                             </div>
                         </div>
                         <div className="col-md-3">
@@ -555,7 +591,8 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
-                                <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" />
+                                <input className="form-control values-input" value="0" type="number" name="price_per_unit" />
+                                {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
                             </div>
                         </div>
         
@@ -580,7 +617,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor="category"> পণ্যের প্রকার*</h5>
-                                <select className="form-control" onChange={this.subcategorySelect} required="required">
+                                <select className="form-control" onChange={this.subcategorySelect}>
+                                {/* <select className="form-control" onChange={this.subcategorySelect} required="required"> */}
                                     {categoryDropdown}
                                 </select>
                             </div>
@@ -589,7 +627,7 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor="sub_category">পণ্যের জাত সমূহ*</h5>
-                                <select className="form-control">
+                                <select className="form-control" name="sub_category_id" onChange={this.handleInputChange}>
                                     {subcategoryDropdown}
                                 </select>
                             </div>
@@ -610,7 +648,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor=""> ফসল উৎপাদন সাল</h5>
-                                <input className="form-control" value="" type="date" name="product_production_year"required="required"/>
+                                <input className="form-control" value="" type="date" name="product_production_year"/>
+                                {/* <input className="form-control" value="" type="date" name="product_production_year"required="required"/> */}
                             </div>
                         </div>
 
@@ -635,7 +674,8 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7">প্রাথমিক বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" required name="initial_delivery_date"/> 
+                                    <input type="date" className="form-control" value="" name="initial_delivery_date"/> 
+                                    {/* <input type="date" className="form-control" value="" required name="initial_delivery_date"/>  */}
                                 </div> 
                             </div>
                         </div>
@@ -644,7 +684,8 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="finaldeliverydate" className="control-h7"> চূড়ান্ত বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" required name="final_delivery_date"/> 
+                                    <input type="date" className="form-control" value="" name="final_delivery_date"/> 
+                                    {/* <input type="date" className="form-control" value="" required name="final_delivery_date"/>  */}
                                 </div> 
                             </div>
                         </div>
@@ -653,7 +694,8 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7"> অফার শেষ হওয়ার তারিখ*</h5> 
-                                    <input type="date" className="form-control" id="date" value="" name="offer_end_date"required="required"/> 
+                                    <input type="date" className="form-control" id="date" value="" name="offer_end_date"/> 
+                                    {/* <input type="date" className="form-control" id="date" value="" name="offer_end_date"required="required"/>  */}
                                 </div> 
                             </div>
                         </div>
@@ -674,7 +716,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 className="control-h7">বিভাগ*</h5> 
-                                <select name="divisions" id="divisions" required="required" className="form-control input-lg" onChange={this.divisionsList}>
+                                <select name="divisions" id="divisions" className="form-control input-lg" onChange={this.divisionsList}>
+                                {/* <select name="divisions" id="divisions" required="required" className="form-control input-lg" onChange={this.divisionsList}> */}
                                     {divisionListDropdown}
                                 </select>
                             </div>
@@ -684,7 +727,8 @@ class Create extends Component {
                         <div className="col-md-4"> 
                             <div className="form-group">
                                 <h5 className="control-h7">জেলা*</h5>
-                                <select className="form-control input-lg" name="district" id="distr" required="required" onChange={this.thanaList}>
+                                <select className="form-control input-lg" name="district" id="distr" onChange={this.thanaList}>
+                                {/* <select className="form-control input-lg" name="district" id="distr" required="required" onChange={this.thanaList}> */}
                                     <option disabled>নির্বাচন করুন</option>
                                 </select>
                             </div>
@@ -693,7 +737,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group"> 
                                 <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
-                                <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required">
+                                <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta">
+                                {/* <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required"> */}
                                     <option disabled value="DEFAULT">নির্বাচন করুন</option>
                                 </select>
                             </div>
@@ -703,7 +748,8 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <h5 htmlFor="address" className="control-h7">গ্রাম/মহল্লা*</h5> 
-                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege" required="required"/>
+                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege"/>
+                            {/* <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege" required="required"/> */}
                         </div>
                     </div>
                     <div className="row">
@@ -718,7 +764,8 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <h4 className="h4post" htmlFor="files"> চিত্র আপলোড করুন:</h4>
-                            <input type="file" id="files" name="product_image" value="" required/>                     
+                            <input type="file" id="files" name="product_image" value=""/>                     
+                            {/* <input type="file" id="files" name="product_image" value="" required/>                      */}
                         </div>
                     </div>
                     {/* done  */}
@@ -726,7 +773,8 @@ class Create extends Component {
                         {/* <div className="col-md-9" style="margin-top:20px;"> */}
                         <div className="col-md-9 agricultre-demand">
                             <div className="form-group">
-                            <input name="" type="hidden" value="0" /><input className="inline-block" required="required" type="checkbox" value="1" />
+                            <input name="" type="hidden" value="0" /><input className="inline-block" type="checkbox" value="1" />
+                            {/* <input name="" type="hidden" value="0" /><input className="inline-block" required="required" type="checkbox" value="1" /> */}
                             পণ্য কেনা বেচার জন্য <a className="link-green inline-block" target="_blank" href="#">কৃষিসেবার শর্তাবলীর সাথে</a> একমত পোষণ করছি
                             </div>
                         </div>
