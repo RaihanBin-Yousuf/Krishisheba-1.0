@@ -36,11 +36,14 @@
               </p>
             </a>
           </li>
+          <!-- Admin Access -->
+        @if(auth()->user()->role == 'admin')
         <li class="nav-item">
             <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-users-cog"></i>
+            <!-- <i class="nav-icon fas fa-users-cog"></i> -->
+            <i class="nav-icon fas fa-tasks"></i>
             <p>
-              Product Information
+              Manage Product
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -59,7 +62,7 @@
               </li>
             </ul>
         </li>
-        @if(auth()->user()->role == 'admin')
+        
         <li class="nav-item">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
@@ -78,7 +81,7 @@
             </a>
           </li>
             <li class="nav-item">
-              <a href="" class="nav-link ">
+              <a href="{{route('seller')}}" class="nav-link ">
                 <i class="fas fa-users nav-icon"></i>
                 <p>Sellers</p>
               </a>
@@ -100,7 +103,8 @@
         
         <li class="nav-item ">
           <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-users-cog"></i>
+          <!-- <i class="nav-icon fas fa-users-cog"></i> -->
+          <i class="nav-icon fas fa-tasks"></i>
           <p>
              Manage Product Posts
               <i class="right fas fa-angle-left"></i>
@@ -122,20 +126,15 @@
           </ul>
         </li>
         @endif
+        <!-- Admin Access -->
 
+        <!-- seller Access -->
+        @if(auth()->user()->role == 'seller')
         <li class="nav-item">
           <a href="" class="nav-link">
           <i class="nav-icon fas fa-user-secret"></i>
           <p>
               Account Information
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-user-secret"></i>
-          <p>
-            গাড়ি নিবন্ধন করুন
             </p>
           </a>
         </li>
@@ -171,6 +170,56 @@
             </p>
           </a>
         </li>
+        @endif
+        <!-- seller Access -->
+
+        <!-- Buyer Access -->
+        @if(auth()->user()->role == 'buyer')
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-user-secret"></i>
+          <p>
+              Account Information
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-dollar-sign"></i>
+          <p>
+              Payment Status
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-save"></i>
+          <p>
+              Saved List
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-bell"></i>
+          <p>
+              Notifications
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <!-- <i class="nav-icon fas fa-user-secret"></i> -->
+          <i class="nav-icon fas fa-plus-square"></i>
+          <p>
+            গাড়ি নিবন্ধন করুন
+            </p>
+          </a>
+        </li>
+        @endif
+        <!-- Buyer Access -->
+
+
         <li class="nav-item">
                <a class="nav-link" href="{{ route('logout') }}"
                     onclick="event.preventDefault();

@@ -2,20 +2,34 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FrontTest;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class FrontTestController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('backend.manage_users.index');
+    public function index(){
+        return view("frontend.home.index");
     }
-
+    public function team(){
+        return view("frontend.includes.team");
+    }
+    public function faq(){
+        return view("frontend.includes.faq");
+    }
+    public function findproduct(){
+        return view("frontend.products.find-products");
+    }
+    public function filterpaddy(){
+        return view("frontend.products.grain.paddy.filter");
+    }
+    public function paddy_product_detailspage(){
+        return view("frontend.products.grain.paddy.paddy_product_detailspage");
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -23,7 +37,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('backend.manage_users.add');
+        //
     }
 
     /**
@@ -40,10 +54,10 @@ class UsersController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\FrontTest  $frontTest
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(FrontTest $frontTest)
     {
         //
     }
@@ -51,10 +65,10 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\FrontTest  $frontTest
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(FrontTest $frontTest)
     {
         //
     }
@@ -63,10 +77,10 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\FrontTest  $frontTest
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, FrontTest $frontTest)
     {
         //
     }
@@ -74,10 +88,10 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\FrontTest  $frontTest
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(FrontTest $frontTest)
     {
         //
     }

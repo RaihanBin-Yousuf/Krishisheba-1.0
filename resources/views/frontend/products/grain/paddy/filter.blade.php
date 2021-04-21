@@ -165,7 +165,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -181,7 +181,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -196,7 +196,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -209,7 +209,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -232,7 +232,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -248,7 +248,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -263,7 +263,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -276,7 +276,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -299,7 +299,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product05.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -315,7 +315,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -330,7 +330,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product05.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -343,7 +343,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -366,7 +366,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product06.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -382,7 +382,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -397,7 +397,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product06.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -410,7 +410,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -433,7 +433,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product07.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -449,7 +449,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -464,7 +464,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product07.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -477,7 +477,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -500,7 +500,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product08.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -516,7 +516,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -531,7 +531,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product08.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -544,7 +544,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -567,7 +567,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product10.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -583,7 +583,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -598,7 +598,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product10.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -611,7 +611,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -634,7 +634,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product11.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -650,7 +650,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -665,7 +665,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product11.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -678,7 +678,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -701,7 +701,7 @@
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product12.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -717,7 +717,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>
@@ -732,7 +732,7 @@
 								
 								<div class="gf-product shop-list-view-product">
 									<div class="image">
-										<a href="{{ route('paddysingle-product') }}">
+										<a href="{{ route('paddy_product_detailspage') }}">
 											<span class="onsale">Sale!</span>
 											<img src="{{ asset('frontend-asset/assets_2/images/products/product12.jpg') }}" class="img-fluid" alt="">
 										</a>
@@ -745,7 +745,7 @@
 											<a>Fast Foods</a>,
 											<a>Vegetables</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddysingle-product') }}">Ornare sed consequat nisl</a></h3>
+										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
 										<div class="price-box mb-20">
 											<span class="main-price">$89.00</span>
 											<span class="discounted-price">$80.00</span>

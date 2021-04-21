@@ -20,13 +20,13 @@
                         
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="ধান">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/rice.jpg') }}" class="img-fluid" alt="">
+                                <a href="{{ route('filter-paddy') }}" title="ধান">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/paddy-1.png') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html">ধান</a>
+                                    <a href="{{ route('filter-paddy') }}">ধান</a>
                                 </h3>
                             </div>
                         </div>
@@ -34,16 +34,16 @@
                         <!--=======  End of single category  =======-->
 
                         <!--=======  single category  =======-->
-                        
+                        <!-- ধান চাউল গম ভুট্টা শীতকালীন সবজি গৃষ্ম কালীন সবজি বারোমাসি সবজি শীতকালীন ফল গৃষ্ম কালীন ফল বারোমাসি ফল -->
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="Fast Food">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/category2.png') }}" class="img-fluid" alt="">
+                                <a href="shop-left-sidebar.html" title="চাউল">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/rice.png') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> Fast Food</a>
+                                    <a href="shop-left-sidebar.html"> চাউল</a>
                                 </h3>
                             </div>
                         </div>
@@ -54,13 +54,13 @@
 
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="Fish & Meats">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/category3.png') }}" class="img-fluid" alt="">
+                                <a href="shop-left-sidebar.html" title="গম">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/wheat.png') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> Fish & Meats</a>
+                                    <a href="shop-left-sidebar.html"> গম</a>
                                 </h3>
                             </div>
                         </div>						

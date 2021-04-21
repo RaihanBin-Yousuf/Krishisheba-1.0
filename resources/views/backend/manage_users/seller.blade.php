@@ -9,8 +9,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Useres</a></li>
-              <li class="breadcrumb-item active">Users Table</li>
+              <li class="breadcrumb-item"><a href="#">Sellers</a></li>
+              <li class="breadcrumb-item active">Sellers Table</li>
             </ol>
           </div>
         </div>
@@ -25,7 +25,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3>All Users Table
+                <h3>All Seller Table
                 <a class="btn btn-info float-right" href="{{route('users.create')}}"><i class="fa fa-plus"> </i> Add New User </a>
                 </h3>
               </div>
@@ -47,15 +47,15 @@
                   </thead>
                   <tbody>
                   <tr>
-                      @foreach($allusers as $users)
-                      <td>{{ $users->id }}</td>
-                      <td>{{ $users->name }}</td>
-                      <td>{{ $users->email }}</td>
-                      <td>{{ $users->mobile }}</td>
-                      <td>{{ $users->nid }}</td>
-                      <td>{{ $users->birth_date }}</td>
-                      <td>{{ $users->address }}</td>
-                      <td>{{ $users->role }}</td>
+                      @foreach($allsellers as $sellers)
+                      <td>{{ $sellers->id }}</td>
+                      <td>{{ $sellers->name }}</td>
+                      <td>{{ $sellers->email }}</td>
+                      <td>{{ $sellers->mobile }}</td>
+                      <td>{{ $sellers->nid }}</td>
+                      <td>{{ $sellers->birth_date }}</td>
+                      <td>{{ $sellers->address }}</td>
+                      <td>{{ $sellers->role }}</td>
                       <td class="text-center py-0 align-middle">
                           <div class=" btn-group-sm">
                             <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
