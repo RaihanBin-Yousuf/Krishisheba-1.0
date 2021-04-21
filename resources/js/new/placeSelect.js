@@ -40,7 +40,7 @@
     }
     
     // Thana Section select
-    function thanaList(){
+    function thanaList() {
     var DisList = document.getElementById('distr').value;
     
     // set Barguna division thana

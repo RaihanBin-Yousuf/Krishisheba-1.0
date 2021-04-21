@@ -1980,17 +1980,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var _services_CategoryService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/CategoryService */ "./resources/js/services/CategoryService.js");
 /* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../services/PostService */ "./resources/js/services/PostService.js");
-/* harmony import */ var _services_PostService__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_services_PostService__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _services_ProductServices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/ProductServices */ "./resources/js/services/ProductServices.js");
 /* harmony import */ var _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/SubcateoryService */ "./resources/js/services/SubcateoryService.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -2040,35 +2039,83 @@ var Create = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      products: [],
-      categories: [],
-      subCategories: [],
+      productslist: [],
+      categorieslist: [],
+      subCategorieslist: [],
+      divisionList: [{
+        name: 'Barishal',
+        value: 'বরিশাল'
+      }, {
+        name: 'Chattogram',
+        value: 'চট্টগ্রাম'
+      }, {
+        name: 'Dhaka',
+        value: 'ঢাকা'
+      }, {
+        name: 'Khulna',
+        value: 'খুলনা'
+      }, {
+        name: 'Mymensingh',
+        value: 'ময়মনসিংহ'
+      }, {
+        name: 'Rajshahi',
+        value: 'রাজশাহী'
+      }, {
+        name: 'Rangpur',
+        value: 'রংপুর'
+      }, {
+        name: 'Sylhet',
+        value: 'সিলেট'
+      }],
       post: {
+        product_id: '',
         total_weight: 0,
-        price_per_unit: '',
+        weight_unit: 0,
+        price_per_unit: 0,
+        advance_payment: 0,
+        category_id: 0,
+        sub_category_id: 0,
+        production_type: '',
         product_production_year: '',
+        packaging_method: '',
         initial_delivery_date: '',
         final_delivery_date: '',
         offer_end_date: '',
-        own_vehicle: 0,
-        product_image: null
+        own_vehicle: '',
+        divisions: '',
+        district: '',
+        thana: '',
+        villege: '',
+        comments: '',
+        product_image: ''
       }
-    };
+    }; // post: {
+    //     total_weight: 0,
+    //     price_per_unit: '',
+    //     product_production_year: '',
+    //     initial_delivery_date: '',
+    //     final_delivery_date: '',
+    //     offer_end_date: '',
+    //     own_vehicle:0,
+    //     product_image:null,
+    //     },
+
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
     _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
     _this.getSubCategories = _this.getSubCategories.bind(_assertThisInitialized(_this));
     _this.subcategorySelect = _this.subcategorySelect.bind(_assertThisInitialized(_this));
+    _this.divisionsList = _this.divisionsList.bind(_assertThisInitialized(_this));
+    _this.thanaList = _this.thanaList.bind(_assertThisInitialized(_this));
+    _this.getPost = _this.getPost.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Create, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // this.getCategories();
-      // this.getSubCategories();
-      this.getProduct(); // this.getPost();
+      this.getProduct();
     }
   }, {
     key: "categorySelect",
@@ -2085,7 +2132,9 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "getCategories",
     value: function () {
-      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+      var _getCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(productId) {
+        var _objectSpread2, _this$setState;
+
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
@@ -2093,12 +2142,12 @@ var Create = /*#__PURE__*/function (_Component) {
               case 0:
                 _context.next = 2;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_3__.default.dropdown({
-                  "product_id": data
+                  "product_id": productId
                 });
 
               case 2:
                 res = _context.sent;
-                this.setState(_defineProperty({}, 'categories', res));
+                this.setState((_this$setState = {}, _defineProperty(_this$setState, 'categorieslist', res), _defineProperty(_this$setState, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'product_id', productId), _defineProperty(_objectSpread2, 'category_id', 0), _defineProperty(_objectSpread2, 'sub_category_id', 0), _objectSpread2))), _this$setState)); // this.getPost;
 
               case 4:
               case "end":
@@ -2117,26 +2166,24 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "getSubCategories",
     value: function () {
-      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(subcat) {
+      var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(categoryId) {
+        var _objectSpread3, _this$setState2;
+
         var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                console.log('subcat');
-                console.log(subcat);
-                _context2.next = 4;
+                _context2.next = 2;
                 return _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_6__.default.dropdown({
-                  "category_id": subcat
+                  "category_id": categoryId
                 });
 
-              case 4:
+              case 2:
                 res = _context2.sent;
-                console.log('inside');
-                console.log(res);
-                this.setState(_defineProperty({}, 'subCategories', res));
+                this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'subCategorieslist', res), _defineProperty(_this$setState2, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread3 = {}, _defineProperty(_objectSpread3, 'category_id', categoryId), _defineProperty(_objectSpread3, 'sub_category_id', 0), _objectSpread3))), _this$setState2));
 
-              case 8:
+              case 4:
               case "end":
                 return _context2.stop();
             }
@@ -2164,7 +2211,7 @@ var Create = /*#__PURE__*/function (_Component) {
 
               case 2:
                 res = _context3.sent;
-                this.setState(_defineProperty({}, 'products', res));
+                this.setState(_defineProperty({}, 'productslist', res));
 
               case 4:
               case "end":
@@ -2184,26 +2231,15 @@ var Create = /*#__PURE__*/function (_Component) {
     key: "getPost",
     value: function () {
       var _getPost = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
             switch (_context4.prev = _context4.next) {
               case 0:
-                _context4.next = 2;
-                return _services_PostService__WEBPACK_IMPORTED_MODULE_4___default().dropdown({
-                  "type": "item"
-                });
-
-              case 2:
-                res = _context4.sent;
-                this.setState(_defineProperty({}, 'post', res));
-
-              case 4:
               case "end":
                 return _context4.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee4);
       }));
 
       function getPost() {
@@ -2215,39 +2251,40 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleInputChange",
     value: function handleInputChange(event) {
-      var target = event.target;
-      var value = target.type === 'checkbox' ? target.checked ? target.value : 0 : target.value;
-      var name = target.name;
+      var target = event.target; // let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
 
-      if (name == 'picture') {
-        value = target.files[0];
-      }
+      var name = target.name;
+      var value = target.value; // if (name == 'picture') {
+      //     value = target.files[0];
+      // }
 
       this.setState({
-        item: _objectSpread(_objectSpread({}, this.state.item), {}, _defineProperty({}, name, value))
+        post: _objectSpread(_objectSpread({}, this.state.post), {}, _defineProperty({}, name, value))
       });
     }
   }, {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(event) {
-        var citem, formdata;
+        var cpost, formdata, res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
           while (1) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 event.preventDefault();
-                console.log(this.state.item);
-                citem = this.state.item;
+                console.log(this.state.post);
+                cpost = this.state.post;
                 formdata = new FormData();
-                Object.keys(citem).map(function (key) {
-                  formdata.append(key, citem[key]);
-                }); // const res = await itemServices.save(formdata);
-                // if (res.success) {
-                //     this.props.showForm(null);
-                // }
+                Object.keys(cpost).map(function (key) {
+                  formdata.append(key, cpost[key]);
+                });
+                _context5.next = 7;
+                return _services_PostService__WEBPACK_IMPORTED_MODULE_4__.default.save(formdata);
 
-              case 5:
+              case 7:
+                res = _context5.sent;
+
+              case 8:
               case "end":
                 return _context5.stop();
             }
@@ -2262,16 +2299,260 @@ var Create = /*#__PURE__*/function (_Component) {
       return handleSubmit;
     }()
   }, {
+    key: "divisionsList",
+    value: function divisionsList(event) {
+      // get value from division lists
+      var diviList = event.target.value;
+      console.log(diviList);
+      var disctList = ''; // set barishal division districts
+
+      if (diviList == 'Barishal') {
+        disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Barguna">বরগুনা জেলা</option><option value="Barishal">বরিশাল জেলা</option><option value="Bhola">ভোলা জেলা</option><option value="Jhalokati">ঝালকাঠি জেলা</option><option value="Patuakhali">পটুয়াখালী জেলা</option><option value="Pirojpur">পিরোজপুর জেলা</option>';
+      } // set Chattogram division districts
+      else if (diviList == 'Chattogram') {
+          disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Bandarban">বান্দরবান</option><option value="Chandpur">চাঁদপুর</option><option value="Chattogram">চট্টগ্রাম</option><option value="Comilla">কুমিল্লা</option><option value="Cox\'s Bazar">কক্সবাজার</option><option value="Feni">ফেনী</option><option value="Khagrachhari">খাগড়াছড়ি</option><option value="Noakhali">নোয়াখালী</option><option value="Rangamati">রাঙ্গামাটি</option><option value="Noakhali">লক্ষ্মীপুর</option><option value="Brahmanbaria">ব্রাহ্মণবাড়িয়া</option>';
+        } // set Dhaka division districts
+        else if (diviList == 'Dhaka') {
+            disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Dhaka">ঢাকা</option><option value="Faridpur">ফরিদপুর</option><option value="Gazipur">গাজীপুর</option><option value="Gopalganj">গোপালগঞ্জ</option><option value="Kishoreganj">কিশোরগঞ্জ</option><option value="Madaripur">মাদারীপুর</option><option value="Manikganj">মানিকগঞ্জ</option><option value="Munshiganj">মুন্সিগঞ্জ</option><option value="Narayanganj">নারায়ণগঞ্জ</option><option value="Narsingdi">নরসিংদী</option><option value="Rajbari">রাজবাড়ী</option><option value="Shariatpur">শরীয়তপুর</option><option value="Tangail">টাঙ্গাইল</option>';
+          } // set Khulna division districts
+          else if (diviList == 'Khulna') {
+              disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Jessore">যশোর</option><option value="Satkhira">সাতক্ষীরা</option><option value="Meherpur">মেহেরপুর</option><option value="Narail">নড়াইল</option><option value="Chuadanga">চুয়াডাঙ্গা</option><option value="Kushtia">কুষ্টিয়া</option><option value="Magura">মাগুরা</option><option value="Khulna">খুলনা</option><option value="Bagerhat">বাগেরহাট</option><option value="Jhenaidah">ঝিনাইদহ</option>';
+            } // set Mymensingh division districts
+            else if (diviList == 'Mymensingh') {
+                disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Sherpur">শেরপুর</option><option value="Mymensingh">ময়মনসিংহ</option><option value="Jamalpur">জামালপুর</option><option value="Netrokona">নেত্রকোণা</option>';
+              } // set Rajshahi division districts
+              else if (diviList == 'Rajshahi') {
+                  disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Sirajganj">সিরাজগঞ্জ</option><option value="Pabna">পাবনা</option><option value="Bogra">বগুড়া</option><option value="Rajshahi">রাজশাহী</option><option value="Natore">নাটোর</option><option value="Joypurhat">জয়পুরহাট</option><option value="Chapainawabganj">চাঁপাইনবাবগঞ্জ</option><option value="Naogaon">নওগাঁ</option>';
+                } // set Rangpur division districts
+                else if (diviList == 'Rangpur') {
+                    disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Panchagarh">পঞ্চগড়</option><option value="Dinajpur">দিনাজপুর</option><option value="Lalmonirhat">লালমনিরহাট</option><option value="Nilphamari">নীলফামারী</option><option value="Gaibandha">গাইবান্ধা</option><option value="Thakurgaon">ঠাকুরগাঁও</option><option value="Rangpur">রংপুর</option><option value="Kurigram">কুড়িগ্রাম</option>';
+                  } // set Sylhet division districts
+                  else if (diviList == 'Sylhet') {
+                      disctList = '<option disabled selected>নির্বাচন করুন</option><option value="Sylhet">সিলেট</option><option value="Moulvibazar">মৌলভীবাজার</option><option value="Habiganj">হবিগঞ্জ</option><option value="Sunamganj">সুনামগঞ্জ</option>';
+                    } //  set/send districts name to District lists from division
+
+
+      document.getElementById("distr").innerHTML = disctList;
+    }
+  }, {
+    key: "thanaList",
+    value: function thanaList(event) {
+      var DisList = event.target.value;
+      var thanaList = ''; // set Barguna division thana
+
+      if (DisList == 'Barguna') {
+        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Amtali">আমতলী</option><option value="Bamna">বামনা</option><option value="Barguna Sadar">বরগুনা সদর</option><option value="Betagi">বেতাগী</option><option value="Patharghata">পাথরঘাটা</option><option value="Taltali">তালতলী</option>';
+      } // set Barishal division thana
+      else if (DisList == 'Barishal') {
+          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Agailjhara">আগৈলঝাড়া</option><option value="Babuganj">বাবুগঞ্জ</option><option value="Bakerganj">বাকেরগঞ্জ</option><option value="Banaripara">বানারীপাড়া</option><option value="Gaurnadi">গৌরনদী</option><option value="Hizla">হিজলা</option><option value="Barisal Sadar">বরিশাল সদর</option><option value="Mehendiganj">মেহেন্দিগঞ্জ</option><option value="Muladi">মুলাদী</option><option value="Wazirpur">উজিরপুর</option>';
+        } // set Bhola division thana
+        else if (DisList == 'Bhola') {
+            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bhola sadar">ভোলা সদর</option><option value="Burhanuddin">বোরহানউদ্দিন</option><option value="Lalmohan">লালমোহন</option><option value="Tazumuddin">তজুমদ্দিন</option><option value="Manpura">মনপুরা</option><option value="Char Fasson">চরফ্যাশন</option>';
+          } // set Jhalakathi division thana
+          else if (DisList == 'Jhalokati') {
+              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Jhalakathi sadar">ঝালকাঠী সদর</option><option value="Kanthalia">কাঁঠালিয়া</option><option value="Nalchity">নলছিটি</option><option value="Rajapur">রাজাপুর</option>';
+            } // set Patuakhali division thana
+            else if (DisList == 'Patuakhali') {
+                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bauphal">বাউফল</option><option value="Galachipa">গলাচিপা</option><option value="Dashmina">দশমিনা</option><option value="Kalapara">কলাপাড়া</option><option value="Mirzaganj">মির্জাগঞ্জ</option><option value="Patuakhali Sadar">পটুয়াখালী সদর</option><option value="Dumki">দুমকি</option><option value="Rangabali">রাঙ্গাবালী</option>';
+              } // set Pirojpur division thana
+              else if (DisList == 'Pirojpur') {
+                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bhandaria">ভাণ্ডারিয়া</option><option value="Indurkani">ইন্দুরকানী</option><option value="Kawkhali">কাউখালী</option><option value="Mathbaria">মঠবাড়িয়া</option><option value="Nazirpur">নাজিরপুর</option><option value="Nesarabad">নেছারাবাদ</option><option value="Pirojpur Sadar">পিরোজপুর সদর</option>';
+                } // set Bandarban division thana
+                else if (DisList == 'Bandarban') {
+                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Ali Kadam">আলীকদম</option><option value="Bandarban Sadar">বান্দরবান সদর</option><option value="Lama">লামা</option><option value="Naikhongchhari">নাইক্ষ্যংছড়ি</option><option value="Rowangchhari">রোয়াংছড়ি</option><option value="Ruma">রুমা</option><option value="Thanchi">থানচি</option>';
+                  } // set Brahmanbaria division thana
+                  else if (DisList == 'Brahmanbaria') {
+                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Brahmanbaria Sadar">ব্রাহ্মণবাড়িয়া সদর</option><option value="Kasba">কসবা</option><option value="Akhaura">আখাউড়া</option><option value="Ashuganj">আশুগঞ্জ</option><option value="Bancharampur">বাঞ্ছারামপুর</option><option value="Bijoynagar">বিজয় নগর</option><option value="Nasirnagar">নাসিরনগর</option><option value="Nabinagar">নবীনগর</option><option value="Sarail">সরাইল</option>';
+                    } // set Chandpur division thana
+                    else if (DisList == 'Chandpur') {
+                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Chandpur Sadar">চাঁদপুর সদর</option><option value="Faridganj">ফরিদগঞ্জ</option><option value="Haimchar">হাইমচর</option><option value="Hajiganj">হাজীগঞ্জ</option><option value="Kachua">কচুয়া</option><option value="Matlab Dakshin">মতলব দক্ষিণ</option><option value="Matlab Uttar">মতলব উত্তর</option><option value="Shahrasti">শাহরাস্তি</option>';
+                      } // set Chattogram division thana
+                      else if (DisList == 'Chattogram') {
+                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Anwara">আনোয়ারা</option><option value="Banshkhali">বাঁশখালী</option><option value="Boalkhali">বোয়ালখালী</option><option value="Chandanaish">চন্দনাইশ</option><option value="Fatikchhari">ফটিকছড়ি</option><option value="Hathazari">হাটহাজারী</option><option value="Karnaphuli">কর্ণফুলী</option><option value="Lohagara">লোহাগড়া</option><option value="Mirsharai">মীরসরাই</option><option value="Patiya">পটিয়া</option><option value="Rangunia">রাঙ্গুনিয়া</option><option value="Raozan">রাউজান</option><option value="Sandwip">সন্দ্বীপ</option><option value="Satkania">সাতকানিয়া</option><option value="Sitakunda">সীতাকুণ্ড</option>';
+                        } // set Comilla division thana
+                        else if (DisList == 'Comilla') {
+                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Barura">বরুড়া</option><option value="Brahmanpara">ব্রাহ্মণপাড়া</option><option value="Burichong">বুড়িচং</option><option value="Comilla Sadar">কুমিল্লা সদর</option><option value="Comilla Sadar Dakshin">কুমিল্লা সদর দক্ষিণ</option><option value="Chandina">চান্দিনা</option><option value="Chauddagram">চৌদ্দগ্রাম</option><option value="Daudkandi">দাউদকান্দি</option><option value="Debidwar">দেবিদ্বার</option><option value="Homna">হোমনা</option><option value="Laksam">লাকসাম</option><option value="Lalmai">লালমাই</option><option value="Monohorgonj">মনোহরগঞ্জ</option><option value="Meghna">মেঘনা</option><option value="Muradnagar">মুরাদনগর</option><option value="Nangalkot">নাংগলকোট</option><option value="Titas">তিতাস</option>';
+                          } // set Cox\'s Bazar division thana
+                          else if (DisList == 'Cox\'s Bazar') {
+                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Cox\'s Bazar Sadar">কক্সবাজার সদর</option><option value="Chakaria">চকোরিয়া</option><option value="Kutubdia">কুতুবদিয়া</option><option value="Maheshkhali">মহেশখালী</option><option value="Ramu">রামু</option><option value="Teknaf">টেকনাফ</option><option value="Ukhia ">উখিয়া</option><option value="Pekua">পেকুয়া</option>';
+                            } // set Feni division thana
+                            else if (DisList == 'Feni') {
+                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Chhagalnaiya">ছাগলনাইয়া</option><option value="Feni Sadar">ফেনী সদর</option><option value="Daganbhuiyan">দাগনভূঞা</option><option value="Sonagazi">সোনাগাজী</option><option value="Parshuram">পরশুরাম</option><option value="Fulgazi">ফুলগাজী</option>';
+                              } // set Khagrachhari division thana
+                              else if (DisList == 'Khagrachhari') {
+                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Khagrachhari Sadar">খাগড়াছড়ি সদর</option><option value="Dighinala">দীঘিনালা</option><option value="Lakshmichhari">লক্ষ্মীছড়ি</option><option value="Mahalchhari">মহালছড়ি</option><option value="Manikchhari">মানিকছড়ি</option><option value="Matiranga">মাটিরাঙ্গা</option><option value="Panchhari">পানছড়ি</option><option value="Ramgarh">রামগড়</option><option value="Guimara">গুইমারা</option>';
+                                } // set Lakshmipur division thana
+                                else if (DisList == 'Lakshmipur') {
+                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Lakshmipur Sadar">লক্ষ্মীপুর সদর</option><option value="Ramganj">রামগঞ্জ</option><option value="Raipur">রায়পুর</option><option value="Ramgati">রামগতি</option><option value="Kamalnagar">কমলনগর</option>';
+                                  } // set Noakhali division thana
+                                  else if (DisList == 'Noakhali') {
+                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Senbagh">সেনবাগ</option><option value="Begumganj">বেগমগঞ্জ</option><option value="Chatkhil">চাটখিল</option><option value="Companiganj">কোম্পানীগঞ্জ</option><option value="Noakhali Sadar">নোয়াখালী সদর</option><option value="Hatiya">হাতিয়া</option><option value="Kabirhat">কবিরহাট</option><option value="Sonaimuri">সোনাইমুড়ি</option><option value="Suborno Char">সুবর্ণচর</option>';
+                                    } // set Rangamati division thana
+                                    else if (DisList == 'Rangamati') {
+                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Rangamati Sadar">রাঙ্গামাটি সদর</option><option value="Belaichhari">বিলাইছড়ি</option><option value="Bagaichhari">বাঘাইছড়ি</option><option value="Barkal">বরকল</option><option value="Juraichhari">জুরাছড়ি</option><option value="Rajasthali">রাজস্থলী</option><option value="Kaptai">কাপ্তাই</option><option value="Langadu">লংগদু</option><option value="Naniarchar">নানিয়ারচর</option><option value="Kaukhali">কাউখালী</option>';
+                                      } // set Dhaka division thana
+                                      else if (DisList == 'Dhaka') {
+                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Adabar">আদাবর</option><option value="Badda">বাড্ডা</option><option value="Birampur">বিরামপুর</option><option value="Bangsal">বংশাল</option><option value="Bimanbandar">বিমানবন্দর</option><option value="Cantonment">ক্যান্টনমেন্ট</option><option value="Chowkbazar">চকবাজার</option><option value="Darus Salam">দারুস সালাম</option><option value="Demra">ডেমরা</option><option value="Dhanmondi">ধানমন্ডি</option><option value="Gendaria">গেন্ডারিয়া</option><option value="Gulshan">গুলশান</option><option value="Hazaribagh">হাজারীবাগ</option><option value="Kadamtali">কদমতলী</option><option value="Kafrul">কাফরুল</option><option value="Kalabagan">কলাবাগান</option><option value="Kamrangirchar">কামরাঙ্গীরচর</option><option value="Khilgaon">খিলগাঁও</option><option value="Khilkhet">খিলক্ষেত</option><option value="Kotwali">কোতোয়ালী</option><option value="Lalbagh">লালবাগ</option><option value="Mirpur Model">মিরপুর মডেল</option><option value="Mohammadpur">মোহাম্মদপুর</option><option value="Motijheel">মতিঝিল</option><option value="New Market">নিউ মার্কেট</option><option value="Pallabi">পল্লবী</option><option value="Paltan">পল্টন</option><option value="Ramna">রমনা</option><option value="Rampura">রামপুরা</option><option value="Sabujbagh">সবুজবাগ</option><option value="Shah Ali">শাহ আলী</option><option value="Shahbag">শাহবাগ</option><option value="Sher-e-Bangla Nagar">শেরে-বাংলা নগর</option><option value="Shyampur">শ্যামপুর</option><option value="Sutrapur">সূত্রাপুর</option><option value="Tejgaon">তেজগাঁও</option><option value="Tejgaon Industrial Area">তেজগাঁও শিল্পাঞ্চল এলাকা</option><option value="Turag">তুরাগ</option><option value="Uttar Khan">উত্তরখান</option><option value="Uttara">উত্তরা</option><option value="VataraWari">যাত্রাবাড়ী</option>';
+                                        } // // set Dhaka division thana
+                                        // else if(DisList == 'Dhaka') {
+                                        //  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Dhamrai">ধামরাই</option><option value="Dohar">দোহার</option><option value="Keraniganj">কেরানীগঞ্জ</option><option value="Nawabganj">নবাবগঞ্জ</option><option value="Sa">সাভার</option>';
+                                        // }
+                                        // set Faridpur division thana
+                                        else if (DisList == 'Faridpur') {
+                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Alfadanga">আলফাডাঙ্গা</option><option value="Bhanga">ভাঙ্গা</option><option value="Boalmari">বোয়ালমারী</option><option value="Charbhadrasan">চরভদ্রাসন</option><option value="Faridpur Sadar">ফরিদপুর সদর</option><option value="Madhukhali">মধুখালী</option><option value="Nagarkanda">নগরকান্দা</option><option value="Sadarpur">সদরপুর</option><option value="Saltha">সালথা</option>';
+                                          } // set Gazipur division thana
+                                          else if (DisList == 'Gazipur') {
+                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Gazipur Sadar">গাজীপুর সদর</option><option value="Kaliakair">কালিয়াকৈর</option><option value="Kapasia">কাপাসিয়া</option><option value="Sreepur">শ্রীপুর</option><option value="Kaliganj">কালীগঞ্জ</option>';
+                                            } // set Gopalganj division thana
+                                            else if (DisList == 'Gopalganj') {
+                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Gopalganj Sadar">গোপালগঞ্জ সদর</option><option value="Kashiani">কাশিয়ানী</option><option value="Kotalipara">কোটালীপাড়া</option><option value="Muksudpur">মুকসুদপুর</option><option value="Tungipara">টুঙ্গিপাড়া</option>';
+                                              } // set Jamalpur division thana
+                                              else if (DisList == 'Jamalpur') {
+                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Jamalpur Sadar">জামালপুর সদর</option><option value="Dewanganj">দেওয়ানগঞ্জ</option><option value="Baksiganj">বকশীগঞ্জ</option><option value="Islampur">ইসলামপুর</option><option value="Madarganj">মাদারগঞ্জ</option><option value="Melandaha">মেলান্দহ</option><option value="Sarishabari">সরিষাবাড়ি</option>';
+                                                } // set Kishoreganj division thana
+                                                else if (DisList == 'Kishoreganj') {
+                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kishoreganj Sadar">কিশোরগঞ্জ সদর</option><option value="Kuliarchar">কুলিয়ারচর</option><option value="Hossainpur">হোসেনপুর</option><option value="Pakundia">পাকুন্দিয়া</option><option value="Bajitpur">বাজিতপুর</option><option value="Austagram">অষ্টগ্রাম</option><option value="Karimganj">করিমগঞ্জ</option><option value="Katiadi">কটিয়াদি</option><option value="Tarail">তাড়াইল</option><option value="Itna">ইটনা</option><option value="Nikli">নিকলী</option><option value="Mithamain">মিঠামইন</option><option value="Bhairab">ভৈরব</option>';
+                                                  } // set Madaripur division thana
+                                                  else if (DisList == 'Madaripur') {
+                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Madaripur Sadar">মাদারীপুর সদর</option><option value="Kalkini">কালকিনি</option><option value="Rajoir">রাজৈর</option><option value="Shibchar">শিবচর</option>';
+                                                    } // set Manikganj division thana
+                                                    else if (DisList == 'Manikganj') {
+                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Manikganj Sadar">মানিকগঞ্জ সদর</option><option value="Singair">সিঙ্গাইর</option><option value="Shivalaya">শিবালয়</option><option value="Saturia">সাটুরিয়া</option><option value="Harirampur">হরিরামপুর</option><option value="Ghior">ঘিওর</option><option value="Daulatpur">দৌলতপুর</option>';
+                                                      } // set Munshiganj division thana
+                                                      else if (DisList == 'Munshiganj') {
+                                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Munshiganj Sadar">মুন্সিগঞ্জ সদর</option><option value="Lohajang">লৌহজং</option><option value="Sreenagar">শ্রীনগর</option><option value="Sirajdikhan">সিরাজদিখান</option><option value="Tongibari">টংগিবাড়ী</option><option value="Gazaria">গজারিয়া</option>';
+                                                        } // set Narayanganj division thana
+                                                        else if (DisList == 'Narayanganj') {
+                                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Narayanganj Sadar">নারায়ণগঞ্জ সদর</option><option value="Bandar">বন্দর</option><option value="Sonargaon">সোনারগাঁও</option><option value="Araihazar">আড়াইহাজার</option><option value="Rupganj">রূপগঞ্জ</option>';
+                                                          } // set Narsingdi division thana
+                                                          else if (DisList == 'Narsingdi') {
+                                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Narsingdi Sadar">নরসিংদী সদর</option><option value="Palash">পলাশ</option><option value="Belabo">বেলাবো</option><option value="Monohardi">মনোহরদী</option><option value="Raipura">রায়পুরা</option><option value="Shibpur">শিবপুর</option>';
+                                                            } // set Rajbari division thana
+                                                            else if (DisList == 'Rajbari') {
+                                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Rajbari Sadar">রাজবাড়ী সদর</option><option value="Baliakandi">বালিয়াকান্দি</option><option value="Goalanda">গোয়ালন্দ</option><option value="Pangsha">পাংশা</option><option value="Kalukhali">কালুখালী</option>';
+                                                              } // set Shariatpur division thana
+                                                              else if (DisList == 'Shariatpur') {
+                                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Shariatpur Sadar">শরীয়তপুর সদর</option><option value="Damudya">ডামুড্যা</option><option value="Naria">নড়িয়া</option><option value="Zanjira">জাজিরা</option><option value="Bhedarganj">ভেদরগঞ্জ</option><option value="Gosairhat">গোসাইরহাট</option><option value="Shakhipur">সখিপুর</option>';
+                                                                } // set Tangail division thana
+                                                                else if (DisList == 'Tangail') {
+                                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Tangail Sadar">টাঙ্গাইল সদর</option><option value="Sakhipur">সখিপুর</option><option value="Basail">বাসাইল</option><option value="Madhupur">মধুপুর</option><option value="Ghatail">ঘাটাইল</option><option value="Kalihati">কালিহাতি</option><option value="Nagarpur">নাগরপুর</option><option value="Mirzapur">মির্জাপুর</option><option value="Gopalpur">গোপালপুর</option><option value="Delduar">দেলদুয়ার</option><option value="Bhuapur">ভূঞাপুর</option><option value="Dhanbari">ধনবাড়ী</option>';
+                                                                  } // set Jessore division thana
+                                                                  else if (DisList == 'Jessore') {
+                                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Jessore Sadar">যশোর সদর</option><option value="Abhaynagar">অভয়নগর</option><option value="Bagherpara">বাঘারপাড়া</option><option value="Chaugachha">চৌগাছা</option><option value="Jhikargachha">ঝিকরগাছা</option><option value="Keshabpur">কেশবপুর</option><option value="Manirampur">মনিরামপুর</option><option value="Sharsha">শার্শা</option>';
+                                                                    } // set Satkhira division thana
+                                                                    else if (DisList == 'Satkhira') {
+                                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Satkhira Sadar">সাতক্ষীরা সদর</option><option value="Assasuni">আশাশুনি</option><option value="Debhata">দেবহাটা</option><option value="Tala">তালা</option><option value="Kalaroa">কলারোয়া</option><option value="Kaliganj">কালীগঞ্জ</option><option value="Shyamnagar">শ্যামনগর</option>';
+                                                                      } // set Meherpur division thana
+                                                                      else if (DisList == 'Meherpur') {
+                                                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Meherpur Sadar">মেহেরপুর সদর</option><option value="Mujibnagar">মুজিবনগর</option><option value="Gangni">গাংনী</option>';
+                                                                        } // set Narail division thana
+                                                                        else if (DisList == 'Narail') {
+                                                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Narail Sadar">নড়াইল সদর</option><option value="Kalia">কালিয়া</option><option value="Lohagara">লোহাগড়া</option>';
+                                                                          } // set Chuadanga division thana
+                                                                          else if (DisList == 'Chuadanga') {
+                                                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Chuadanga Sadar">চুয়াডাঙ্গা সদর</option><option value="Alamdanga">আলমডাঙ্গা</option><option value="Jibannagar">জীবননগর</option><option value="Damurhuda">দামুড়হুদা</option>';
+                                                                            } // set Kushtia division thana
+                                                                            else if (DisList == 'Kushtia') {
+                                                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kushtia Sadar">কুষ্টিয়া সদর</option><option value="Bheramara">ভেড়ামারা</option><option value="Daulatpur">দৌলতপুর</option><option value="Khoksa">খোকসা</option><option value="Kumarkhali">কুমারখালী</option><option value="Mirpur">মিরপুর</option>';
+                                                                              } // set Magura division thana
+                                                                              else if (DisList == 'Magura') {
+                                                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Magura Sadar">মাগুরা সদর</option><option value="Mohammadpur">মহম্মদপুর</option><option value="Shalikha">শালিখা</option><option value="Sreepur">শ্রীপুর</option>';
+                                                                                } // set khulna division thana
+                                                                                else if (DisList == 'Khulna') {
+                                                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Koyra">কয়রা</option><option value="Batiaghata">বটিয়াঘাটা</option><option value="Dacope">দাকোপ</option><option value="Dighalia">দিঘলিয়া</option><option value="Dumuria">ডুমুরিয়া</option><option value="Paikgachha">পাইকগাছা</option><option value="Phultala">ফুলতলা</option><option value="Rupsa">রূপসা</option><option value="Terokhada">তেরখাদা</option>';
+                                                                                  } // set Bagerhat division thana
+                                                                                  else if (DisList == 'Bagerhat') {
+                                                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bagerhat Sadar">বাগেরহাট সদর</option><option value="Chitalmari">চিতলমারী</option><option value="Fakirhat">ফকিরহাট</option><option value="Kachua">কচুয়া</option><option value="Mollahat">মোল্লাহাট</option><option value="Mongla">মোংলা</option><option value="Morrelganj">মোড়েলগঞ্জ</option><option value="Rampal">রামপাল</option><option value="Sarankhola">শরণখোলা</option>';
+                                                                                    } // set Jhenaidah division thana
+                                                                                    else if (DisList == 'Jhenaidah') {
+                                                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Jhenaidah Sadar">ঝিনাইদহ সদর</option><option value="Maheshpur">মহেশপুর</option><option value="Kaliganj">কালীগঞ্জ</option><option value="Kotchandpur">কোটচাঁদপুর</option><option value="Shailkupa">শৈলকুপা</option><option value="Harinakunda">হরিণাকুন্ড</option>';
+                                                                                      } // set Sherpur division thana
+                                                                                      else if (DisList == 'Sherpur') {
+                                                                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Sherpur Sadar">শেরপুর সদর</option><option value="Nalitabari">নালিতাবাড়ী</option><option value="Sreebardi">শ্রীবদী</option><option value="Jhenaigati">ঝিনাইগাতী</option><option value="Nakla">নকলা</option>';
+                                                                                        } // set Mymensingh division thana
+                                                                                        else if (DisList == 'Mymensingh') {
+                                                                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Mymensingh Sadar">ময়মনসিংহ সদর</option><option value="Bhaluka">ভালুকা</option><option value="Trishal">ত্রিশাল</option><option value="Haluaghat">হালুয়াঘাট</option><option value="Muktagacha">মুক্তাগাছা</option><option value="Dhobaura">ধোবাউড়া</option><option value="Fulbaria">ফুলবাড়িয়া</option><option value="Gaffargaon">গফরগাঁও</option><option value="Gauripur">গৌরীপুর</option><option value="Ishwarganj">ঈশ্বরগঞ্জ</option><option value="Nandail">নান্দাইল</option><option value="Phulpur">ফুলপুর</option><option value="Tara Khanda">তারাকান্দা</option>';
+                                                                                          } // set Jamalpur division thana
+                                                                                          else if (DisList == 'Jamalpur') {
+                                                                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Jamalpur Sadar">জামালপুর সদর</option><option value="Dewanganj">দেওয়ানগঞ্জ</option><option value="Baksiganj">বকশীগঞ্জ</option><option value="Islampur">ইসলামপুর</option><option value="Madarganj">মাদারগঞ্জ</option><option value="Melandaha">মেলান্দহ</option><option value="Sarishabari">সরিষাবাড়ি</option>';
+                                                                                            } // set Netrokona division thana
+                                                                                            else if (DisList == 'Netrokona') {
+                                                                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Netrokona Sadar">নেত্রকোণা সদর</option><option value="Atpara">আটপাড়া</option><option value="Barhatta">বারহাট্টা</option><option value="Durgapur">দুর্গাপুর</option><option value="Kalmakanda">কলমাকান্দা</option><option value="Kendua">কেন্দুয়া</option><option value="Khaliajuri">খালিয়াজুড়ি</option><option value="Madan">মদন</option><option value="Mohanganj">মোহনগঞ্জ</option><option value="Purbadhala">পূর্বধলা</option>';
+                                                                                              } // set Sirajganj division thana
+                                                                                              else if (DisList == 'Sirajganj') {
+                                                                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Sirajganj Sadar">সিরাজগঞ্জ সদর</option><option value="Kazipur">কাজীপুর</option><option value="Ullahpara">উল্লাপাড়া</option><option value="Shahjadpur">শাহজাদপুর</option><option value="Raiganj">রায়গঞ্জ</option><option value="Kamarkhanda">কামারখন্দ</option><option value="Tarash">তাড়াশ</option><option value="Belkuchi">বেলকুচি</option><option value="Chauhali">চৌহালি</option>';
+                                                                                                } // set Pabna division thana
+                                                                                                else if (DisList == 'Pabna') {
+                                                                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Pabna Sadar">পাবনা সদর</option><option value="Atgharia">আটঘরিয়া</option><option value="Bera">বেড়া</option><option value="Bhangura">ভাঙ্গুড়া</option><option value="Chatmohar">চাটমোহর</option><option value="Faridpur">ফরিদপুর</option><option value="Ishwardi">ঈশ্বরদী</option><option value="Santhia">সাঁথিয়া</option><option value="Sujanagar">সুজানগর</option>';
+                                                                                                  } // set Bogra division thana
+                                                                                                  else if (DisList == 'Bogra') {
+                                                                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bogra Sadar">বগুড়া সদর</option><option value="Adamdighi">আদমদিঘী</option><option value="Sherpur">শেরপুর</option><option value="Dhunat">ধুনট</option><option value="Dhupchanchia">দুপচাঁচিয়া</option><option value="Gabtali">গাবতলী</option><option value="Kahaloo">কাহালু</option><option value="Nandigram">নন্দীগ্রাম</option><option value="Shajahanpur">শাজাহানপুর</option><option value="Sariakandi">সারিয়াকান্দি</option><option value="Shibganj">শিবগঞ্জ</option><option value="Sonatala">সোনাতলা</option>';
+                                                                                                    } // set Rajshahi division thana
+                                                                                                    else if (DisList == 'Rajshahi') {
+                                                                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Bagha">বাঘা</option><option value="Bagmara">বাগমারা</option><option value="Charghat">চারঘাট</option><option value="Durgapur">দুর্গাপুর</option><option value="Godagari">গোদাগাড়ী</option><option value="Mohanpur">মোহনপুর</option><option value="Paba">পবা</option><option value="Puthia">পুঠিয়া</option><option value="Tanore">তানোর</option>';
+                                                                                                      } // set Natore division thana
+                                                                                                      else if (DisList == 'Natore') {
+                                                                                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Natore Sadar">নাটোর সদর</option><option value="Gurudaspur">গুরুদাসপুর</option><option value="Baraigram">বড়াইগ্রাম</option><option value="Bagatipara">বাগাতিপাড়া</option><option value="Lalpur">লালপুর</option><option value="Singra">সিংড়া</option><option value="Naldanga">নলডাঙ্গা</option>';
+                                                                                                        } // set Joypurhat division thana
+                                                                                                        else if (DisList == 'Joypurhat') {
+                                                                                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Joypurhat Sadar">জয়পুরহাট সদর</option><option value="Akkelpur">আক্কেলপুর</option><option value="Kalai">কালাই</option><option value="Khetlal">ক্ষেতলাল</option><option value="Panchbibi">পাঁচবিবি</option>';
+                                                                                                          } // set Chapainawabganj division thana
+                                                                                                          else if (DisList == 'Chapainawabganj') {
+                                                                                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Chapainawabganj Sadar">চাঁপাইনবাবগঞ্জ সদর</option><option value="Bholahat">ভোলাহাট</option><option value="Gomastapur">গোমস্তাপুর</option><option value="Nachole">নাচোল</option><option value="Shibganj">শিবগঞ্জ</option>';
+                                                                                                            } // set Naogaon division thana
+                                                                                                            else if (DisList == 'Naogaon') {
+                                                                                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Naogaon Sadar">নওগাঁ সদর</option><option value="Badalgachhi">বদলগাছি</option><option value="Dhamoirhat">ধামইরহাট</option><option value="Manda">মান্দা</option><option value="Mohadevpur">মহাদেবপুর</option><option value="Niamatpur">নিয়ামতপুর</option><option value="Patnitala">পত্নীতলা</option><option value="Porsha">পোরশা</option><option value="Raninagar">রাণীনগর</option><option value="Sapahar">সাপাহার</option>';
+                                                                                                              } // set Sylhet division thana
+                                                                                                              else if (DisList == 'Sylhet') {
+                                                                                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Sylhet Sadar">সিলেট সদর</option><option value="Balaganj">বালাগঞ্জ</option><option value="Beanibazar">বিয়ানীবাজার</option><option value="Bishwanath">বিশ্বনাথ</option><option value="Companiganj">কোম্পানীগঞ্জ</option><option value="Dakshin Surma">দক্ষিণ সুরমা</option><option value="Fenchuganj">ফেঞ্চুগঞ্জ</option><option value="Golapganj">গোলাপগঞ্জ</option><option value="Gowainghat">গোয়াইনঘাট</option><option value="Jaintiapur">জৈন্তাপুর</option><option value="Kanaighat">কানাইঘাট</option><option value="Osmani Nagar">ওসমানীনগর</option>';
+                                                                                                                } // set Moulvibazar division thana
+                                                                                                                else if (DisList == 'Moulvibazar') {
+                                                                                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Moulvibazar Sadar">মৌলভীবাজার সদর</option><option value="Kamalganj">কমলগঞ্জ</option><option value="Kulaura">কুলাউড়া</option><option value="Rajnagar">রাজনগর</option><option value="Sreemangal">শ্রীমঙ্গল</option><option value="Barlekha">বড়লেখা</option><option value="Juri">জুড়ী</option>';
+                                                                                                                  } // set Habiganj division thana
+                                                                                                                  else if (DisList == 'Habiganj') {
+                                                                                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Habiganj Sadar">হবিগঞ্জ সদর</option><option value="Ajmiriganj">আজমিরীগঞ্জ</option><option value="Baniachang">বানিয়াচং</option><option value="Bahubal">বাহুবল</option><option value="Chunarughat">চুনারুঘাট</option><option value="Lakhai">লাখাই</option><option value="Madhabpur">মাধবপুর</option><option value="Nabiganj">নবীগঞ্জ</option><option value="Sayestaganj">শায়েস্তাগঞ্জ</option>';
+                                                                                                                    } // set Sunamganj division thana
+                                                                                                                    else if (DisList == 'Sunamganj') {
+                                                                                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Sunamganj Sadar">সুনামগঞ্জ সদর</option><option value="Bishwampur">বিশ্বম্ভরপুর</option><option value="Chhatak">ছাতক</option><option value="Dakshin Sunamganj">দক্ষিণ সুনামগঞ্জ</option><option value="Derai">দিরাই</option><option value="Dowarabazar">দোয়ারাবাজার</option><option value="Jagannathpur">জগন্নাথপুর</option><option value="Jamalganj">জামালগঞ্জ</option><option value="Sullah">শাল্লা</option><option value="Tahirpur">তাহিরপুর</option><option value="Dharampasha">ধর্মপাশা</option>';
+                                                                                                                      } // set Panchagarh division thana
+                                                                                                                      else if (DisList == 'Panchagarh') {
+                                                                                                                          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Panchagarh Sadar">পঞ্চগড় সদর</option><option value="Debiganj">দেবীগঞ্জ</option><option value="Boda">বোদা</option><option value="Atwari">আটোয়ারী</option><option value="Tetulia">তেঁতুলিয়া</option>';
+                                                                                                                        } // set Dinajpur division thana
+                                                                                                                        else if (DisList == 'Dinajpur') {
+                                                                                                                            thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Dinajpur Sadar">দিনাজপুর সদর</option><option value="Biral">বিরল</option><option value="Birampur">বিরামপুর</option><option value="Birganj">বীরগঞ্জ</option><option value="Bochaganj">বোচাগঞ্জ</option><option value="Chirirbandar">চিরিরবন্দর</option><option value="Ghoraghat">ঘোড়াঘাট</option><option value="Hakimpur">হাকিমপুর</option><option value="Kaharole">কাহারোল</option><option value="Khansama">খানসামা</option><option value="Nawabganj">নবাবগঞ্জ</option><option value="Fulbari">ফুলবাড়ী</option>';
+                                                                                                                          } // set Lalmonirhat division thana
+                                                                                                                          else if (DisList == 'Lalmonirhat') {
+                                                                                                                              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Lalmonirhat Sadar">লালমনিরহাট সদর</option><option value="Aditmari">আদিতমারী</option><option value="Hatibandha">হাতীবান্ধা</option><option value="Kaliganj">কালীগঞ্জ</option><option value="Patgram">পাটগ্রাম</option>';
+                                                                                                                            } // set Nilphamari division thana
+                                                                                                                            else if (DisList == 'Nilphamari') {
+                                                                                                                                thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Nilphamari Sadar">নীলফামারী সদর</option><option value="Saidpur">সৈয়দপুর</option><option value="Kishoreganj">কিশোরগঞ্জ</option><option value="Dimla">ডিমলা</option><option value="Domar">ডোমার</option><option value="Jaldhaka">জলঢাকা</option>';
+                                                                                                                              } // set Gaibandha division thana
+                                                                                                                              else if (DisList == 'Gaibandha') {
+                                                                                                                                  thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Gaibandha Sadar">নীলফামারী সদর</option><option value="Gobindaganj">গোবিন্দগঞ্জ</option><option value="Fulchhari">ফুলছড়ি</option><option value="Palashbari">পলাশবাড়ী</option><option value="Sadullapur">সাদুল্লাপুর</option><option value="Sundarganj">সুন্দরগঞ্জ</option><option value="Saghata">সাঘাটা</option>';
+                                                                                                                                } // set Thakurgaon division thana
+                                                                                                                                else if (DisList == 'Thakurgaon') {
+                                                                                                                                    thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Thakurgaon Sadar">ঠাকুরগাঁও সদর</option><option value="Baliadangi">বালিয়াডাঙ্গী</option><option value="Haripur">হরিপুর</option><option value="Pirganj">পীরগঞ্জ</option><option value="Ranisankail">রাণীশংকৈল</option>';
+                                                                                                                                  } // set Rangpur division thana
+                                                                                                                                  else if (DisList == 'Rangpur') {
+                                                                                                                                      thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Rangpur Sadar">রংপুর সদর</option><option value="Badarganj">বদরগঞ্জ</option><option value="Mithapukur">মিঠাপুকুর</option><option value="Gangachara">গংগাচড়া</option><option value="Kaunia">কাউনিয়া</option><option value="Pirgacha">পীরগাছা</option><option value="Pirganj">পীরগঞ্জ</option><option value="Taraganj">তারাগঞ্জ</option>';
+                                                                                                                                    } // set Kurigram division thana
+                                                                                                                                    else if (DisList == 'Kurigram') {
+                                                                                                                                        thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kurigram Sadar">কুড়িগ্রাম সদর</option><option value="Bhurungamari">ভুরুঙ্গামারী</option><option value="Char Rajibpur">চর রাজিবপুর</option><option value="Chilmari">চিলমারী</option><option value="Nageshwari">নাগেশ্বরী</option><option value="Phulbari">ফুলবাড়ী</option><option value="Rajarhat">রাজারহাট</option><option value="Raomari">রৌমারী</option><option value="Ulipur">উলিপুর</option>';
+                                                                                                                                      }
+
+      document.getElementById("polic_sta").innerHTML = thanaList;
+    }
+  }, {
     key: "render",
     value: function render() {
-      console.log('categoryies');
-      console.log(this.state.categories);
+      console.log('post Data');
+      console.log(this.state.post);
       var productDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.products) {
-        this.state.products.map(function (product) {
+      if (this.state.productslist) {
+        this.state.productslist.map(function (product) {
           return productDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: product.id,
             children: product.name
@@ -2283,8 +2564,8 @@ var Create = /*#__PURE__*/function (_Component) {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.categories) {
-        this.state.categories.map(function (category) {
+      if (this.state.categorieslist) {
+        this.state.categorieslist.map(function (category) {
           return categoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: category.id,
             children: category.name
@@ -2296,8 +2577,8 @@ var Create = /*#__PURE__*/function (_Component) {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
 
-      if (this.state.subCategories) {
-        this.state.subCategories.map(function (subcategory) {
+      if (this.state.subCategorieslist) {
+        this.state.subCategorieslist.map(function (subcategory) {
           return subcategoryDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
             value: subcategory.id,
             children: subcategory.name
@@ -2305,11 +2586,26 @@ var Create = /*#__PURE__*/function (_Component) {
         });
       }
 
+      ;
+      var divisionListDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+        children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
+      })];
+
+      if (this.state.divisionList) {
+        this.state.divisionList.map(function (division) {
+          return divisionListDropdown.push( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: division.name,
+            children: division.value
+          }, division.name));
+        });
+      }
+
+      ;
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
           className: "custom-post-form",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
-            action: "",
+            onSubmit: this.handleSubmit,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
               className: "h4post",
               children: "\u09AA\u09A3\u09CD\u09AF \u09B8\u09AE\u09CD\u09AA\u09B0\u09CD\u0995\u09C7"
@@ -2325,7 +2621,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control select2bs4",
                     onChange: this.categorySelect,
-                    required: "required",
                     children: productDropdown
                   })]
                 })
@@ -2342,7 +2637,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control values-input",
                     step: "any",
-                    required: "required",
                     id: "total-weight",
                     type: "number",
                     name: "total_weight"
@@ -2390,7 +2684,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control values-input",
                     value: "0",
-                    required: "required",
                     type: "number",
                     name: "price_per_unit"
                   })]
@@ -2445,7 +2738,6 @@ var Create = /*#__PURE__*/function (_Component) {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
                     onChange: this.subcategorySelect,
-                    required: "required",
                     children: categoryDropdown
                   })]
                 })
@@ -2458,6 +2750,8 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4 \u09B8\u09AE\u09C2\u09B9*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control",
+                    name: "sub_category_id",
+                    onChange: this.handleInputChange,
                     children: subcategoryDropdown
                   })]
                 })
@@ -2497,8 +2791,7 @@ var Create = /*#__PURE__*/function (_Component) {
                     className: "form-control",
                     value: "",
                     type: "date",
-                    name: "product_production_year",
-                    required: "required"
+                    name: "product_production_year"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2553,7 +2846,6 @@ var Create = /*#__PURE__*/function (_Component) {
                       type: "date",
                       className: "form-control",
                       value: "",
-                      required: true,
                       name: "initial_delivery_date"
                     })]
                   })
@@ -2572,7 +2864,6 @@ var Create = /*#__PURE__*/function (_Component) {
                       type: "date",
                       className: "form-control",
                       value: "",
-                      required: true,
                       name: "final_delivery_date"
                     })]
                   })
@@ -2592,8 +2883,7 @@ var Create = /*#__PURE__*/function (_Component) {
                       className: "form-control",
                       id: "date",
                       value: "",
-                      name: "offer_end_date",
-                      required: "required"
+                      name: "offer_end_date"
                     })]
                   })
                 })
@@ -2641,41 +2931,12 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     className: "control-h7",
                     children: "\u09AC\u09BF\u09AD\u09BE\u0997*"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     name: "divisions",
                     id: "divisions",
-                    required: "required",
                     className: "form-control input-lg",
-                    defaultValue: 'DEFAULT',
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Barishal",
-                      children: "\u09AC\u09B0\u09BF\u09B6\u09BE\u09B2"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Chattogram",
-                      children: "\u099A\u099F\u09CD\u099F\u0997\u09CD\u09B0\u09BE\u09AE"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Dhaka",
-                      children: "\u09A2\u09BE\u0995\u09BE"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Khulna",
-                      children: "\u0996\u09C1\u09B2\u09A8\u09BE"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Mymensingh",
-                      children: "\u09AE\u09DF\u09AE\u09A8\u09B8\u09BF\u0982\u09B9"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Rajshahi",
-                      children: "\u09B0\u09BE\u099C\u09B6\u09BE\u09B9\u09C0"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Rangpur",
-                      children: "\u09B0\u0982\u09AA\u09C1\u09B0"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "Sylhet",
-                      children: "\u09B8\u09BF\u09B2\u09C7\u099F"
-                    })]
+                    onChange: this.divisionsList,
+                    children: divisionListDropdown
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2689,11 +2950,9 @@ var Create = /*#__PURE__*/function (_Component) {
                     className: "form-control input-lg",
                     name: "district",
                     id: "distr",
-                    required: "required",
-                    defaultValue: 'DEFAULT',
+                    onChange: this.thanaList,
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       disabled: true,
-                      value: "DEFAULT",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     })
                   })]
@@ -2711,7 +2970,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     defaultValue: 'DEFAULT',
                     name: "thana",
                     id: "polic_sta",
-                    required: "required",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       disabled: true,
                       value: "DEFAULT",
@@ -2734,8 +2992,7 @@ var Create = /*#__PURE__*/function (_Component) {
                   id: "address",
                   placeholder: "\u0997\u09CD\u09B0\u09BE\u09AE/\u09AE\u09B9\u09B2\u09CD\u09B2\u09BE",
                   value: "",
-                  name: "villege",
-                  required: "required"
+                  name: "villege"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2766,8 +3023,7 @@ var Create = /*#__PURE__*/function (_Component) {
                   type: "file",
                   id: "files",
                   name: "product_image",
-                  value: "",
-                  required: true
+                  value: ""
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -2782,7 +3038,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     value: "0"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "inline-block",
-                    required: "required",
                     type: "checkbox",
                     value: "1"
                   }), "\u09AA\u09A3\u09CD\u09AF \u0995\u09C7\u09A8\u09BE \u09AC\u09C7\u099A\u09BE\u09B0 \u099C\u09A8\u09CD\u09AF ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
@@ -2860,8 +3115,6 @@ CategoryService.dropdown = /*#__PURE__*/function () {
                 "product_id": data.product_id
               }
             }).then(function (response) {
-              console.log('find data');
-              console.log(response.data);
               return response.data.data.data;
             })["catch"](function (error) {
               return error;
@@ -2944,9 +3197,86 @@ CategoryService.dropdown = /*#__PURE__*/function () {
 /*!**********************************************!*\
   !*** ./resources/js/services/PostService.js ***!
   \**********************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var PostService = {};
+
+PostService.save = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+    var urlProduct, urlProductUpdate, res, _res;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            urlProduct = "/Manage_Post/manage_posts";
+
+            if (!data.get('id')) {
+              _context.next = 9;
+              break;
+            }
+
+            urlProductUpdate = urlProduct + '/' + data.get('id') + "?_method=PUT";
+            _context.next = 5;
+            return axios.post(urlProductUpdate, data).then(function (response) {
+              $.notify({
+                message: 'Update Product'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 5:
+            res = _context.sent;
+            return _context.abrupt("return", res);
+
+          case 9:
+            _context.next = 11;
+            return axios.post(urlProduct, data).then(function (response) {
+              $.notify({
+                message: 'Product Saved'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 11:
+            _res = _context.sent;
+            return _context.abrupt("return", _res);
+
+          case 13:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostService);
 
 /***/ }),
 
@@ -3091,9 +3421,7 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('services');
-            console.log(data);
-            _context.next = 4;
+            _context.next = 2;
             return axios.get("/subcategories?dropdown=true", {
               params: {
                 "category_id": data.category_id
@@ -3104,11 +3432,11 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
               return error;
             });
 
-          case 4:
+          case 2:
             res = _context.sent;
             return _context.abrupt("return", res);
 
-          case 6:
+          case 4:
           case "end":
             return _context.stop();
         }
