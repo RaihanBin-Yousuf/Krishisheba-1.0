@@ -3222,7 +3222,7 @@ PostService.save = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            urlProduct = "/Manage_Post/manage_posts";
+            urlProduct = "/manage_posts";
 
             if (!data.get('id')) {
               _context.next = 9;

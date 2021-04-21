@@ -2,7 +2,7 @@
 const PostService = {};
 
 PostService.save = async (data) => {
-    let urlProduct = "/Manage_Post/manage_posts";
+    let urlProduct = "/manage_posts";
     if(data.get('id')) {
       const urlProductUpdate = urlProduct+'/'+data.get('id')+"?_method=PUT";
       const res = await axios.post(urlProductUpdate, data)
