@@ -20,23 +20,23 @@ class SubCategoryController extends Controller
     public function index()
     {
        
-        if (request()->ajax()) {
+        // if (request()->ajax()) {
             // dd(request());
             $input=request()->category_id;
             $sub_categories = $this->sub_category->getAll($input);
             // dd($sub_categories);
-            if(request()->dropdown) {
+            // if(request()->dropdown) {
                 return $this->sendResponse(['data'=>$sub_categories]);
-            }
-            return $this->sendResponse(['data'=>$sub_categories, 'pages' => [
-                'total'=> $sub_categories->total(),
-                'next_page_url' => $sub_categories->nextPageUrl(),
-                'prev_page_url' => $sub_categories->previousPageUrl(),
-                'last_page' 	=> $sub_categories->lastPage(),
-                'current_page' 	=> $sub_categories->currentPage(),
-            ]]);
-        }
-        return view('settings.categories.index');
+            // }
+            // return $this->sendResponse(['data'=>$sub_categories, 'pages' => [
+            //     'total'=> $sub_categories->total(),
+            //     'next_page_url' => $sub_categories->nextPageUrl(),
+            //     'prev_page_url' => $sub_categories->previousPageUrl(),
+            //     'last_page' 	=> $sub_categories->lastPage(),
+            //     'current_page' 	=> $sub_categories->currentPage(),
+            // ]]);
+        // }
+        // return view('settings.categories.index');
     }
 
     /**

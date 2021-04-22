@@ -1845,155 +1845,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./resources/js/Product/new.js":
-/*!*************************************!*\
-  !*** ./resources/js/Product/new.js ***!
-  \*************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-
-
-var Product = /*#__PURE__*/function (_Component) {
-  _inherits(Product, _Component);
-
-  var _super = _createSuper(Product);
-
-  function Product(props) {
-    var _this;
-
-    _classCallCheck(this, Product);
-
-    _this = _super.call(this, props);
-    _this.state = {
-      productslist: [],
-      categorieslist: [],
-      subCategorieslist: [],
-      divisionList: [{
-        name: 'Barishal',
-        value: 'বরিশাল'
-      }, {
-        name: 'Chattogram',
-        value: 'চট্টগ্রাম'
-      }, {
-        name: 'Dhaka',
-        value: 'ঢাকা'
-      }, {
-        name: 'Khulna',
-        value: 'খুলনা'
-      }, {
-        name: 'Mymensingh',
-        value: 'ময়মনসিংহ'
-      }, {
-        name: 'Rajshahi',
-        value: 'রাজশাহী'
-      }, {
-        name: 'Rangpur',
-        value: 'রংপুর'
-      }, {
-        name: 'Sylhet',
-        value: 'সিলেট'
-      }],
-      post: {
-        product_id: '',
-        total_weight: 0,
-        weight_unit: 0,
-        price_per_unit: 0,
-        advance_payment: 0,
-        category_id: 0,
-        sub_category_id: 0,
-        production_type: '',
-        product_production_year: '',
-        packaging_method: '',
-        initial_delivery_date: '',
-        final_delivery_date: '',
-        offer_end_date: '',
-        own_vehicle: '',
-        divisions: '',
-        district: '',
-        thana: '',
-        villege: '',
-        comments: '',
-        product_image: ''
-      }
-    }; // post: {
-    //     total_weight: 0,
-    //     price_per_unit: '',
-    //     product_production_year: '',
-    //     initial_delivery_date: '',
-    //     final_delivery_date: '',
-    //     offer_end_date: '',
-    //     own_vehicle:0,
-    //     product_image:null,
-    //     },
-
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
-    _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
-    _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
-    _this.getSubCategories = _this.getSubCategories.bind(_assertThisInitialized(_this));
-    _this.subcategorySelect = _this.subcategorySelect.bind(_assertThisInitialized(_this));
-    _this.divisionsList = _this.divisionsList.bind(_assertThisInitialized(_this));
-    _this.thanaList = _this.thanaList.bind(_assertThisInitialized(_this));
-    _this.getPost = _this.getPost.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(Product, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.getProduct();
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {});
-    }
-  }]);
-
-  return Product;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Product);
-
-if (document.getElementById('react_test')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Product, {}), document.getElementById('react_test'));
-}
-
-/***/ }),
-
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -2005,7 +1856,17 @@ if (document.getElementById('react_test')) {
  * includes React and other helpers. It's a great starting point while
  * building robust, powerful web applications using React + Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //jquery components
+
+
+__webpack_require__(/*! ./jquery/bootstrap-notify/bootstrap-notify */ "./resources/js/jquery/bootstrap-notify/bootstrap-notify.js");
+
+__webpack_require__(/*! ./jquery/base */ "./resources/js/jquery/base.js");
+
+__webpack_require__(/*! ./jquery/jquery.easing.min */ "./resources/js/jquery/jquery.easing.min.js"); // require('./theme');
+
+
+__webpack_require__(/*! ./jquery/aj-custom-select */ "./resources/js/jquery/aj-custom-select.js");
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -2016,8 +1877,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
 __webpack_require__(/*! ./new/managePostCreate */ "./resources/js/new/managePostCreate.js");
-
-__webpack_require__(/*! ./Product/new */ "./resources/js/Product/new.js");
 
 /***/ }),
 
@@ -2114,6 +1973,751 @@ if (document.getElementById('example')) {
 
 /***/ }),
 
+/***/ "./resources/js/jquery/aj-custom-select.js":
+/*!*************************************************!*\
+  !*** ./resources/js/jquery/aj-custom-select.js ***!
+  \*************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (factory) {
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(function ($) {
+  $.fn.ajCustomSelect = function () {
+    return this.each(function () {
+      var $this = $(this),
+          numberOfOptions = $this.children('option').length;
+      $this.addClass('select-hidden');
+      $this.wrap('<div class="cs-select"></div>');
+      $this.after('<div class="select-styled"></div>');
+      var $styledSelect = $this.next('div.select-styled');
+
+      if ($this.val() && $this.val() != "0") {
+        $styledSelect.text($this.children('option[value="' + $this.val() + '"]').text());
+      } else {
+        $styledSelect.text($this.children('option').eq(0).text()).addClass('placeholder');
+      }
+
+      var $list = $('<ul />', {
+        'class': 'select-options'
+      }).insertAfter($styledSelect);
+
+      for (var i = 0; i < numberOfOptions; i++) {
+        $('<li />', {
+          text: $this.children('option').eq(i).text(),
+          rel: $this.children('option').eq(i).val()
+        }).appendTo($list);
+      }
+
+      var $listItems = $list.children('li');
+      $styledSelect.click(function (e) {
+        e.stopPropagation();
+        $(this).toggleClass('active');
+      });
+      $listItems.click(function (e) {
+        e.stopPropagation();
+        var wrapper = $(e.currentTarget).parents('.cs-select');
+        var selectStyled = wrapper.find('.select-styled');
+        selectStyled.text(e.currentTarget.textContent).removeClass('active'); //            $styledSelect.text($(this).text()).removeClass('active');
+        //            $this.val($(this).attr('rel'));
+
+        if (e.currentTarget.textContent === $this.children('option').eq(0).text()) {
+          selectStyled.addClass('placeholder');
+        } else {
+          selectStyled.removeClass('placeholder');
+        }
+      });
+      $(document).click(function () {
+        $('.select-styled.active').removeClass('active');
+      });
+    });
+  };
+});
+
+$('select.aj-custom-select').ajCustomSelect();
+
+/***/ }),
+
+/***/ "./resources/js/jquery/base.js":
+/*!*************************************!*\
+  !*** ./resources/js/jquery/base.js ***!
+  \*************************************/
+/***/ (() => {
+
+$(window).ready(function () {
+  $.ajaxSetup({
+    beforeSend: function beforeSend(xhr, settings) {
+      console.log('ajax-start'); // if ( settings.url.match(/^https:\/\/(beta.|dev.|dev2.|business.)*peopletail.com/ig) ) {
+
+      xhr.setRequestHeader('X-CSRF-TOKEN', $('meta[name="csrf-token"]').attr('content')); // }
+
+      if ($(settings.context).hasClass('ajax-on-el')) {
+        settings.cancel = true;
+        return false;
+      }
+
+      $(settings.context).addClass('ajax-on-el');
+    }
+  });
+  $(document).ajaxStart(function () {
+    $('body').addClass('ajax-on');
+  }).ajaxStop(function () {
+    $('body').removeClass('ajax-on');
+  }).ajaxSuccess(function (e, request, settings, data) {
+    // if ( ! settings.url.match(/^https:\/\/(beta.|dev.|dev2.|business.)*peopletail.com/ig) ) {
+    // 	// do nothing
+    // } else 
+    if (data.redirect) {
+      window.location = data.redirect;
+    } else {
+      var target = $(settings.context);
+      $.each(data, function (i, d) {
+        if (!Object.keys($.fn).includes(i)) return;
+        $.each(d, function (j, k) {
+          $(j)[i](k);
+        });
+      });
+
+      if (target.attr('data-ajax-event')) {
+        $(document).trigger(target.attr('data-ajax-event'), data);
+      } else {
+        target.trigger('done', data);
+      }
+
+      $.each(data.notify, function (i, d) {
+        $.notify({
+          message: d
+        }, {
+          type: i
+        });
+      });
+      $(settings.context).removeClass('ajax-on-el');
+    }
+  }).ajaxError(function (e, jqXHR, settings, thrownError) {
+    if (settings.cancel) return true; // canceled by beforeSend
+
+    var data;
+
+    try {
+      data = JSON.parse(jqXHR.responseText);
+    } catch (e) {
+      // do nothing
+      data = false;
+    }
+
+    if (data && data.errors) {
+      // && jqXHR.status == 422 ) {
+      $.each(data.errors, function (i, d) {
+        $.notify({
+          message: d
+        }, {
+          type: 'danger'
+        });
+      });
+    } else {
+      $.notify({
+        message: 'System error encountered.  Please try again later'
+      }, {
+        type: 'danger'
+      });
+    }
+
+    $(settings.context).removeClass('ajax-on-el');
+  });
+});
+$.notifyDefaults({
+  placement: {
+    from: "top",
+    align: "center"
+  },
+  delay: 3000
+});
+
+/***/ }),
+
+/***/ "./resources/js/jquery/bootstrap-notify/bootstrap-notify.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/jquery/bootstrap-notify/bootstrap-notify.js ***!
+  \******************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+/*
+* Project: Bootstrap Notify = v3.1.5
+* Description: Turns standard Bootstrap alerts into "Growl-like" notifications.
+* Author: Mouse0270 aka Robert McIntosh
+* License: MIT License
+* Website: https://github.com/mouse0270/bootstrap-growl
+*/
+
+/* global define:false, require: false, jQuery:false */
+(function (factory) {
+  if (true) {
+    // AMD. Register as an anonymous module.
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+		__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+		(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(function ($) {
+  // Create the defaults once
+  var defaults = {
+    element: 'body',
+    position: null,
+    type: "info",
+    allow_dismiss: true,
+    allow_duplicates: true,
+    newest_on_top: false,
+    showProgressbar: false,
+    placement: {
+      from: "top",
+      align: "right"
+    },
+    offset: 20,
+    spacing: 10,
+    z_index: 10311,
+    delay: 5000,
+    timer: 1000,
+    url_target: '_blank',
+    mouse_over: null,
+    animate: {
+      enter: 'animated fadeInDown',
+      exit: 'animated fadeOutUp'
+    },
+    onShow: null,
+    onShown: null,
+    onClose: null,
+    onClosed: null,
+    onClick: null,
+    icon_type: 'class',
+    template: '<div data-notify="container" class="col-xs-11 col-sm-4 alert alert-{0}" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss">&times;</button><span data-notify="icon"></span> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+  };
+
+  String.format = function () {
+    var args = arguments;
+    var str = arguments[0];
+    return str.replace(/(\{\{\d\}\}|\{\d\})/g, function (str) {
+      if (str.substring(0, 2) === "{{") return str;
+      var num = parseInt(str.match(/\d/)[0]);
+      return args[num + 1];
+    });
+  };
+
+  function isDuplicateNotification(notification) {
+    var isDupe = false;
+    $('[data-notify="container"]').each(function (i, el) {
+      var $el = $(el);
+      var title = $el.find('[data-notify="title"]').html().trim();
+      var message = $el.find('[data-notify="message"]').html().trim(); // The input string might be different than the actual parsed HTML string!
+      // (<br> vs <br /> for example)
+      // So we have to force-parse this as HTML here!
+
+      var isSameTitle = title === $("<div>" + notification.settings.content.title + "</div>").html().trim();
+      var isSameMsg = message === $("<div>" + notification.settings.content.message + "</div>").html().trim();
+      var isSameType = $el.hasClass('alert-' + notification.settings.type);
+
+      if (isSameTitle && isSameMsg && isSameType) {
+        //we found the dupe. Set the var and stop checking.
+        isDupe = true;
+      }
+
+      return !isDupe;
+    });
+    return isDupe;
+  }
+
+  function Notify(element, content, options) {
+    // Setup Content of Notify
+    var contentObj = {
+      content: {
+        message: _typeof(content) === 'object' ? content.message : content,
+        title: content.title ? content.title : '',
+        icon: content.icon ? content.icon : '',
+        url: content.url ? content.url : '#',
+        target: content.target ? content.target : '-'
+      }
+    };
+    options = $.extend(true, {}, contentObj, options);
+    this.settings = $.extend(true, {}, defaults, options);
+    this._defaults = defaults;
+
+    if (this.settings.content.target === "-") {
+      this.settings.content.target = this.settings.url_target;
+    }
+
+    this.animations = {
+      start: 'webkitAnimationStart oanimationstart MSAnimationStart animationstart',
+      end: 'webkitAnimationEnd oanimationend MSAnimationEnd animationend'
+    };
+
+    if (typeof this.settings.offset === 'number') {
+      this.settings.offset = {
+        x: this.settings.offset,
+        y: this.settings.offset
+      };
+    } //if duplicate messages are not allowed, then only continue if this new message is not a duplicate of one that it already showing
+
+
+    if (this.settings.allow_duplicates || !this.settings.allow_duplicates && !isDuplicateNotification(this)) {
+      this.init();
+    }
+  }
+
+  $.extend(Notify.prototype, {
+    init: function init() {
+      var self = this;
+      this.buildNotify();
+
+      if (this.settings.content.icon) {
+        this.setIcon();
+      }
+
+      if (this.settings.content.url != "#") {
+        this.styleURL();
+      }
+
+      this.styleDismiss();
+      this.placement();
+      this.bind();
+      this.notify = {
+        $ele: this.$ele,
+        update: function update(command, _update) {
+          var commands = {};
+
+          if (typeof command === "string") {
+            commands[command] = _update;
+          } else {
+            commands = command;
+          }
+
+          for (var cmd in commands) {
+            switch (cmd) {
+              case "type":
+                this.$ele.removeClass('alert-' + self.settings.type);
+                this.$ele.find('[data-notify="progressbar"] > .progress-bar').removeClass('progress-bar-' + self.settings.type);
+                self.settings.type = commands[cmd];
+                this.$ele.addClass('alert-' + commands[cmd]).find('[data-notify="progressbar"] > .progress-bar').addClass('progress-bar-' + commands[cmd]);
+                break;
+
+              case "icon":
+                var $icon = this.$ele.find('[data-notify="icon"]');
+
+                if (self.settings.icon_type.toLowerCase() === 'class') {
+                  $icon.removeClass(self.settings.content.icon).addClass(commands[cmd]);
+                } else {
+                  if (!$icon.is('img')) {
+                    $icon.find('img');
+                  }
+
+                  $icon.attr('src', commands[cmd]);
+                }
+
+                self.settings.content.icon = commands[command];
+                break;
+
+              case "progress":
+                var newDelay = self.settings.delay - self.settings.delay * (commands[cmd] / 100);
+                this.$ele.data('notify-delay', newDelay);
+                this.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', commands[cmd]).css('width', commands[cmd] + '%');
+                break;
+
+              case "url":
+                this.$ele.find('[data-notify="url"]').attr('href', commands[cmd]);
+                break;
+
+              case "target":
+                this.$ele.find('[data-notify="url"]').attr('target', commands[cmd]);
+                break;
+
+              default:
+                this.$ele.find('[data-notify="' + cmd + '"]').html(commands[cmd]);
+            }
+          }
+
+          var posX = this.$ele.outerHeight() + parseInt(self.settings.spacing) + parseInt(self.settings.offset.y);
+          self.reposition(posX);
+        },
+        close: function close() {
+          self.close();
+        }
+      };
+    },
+    buildNotify: function buildNotify() {
+      var content = this.settings.content;
+      this.$ele = $(String.format(this.settings.template, this.settings.type, content.title, content.message, content.url, content.target));
+      this.$ele.attr('data-notify-position', this.settings.placement.from + '-' + this.settings.placement.align);
+
+      if (!this.settings.allow_dismiss) {
+        this.$ele.find('[data-notify="dismiss"]').css('display', 'none');
+      }
+
+      if (this.settings.delay <= 0 && !this.settings.showProgressbar || !this.settings.showProgressbar) {
+        this.$ele.find('[data-notify="progressbar"]').remove();
+      }
+    },
+    setIcon: function setIcon() {
+      if (this.settings.icon_type.toLowerCase() === 'class') {
+        this.$ele.find('[data-notify="icon"]').addClass(this.settings.content.icon);
+      } else {
+        if (this.$ele.find('[data-notify="icon"]').is('img')) {
+          this.$ele.find('[data-notify="icon"]').attr('src', this.settings.content.icon);
+        } else {
+          this.$ele.find('[data-notify="icon"]').append('<img src="' + this.settings.content.icon + '" alt="Notify Icon" />');
+        }
+      }
+    },
+    styleDismiss: function styleDismiss() {
+      this.$ele.find('[data-notify="dismiss"]').css({
+        position: 'absolute',
+        right: '10px',
+        top: '5px',
+        zIndex: this.settings.z_index + 2
+      });
+    },
+    styleURL: function styleURL() {
+      this.$ele.find('[data-notify="url"]').css({
+        backgroundImage: 'url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7)',
+        height: '100%',
+        left: 0,
+        position: 'absolute',
+        top: 0,
+        width: '100%',
+        zIndex: this.settings.z_index + 1
+      });
+    },
+    placement: function placement() {
+      var self = this,
+          offsetAmt = this.settings.offset.y,
+          css = {
+        display: 'inline-block',
+        margin: '0px auto',
+        position: this.settings.position ? this.settings.position : this.settings.element === 'body' ? 'fixed' : 'absolute',
+        transition: 'all .5s ease-in-out',
+        zIndex: this.settings.z_index
+      },
+          hasAnimation = false,
+          settings = this.settings;
+      $('[data-notify-position="' + this.settings.placement.from + '-' + this.settings.placement.align + '"]:not([data-closing="true"])').each(function () {
+        offsetAmt = Math.max(offsetAmt, parseInt($(this).css(settings.placement.from)) + parseInt($(this).outerHeight()) + parseInt(settings.spacing));
+      });
+
+      if (this.settings.newest_on_top === true) {
+        offsetAmt = this.settings.offset.y;
+      }
+
+      css[this.settings.placement.from] = offsetAmt + 'px';
+
+      switch (this.settings.placement.align) {
+        case "left":
+        case "right":
+          css[this.settings.placement.align] = this.settings.offset.x + 'px';
+          break;
+
+        case "center":
+          css.left = 0;
+          css.right = 0;
+          break;
+      }
+
+      this.$ele.css(css).addClass(this.settings.animate.enter);
+      $.each(Array('webkit-', 'moz-', 'o-', 'ms-', ''), function (index, prefix) {
+        self.$ele[0].style[prefix + 'AnimationIterationCount'] = 1;
+      });
+      $(this.settings.element).append(this.$ele);
+
+      if (this.settings.newest_on_top === true) {
+        offsetAmt = parseInt(offsetAmt) + parseInt(this.settings.spacing) + this.$ele.outerHeight();
+        this.reposition(offsetAmt);
+      }
+
+      if ($.isFunction(self.settings.onShow)) {
+        self.settings.onShow.call(this.$ele);
+      }
+
+      this.$ele.one(this.animations.start, function () {
+        hasAnimation = true;
+      }).one(this.animations.end, function () {
+        self.$ele.removeClass(self.settings.animate.enter);
+
+        if ($.isFunction(self.settings.onShown)) {
+          self.settings.onShown.call(this);
+        }
+      });
+      setTimeout(function () {
+        if (!hasAnimation) {
+          if ($.isFunction(self.settings.onShown)) {
+            self.settings.onShown.call(this);
+          }
+        }
+      }, 600);
+    },
+    bind: function bind() {
+      var self = this;
+      this.$ele.find('[data-notify="dismiss"]').on('click', function () {
+        self.close();
+      });
+
+      if ($.isFunction(self.settings.onClick)) {
+        this.$ele.on('click', function (event) {
+          if (event.target != self.$ele.find('[data-notify="dismiss"]')[0]) {
+            self.settings.onClick.call(this, event);
+          }
+        });
+      }
+
+      this.$ele.mouseover(function () {
+        $(this).data('data-hover', "true");
+      }).mouseout(function () {
+        $(this).data('data-hover', "false");
+      });
+      this.$ele.data('data-hover', "false");
+
+      if (this.settings.delay > 0) {
+        self.$ele.data('notify-delay', self.settings.delay);
+        var timer = setInterval(function () {
+          var delay = parseInt(self.$ele.data('notify-delay')) - self.settings.timer;
+
+          if (self.$ele.data('data-hover') === 'false' && self.settings.mouse_over === "pause" || self.settings.mouse_over != "pause") {
+            var percent = (self.settings.delay - delay) / self.settings.delay * 100;
+            self.$ele.data('notify-delay', delay);
+            self.$ele.find('[data-notify="progressbar"] > div').attr('aria-valuenow', percent).css('width', percent + '%');
+          }
+
+          if (delay <= -self.settings.timer) {
+            clearInterval(timer);
+            self.close();
+          }
+        }, self.settings.timer);
+      }
+    },
+    close: function close() {
+      var self = this,
+          posX = parseInt(this.$ele.css(this.settings.placement.from)),
+          hasAnimation = false;
+      this.$ele.attr('data-closing', 'true').addClass(this.settings.animate.exit);
+      self.reposition(posX);
+
+      if ($.isFunction(self.settings.onClose)) {
+        self.settings.onClose.call(this.$ele);
+      }
+
+      this.$ele.one(this.animations.start, function () {
+        hasAnimation = true;
+      }).one(this.animations.end, function () {
+        $(this).remove();
+
+        if ($.isFunction(self.settings.onClosed)) {
+          self.settings.onClosed.call(this);
+        }
+      });
+      setTimeout(function () {
+        if (!hasAnimation) {
+          self.$ele.remove();
+
+          if ($.isFunction(self.settings.onClosed)) {
+            self.settings.onClosed.call(this);
+          }
+        }
+      }, 600);
+    },
+    reposition: function reposition(posX) {
+      var self = this,
+          notifies = '[data-notify-position="' + this.settings.placement.from + '-' + this.settings.placement.align + '"]:not([data-closing="true"])',
+          $elements = this.$ele.nextAll(notifies);
+
+      if (this.settings.newest_on_top === true) {
+        $elements = this.$ele.prevAll(notifies);
+      }
+
+      $elements.each(function () {
+        $(this).css(self.settings.placement.from, posX);
+        posX = parseInt(posX) + parseInt(self.settings.spacing) + $(this).outerHeight();
+      });
+    }
+  });
+
+  $.notify = function (content, options) {
+    var plugin = new Notify(this, content, options);
+    return plugin.notify;
+  };
+
+  $.notifyDefaults = function (options) {
+    defaults = $.extend(true, {}, defaults, options);
+    return defaults;
+  };
+
+  $.notifyClose = function (selector) {
+    if (typeof selector === "undefined" || selector === "all") {
+      $('[data-notify]').find('[data-notify="dismiss"]').trigger('click');
+    } else if (selector === 'success' || selector === 'info' || selector === 'warning' || selector === 'danger') {
+      $('.alert-' + selector + '[data-notify]').find('[data-notify="dismiss"]').trigger('click');
+    } else if (selector) {
+      $(selector + '[data-notify]').find('[data-notify="dismiss"]').trigger('click');
+    } else {
+      $('[data-notify-position="' + selector + '"]').find('[data-notify="dismiss"]').trigger('click');
+    }
+  };
+
+  $.notifyCloseExcept = function (selector) {
+    if (selector === 'success' || selector === 'info' || selector === 'warning' || selector === 'danger') {
+      $('[data-notify]').not('.alert-' + selector).find('[data-notify="dismiss"]').trigger('click');
+    } else {
+      $('[data-notify]').not(selector).find('[data-notify="dismiss"]').trigger('click');
+    }
+  };
+});
+
+/***/ }),
+
+/***/ "./resources/js/jquery/jquery.easing.min.js":
+/*!**************************************************!*\
+  !*** ./resources/js/jquery/jquery.easing.min.js ***!
+  \**************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+(function (factory) {
+  if (true) {
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_RESULT__ = (function ($) {
+      return factory($);
+    }).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+		__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+  } else {}
+})(function ($) {
+  $.easing.jswing = $.easing.swing;
+  var pow = Math.pow,
+      sqrt = Math.sqrt,
+      sin = Math.sin,
+      cos = Math.cos,
+      PI = Math.PI,
+      c1 = 1.70158,
+      c2 = c1 * 1.525,
+      c3 = c1 + 1,
+      c4 = 2 * PI / 3,
+      c5 = 2 * PI / 4.5;
+
+  function bounceOut(x) {
+    var n1 = 7.5625,
+        d1 = 2.75;
+
+    if (x < 1 / d1) {
+      return n1 * x * x;
+    } else if (x < 2 / d1) {
+      return n1 * (x -= 1.5 / d1) * x + .75;
+    } else if (x < 2.5 / d1) {
+      return n1 * (x -= 2.25 / d1) * x + .9375;
+    } else {
+      return n1 * (x -= 2.625 / d1) * x + .984375;
+    }
+  }
+
+  $.extend($.easing, {
+    def: "easeOutQuad",
+    swing: function swing(x) {
+      return $.easing[$.easing.def](x);
+    },
+    easeInQuad: function easeInQuad(x) {
+      return x * x;
+    },
+    easeOutQuad: function easeOutQuad(x) {
+      return 1 - (1 - x) * (1 - x);
+    },
+    easeInOutQuad: function easeInOutQuad(x) {
+      return x < .5 ? 2 * x * x : 1 - pow(-2 * x + 2, 2) / 2;
+    },
+    easeInCubic: function easeInCubic(x) {
+      return x * x * x;
+    },
+    easeOutCubic: function easeOutCubic(x) {
+      return 1 - pow(1 - x, 3);
+    },
+    easeInOutCubic: function easeInOutCubic(x) {
+      return x < .5 ? 4 * x * x * x : 1 - pow(-2 * x + 2, 3) / 2;
+    },
+    easeInQuart: function easeInQuart(x) {
+      return x * x * x * x;
+    },
+    easeOutQuart: function easeOutQuart(x) {
+      return 1 - pow(1 - x, 4);
+    },
+    easeInOutQuart: function easeInOutQuart(x) {
+      return x < .5 ? 8 * x * x * x * x : 1 - pow(-2 * x + 2, 4) / 2;
+    },
+    easeInQuint: function easeInQuint(x) {
+      return x * x * x * x * x;
+    },
+    easeOutQuint: function easeOutQuint(x) {
+      return 1 - pow(1 - x, 5);
+    },
+    easeInOutQuint: function easeInOutQuint(x) {
+      return x < .5 ? 16 * x * x * x * x * x : 1 - pow(-2 * x + 2, 5) / 2;
+    },
+    easeInSine: function easeInSine(x) {
+      return 1 - cos(x * PI / 2);
+    },
+    easeOutSine: function easeOutSine(x) {
+      return sin(x * PI / 2);
+    },
+    easeInOutSine: function easeInOutSine(x) {
+      return -(cos(PI * x) - 1) / 2;
+    },
+    easeInExpo: function easeInExpo(x) {
+      return x === 0 ? 0 : pow(2, 10 * x - 10);
+    },
+    easeOutExpo: function easeOutExpo(x) {
+      return x === 1 ? 1 : 1 - pow(2, -10 * x);
+    },
+    easeInOutExpo: function easeInOutExpo(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : x < .5 ? pow(2, 20 * x - 10) / 2 : (2 - pow(2, -20 * x + 10)) / 2;
+    },
+    easeInCirc: function easeInCirc(x) {
+      return 1 - sqrt(1 - pow(x, 2));
+    },
+    easeOutCirc: function easeOutCirc(x) {
+      return sqrt(1 - pow(x - 1, 2));
+    },
+    easeInOutCirc: function easeInOutCirc(x) {
+      return x < .5 ? (1 - sqrt(1 - pow(2 * x, 2))) / 2 : (sqrt(1 - pow(-2 * x + 2, 2)) + 1) / 2;
+    },
+    easeInElastic: function easeInElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : -pow(2, 10 * x - 10) * sin((x * 10 - 10.75) * c4);
+    },
+    easeOutElastic: function easeOutElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : pow(2, -10 * x) * sin((x * 10 - .75) * c4) + 1;
+    },
+    easeInOutElastic: function easeInOutElastic(x) {
+      return x === 0 ? 0 : x === 1 ? 1 : x < .5 ? -(pow(2, 20 * x - 10) * sin((20 * x - 11.125) * c5)) / 2 : pow(2, -20 * x + 10) * sin((20 * x - 11.125) * c5) / 2 + 1;
+    },
+    easeInBack: function easeInBack(x) {
+      return c3 * x * x * x - c1 * x * x;
+    },
+    easeOutBack: function easeOutBack(x) {
+      return 1 + c3 * pow(x - 1, 3) + c1 * pow(x - 1, 2);
+    },
+    easeInOutBack: function easeInOutBack(x) {
+      return x < .5 ? pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2) / 2 : (pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+    },
+    easeInBounce: function easeInBounce(x) {
+      return 1 - bounceOut(1 - x);
+    },
+    easeOutBounce: bounceOut,
+    easeInOutBounce: function easeInOutBounce(x) {
+      return x < .5 ? (1 - bounceOut(1 - 2 * x)) / 2 : (1 + bounceOut(2 * x - 1)) / 2;
+    }
+  });
+});
+
+/***/ }),
+
 /***/ "./resources/js/new/managePostCreate.js":
 /*!**********************************************!*\
   !*** ./resources/js/new/managePostCreate.js ***!
@@ -2189,10 +2793,18 @@ var Create = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Create);
 
     _this = _super.call(this, props);
+
+    function addDays(dateObj, numDays) {
+      dateObj.setDate(dateObj.getDate() + numDays);
+      return dateObj;
+    }
+
     var curr = new Date();
     curr.setDate(curr.getDate());
     var dateNow = curr.toISOString().substr(0, 10);
-    var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 10)).toUTCString();
+    var nextWeek = addDays(curr, 10); // Add 7 days
+
+    var datethen = nextWeek.toISOString().substr(0, 10);
     _this.state = {
       submitshowoff: 0,
       productslist: [],
@@ -2236,7 +2848,7 @@ var Create = /*#__PURE__*/function (_Component) {
         packaging_method: '',
         initial_delivery_date: dateNow,
         final_delivery_date: dateNow,
-        offer_end_date: lastday,
+        offer_end_date: datethen,
         own_vehicle: '',
         divisions: '',
         district: '',
@@ -3494,7 +4106,7 @@ ProductService.dropdown = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_ru
   }, _callee);
 }));
 
-PostService.save = /*#__PURE__*/function () {
+ProductService.save = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
     var urlProduct, urlProductUpdate, res, _res;
 
