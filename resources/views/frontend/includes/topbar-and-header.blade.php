@@ -11,7 +11,7 @@
          </div> -->
          <button style="outline: none; background: none; border: none; cursor: pointer;color:#5cb874;font-size:15px"><a href="{{route('login') }}"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a></button>
          
-         <a href="{{ route('register') }}" class="get-started-btn scrollto">প্রবেশ / নিবন্ধন</a> 
+         <a href="{{ route('register') }}" class="get-started-btn scrollto">নিবন্ধন</a> 
        </div>
      </div>
    </div>

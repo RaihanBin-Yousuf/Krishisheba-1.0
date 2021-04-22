@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('home', function () {
     return view('backend.dashboard');
-})->name('dashboard');;
+})->name('dashboard');
 
 Route::get('/',[FrontTestController::class,'index'])->name('home-page-index');
 Route::get('/team',[FrontTestController::class,'team'])->name('team');
