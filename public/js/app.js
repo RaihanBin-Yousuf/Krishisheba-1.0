@@ -1845,6 +1845,155 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./resources/js/Product/new.js":
+/*!*************************************!*\
+  !*** ./resources/js/Product/new.js ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var Product = /*#__PURE__*/function (_Component) {
+  _inherits(Product, _Component);
+
+  var _super = _createSuper(Product);
+
+  function Product(props) {
+    var _this;
+
+    _classCallCheck(this, Product);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      productslist: [],
+      categorieslist: [],
+      subCategorieslist: [],
+      divisionList: [{
+        name: 'Barishal',
+        value: 'বরিশাল'
+      }, {
+        name: 'Chattogram',
+        value: 'চট্টগ্রাম'
+      }, {
+        name: 'Dhaka',
+        value: 'ঢাকা'
+      }, {
+        name: 'Khulna',
+        value: 'খুলনা'
+      }, {
+        name: 'Mymensingh',
+        value: 'ময়মনসিংহ'
+      }, {
+        name: 'Rajshahi',
+        value: 'রাজশাহী'
+      }, {
+        name: 'Rangpur',
+        value: 'রংপুর'
+      }, {
+        name: 'Sylhet',
+        value: 'সিলেট'
+      }],
+      post: {
+        product_id: '',
+        total_weight: 0,
+        weight_unit: 0,
+        price_per_unit: 0,
+        advance_payment: 0,
+        category_id: 0,
+        sub_category_id: 0,
+        production_type: '',
+        product_production_year: '',
+        packaging_method: '',
+        initial_delivery_date: '',
+        final_delivery_date: '',
+        offer_end_date: '',
+        own_vehicle: '',
+        divisions: '',
+        district: '',
+        thana: '',
+        villege: '',
+        comments: '',
+        product_image: ''
+      }
+    }; // post: {
+    //     total_weight: 0,
+    //     price_per_unit: '',
+    //     product_production_year: '',
+    //     initial_delivery_date: '',
+    //     final_delivery_date: '',
+    //     offer_end_date: '',
+    //     own_vehicle:0,
+    //     product_image:null,
+    //     },
+
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
+    _this.getCategories = _this.getCategories.bind(_assertThisInitialized(_this));
+    _this.getSubCategories = _this.getSubCategories.bind(_assertThisInitialized(_this));
+    _this.subcategorySelect = _this.subcategorySelect.bind(_assertThisInitialized(_this));
+    _this.divisionsList = _this.divisionsList.bind(_assertThisInitialized(_this));
+    _this.thanaList = _this.thanaList.bind(_assertThisInitialized(_this));
+    _this.getPost = _this.getPost.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(Product, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getProduct();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {});
+    }
+  }]);
+
+  return Product;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Product);
+
+if (document.getElementById('react_test')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Product, {}), document.getElementById('react_test'));
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -1867,6 +2016,8 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 __webpack_require__(/*! ./components/Example */ "./resources/js/components/Example.js");
 
 __webpack_require__(/*! ./new/managePostCreate */ "./resources/js/new/managePostCreate.js");
+
+__webpack_require__(/*! ./Product/new */ "./resources/js/Product/new.js");
 
 /***/ }),
 
@@ -3317,14 +3468,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const baseUrl = "http://127.0.0.1:8000";
-var ProductService = {}; // CategoryServices.list = async (params) => {
-//   const res = await axios.get("/categories", {params: params})
-//   .then(response=> {return response.data.data.data })
-//   .catch(error=>{ return error; })
-//   return res;
-// }
-
+var ProductService = {};
 ProductService.dropdown = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
   var res;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
@@ -3332,7 +3476,7 @@ ProductService.dropdown = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_ru
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return axios.get("/product?dropdown=true").then(function (response) {
+          return axios.get("/product").then(function (response) {
             return response.data.data.data;
           })["catch"](function (error) {
             return error;
@@ -3348,58 +3492,69 @@ ProductService.dropdown = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_ru
       }
     }
   }, _callee);
-})); // CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.save = async (data)=> {
-//   console.log('data faiaya');
-//   console.log(data);
-//   if(data.get('id')){
-//       console.log('not here...');
-//       let urlUpdate="/categories/"+data.get('id')+"/update";
-//       const res=await axios.post(urlUpdate, data).then(response=>{
-//           $.notify({ message:'Contact Updated Successfully'},{type:'success'});
-//           return response.data;
-//       }).catch(error=>{return [];});
-//       return res;
-//   }
-//   else{
-//       let urlSave="/categories/add";
-//       console.log('here..');
-//       console.log(data);
-//       const res = await axios.post(urlSave, data).then(response=>{
-//           $.notify({message:'Category Insert Successfully'},{
-//               type: 'success'
-//           });
-//           return response.data;
-//       }).catch(error=>{return []; });
-//       return res;
-//   }
-// }
-// CategoryServices.delete = async (data) => {
-//   const urlDelete = "/categories/"+data.id+"/delete";
-//   const res = await axios.delete(urlDelete, data)
-//   .then(response=> {
-//     $.notify({ message: 'Category Deleted' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
+}));
+
+PostService.save = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
+    var urlProduct, urlProductUpdate, res, _res;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            urlProduct = "/product";
+
+            if (!data.get('id')) {
+              _context2.next = 9;
+              break;
+            }
+
+            urlProductUpdate = urlProduct + '/' + data.get('id') + "?_method=PUT";
+            _context2.next = 5;
+            return axios.post(urlProductUpdate, data).then(function (response) {
+              $.notify({
+                message: 'Update Product'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 5:
+            res = _context2.sent;
+            return _context2.abrupt("return", res);
+
+          case 9:
+            _context2.next = 11;
+            return axios.post(urlProduct, data).then(function (response) {
+              $.notify({
+                message: 'Product Saved'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 11:
+            _res = _context2.sent;
+            return _context2.abrupt("return", _res);
+
+          case 13:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function (_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ProductService);
 

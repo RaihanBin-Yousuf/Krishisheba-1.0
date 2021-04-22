@@ -24,8 +24,9 @@
           <div class="col-md-9">
             <!-- general form elements -->
             <div class="card card-info">
-              <div class="card-header">
-                <h3 class="card-title">Add Product Information</h3>
+            <div class="card-header">
+              <a style="font-size: 25px;" class="btn btn float-left">Item Form</a>
+                <a class="btn btn-outline-primary float-right" href="{{route('product.index')}}"><i class="fas fa-sign-in-alt"></i>  Items Table </a>
               </div>
               <!-- /.card-header -->
               <!-- form start -->

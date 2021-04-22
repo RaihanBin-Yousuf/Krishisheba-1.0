@@ -23,13 +23,13 @@
         </div>
       </div>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
+       <!-- Sidebar Menu -->
+       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-          <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
+            <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Deshboard
@@ -41,9 +41,9 @@
         <li class="nav-item">
             <a href="#" class="nav-link">
             <!-- <i class="nav-icon fas fa-users-cog"></i> -->
-            <i class="nav-icon fas fa-tasks"></i>
+            <i class="nav-icon fas fa-barcode"></i>
             <p>
-              Manage Product
+              Items
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -51,18 +51,17 @@
               <li class="nav-item">
                 <a href="{{route('product.index')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>All Product</p>
+                  <p>All Item</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{route('product.create')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>Add Product</p>
+                  <p>Create Item</p>
                 </a>
               </li>
             </ul>
         </li>
-        
         <li class="nav-item">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
@@ -100,13 +99,12 @@
             </li>
           </ul>
         </li>
-        
         <li class="nav-item ">
           <a href="#" class="nav-link">
           <!-- <i class="nav-icon fas fa-users-cog"></i> -->
           <i class="nav-icon fas fa-tasks"></i>
           <p>
-             Manage Product Posts
+             Manage Posts
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
@@ -114,110 +112,172 @@
             <li class="nav-item">
               <a href="{{route('manage_posts.index')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>All Product Posts</p>
+                <p>All Post</p>
               </a>
             </li>
             <li class="nav-item">
             <a href="{{route('manage_posts.create')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
-                <p>Add Product Posts</p>
+                <p>Create Post</p>
               </a>
             </li>
           </ul>
+        </li>
+        <li class="nav-item">
+          <a href="" class="nav-link">
+          <i class="nav-icon fas fa-inbox"></i>
+          <p>
+              Orders
+            </p>
+          </a>
         </li>
         @endif
         <!-- Admin Access -->
 
         <!-- seller Access -->
         @if(auth()->user()->role == 'seller')
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-user-secret"></i>
-          <p>
-              Account Information
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon  fab fa-product-hunt"></i>
-          <p>
-              My Product
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-dollar-sign"></i>
-          <p>
-              Payment Status
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-save"></i>
-          <p>
-              Saved List
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-bell"></i>
-          <p>
-              Notifications
-            </p>
-          </a>
-        </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-user-secret"></i>
+            <p>
+                Account Information
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon  fab fa-product-hunt"></i>
+            <p>
+                My Product
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-dollar-sign"></i>
+            <p>
+                Payment Status
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-save"></i>
+            <p>
+                Saved List
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+                Notifications
+              </p>
+            </a>
+          </li>
         @endif
         <!-- seller Access -->
 
-        <!-- Buyer Access -->
-        @if(auth()->user()->role == 'buyer')
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-user-secret"></i>
-          <p>
-              Account Information
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-dollar-sign"></i>
-          <p>
-              Payment Status
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-save"></i>
-          <p>
-              Saved List
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <i class="nav-icon fas fa-bell"></i>
-          <p>
-              Notifications
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="" class="nav-link">
-          <!-- <i class="nav-icon fas fa-user-secret"></i> -->
-          <i class="nav-icon fas fa-plus-square"></i>
-          <p>
-            গাড়ি নিবন্ধন করুন
-            </p>
-          </a>
-        </li>
+         <!-- buyer Access -->
+         @if(auth()->user()->role == 'buyer')
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-user-secret"></i>
+            <p>
+                Account Information
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon  fab fa-product-hunt"></i>
+            <p>
+                My Product
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-dollar-sign"></i>
+            <p>
+                Payment Status
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-save"></i>
+            <p>
+                Saved List
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+                Notifications
+              </p>
+            </a>
+          </li>
         @endif
-        <!-- Buyer Access -->
+        <!-- buyer Access -->
+
+         <!-- buyer Access -->
+         @if(auth()->user()->role == 'transport')
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-user-secret"></i>
+            <p>
+                Account Information
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-registered"></i>
+            <p>
+                Register Vehicle
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon  fab fa-product-hunt"></i>
+            <p>
+                My Product
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-dollar-sign"></i>
+            <p>
+                Payment Status
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-save"></i>
+            <p>
+                Saved List
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="nav-link">
+            <i class="nav-icon fas fa-bullhorn"></i>
+            <p>
+                Notifications
+              </p>
+            </a>
+          </li>
+        @endif
+        <!-- buyer Access -->
+
 
 
         <li class="nav-item">
