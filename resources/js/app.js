@@ -9,7 +9,8 @@ require('./bootstrap');
 require('./jquery/bootstrap-notify/bootstrap-notify');
 require('./jquery/base');
 require ('./jquery/jquery.easing.min');
-require('./theme');
+// require('./theme');
+require('./jquery/jquery.dataTables');
 require('./jquery/aj-custom-select');
 
 /**
@@ -20,4 +21,4 @@ require('./jquery/aj-custom-select');
 
 require('./components/Example');
 require('./new/managePostCreate');
-require('./Product/new');
+// require('./Product/new');

@@ -11,13 +11,14 @@ class Create extends Component {
             dateObj.setDate(dateObj.getDate() + numDays);
             return dateObj;
          }
-         const curr = new Date();
-         curr.setDate(curr.getDate());
-         let dateNow = curr.toISOString().substr(0,10);
-         const nextWeek = addDays(curr , 10); // Add 7 days
-        let datethen = nextWeek.toISOString().substr(0,10);
+        const curr = new Date();
+        curr.setDate(curr.getDate());
+        let dateNow = curr.toISOString().substr(0,10);
+        const nextDate = addDays(curr , 10); 
+        let datethen = nextDate.toISOString().substr(0,10);
+        
         this.state = {
-            submitshowoff: 0,
+            submitshowoff: false,
             productslist: [],
             categorieslist: [],
             subCategorieslist: [],
@@ -53,7 +54,6 @@ class Create extends Component {
             this.subcategorySelect = this.subcategorySelect.bind(this);
             this.divisionsList = this.divisionsList.bind(this);
             this.thanaList = this.thanaList.bind(this);
-            this.getPost = this.getPost.bind(this);
             this.onSubmitShowoff = this.onSubmitShowoff.bind(this);
         }
 
@@ -61,12 +61,10 @@ class Create extends Component {
             this.getProduct();
         }
 
-        onSubmitShowoff(e) {
-            const target = e.target;
-            console.log('target.value :>> ', target.value);
-            console.log('target.name :>> ', target.name);
-            
-        }
+        onSubmitShowoff() {
+            this.state.submitshowoff ? 
+            this.setState({ ['submitshowoff'] : false }) : this.setState({ ['submitshowoff'] : true }) 
+         }
 
         categorySelect(event) {
             const target = event.target;
@@ -108,15 +106,6 @@ class Create extends Component {
             this.setState({
                 ['productslist']: res,
             });
-        }
-
-        async getPost() {
-            // console.log('post for new Data Data');
-            // console.log(this.state.post);
-            // const res = await PostService.dropdown({"type":"item"});
-            // this.setState({
-            //     ['post']: res,
-            // });
         }
 
         handleInputChange(event) {
@@ -720,8 +709,11 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
-                                <input id="own_vehicle-yes" className="own_vehicle" type="radio" name="own_vehicle" value="1" /><span className="translation_missing" >  হ্যাঁ</span>
-                                <input id="own_vehicle-no" className="own_vehicle" type="radio" name="own_vehicle" value="0" checked/><span className="translation_missing" >  না</span>
+                                <input id="own_vehicle-yes" className="own_vehicle" type="radio" name="own_vehicle" onChange={this.handleInputChange} value="1" /><span className="translation_missing" >  হ্যাঁ</span>
+                                {this.state.post.own_vehicle ==0 ?
+                                <input id="own_vehicle-no" className="own_vehicle" type="radio" name="own_vehicle" onChange={this.handleInputChange} checked value="0" />
+                                :<input id="own_vehicle-no" className="own_vehicle" type="radio" name="own_vehicle" onChange={this.handleInputChange} value="0" />}
+                                <span className="translation_missing" >  না</span> 
                             </div>
                         </div>
                     </div>
@@ -789,13 +781,13 @@ class Create extends Component {
                         <div className="col-md-9 agricultre-demand">
                             <div className="form-group">
                             {/* <input name="" type="hidden" value="0" /> */}
-                            <input className="inline-block" name="submitshowoff" type="checkbox" checked={this.state.submitshowoff} onChange={this.onSubmitShowoff} />
+                            <input className="inline-block" name="submitshowoff" type="checkbox" onClick={this.onSubmitShowoff} />
                             {/* <input name="" type="hidden" value="0" /><input className="inline-block" required="required" type="checkbox" value="1" /> */}
                             পণ্য কেনা বেচার জন্য <a className="link-green inline-block" target="_blank" href="#">কৃষিসেবার শর্তাবলীর সাথে</a> একমত পোষণ করছি
                             </div>
                         </div>
                         <div className="col-md-3">
-                            <button type="submit" className="btn btn-info btn-block">SUBMIT</button>
+                            {this.state.submitshowoff ? <button type="submit" className="btn btn-info btn-block">SUBMIT</button> : '' }
                         </div>
                     </div>
                 </form>

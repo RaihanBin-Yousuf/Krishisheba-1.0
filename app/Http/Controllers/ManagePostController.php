@@ -7,13 +7,16 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Sub_Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ManagePostController extends Controller
 {
-    public function __construct(Product $product, Category $category, Sub_Category $sub_category) {
+    public function __construct(Product $product, Category $category, Sub_Category $sub_category, ManagePost $manage_post) {
         $this->product = $product;
         $this->category = $category;
         $this->sub_category = $sub_category;
+        $this->manage_post = $manage_post;
     }
     /**
      * Display a listing of the resource.
@@ -37,13 +40,18 @@ class ManagePostController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        $input['user_id']=Auth::user()->id;
         $product= $this->product->getbyProductId($input['product_id']);
         $input['product_name'] =$product->name;
         $category = $this->category->getbyCategoryId($input['category_id']);
         $input['category'] = $category->name;
         $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
         $input['sub_category'] = $sub_category->name; 
-        dd($input);
+        $imageName = time().'.'.$request->product_image->extension();
+        $request->product_image->storeAs('posts', $imageName);
+        $input['product_image'] =$imageName;
+        $savePost = $this->manage_post->savePost($input);
+        return $this->sendResponse(['data'=>$savePost]);
 
     }
 
