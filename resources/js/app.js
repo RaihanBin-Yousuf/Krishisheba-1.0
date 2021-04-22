@@ -22,3 +22,4 @@ require('./jquery/aj-custom-select');
 require('./components/Example');
 require('./new/managePostCreate');
 // require('./Product/new');
+require('./new/managePostCreate');

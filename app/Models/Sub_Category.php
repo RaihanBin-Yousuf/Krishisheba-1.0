@@ -12,12 +12,10 @@ class Sub_Category extends Model
     ];
     public function getAll($input)
     {
-       
-        if (request()->dropdown) {
             // dd($input);
             $result = $this->latest()->where('category_id', $input)->get();
             // dd($result);
-        } 
+
         return $result;
     }
 

@@ -12,12 +12,9 @@ class Product extends Model
     ];
     public function getAll()
     {
-       
-        if (request()->dropdown) 
-        {
+
             $result = $this->latest()->get();
         //    dd($result);
-        } 
         return $result;
     }
 

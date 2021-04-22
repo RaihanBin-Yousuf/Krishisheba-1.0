@@ -10,7 +10,7 @@ ProductService.dropdown = async () => {
 
 
 
-PostService.save = async (data) => {
+ProductService.save = async (data) => {
   let urlProduct = "/product";
   if(data.get('id')) {
     const urlProductUpdate = urlProduct+'/'+data.get('id')+"?_method=PUT";

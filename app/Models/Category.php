@@ -13,9 +13,8 @@ class Category extends Model
     public function getAll($input)
     {
        
-        if (request()->dropdown) {
+       
             $result = $this->latest()->where('product_id', $input)->get();
-        } 
         return $result;
     }
 

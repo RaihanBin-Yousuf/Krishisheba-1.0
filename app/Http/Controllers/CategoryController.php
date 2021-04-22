@@ -20,22 +20,22 @@ class CategoryController extends Controller
     public function index()
     {
        
-        if (request()->ajax()) {
+        // if (request()->ajax()) {
             $input=request()->product_id;
             
             $categories = $this->category->getAll($input);
-            if(request()->dropdown) {
+            // if(request()->dropdown) {
                 return $this->sendResponse(['data'=>$categories]);
-            }
-            return $this->sendResponse(['data'=>$categories, 'pages' => [
-                'total'=> $categories->total(),
-                'next_page_url' => $categories->nextPageUrl(),
-                'prev_page_url' => $categories->previousPageUrl(),
-                'last_page' 	=> $categories->lastPage(),
-                'current_page' 	=> $categories->currentPage(),
-            ]]);
-        }
-        return view('backend.product.new');
+            // }
+            // return $this->sendResponse(['data'=>$categories, 'pages' => [
+            //     'total'=> $categories->total(),
+            //     'next_page_url' => $categories->nextPageUrl(),
+            //     'prev_page_url' => $categories->previousPageUrl(),
+            //     'last_page' 	=> $categories->lastPage(),
+            //     'current_page' 	=> $categories->currentPage(),
+            // ]]);
+        // }
+        // return view('backend.product.new');
     }
 
     /**
