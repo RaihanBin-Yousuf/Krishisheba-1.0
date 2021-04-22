@@ -9,8 +9,6 @@ const CategoryService = {};
 // }
 
 CategoryService.dropdown = async (data) => {
-  console.log('inservice');
-  console.log(data);
   const res = await axios.get("/categories?dropdown=true", {params: {"product_id": data.product_id}})
   .then(response=> {
     return response.data.data.data })

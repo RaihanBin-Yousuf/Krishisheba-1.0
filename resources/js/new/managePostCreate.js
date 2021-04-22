@@ -7,25 +7,30 @@ import SubcateoryService from '../services/SubcateoryService';
 class Create extends Component {
     constructor(props) {
         super(props);
+        const curr = new Date();
+        curr.setDate(curr.getDate());
+        let dateNow = curr.toISOString().substr(0,10);
+        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 10)).toUTCString();
         this.state = {
+            submitshowoff: 0,
             productslist: [],
             categorieslist: [],
             subCategorieslist: [],
             divisionList : [{name : 'Barishal', value : 'বরিশাল'},{name : 'Chattogram', value : 'চট্টগ্রাম'},{name : 'Dhaka', value : 'ঢাকা'},{name : 'Khulna', value : 'খুলনা'},{name : 'Mymensingh', value : 'ময়মনসিংহ'},{name : 'Rajshahi', value : 'রাজশাহী'},{name : 'Rangpur', value : 'রংপুর'},{name : 'Sylhet', value : 'সিলেট'}],
             post : {
                 product_id : '',
-                total_weight : 0,
-                weight_unit : 0,
-                price_per_unit : 0,
-                advance_payment : 0,
+                total_weight : 1,
+                weight_unit : 1,
+                price_per_unit : 1,
+                advance_payment : 1,
                 category_id : 0,
                 sub_category_id : 0,
                 production_type : '',
-                product_production_year : '',
+                product_production_year : dateNow,
                 packaging_method : '',
-                initial_delivery_date : '',
-                final_delivery_date : '',
-                offer_end_date : '',
+                initial_delivery_date : dateNow,
+                final_delivery_date : dateNow,
+                offer_end_date : lastday,
                 own_vehicle : '',
                 divisions : '',
                 district : '',
@@ -33,21 +38,8 @@ class Create extends Component {
                 villege : '',
                 comments : '',
                 product_image : '',
-            }
-            
+                }
             };
-            // post: {
-
-            //     total_weight: 0,
-            //     price_per_unit: '',
-            //     product_production_year: '',
-            //     initial_delivery_date: '',
-            //     final_delivery_date: '',
-            //     offer_end_date: '',
-            //     own_vehicle:0,
-            //     product_image:null,
-
-            //     },
             this.handleSubmit = this.handleSubmit.bind(this);
             this.handleInputChange = this.handleInputChange.bind(this);
             this.categorySelect = this.categorySelect.bind(this);
@@ -57,10 +49,18 @@ class Create extends Component {
             this.divisionsList = this.divisionsList.bind(this);
             this.thanaList = this.thanaList.bind(this);
             this.getPost = this.getPost.bind(this);
+            this.onSubmitShowoff = this.onSubmitShowoff.bind(this);
         }
 
         componentDidMount() {
             this.getProduct();
+        }
+
+        onSubmitShowoff(e) {
+            const target = e.target;
+            console.log('target.value :>> ', target.value);
+            console.log('target.name :>> ', target.name);
+            
         }
 
         categorySelect(event) {
@@ -84,7 +84,6 @@ class Create extends Component {
                     ['sub_category_id'] : 0
                 }
             });
-            // this.getPost;
         }
 
         async getSubCategories(categoryId) {
@@ -97,7 +96,6 @@ class Create extends Component {
                     ['sub_category_id'] : 0
                 }
             });
-            
         }
 
         async getProduct() {
@@ -118,13 +116,12 @@ class Create extends Component {
 
         handleInputChange(event) {
             const target = event.target;
-            // let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
+            let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
             const name = target.name;
-            const value = target.value;
-            // if (name == 'picture') {
-            //     value = target.files[0];
-            // }
-               this.setState({
+            if (name == 'product_image') {
+                value = target.files[0];
+            };
+            this.setState({
                   post :{
                     ...this.state.post,
                   [name]: value
@@ -134,7 +131,6 @@ class Create extends Component {
     
         async handleSubmit(event) {
             event.preventDefault();
-            console.log(this.state.post);
             const cpost = this.state.post;
             let formdata = new FormData();
             Object.keys(cpost).map(key => {
@@ -148,7 +144,14 @@ class Create extends Component {
         divisionsList(event) {
             // get value from division lists
              let diviList = event.target.value;
-             console.log(diviList);
+             this.setState({
+                post :{
+                  ...this.state.post,
+                ['divisions']: diviList,
+                ['district'] : '',
+                ['thana'] : '',
+                }
+            });
              let disctList = '';
             // set barishal division districts
             if(diviList == 'Barishal'){
@@ -189,6 +192,13 @@ class Create extends Component {
         thanaList(event) {
             let DisList = event.target.value;
             let thanaList = '';
+            this.setState({
+                post : {
+                  ...this.state.post,
+                ['district'] : DisList,
+                ['thana'] : '',
+                }
+            });
             // set Barguna division thana
             if(DisList == 'Barguna') {
              thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Amtali">আমতলী</option><option value="Bamna">বামনা</option><option value="Barguna Sadar">বরগুনা সদর</option><option value="Betagi">বেতাগী</option><option value="Patharghata">পাথরঘাটা</option><option value="Taltali">তালতলী</option>';
@@ -570,15 +580,15 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">মোট ওজন* </h5>
-                                <input className="form-control values-input" step="any" id="total-weight" type="number" name="total_weight" />
+                                <input className="form-control values-input" step="any" id="total-weight" type="number" value={this.state.post.total_weight} name="total_weight" onChange={this.handleInputChange}/>
                                 {/* <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" /> */}
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="form-group" >
                                 <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
-                                <select className="form-control" defaultValue={'DEFAULT'}>
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>       
+                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
+                                    <option value="">নির্বাচন করুন</option>       
                                     <option value="মেট্রিক টন">মেট্রিক টন</option>
                                     <option value="টন">টন</option>
                                     <option value="কেজি">কেজি</option>
@@ -591,7 +601,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
-                                <input className="form-control values-input" value="0" type="number" name="price_per_unit" />
+                                <input className="form-control values-input" type="number" name="price_per_unit" value={this.state.post.price_per_unit}  onChange={this.handleInputChange}/>
                                 {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
                             </div>
                         </div>
@@ -599,7 +609,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group" >
                                 <h5 htmlFor="advance_paid">অগ্রিম পরিশোধ (%)*</h5>
-                                <select className="form-control" defaultValue={'0'}>
+                                <select className="form-control"  name="advance_payment"  onChange={this.handleInputChange}>
                                     <option value="0">0 (%)</option>
                                     <option value="5">5 (%)</option>
                                     <option value="10">10 (%)</option>
@@ -636,8 +646,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5>উৎপাদনের ধরন*</h5>
-                                <select className="form-control" defaultValue={'DEFAULT'}>
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>
+                                <select className="form-control" name="production_type" onChange={this.handleInputChange}>
+                                    <option value="">নির্বাচন করুন</option>
                                     <option value="প্রচলিত উৎপাদন">প্রচলিত উৎপাদন </option>
                                     <option value="জৈব উৎপাদন">জৈব উৎপাদন</option>
                                     <option value="রাসায়নিক উৎপাদন">রাসায়নিক উৎপাদন</option>
@@ -648,7 +658,7 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor=""> ফসল উৎপাদন সাল</h5>
-                                <input className="form-control" value="" type="date" name="product_production_year"/>
+                                <input className="form-control" onChange={this.handleInputChange} type="date"  value = {this.state.post.product_production_year}name="product_production_year"/>
                                 {/* <input className="form-control" value="" type="date" name="product_production_year"required="required"/> */}
                             </div>
                         </div>
@@ -656,8 +666,8 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 htmlFor="">প্যাকেজিং পদ্ধতি*</h5>
-                                <select className="form-control" defaultValue={'DEFAULT'}>
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>                          
+                                <select className="form-control" name="packaging_method" onChange={this.handleInputChange}>
+                                    <option value="">নির্বাচন করুন</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
                                     <option value="1 মেট্রিক টন">1 মেট্রিক টন</option>
@@ -674,7 +684,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7">প্রাথমিক বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" name="initial_delivery_date"/> 
+                                    <input type="date" className="form-control" onChange={this.handleInputChange} value={this.state.post.initial_delivery_date} name="initial_delivery_date"/> 
                                     {/* <input type="date" className="form-control" value="" required name="initial_delivery_date"/>  */}
                                 </div> 
                             </div>
@@ -684,7 +694,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="finaldeliverydate" className="control-h7"> চূড়ান্ত বিতরণ তারিখ*</h5> 
-                                    <input type="date" className="form-control" value="" name="final_delivery_date"/> 
+                                    <input type="date" className="form-control" onChange={this.handleInputChange} value={this.state.post.final_delivery_date} name="final_delivery_date"/> 
                                     {/* <input type="date" className="form-control" value="" required name="final_delivery_date"/>  */}
                                 </div> 
                             </div>
@@ -694,7 +704,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7"> অফার শেষ হওয়ার তারিখ*</h5> 
-                                    <input type="date" className="form-control" id="date" value="" name="offer_end_date"/> 
+                                    <input type="date" onChange={this.handleInputChange} className="form-control" value={this.state.post.offer_end_date} id="date" name="offer_end_date"/> 
                                     {/* <input type="date" className="form-control" id="date" value="" name="offer_end_date"required="required"/>  */}
                                 </div> 
                             </div>
@@ -737,9 +747,9 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group"> 
                                 <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
-                                <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta">
+                                <select className="form-control input-lg" onChange={this.handleInputChange} name="thana" id="polic_sta">
                                 {/* <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required"> */}
-                                    <option disabled value="DEFAULT">নির্বাচন করুন</option>
+                                    <option value="">নির্বাচন করুন</option>
                                 </select>
                             </div>
                         </div>
@@ -748,7 +758,7 @@ class Create extends Component {
                     <div className="row">
                         <div className="col-md-4">
                             <h5 htmlFor="address" className="control-h7">গ্রাম/মহল্লা*</h5> 
-                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege"/>
+                            <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" onChange={this.handleInputChange} name="villege"/>
                             {/* <input type="text" className="form-control" id="address" placeholder="গ্রাম/মহল্লা" value=""  name="villege" required="required"/> */}
                         </div>
                     </div>
@@ -757,14 +767,14 @@ class Create extends Component {
                             {/* <div className="form-group" style="margin-top: 10px;"> */}
                             <div className="form-group addtionalcmnt">
                                 <h4 className="h4post" htmlFor="additional_comments">সংযোজিত মন্তব্য</h4>
-                                <textarea className="form-control" name="comments"></textarea>
+                                <textarea className="form-control" onChange={this.handleInputChange} name="comments"></textarea>
                             </div>
                         </div>
                     </div>
                     <div className="row">
                         <div className="col-md-4">
                             <h4 className="h4post" htmlFor="files"> চিত্র আপলোড করুন:</h4>
-                            <input type="file" id="files" name="product_image" value=""/>                     
+                            <input type="file" onChange={this.handleInputChange} id="files" name="product_image"/>                     
                             {/* <input type="file" id="files" name="product_image" value="" required/>                      */}
                         </div>
                     </div>
@@ -773,7 +783,8 @@ class Create extends Component {
                         {/* <div className="col-md-9" style="margin-top:20px;"> */}
                         <div className="col-md-9 agricultre-demand">
                             <div className="form-group">
-                            <input name="" type="hidden" value="0" /><input className="inline-block" type="checkbox" value="1" />
+                            {/* <input name="" type="hidden" value="0" /> */}
+                            <input className="inline-block" name="submitshowoff" type="checkbox" checked={this.state.submitshowoff} onChange={this.onSubmitShowoff} />
                             {/* <input name="" type="hidden" value="0" /><input className="inline-block" required="required" type="checkbox" value="1" /> */}
                             পণ্য কেনা বেচার জন্য <a className="link-green inline-block" target="_blank" href="#">কৃষিসেবার শর্তাবলীর সাথে</a> একমত পোষণ করছি
                             </div>
