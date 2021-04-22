@@ -5,6 +5,12 @@
  */
 
 require('./bootstrap');
+//jquery components
+require('./jquery/bootstrap-notify/bootstrap-notify');
+require('./jquery/base');
+require ('./jquery/jquery.easing.min');
+require('./theme');
+require('./jquery/aj-custom-select');
 
 /**
  * Next, we will create a fresh React component instance and attach it to

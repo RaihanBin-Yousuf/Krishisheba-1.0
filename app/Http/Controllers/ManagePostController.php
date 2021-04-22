@@ -38,12 +38,12 @@ class ManagePostController extends Controller
     {
         $input = $request->all();
         $product= $this->product->getbyProductId($input['product_id']);
-        $data['product_name'] =$product->name;
+        $input['product_name'] =$product->name;
         $category = $this->category->getbyCategoryId($input['category_id']);
-        $data['category'] = $category->name;
+        $input['category'] = $category->name;
         $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
-        $data['sub_category'] = $sub_category->name; 
-        dd($data);
+        $input['sub_category'] = $sub_category->name; 
+        dd($input);
 
     }
 

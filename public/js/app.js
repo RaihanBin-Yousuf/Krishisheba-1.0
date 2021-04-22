@@ -2038,7 +2038,12 @@ var Create = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Create);
 
     _this = _super.call(this, props);
+    var curr = new Date();
+    curr.setDate(curr.getDate());
+    var dateNow = curr.toISOString().substr(0, 10);
+    var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 10)).toUTCString();
     _this.state = {
+      submitshowoff: 0,
       productslist: [],
       categorieslist: [],
       subCategorieslist: [],
@@ -2069,18 +2074,18 @@ var Create = /*#__PURE__*/function (_Component) {
       }],
       post: {
         product_id: '',
-        total_weight: 0,
-        weight_unit: 0,
-        price_per_unit: 0,
-        advance_payment: 0,
+        total_weight: 1,
+        weight_unit: 1,
+        price_per_unit: 1,
+        advance_payment: 1,
         category_id: 0,
         sub_category_id: 0,
         production_type: '',
-        product_production_year: '',
+        product_production_year: dateNow,
         packaging_method: '',
-        initial_delivery_date: '',
-        final_delivery_date: '',
-        offer_end_date: '',
+        initial_delivery_date: dateNow,
+        final_delivery_date: dateNow,
+        offer_end_date: lastday,
         own_vehicle: '',
         divisions: '',
         district: '',
@@ -2089,17 +2094,7 @@ var Create = /*#__PURE__*/function (_Component) {
         comments: '',
         product_image: ''
       }
-    }; // post: {
-    //     total_weight: 0,
-    //     price_per_unit: '',
-    //     product_production_year: '',
-    //     initial_delivery_date: '',
-    //     final_delivery_date: '',
-    //     offer_end_date: '',
-    //     own_vehicle:0,
-    //     product_image:null,
-    //     },
-
+    };
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.categorySelect = _this.categorySelect.bind(_assertThisInitialized(_this));
@@ -2109,6 +2104,7 @@ var Create = /*#__PURE__*/function (_Component) {
     _this.divisionsList = _this.divisionsList.bind(_assertThisInitialized(_this));
     _this.thanaList = _this.thanaList.bind(_assertThisInitialized(_this));
     _this.getPost = _this.getPost.bind(_assertThisInitialized(_this));
+    _this.onSubmitShowoff = _this.onSubmitShowoff.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2116,6 +2112,13 @@ var Create = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.getProduct();
+    }
+  }, {
+    key: "onSubmitShowoff",
+    value: function onSubmitShowoff(e) {
+      var target = e.target;
+      console.log('target.value :>> ', target.value);
+      console.log('target.name :>> ', target.name);
     }
   }, {
     key: "categorySelect",
@@ -2147,7 +2150,7 @@ var Create = /*#__PURE__*/function (_Component) {
 
               case 2:
                 res = _context.sent;
-                this.setState((_this$setState = {}, _defineProperty(_this$setState, 'categorieslist', res), _defineProperty(_this$setState, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'product_id', productId), _defineProperty(_objectSpread2, 'category_id', 0), _defineProperty(_objectSpread2, 'sub_category_id', 0), _objectSpread2))), _this$setState)); // this.getPost;
+                this.setState((_this$setState = {}, _defineProperty(_this$setState, 'categorieslist', res), _defineProperty(_this$setState, "post", _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'product_id', productId), _defineProperty(_objectSpread2, 'category_id', 0), _defineProperty(_objectSpread2, 'sub_category_id', 0), _objectSpread2))), _this$setState));
 
               case 4:
               case "end":
@@ -2251,13 +2254,15 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleInputChange",
     value: function handleInputChange(event) {
-      var target = event.target; // let value = target.type === 'checkbox' ? ( target.checked ? target.value : 0 ) : target.value;
-
+      var target = event.target;
+      var value = target.type === 'checkbox' ? target.checked ? target.value : 0 : target.value;
       var name = target.name;
-      var value = target.value; // if (name == 'picture') {
-      //     value = target.files[0];
-      // }
 
+      if (name == 'product_image') {
+        value = target.files[0];
+      }
+
+      ;
       this.setState({
         post: _objectSpread(_objectSpread({}, this.state.post), {}, _defineProperty({}, name, value))
       });
@@ -2272,19 +2277,18 @@ var Create = /*#__PURE__*/function (_Component) {
             switch (_context5.prev = _context5.next) {
               case 0:
                 event.preventDefault();
-                console.log(this.state.post);
                 cpost = this.state.post;
                 formdata = new FormData();
                 Object.keys(cpost).map(function (key) {
                   formdata.append(key, cpost[key]);
                 });
-                _context5.next = 7;
+                _context5.next = 6;
                 return _services_PostService__WEBPACK_IMPORTED_MODULE_4__.default.save(formdata);
 
-              case 7:
+              case 6:
                 res = _context5.sent;
 
-              case 8:
+              case 7:
               case "end":
                 return _context5.stop();
             }
@@ -2301,9 +2305,13 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "divisionsList",
     value: function divisionsList(event) {
+      var _objectSpread5;
+
       // get value from division lists
       var diviList = event.target.value;
-      console.log(diviList);
+      this.setState({
+        post: _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread5 = {}, _defineProperty(_objectSpread5, 'divisions', diviList), _defineProperty(_objectSpread5, 'district', ''), _defineProperty(_objectSpread5, 'thana', ''), _objectSpread5))
+      });
       var disctList = ''; // set barishal division districts
 
       if (diviList == 'Barishal') {
@@ -2337,8 +2345,13 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "thanaList",
     value: function thanaList(event) {
+      var _objectSpread6;
+
       var DisList = event.target.value;
-      var thanaList = ''; // set Barguna division thana
+      var thanaList = '';
+      this.setState({
+        post: _objectSpread(_objectSpread({}, this.state.post), {}, (_objectSpread6 = {}, _defineProperty(_objectSpread6, 'district', DisList), _defineProperty(_objectSpread6, 'thana', ''), _objectSpread6))
+      }); // set Barguna division thana
 
       if (DisList == 'Barguna') {
         thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Amtali">আমতলী</option><option value="Bamna">বামনা</option><option value="Barguna Sadar">বরগুনা সদর</option><option value="Betagi">বেতাগী</option><option value="Patharghata">পাথরঘাটা</option><option value="Taltali">তালতলী</option>';
@@ -2639,7 +2652,9 @@ var Create = /*#__PURE__*/function (_Component) {
                     step: "any",
                     id: "total-weight",
                     type: "number",
-                    name: "total_weight"
+                    value: this.state.post.total_weight,
+                    name: "total_weight",
+                    onChange: this.handleInputChange
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2651,10 +2666,11 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u0993\u099C\u09A8 \u0987\u0989\u09A8\u09BF\u099F*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
                     className: "form-control",
-                    defaultValue: 'DEFAULT',
+                    value: this.state.post.weight_unit,
+                    name: "weight_unit",
+                    onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
+                      value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "\u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8",
@@ -2683,9 +2699,10 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u0987\u0989\u09A8\u09BF\u099F \u09AA\u09CD\u09B0\u09A4\u09BF \u09AE\u09C2\u09B2\u09CD\u09AF (\u09F3)*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control values-input",
-                    value: "0",
                     type: "number",
-                    name: "price_per_unit"
+                    name: "price_per_unit",
+                    value: this.state.post.price_per_unit,
+                    onChange: this.handleInputChange
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -2697,7 +2714,8 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u0985\u0997\u09CD\u09B0\u09BF\u09AE \u09AA\u09B0\u09BF\u09B6\u09CB\u09A7 (%)*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
                     className: "form-control",
-                    defaultValue: '0',
+                    name: "advance_payment",
+                    onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "0",
                       children: "0 (%)"
@@ -2763,10 +2781,10 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
                     className: "form-control",
-                    defaultValue: 'DEFAULT',
+                    name: "production_type",
+                    onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
+                      value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "\u09AA\u09CD\u09B0\u099A\u09B2\u09BF\u09A4 \u0989\u09CE\u09AA\u09BE\u09A6\u09A8",
@@ -2789,8 +2807,9 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: " \u09AB\u09B8\u09B2 \u0989\u09CE\u09AA\u09BE\u09A6\u09A8 \u09B8\u09BE\u09B2"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "form-control",
-                    value: "",
+                    onChange: this.handleInputChange,
                     type: "date",
+                    value: this.state.post.product_production_year,
                     name: "product_production_year"
                   })]
                 })
@@ -2803,10 +2822,10 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u09AA\u09CD\u09AF\u09BE\u0995\u09C7\u099C\u09BF\u0982 \u09AA\u09A6\u09CD\u09A7\u09A4\u09BF*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
                     className: "form-control",
-                    defaultValue: 'DEFAULT',
+                    name: "packaging_method",
+                    onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
+                      value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "40 \u0995\u09C7\u099C\u09BF \u09AC\u09CD\u09AF\u09BE\u0997",
@@ -2845,7 +2864,8 @@ var Create = /*#__PURE__*/function (_Component) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                       type: "date",
                       className: "form-control",
-                      value: "",
+                      onChange: this.handleInputChange,
+                      value: this.state.post.initial_delivery_date,
                       name: "initial_delivery_date"
                     })]
                   })
@@ -2863,7 +2883,8 @@ var Create = /*#__PURE__*/function (_Component) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                       type: "date",
                       className: "form-control",
-                      value: "",
+                      onChange: this.handleInputChange,
+                      value: this.state.post.final_delivery_date,
                       name: "final_delivery_date"
                     })]
                   })
@@ -2880,9 +2901,10 @@ var Create = /*#__PURE__*/function (_Component) {
                       children: " \u0985\u09AB\u09BE\u09B0 \u09B6\u09C7\u09B7 \u09B9\u0993\u09AF\u09BC\u09BE\u09B0 \u09A4\u09BE\u09B0\u09BF\u0996*"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                       type: "date",
+                      onChange: this.handleInputChange,
                       className: "form-control",
+                      value: this.state.post.offer_end_date,
                       id: "date",
-                      value: "",
                       name: "offer_end_date"
                     })]
                   })
@@ -2967,12 +2989,11 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u09A5\u09BE\u09A8\u09BE*"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control input-lg",
-                    defaultValue: 'DEFAULT',
+                    onChange: this.handleInputChange,
                     name: "thana",
                     id: "polic_sta",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      value: "DEFAULT",
+                      value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     })
                   })]
@@ -2991,7 +3012,7 @@ var Create = /*#__PURE__*/function (_Component) {
                   className: "form-control",
                   id: "address",
                   placeholder: "\u0997\u09CD\u09B0\u09BE\u09AE/\u09AE\u09B9\u09B2\u09CD\u09B2\u09BE",
-                  value: "",
+                  onChange: this.handleInputChange,
                   name: "villege"
                 })]
               })
@@ -3007,6 +3028,7 @@ var Create = /*#__PURE__*/function (_Component) {
                     children: "\u09B8\u0982\u09AF\u09C7\u09BE\u099C\u09BF\u09A4 \u09AE\u09A8\u09CD\u09A4\u09AC\u09CD\u09AF"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("textarea", {
                     className: "form-control",
+                    onChange: this.handleInputChange,
                     name: "comments"
                   })]
                 })
@@ -3021,9 +3043,9 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: " \u099A\u09BF\u09A4\u09CD\u09B0 \u0986\u09AA\u09B2\u09CB\u09A1 \u0995\u09B0\u09C1\u09A8:"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                   type: "file",
+                  onChange: this.handleInputChange,
                   id: "files",
-                  name: "product_image",
-                  value: ""
+                  name: "product_image"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -3033,13 +3055,11 @@ var Create = /*#__PURE__*/function (_Component) {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    name: "",
-                    type: "hidden",
-                    value: "0"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     className: "inline-block",
+                    name: "submitshowoff",
                     type: "checkbox",
-                    value: "1"
+                    checked: this.state.submitshowoff,
+                    onChange: this.onSubmitShowoff
                   }), "\u09AA\u09A3\u09CD\u09AF \u0995\u09C7\u09A8\u09BE \u09AC\u09C7\u099A\u09BE\u09B0 \u099C\u09A8\u09CD\u09AF ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                     className: "link-green inline-block",
                     target: "_blank",
@@ -3107,9 +3127,7 @@ CategoryService.dropdown = /*#__PURE__*/function () {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            console.log('inservice');
-            console.log(data);
-            _context.next = 4;
+            _context.next = 2;
             return axios.get("/categories?dropdown=true", {
               params: {
                 "product_id": data.product_id
@@ -3120,11 +3138,11 @@ CategoryService.dropdown = /*#__PURE__*/function () {
               return error;
             });
 
-          case 4:
+          case 2:
             res = _context.sent;
             return _context.abrupt("return", res);
 
-          case 6:
+          case 4:
           case "end":
             return _context.stop();
         }
