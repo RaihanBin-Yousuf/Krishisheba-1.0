@@ -7,10 +7,15 @@ import SubcateoryService from '../services/SubcateoryService';
 class Create extends Component {
     constructor(props) {
         super(props);
-        const curr = new Date();
-        curr.setDate(curr.getDate());
-        let dateNow = curr.toISOString().substr(0,10);
-        var lastday = new Date(curr.setDate(curr.getDate() - curr.getDay() + 10)).toUTCString();
+        function addDays(dateObj, numDays) {
+            dateObj.setDate(dateObj.getDate() + numDays);
+            return dateObj;
+         }
+         const curr = new Date();
+         curr.setDate(curr.getDate());
+         let dateNow = curr.toISOString().substr(0,10);
+         const nextWeek = addDays(curr , 10); // Add 7 days
+        let datethen = nextWeek.toISOString().substr(0,10);
         this.state = {
             submitshowoff: 0,
             productslist: [],
@@ -30,7 +35,7 @@ class Create extends Component {
                 packaging_method : '',
                 initial_delivery_date : dateNow,
                 final_delivery_date : dateNow,
-                offer_end_date : lastday,
+                offer_end_date : datethen,
                 own_vehicle : '',
                 divisions : '',
                 district : '',
