@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Traits\CommonTrait;
-
 use App\Models\Product;
 use Illuminate\Http\Request;
+use DB;
 
 class ProductController extends Controller
 {
@@ -19,6 +19,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      * 
      */
+    public function names()
+    {
+        $names = product::orderBy('id','ASC')->get();
+        return view('backend.product.names',compact('names'));
+
+    }
     public function index()
     {
        
@@ -59,8 +65,30 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data=array();
+    	//  $data['name']=$request->name;
+    	//  DB::table('products')->insert($data);
+        $product = new Product();
+    	$product->name = $request->name;
+        $product->save();
+           $notification=array(
+                       'messege'=>'Successfully Added',
+                       'alert-type'=>'success'
+                        );
+           return Redirect()->back()->with($notification);
     }
+
+    public function deleteProducById($id)
+	{
+		$data=Product::find($id);
+        $data->delete();
+
+        $notification=array(
+            'messege'=>'Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
+	}
 
     /**
      * Display the specified resource.

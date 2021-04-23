@@ -34,33 +34,37 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Date of Birth</th>
-                    <th>Address</th>
-                    <th>Mobile</th>
-                    <th>NID NO</th>
-                    <th>Rule</th>
+                    <th>Id</th>
+                    <th>Product Name</th>
+                    <th>Product Image</th>
+                    <th>category</th>
+                    <th>Sub Category</th>
+                    <th>divisions</th>
+                    <th>district</th>
                     <th>Actions</th>
                   </tr>
                   </thead>
                   <tbody>
-               <tr>
-                  <td>rice</td>
-                  <td>boiled</td>
-                  <td>eri</td>
-                  <td>rice</td>
-                  <td>boiled</td>
-                  <td>eri</td>
-                  <td>rice</td>
-                  <td class="text-center py-0 align-middle">
-                      <div class=" btn-group-sm">
-                        <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                        <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                        <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                      </div>
-                  </td>
-                </tr>
+
+                  @foreach($data as $posts)
+                      <tr>
+                        <td>{{ $posts->id }}</td>
+                        <td>{{ $posts->product_name }}</td>
+                        <td><img src="{{Storage::path('posts/'.$posts->product_image)}}"></td>
+                        <!-- <td>{{ Storage::url('/posts/'.$posts["product_image"]) }}</td> -->
+                        <td>{{ $posts->category }}</td>
+                        <td>{{ $posts->sub_category }}</td>
+                        <td>{{ $posts->divisions }}</td>
+                        <td>{{ $posts->district }}</td>
+                         <td class="text-center py-0 align-middle">
+                            <div class=" btn-group-sm">
+                              <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                              <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                              <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                  @endforeach
                   </tbody>
                 </table>
               </div>

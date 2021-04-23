@@ -49,9 +49,9 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{route('product.index')}}" class="nav-link">
+                <a href="{{route('names')}}" class="nav-link">
                   <i class="fas fa-users nav-icon"></i>
-                  <p>All Item</p>
+                  <p>All Products</p>
                 </a>
               </li>
               <li class="nav-item">

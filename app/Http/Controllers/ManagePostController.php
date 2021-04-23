@@ -26,7 +26,8 @@ class ManagePostController extends Controller
     public function index()
     {
         $data = $this->manage_post->getAll();
-        return $this->sendResponse(['data'=>$data]);
+        return view('backend.manage_posts.index',compact('data'));
+        // return $this->sendResponse(['data'=>$data]);
         
     }
     /**
@@ -48,7 +49,7 @@ class ManagePostController extends Controller
         $input['category'] = $category->name;
         $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
         $input['sub_category'] = $sub_category->name; 
-        $imageName = public_path().time().'.'.$request->product_image->extension();
+        $imageName =time().'.'.$request->product_image->extension();
         $request->product_image->storeAs('posts', $imageName);
         $input['product_image'] =$imageName;
         $savePost = $this->manage_post->savePost($input);

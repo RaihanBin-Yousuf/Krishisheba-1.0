@@ -37,6 +37,8 @@ Route::get('/paddy_product_detailspage',[FrontTestController::class,'paddy_produ
 
 
 Route::resource('product', ProductController::class);
+Route::get('/names',[ProductController::class,'names'])->name('names');
+Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->name('deleteProducById');
 
 Route::resource('categories', CategoryController::class);
 

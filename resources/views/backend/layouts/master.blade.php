@@ -6,6 +6,10 @@
   <title>krishi sheva</title>
  <!-- Google Font: Source Sans Pro -->
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('backend-asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{ asset('backend-asset/plugins/toastr/toastr.min.css') }}">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{ asset('backend-asset/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- DataTables -->
@@ -80,6 +84,10 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="{{ asset('backend-asset/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{ asset('backend-asset/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<!-- Toastr -->
+<script src="{{ asset('backend-asset/plugins/toastr/toastr.min.js') }}"></script>
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('backend-asset/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{ asset('backend-asset/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -135,5 +143,49 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('backend-asset/dist/js/adminlte.js')}}"></script>
 
+<script>
+     @if(Session::has('messege'))
+          var type="{{Session::get('alert-type','info')}}"
+          switch(type){
+              case 'info':
+                   toastr.info("{{ Session::get('messege') }}");
+                   break;
+              case 'success':
+                  toastr.success("{{ Session::get('messege') }}");
+                  break;
+              case 'warning':
+                 toastr.warning("{{ Session::get('messege') }}");
+                  break;
+              case 'error':
+                  toastr.error("{{ Session::get('messege') }}");
+                  break;
+          }
+        @endif
+        
+  </script>
+
+    <script>
+            $(document).on("click", "#delete", function(e){
+                e.preventDefault();
+                 var link = $(this).attr("href");
+                 swal({
+                  title: "Are you sure?",
+                  text: "You will not be able to recover this imaginary file!",
+                  type: "warning",
+                  showCancelButton: true,
+                  confirmButtonClass: "btn-danger",
+                  confirmButtonText: "Yes, delete it!",
+                  cancelButtonText: "No, cancel!",
+                },
+                function(isConfirm) {
+                  if (isConfirm) {
+                    swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                    window.location.href = link;
+                  } else {
+                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                  }
+                });
+               });
+       </script>
 </body>
 </html>
