@@ -8,7 +8,7 @@ use App\Models\Category;
 use App\Models\Sub_Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
 
 class ManagePostController extends Controller
 {
@@ -25,8 +25,9 @@ class ManagePostController extends Controller
      */
     public function index()
     {
-        // $data=Auth::user()->role;
-        return view('backend.manage_posts.index');
+        $data = $this->manage_post->getAll();
+        return $this->sendResponse(['data'=>$data]);
+        
     }
     /**
      * Show the form for creating a new resource.
@@ -47,7 +48,7 @@ class ManagePostController extends Controller
         $input['category'] = $category->name;
         $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
         $input['sub_category'] = $sub_category->name; 
-        $imageName = time().'.'.$request->product_image->extension();
+        $imageName = public_path().time().'.'.$request->product_image->extension();
         $request->product_image->storeAs('posts', $imageName);
         $input['product_image'] =$imageName;
         $savePost = $this->manage_post->savePost($input);

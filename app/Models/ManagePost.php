@@ -16,6 +16,12 @@ class ManagePost extends Model
         'district','thana','villege','comments' ,'product_image',
     ];
 
+    public function getAll()
+    {
+        return $this->latest()->get();
+        // dd($Post);
+    }
+
     public function savePost($input, $post=null)
     {
         if (empty($post)) {

@@ -18153,24 +18153,49 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var PostService = {};
+PostService.list = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+  var res;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.next = 2;
+          return axios.get("/manage_posts").then(function (response) {
+            console.log('res :>> ', res);
+            return response.data.data.data;
+          })["catch"](function (error) {
+            return error;
+          });
+
+        case 2:
+          res = _context.sent;
+          return _context.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context.stop();
+      }
+    }
+  }, _callee);
+}));
 
 PostService.save = /*#__PURE__*/function () {
-  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
     var urlProduct, urlProductUpdate, res, _res;
 
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
       while (1) {
-        switch (_context.prev = _context.next) {
+        switch (_context2.prev = _context2.next) {
           case 0:
             urlProduct = "/manage_posts";
 
             if (!data.get('id')) {
-              _context.next = 9;
+              _context2.next = 9;
               break;
             }
 
             urlProductUpdate = urlProduct + '/' + data.get('id') + "?_method=PUT";
-            _context.next = 5;
+            _context2.next = 5;
             return axios.post(urlProductUpdate, data).then(function (response) {
               $.notify({
                 message: 'Update Product'
@@ -18183,11 +18208,11 @@ PostService.save = /*#__PURE__*/function () {
             });
 
           case 5:
-            res = _context.sent;
-            return _context.abrupt("return", res);
+            res = _context2.sent;
+            return _context2.abrupt("return", res);
 
           case 9:
-            _context.next = 11;
+            _context2.next = 11;
             return axios.post(urlProduct, data).then(function (response) {
               $.notify({
                 message: 'Product Saved'
@@ -18200,19 +18225,19 @@ PostService.save = /*#__PURE__*/function () {
             });
 
           case 11:
-            _res = _context.sent;
-            return _context.abrupt("return", _res);
+            _res = _context2.sent;
+            return _context2.abrupt("return", _res);
 
           case 13:
           case "end":
-            return _context.stop();
+            return _context2.stop();
         }
       }
-    }, _callee);
+    }, _callee2);
   }));
 
   return function (_x) {
-    return _ref.apply(this, arguments);
+    return _ref2.apply(this, arguments);
   };
 }();
 

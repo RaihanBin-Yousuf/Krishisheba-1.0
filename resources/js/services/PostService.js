@@ -1,6 +1,15 @@
 
 const PostService = {};
 
+PostService.list = async () => {
+  const res = await axios.get("/manage_posts")
+  .then(response=> {
+    console.log('res :>> ', res);
+    return response.data.data.data })
+  .catch(error=>{ return error; })
+  return res;
+}
+
 PostService.save = async (data) => {
     let urlProduct = "/manage_posts";
     if(data.get('id')) {
