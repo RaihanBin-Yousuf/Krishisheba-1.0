@@ -43,10 +43,10 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
-                            </div>
+                            </div>   
                         
                             <div class="col-md-6 form-group">
-                                <label for="mobile">mobile*</label>
+                                <label for="mobile">মোবাইল*</label>
                                 <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile">
                                     @error('mobile')
                                         <span class="invalid-feedback" role="alert">
@@ -57,7 +57,7 @@
                         </div>
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="user-name">email*</label>
+                                <label for="user-name">ইমেইল*</label>
                                 <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                                     @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                             </div>
                         
                             <div class="col-md-6 form-group">
-                                <label for="nid">nid*</label>
+                                <label for="nid">এনআইডি*</label>
                                 <input id="nid" type="nid" class="form-control @error('nid') is-invalid @enderror" name="nid" value="{{ old('nid') }}" required autocomplete="nid">
                                     @error('nid')
                                         <span class="invalid-feedback" role="alert">
@@ -79,7 +79,7 @@
 
                         <div class="row">
                             <div class="col-md-6 form-group">
-                                <label for="password">password*</label>
+                                <label for="password">পাসওয়ার্ড*</label>
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                 @error('password')
@@ -90,7 +90,7 @@
                             </div>
                         
                             <div class="col-md-6 form-group">
-                                <label for="password-confirm">Confirm Password*</label>
+                                <label for="password-confirm">পাসওয়ার্ড নিশ্চিতকরণ *</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="nid">
                             </div>
                         </div>

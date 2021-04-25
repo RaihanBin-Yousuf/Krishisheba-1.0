@@ -171,8 +171,7 @@
 										<div class="product-hover-icons">
 											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
 											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="" data-tooltip="Quick view"> <span class="icon_search"></span> </a>
+											<a href="paddy_detailspage/{{$paddy['id']}}" data-tooltip="Quick view"> <span class="icon_search"></span> </a>
 										</div>
 									</div>
 									<div class="product-content">

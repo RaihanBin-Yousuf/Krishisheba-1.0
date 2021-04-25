@@ -528,7 +528,7 @@ class Create extends Component {
     render() {
         console.log('post Data');
         console.log(this.state.post);
-        let productDropdown = [<option>নির্বাচন করুন</option>];
+        let productDropdown = [];
         if (this.state.productslist) {
                 this.state.productslist.map(product=>(
                     productDropdown.push(<option key={product.id} value={product.id}>{product.name}</option>)
@@ -564,6 +564,7 @@ class Create extends Component {
                             <h5 htmlFor="commidities">পণ্য</h5>
                             {/* <select className="form-control select2bs4" onChange={this.categorySelect} required="required"> */}
                             <select className="form-control select2bs4" onChange={this.categorySelect} >
+                            <option disabled selected value="">নির্বাচন করুন</option>
                                 {productDropdown}
                             </select>
                             </div>
@@ -582,10 +583,10 @@ class Create extends Component {
                             <div className="form-group" >
                                 <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
                                 <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>       
+                                <option disabled selected value="">নির্বাচন করুন</option>     
                                     <option value="মেট্রিক টন">মেট্রিক টন</option>
                                     <option value="টন">টন</option>
-                                    <option value="কেজি">কেজি</option>
+                                    <option value="টন">মণ</option> 
                                     <option value="কেজি">কেজি</option>
                                     <option value="পিস">পিস</option>
                                 </select>
@@ -604,6 +605,7 @@ class Create extends Component {
                             <div className="form-group" >
                                 <h5 htmlFor="advance_paid">অগ্রিম পরিশোধ (%)*</h5>
                                 <select className="form-control"  name="advance_payment"  onChange={this.handleInputChange}>
+                                    <option disabled selected value="">নির্বাচন করুন</option>
                                     <option value="0">0 (%)</option>
                                     <option value="5">5 (%)</option>
                                     <option value="10">10 (%)</option>
@@ -641,7 +643,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <h5>উৎপাদনের ধরন*</h5>
                                 <select className="form-control" name="production_type" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>
+                                    <option disabled selected value="">নির্বাচন করুন</option>
                                     <option value="প্রচলিত উৎপাদন">প্রচলিত উৎপাদন </option>
                                     <option value="জৈব উৎপাদন">জৈব উৎপাদন</option>
                                     <option value="রাসায়নিক উৎপাদন">রাসায়নিক উৎপাদন</option>
@@ -661,7 +663,7 @@ class Create extends Component {
                             <div className="form-group">
                                 <h5 htmlFor="">প্যাকেজিং পদ্ধতি*</h5>
                                 <select className="form-control" name="packaging_method" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>                          
+                                <option disabled selected value="">নির্বাচন করুন</option>                         
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
                                     <option value="1 মেট্রিক টন">1 মেট্রিক টন</option>
@@ -725,6 +727,7 @@ class Create extends Component {
                                 <h5 className="control-h7">বিভাগ*</h5> 
                                 <select name="divisions" id="divisions" className="form-control input-lg" onChange={this.divisionsList}>
                                 {/* <select name="divisions" id="divisions" required="required" className="form-control input-lg" onChange={this.divisionsList}> */}
+                                    <option disabled>নির্বাচন করুন</option>
                                     {divisionListDropdown}
                                 </select>
                             </div>
@@ -746,7 +749,7 @@ class Create extends Component {
                                 <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
                                 <select className="form-control input-lg" onChange={this.handleInputChange} name="thana" id="polic_sta">
                                 {/* <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required"> */}
-                                    <option value="">নির্বাচন করুন</option>
+                                <option disabled>নির্বাচন করুন</option>
                                 </select>
                             </div>
                         </div>
