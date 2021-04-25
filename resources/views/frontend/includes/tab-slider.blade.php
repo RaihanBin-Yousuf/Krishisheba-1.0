@@ -45,8 +45,7 @@
                                                 <span class="main-price">$89.00</span>
                                                 <span class="discounted-price">$80.00</span>
                                             </div>
-                                        </div>
-                                        
+                                        </div>  
                                     </div>
                                 
                                     <!--=======  End of tab slider sub product  =======-->

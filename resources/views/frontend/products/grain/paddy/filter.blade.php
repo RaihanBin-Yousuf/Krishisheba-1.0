@@ -149,7 +149,6 @@
 								
 								<!--=======  End of Sort by dropdown  =======-->
 
-								<p class="result-show-message">Showing 1–12 of 41 results</p>
 							</div>
 						</div>
 					</div>
@@ -159,616 +158,73 @@
 					<!--=======  Grid list view  =======-->
 					
 					<div class="shop-product-wrap grid row no-gutters mb-35">
-						
+						@foreach($allpaddy as $paddy)
 						    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 								<!--=======  Grid view product  =======-->
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
+										<a href="paddy_detailspage/{{$paddy['id']}}">
 											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
+											<img src="{{asset('storage/posts/'.$paddy->product_image)}}"style="width:200px; height:186px;">
 										</a>
 										<div class="product-hover-icons">
 											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
 											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
 											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+											<a href="" data-tooltip="Quick view"> <span class="icon_search"></span> </a>
 										</div>
 									</div>
 									<div class="product-content">
 										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
+											<a>পণ্য: {{ $paddy->product_name }}</a>
 										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
+										<div class="product-categories">
+											<a>পণ্যের প্রকার: {{ $paddy->category }}</a>
+										</div>
+										<h3 class="product-title"><a href="">মোট ওজন: {{ $paddy->total_weight }} {{ $paddy->weight_unit }}</a></h3>
 										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
+											<span class="discounted-price">৳ {{ $paddy->price_per_unit }} টাকা {{ $paddy->weight_unit }}</span>
 										</div>
-									</div>
-									
+									</div>	
 								</div>
-								
 								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product05.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product05.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product06.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product06.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product07.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product07.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product08.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product08.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product10.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product10.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product11.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product11.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-	
-							<div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-								<!--=======  Grid view product  =======-->
-								
-								<div class="gf-product shop-grid-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product12.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-									</div>
-									
-								</div>
-								
-								<!--=======  End of Grid view product  =======-->
-	
-								<!--=======  Shop list view product  =======-->
-								
-								<div class="gf-product shop-list-view-product">
-									<div class="image">
-										<a href="{{ route('paddy_product_detailspage') }}">
-											<span class="onsale">Sale!</span>
-											<img src="{{ asset('frontend-asset/assets_2/images/products/product12.jpg') }}" class="img-fluid" alt="">
-										</a>
-										<div class="product-hover-icons">
-											<a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
-										</div>
-									</div>
-									<div class="product-content">
-										<div class="product-categories">
-											<a>Fast Foods</a>,
-											<a>Vegetables</a>
-										</div>
-										<h3 class="product-title"><a href="{{ route('paddy_product_detailspage') }}">Ornare sed consequat nisl</a></h3>
-										<div class="price-box mb-20">
-											<span class="main-price">$89.00</span>
-											<span class="discounted-price">$80.00</span>
-										</div>
-										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-										<div class="list-product-icons">
-											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
-											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
-										</div>
-									</div>
-									
-								</div>
-							
-							<!--=======  End of Shop list view product  =======-->
-							</div>
-						
-					</div>
-					
-					<!--=======  End of Grid list view  =======-->
 
-					<!--=======  Pagination container  =======-->
-					
+								<!--=======  Shop list view product  =======-->
+								
+								<div class="gf-product shop-list-view-product">
+									<div class="image">
+										<a href="">
+											<span class="onsale">Sale!</span>
+											<img src="{{asset('storage/posts/'.$paddy->product_image)}}"style="width:270px; height:250px;">
+										</a>
+										<div class="product-hover-icons">
+										</div>
+									</div>
+									<div class="product-content">
+										<div class="product-categories">
+											<a>Fast Foods</a>,
+											<a>Vegetables</a>
+										</div>
+										<h3 class="product-title"><a href="">Ornare sed consequat nisl</a></h3>
+										<div class="price-box mb-20">
+											<span class="main-price">$89.00</span>
+											<span class="discounted-price">$80.00</span>
+										</div>
+										<p class="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
+										<div class="list-product-icons">
+											<a href="#"> <span class="icon_search"></span> </a>
+											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+											<a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+										</div>
+									</div>
+								</div>	
+							<!--=======  End of Shop list view product  =======-->				
+							</div>
+						@endforeach						
+					</div>
+
 					<div class="pagination-container">
 						<div class="container">
 							<div class="row">
@@ -777,11 +233,7 @@
 									
 									<div class="pagination-content text-center">
 										<ul>
-											<li><a class="active" href="#">1</a></li>
-											<li><a href="#">2</a></li>
-											<li><a href="#">3</a></li>
-											<li><a href="#">4</a></li>
-											<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+											<li><a class="active"></a>{!! $allpaddy->links() !!}</li>
 										</ul>
 									</div>
 									

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Traits\CommonTrait;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategoryController extends Controller
 {
@@ -36,6 +37,18 @@ class CategoryController extends Controller
             // ]]);
         // }
         // return view('backend.product.new');
+    }
+
+    public function category()
+    {
+        $categorydata = Category::orderBy('id','ASC')->get();
+        return view('backend.product.category',compact('categorydata'));
+        // $categorydata = DB::table('categories')
+        // ->join ('products','products.id', '=', 'categories.product_id')
+        // ->select('categories.name', 'products.name')
+        // ->get();
+        // return view('backend.product.category',compact('categorydata'));
+
     }
 
     /**

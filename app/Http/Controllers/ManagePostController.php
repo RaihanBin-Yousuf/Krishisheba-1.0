@@ -25,7 +25,9 @@ class ManagePostController extends Controller
      */
     public function index()
     {
-        $data = $this->manage_post->getAll();
+                //   auth user Data
+        $data = ManagePost::where('user_id', Auth::user()->id)->get();
+        // $data = $this->manage_post->getAll();
         return view('backend.manage_posts.index',compact('data'));
         // return $this->sendResponse(['data'=>$data]);
         
@@ -47,10 +49,14 @@ class ManagePostController extends Controller
         $input['product_name'] =$product->name;
         $category = $this->category->getbyCategoryId($input['category_id']);
         $input['category'] = $category->name;
-        $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
-        $input['sub_category'] = $sub_category->name; 
+        if($input['sub_category_id']!=0)
+        {
+            $sub_category = $this->sub_category->getbySubCategoryId($input['sub_category_id']);
+            $input['sub_category'] = $sub_category->name;   
+        }
+
         $imageName =time().'.'.$request->product_image->extension();
-        $request->product_image->storeAs('posts', $imageName);
+        $request->product_image->storeAs('public/posts', $imageName);
         $input['product_image'] =$imageName;
         $savePost = $this->manage_post->savePost($input);
         return $this->sendResponse(['data'=>$savePost]);

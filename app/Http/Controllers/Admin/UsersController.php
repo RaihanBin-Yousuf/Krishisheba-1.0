@@ -1,32 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\FrontTest;
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class FrontTestController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view("frontend.home.index");
+    public function index()
+    {
+        $allusers = User::orderBy('id','ASC')->get();
+        return view('backend.manage_users.index',compact('allusers'));
     }
-    public function team(){
-        return view("frontend.includes.team");
+    public function seller()
+    {
+        $allsellers = User::where('role','seller')->get();
+        return view('backend.manage_users.seller',compact('allsellers'));
     }
-    public function faq(){
-        return view("frontend.includes.faq");
-    }
-    public function findproduct(){
-        return view("frontend.products.find-products");
-    }
-    public function paddy_product_detailspage(){
-        return view("frontend.products.grain.paddy.paddy_product_detailspage");
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,8 +31,20 @@ class FrontTestController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.manage_users.add');
     }
+
+    public function deleteUserById($id)
+	{
+		$data=User::find($id);
+        $data->delete();
+
+        $notification=array(
+            'messege'=>'User Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -51,10 +60,10 @@ class FrontTestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(FrontTest $frontTest)
+    public function show($id)
     {
         //
     }
@@ -62,10 +71,10 @@ class FrontTestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FrontTest $frontTest)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +83,10 @@ class FrontTestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FrontTest $frontTest)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +94,10 @@ class FrontTestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FrontTest $frontTest)
+    public function destroy($id)
     {
         //
     }

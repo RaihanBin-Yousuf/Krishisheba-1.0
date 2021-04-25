@@ -12,13 +12,13 @@
       <!-- Return URL and Title -->
       <div class="row" style="padding-top:15px">
         <div class="col-md-12">
-          <a href="{{route('filter-paddy')}}">
+          <a href="{{ route('paddy.index') }}">
             <img class="icn-arrow--left" src="{{ asset('frontend-asset/market/icons/grey_arrow_down-d595d8db881c98fbae6ad8cec7f0727191deefa0327a7adebda0e52d64e7fd85.png') }}" alt="Grey arrow down" />
             Return to filter board
           </a></div>
           <div class="col-md-3" style="padding-top:15px">
             <h3 class="mt-0">ধান</h3>
-            <h4 class="mt-0">ID: 10</h4>
+            <h4 class="mt-0">আইডি: {{$managepost['id']}} </h4>
           </div>
 
           <div class="col-md-12">
@@ -34,21 +34,23 @@
 
         <div class="row">
           <div class="col-md-12 hidden-md-down" style="padding: 0;">
-            <div class="col-md-3 offer-show__col" style="background-image: url('frontend-asset/market/logos/rice.png');background-size: cover; position: absolute; top: 0; bottom: 0; float: left; padding-left:0"></div>
+            <div class="col-md-3 offer-show__col">
+            <img src="{{asset('storage/posts/'.$managepost->product_image)}}"style="width:275px; height:186px;">
+            </div>
             <div class="col-md-9 offer-show__col" style="padding-left: 40px;float:right;">
               <div class="row offer-form-table">
                 <div class="col-md-6">
                   <div class="row">
-                    <div class="col-md-6"><strong> চূড়ান্ত বিতরণ তারিখ:</strong></div>
-                    <div class="col-md-6">18/03/2021</div>
-                  </div>
-                  <div class="row">
                     <div class="col-md-6"><strong>মোট ওজন:</strong></div>
-                    <div class="col-md-6">100.0 Metric Tons </div>
+                    <div class="col-md-6">{{$managepost['total_weight']}} {{$managepost['weight_unit']}} </div>
                   </div>
                   <div class="row">
                     <div class="col-md-6"><strong>ইউনিট প্রতি মূল্য (৳):</strong></div>
                     <div class="col-md-6">৳370,00</div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6"><strong> চূড়ান্ত বিতরণ তারিখ:</strong></div>
+                    <div class="col-md-6">18/03/2021</div>
                   </div>
                   <div class="row">
                     <div class="col-md-6"><strong class="text-checkout--strong">অফার শেষ হওয়ার তারিখ:</strong></div>

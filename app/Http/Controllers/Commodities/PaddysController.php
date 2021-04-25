@@ -1,31 +1,29 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Commodities;
 
-use App\Models\FrontTest;
+use App\Models\ManagePost;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class FrontTestController extends Controller
+class PaddysController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return view("frontend.home.index");
+    public function index()
+    {
+        $allpaddy = ManagePost::where('product_name','ধান')->paginate(3);
+        return view("frontend.products.grain.paddy.filter",compact('allpaddy'));
     }
-    public function team(){
-        return view("frontend.includes.team");
-    }
-    public function faq(){
-        return view("frontend.includes.faq");
-    }
-    public function findproduct(){
-        return view("frontend.products.find-products");
-    }
-    public function paddy_product_detailspage(){
-        return view("frontend.products.grain.paddy.paddy_product_detailspage");
+
+    public function paddy_detailspage($id)
+    {
+        $paddy_detailspage= ManagePost::find($id);
+		return view('frontend.products.grain.paddy.paddy_detailspage',['managepost'=>$paddy_detailspage]);
+        
     }
     /**
      * Show the form for creating a new resource.
@@ -51,10 +49,10 @@ class FrontTestController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(FrontTest $frontTest)
+    public function show($id)
     {
         //
     }
@@ -62,10 +60,10 @@ class FrontTestController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(FrontTest $frontTest)
+    public function edit($id)
     {
         //
     }
@@ -74,10 +72,10 @@ class FrontTestController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, FrontTest $frontTest)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -85,10 +83,10 @@ class FrontTestController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\FrontTest  $frontTest
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FrontTest $frontTest)
+    public function destroy($id)
     {
         //
     }

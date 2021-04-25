@@ -20,13 +20,13 @@
                         
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="{{ route('filter-paddy') }}" title="ধান">
+                                <a href="{{ route('paddy.index') }}" title="ধান">
                                     <img src="{{ asset('frontend-asset/assets_2/images/categories/paddy-1.png') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="{{ route('filter-paddy') }}">ধান</a>
+                                    <a href="{{ route('paddy.index') }}">ধান</a>
                                 </h3>
                             </div>
                         </div>

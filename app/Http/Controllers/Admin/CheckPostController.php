@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\User;
+namespace App\Http\Controllers\Admin;
+
+use App\Models\ManagePost;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class UsersController extends Controller
+class CheckPostController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $allusers = User::orderBy('id','ASC')->get();
-        return view('backend.manage_users.index',compact('allusers'));
-    }
-    public function seller()
-    {
-        $allsellers = User::where('role','seller')->get();
-        return view('backend.manage_users.seller',compact('allsellers'));
+        // $allposts = ManagePost::where('product_name','চাউল')->get();
+        // return view('backend.checkpost.index',compact('allposts'));
+        // $allposts = $this->manage_post->getAll();
+        $allposts = ManagePost::orderBy('id','ASC')->get();
+        return view('backend.checkpost.index',compact('allposts'));
     }
 
     /**
@@ -29,7 +30,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        return view('backend.manage_users.add');
+        return view('backend.checkpost.create');
     }
 
     /**

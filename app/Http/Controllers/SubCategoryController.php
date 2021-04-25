@@ -39,6 +39,11 @@ class SubCategoryController extends Controller
         // return view('settings.categories.index');
     }
 
+    public function subcategory()
+    {
+        return view('backend.product.sub-category');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

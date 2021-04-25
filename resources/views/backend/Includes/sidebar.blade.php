@@ -2,7 +2,10 @@
    $prefix = Request::route()->getPrefix();
    $route = Route::current()->getName();
  @endphp
-
+ <!-- <a href="index3.html" class="brand-link">
+      <img src="backend-asset/logo.jpg" alt="krishisheva Logo" style="width:40px; height:40px; border-radius:50%;">
+      <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a> -->
 <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 ">
@@ -39,30 +42,51 @@
           <!-- Admin Access -->
         @if(auth()->user()->role == 'admin')
         <li class="nav-item">
-            <a href="#" class="nav-link">
-            <!-- <i class="nav-icon fas fa-users-cog"></i> -->
-            <i class="nav-icon fas fa-barcode"></i>
-            <p>
-              Items
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{route('names')}}" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>All Products</p>
+                <a href="{{route('names')}}" class="nav-link {{($route=='names') ?'active':''}}">
+                  <i class="fas fa-th nav-icon"></i>
+                  <p>Product Name</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('product.create')}}" class="nav-link">
-                  <i class="fas fa-users nav-icon"></i>
-                  <p>Create Item</p>
+                <a href="{{route('category')}}" class="nav-link {{($route=='category') ?'active':''}}">
+                  <i class="fas fa-th nav-icon"></i>
+                  <p>Category</p>
                 </a>
               </li>
-            </ul>
+              <li class="nav-item">
+                <a href="{{route('subcategory')}}"  class="nav-link {{($route=='subcategory') ?'active':''}}">
+                  <i class="fas fa-th nav-icon"></i>
+                  <p>Sub Cayegory</p>
+                </a>
+              </li>
+        
+        <li class="nav-item {{ ($prefix == "/ManageUsers") ? 'menu-open':''}}">
+          <a href="#" class="nav-link">
+          <i class="nav-icon fas fa-users-cog"></i>
+          <p>
+             User Management
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('users.index')}}" class="nav-link {{($route=='users.index') ?'active':''}}">
+                <i class="fas fa-users nav-icon"></i>
+                <p>All Users</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('seller')}}" class="nav-link {{($route=='seller') ?'active':''}}">
+                <i class="fas fa-users nav-icon"></i>
+                <p>Sellers</p>
+              </a>
+            </li>
+          </ul>
         </li>
-        <li class="nav-item">
+
+
+
+        <!-- <li class="nav-item {{($prefix == "/ManageUsers") ? 'menu-open':''}}">
           <a href="#" class="nav-link">
           <i class="nav-icon fas fa-users-cog"></i>
           <p>
@@ -72,8 +96,7 @@
           </a>
           <ul class="nav nav-treeview">
           <li class="nav-item">
-            <a href="{{route('users.index')}}" class="nav-link">
-            <i class="fas fa-users nav-icon"></i>
+            <a href="{{route('users.index')}}"  class="nav-link {{($route=='users') ?'active':''}}"><i class="fas fa-users nav-icon"></i>
               <p>
               All Users
               </p>
@@ -98,7 +121,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
         <li class="nav-item ">
           <a href="#" class="nav-link">
           <!-- <i class="nav-icon fas fa-users-cog"></i> -->
@@ -110,16 +133,16 @@
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{route('manage_posts.index')}}" class="nav-link">
+              <a href="{{route('allposts.index')}}" class="nav-link">
                 <i class="fas fa-users nav-icon"></i>
                 <p>All Post</p>
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{route('manage_posts.create')}}" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Create Post</p>
-              </a>
+              <a href="{{route('allposts.create')}}" class="nav-link">
+                  <i class="fas fa-users nav-icon"></i>
+                  <p>Create Post</p>
+                </a>
             </li>
           </ul>
         </li>
@@ -145,13 +168,22 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{route('manage_posts.index')}}" class="nav-link">
             <i class="nav-icon  fab fa-product-hunt"></i>
             <p>
-                My Product
+                My Posts
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('manage_posts.create')}}" class="nav-link">
+            <i class="nav-icon fa fa-plus"></i>
+            <p>
+                Add Post
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item">
             <a href="" class="nav-link">
             <i class="nav-icon fas fa-dollar-sign"></i>
@@ -224,7 +256,7 @@
         @endif
         <!-- buyer Access -->
 
-         <!-- buyer Access -->
+         <!-- transport Access -->
          @if(auth()->user()->role == 'transport')
           <li class="nav-item">
             <a href="" class="nav-link">
@@ -276,7 +308,7 @@
             </a>
           </li>
         @endif
-        <!-- buyer Access -->
+        <!-- transport Access -->
 
 
 

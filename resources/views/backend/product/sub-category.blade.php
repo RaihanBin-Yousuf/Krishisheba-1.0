@@ -1,18 +1,18 @@
 
 @extends('backend.layouts.master')
-@section('title','Product Name')
+@section('title','Category')
 @section('content')
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark"></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Names Table</li>
+              <li class="breadcrumb-item active">Sub-Category Table</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -22,31 +22,25 @@
 
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title"> Items Name Table</h3>
-              <button class="btn btn-info float-right" data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"></i> Add New</button>
+                <h3>Sub Category Table
+                <button class="btn btn-info float-right" style="float: right;"  data-toggle="modal" data-target="#modal-default"><i class="fa fa-plus"> </i> Add SubCategory</button>
+                
+                </h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Product Id </th>
-                  <th>Product Name </th>
+                  <th>Id </th>
+                  <th>Category Id </th>
+                  <th>Sub Category Name </th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
               
-                <tr>
-                @foreach($names as $productname)
-                  <td>{{ $productname->id }}</td>
-                  <td>{{ $productname->name }}</td>
-                  <td>
-                  	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-                  	  <a href={{"deleteproduct/".$productname->id }} class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
-                  </td>
-                </tr>
-                @endforeach
+               
                 </tbody>
               </table>
             </div>
@@ -58,19 +52,27 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Insert new Product</h4>
+              <h4 class="modal-title">Insert SubCategory</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
 
             <div class="modal-body">
-               <form action="{{ route('product.store') }}" method="Post">
-               	@csrf
+               <form action="" method="Post">
                  <div class="form-group">
-                   <label for="exampleInputEmail1">Product Name </label>
+                   <label for="exampleInputEmail1">Category Id </label>
+                   <input type="number" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
+                    @error('category_id')
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                    @enderror
+                 </div>
+                 <div class="form-group">
+                   <label for="exampleInputEmail1">SubCategory Name </label>
                    <input type="text" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
-                    @error('product_name')
+                    @error('subcategory_name')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
