@@ -70,6 +70,7 @@ Route::resource('manage_posts', ManagePostController::class);
 //Seller route
 
 Route::resource('allposts', CheckPostController::class);
-
+Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updateprofile')->middleware('auth');
+Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
 // project task list
 // https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit

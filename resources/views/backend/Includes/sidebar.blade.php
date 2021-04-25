@@ -84,45 +84,7 @@
           </ul>
         </li>
 
-
-
-        <!-- <li class="nav-item {{($prefix == "/ManageUsers") ? 'menu-open':''}}">
-          <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-users-cog"></i>
-          <p>
-            Manage Users
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-          <li class="nav-item">
-            <a href="{{route('users.index')}}"  class="nav-link {{($route=='users') ?'active':''}}"><i class="fas fa-users nav-icon"></i>
-              <p>
-              All Users
-              </p>
-            </a>
-          </li>
-            <li class="nav-item">
-              <a href="{{route('seller')}}" class="nav-link ">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Sellers</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Buyers</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="" class="nav-link">
-                <i class="fas fa-users nav-icon"></i>
-                <p>Transport Owners</p>
-              </a>
-            </li>
-          </ul>
-        </li> -->
-        <li class="nav-item ">
+      <li class="nav-item ">
           <a href="#" class="nav-link">
           <!-- <i class="nav-icon fas fa-users-cog"></i> -->
           <i class="nav-icon fas fa-tasks"></i>
@@ -172,6 +134,14 @@
             <i class="nav-icon  fab fa-product-hunt"></i>
             <p>
                 My Posts
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{route('updatepassword')}}" class="nav-link">
+            <i class="nav-icon  fab fa-product-hunt"></i>
+            <p>
+                Change Password
               </p>
             </a>
           </li>

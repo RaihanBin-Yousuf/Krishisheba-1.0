@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
+
 class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
     /**
@@ -20,7 +21,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-
             'email' => [
                 'required',
                 'string',
@@ -36,8 +36,15 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
+                'mobile' => $input['mobile'],
                 'email' => $input['email'],
             ])->save();
+
+            $notification=array(
+                'messege'=>'Profile Successfully Updated',
+                'alert-type'=>'success'
+                 );
+            return Redirect()->back()->with($notification);
         }
     }
 
@@ -52,6 +59,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
+            'mobile' => $input['mobile'],
             'email' => $input['email'],
             'email_verified_at' => null,
         ])->save();
