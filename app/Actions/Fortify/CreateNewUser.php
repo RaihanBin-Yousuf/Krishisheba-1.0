@@ -34,14 +34,26 @@ class CreateNewUser implements CreatesNewUsers
             'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
             'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
         ])->validate();
-
+            // dd($input);
+            if(empty($input['profile_img']))
+            {
+                $input['profile_img']='';
+            }
+            else
+            {
+                $imageName =time().'.'.$input['profile_img']->extension();
+                $input['profile_img']->storeAs('public/profile', $imageName);
+                $input['profile_img'] =$imageName;
+            }
         return User::create([
             'name' => $input['name'],
             'role' => $input['role'],
             'nid' => $input['nid'],
             'mobile' => $input['mobile'],
             // 'email' => $input['email'],
-            'password' => Hash::make($input['password']),
+            'password' => Hash::make($input['password']),           
+            'profile_img' => $input['profile_img'],
+            
         ]);
     }
 }

@@ -26,6 +26,12 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('প্রোফাইল ছবি:') }}</label>
+                            <div class="col-md-6">    
+                                <input name="profile_picture" type="file">
+                            </div>
+                        </div>
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('নাম') }}</label>
 
                             <div class="col-md-6">
@@ -66,6 +72,7 @@
                                 @enderror
                             </div>
                         </div>
+
 
 
                         <div class="mb-0 form-group row">

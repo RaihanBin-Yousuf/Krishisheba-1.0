@@ -17474,7 +17474,9 @@ var Create = /*#__PURE__*/function (_Component) {
     value: function render() {
       console.log('post Data');
       console.log(this.state.post);
-      var productDropdown = [];
+      var productDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+        children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
+      })];
 
       if (this.state.productslist) {
         this.state.productslist.map(function (product) {
@@ -17543,15 +17545,10 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     htmlFor: "commidities",
                     children: "\u09AA\u09A3\u09CD\u09AF"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     className: "form-control select2bs4",
                     onChange: this.categorySelect,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      selected: true,
-                      value: "",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), productDropdown]
+                    children: productDropdown
                   })]
                 })
               })
@@ -17587,8 +17584,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     name: "weight_unit",
                     onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      selected: true,
                       value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
@@ -17598,8 +17593,8 @@ var Create = /*#__PURE__*/function (_Component) {
                       value: "\u099F\u09A8",
                       children: "\u099F\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u099F\u09A8",
-                      children: "\u09AE\u09A3"
+                      value: "\u0995\u09C7\u099C\u09BF",
+                      children: "\u0995\u09C7\u099C\u09BF"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "\u0995\u09C7\u099C\u09BF",
                       children: "\u0995\u09C7\u099C\u09BF"
@@ -17636,11 +17631,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     name: "advance_payment",
                     onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      selected: true,
-                      value: "",
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "0",
                       children: "0 (%)"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
@@ -17708,8 +17698,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     name: "production_type",
                     onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      selected: true,
                       value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
@@ -17751,8 +17739,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     name: "packaging_method",
                     onChange: this.handleInputChange,
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      selected: true,
                       value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
@@ -17890,15 +17876,12 @@ var Create = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h5", {
                     className: "control-h7",
                     children: "\u09AC\u09BF\u09AD\u09BE\u0997*"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     name: "divisions",
                     id: "divisions",
                     className: "form-control input-lg",
                     onChange: this.divisionsList,
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
-                      children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
-                    }), divisionListDropdown]
+                    children: divisionListDropdown
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -17933,7 +17916,7 @@ var Create = /*#__PURE__*/function (_Component) {
                     name: "thana",
                     id: "polic_sta",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      disabled: true,
+                      value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     })
                   })]

@@ -12,7 +12,7 @@
                 <div class="card-header">{{ __('Register') }}
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" enctype='multipart/form-data'>
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -47,7 +47,7 @@
                         
                             <div class="col-md-6 form-group">
                                 <label for="mobile">মোবাইল*</label>
-                                <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile">
+                                <input id="phone" type="tel" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') }}" required autocomplete="mobile" autofocus>
                                     @error('mobile')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -92,6 +92,12 @@
                             <div class="col-md-6 form-group">
                                 <label for="password-confirm">পাসওয়ার্ড নিশ্চিতকরণ *</label>
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="nid">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 form-group">
+                                    <label for="profile_image">প্রোফাইল ছবি</label>
+                                    <input name="profile_img" type="file">
                             </div>
                         </div>
                         

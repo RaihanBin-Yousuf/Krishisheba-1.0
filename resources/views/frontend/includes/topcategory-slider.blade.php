@@ -71,13 +71,13 @@
                         
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="Fruits">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/category4.png') }}" class="img-fluid" alt="">
+                                <a href="shop-left-sidebar.html" title=" শীতকালীন সবজি">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/wintervegitables-1.jpg') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> Fruits</a>
+                                    <a href="shop-left-sidebar.html">  শীতকালীন সবজি</a>
                                 </h3>
                             </div>
                         </div>
@@ -88,13 +88,13 @@
                         
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="Salads">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/category5.png') }}" class="img-fluid" alt="">
+                                <a href="shop-left-sidebar.html" title="গ্রীষ্মকালীন সবজি">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/summerseason-1.jpg') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> Salads</a>
+                                    <a href="shop-left-sidebar.html">গ্রীষ্মকালীন সবজি</a>
                                 </h3>
                             </div>
                         </div>
@@ -106,13 +106,13 @@
                         
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="Bread">
-                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/category6.png') }}" class="img-fluid" alt="">
+                                <a href="shop-left-sidebar.html" title="বারোমাসি সবজি">
+                                    <img src="{{ asset('frontend-asset/assets_2/images/categories/alltimevegitable.jpg') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> Bread</a>
+                                    <a href="shop-left-sidebar.html"> বারোমাসি সবজি</a>
                                 </h3>
                             </div>
                         </div>
