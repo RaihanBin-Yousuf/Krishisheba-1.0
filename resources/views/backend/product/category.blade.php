@@ -39,11 +39,12 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categorydata as $categories)
+
+                @foreach($categories as $category)
                 <tr>
-                  <td>{{ $categories->id }}</td>
-                  <td>{{ $categories->name }}</td>
-                  <td>{{ $categories->product_id }}</td>
+                  <td>{{ $category->id }}</td>
+                  <td>{{ $category->name }}</td>
+                  <td>{{ $category->product_id }}</td>
                   <td>
                   	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
                   	  <a href="" class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
@@ -66,26 +67,21 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-
-            <div class="modal-body">
-               <form action="" method="Post">
+           <div class="modal-body">
+               <form action="{{ route('categories.store') }}" method="Post">
+               @csrf
                  <div class="form-group">
-                   <label for="exampleInputEmail1">Product Id </label>
-                   <input type="number" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
-                    @error('product_name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                   <label for="ptroductId">Product Name </label>
+                   <select class="form-control" name="product_id" id="">
+                   @foreach($product as $products)  
+                    <option value="{{$products->id}}">{{$products->name}}</option>     
+                   @endforeach
+                  </select>
                  </div>
+
                  <div class="form-group">
                    <label for="exampleInputEmail1">Category Name </label>
-                   <input type="text" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
-                    @error('category_name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                   <input type="text" class="form-control" name="name" required="">
                  </div>
                  <button type="submit" class="btn btn-info btn-block">Submit</button>
                </form>

@@ -48,13 +48,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('category')}}" class="nav-link {{($route=='category') ?'active':''}}">
+                <a href="{{route('categories.index')}}" class="nav-link {{($route=='categories.index') ?'active':''}}">
                   <i class="fas fa-th nav-icon"></i>
                   <p>Category</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{route('subcategory')}}"  class="nav-link {{($route=='subcategory') ?'active':''}}">
+                <a href="{{route('subcategories.index')}}"  class="nav-link {{($route=='subcategory') ?'active':''}}">
                   <i class="fas fa-th nav-icon"></i>
                   <p>Sub Cayegory</p>
                 </a>

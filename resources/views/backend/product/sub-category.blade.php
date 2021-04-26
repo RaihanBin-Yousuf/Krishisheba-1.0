@@ -33,14 +33,24 @@
                 <thead>
                 <tr>
                   <th>Id </th>
-                  <th>Category Id </th>
-                  <th>Sub Category Name </th>
+                  <th>Name </th>
+                  <th>Category id </th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-              
-               
+
+                @foreach($subcategories as $sub_category)
+                <tr>
+                  <td>{{ $sub_category->id }}</td>
+                  <td>{{ $sub_category->name }}</td>
+                  <td>{{ $sub_category->category_id }}</td>
+                  <td>
+                  	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
+                  	  <a href="" class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
+                  </td>
+                </tr>
+                @endforeach
                 </tbody>
               </table>
             </div>
@@ -59,24 +69,20 @@
             </div>
 
             <div class="modal-body">
-               <form action="" method="Post">
-                 <div class="form-group">
-                   <label for="exampleInputEmail1">Category Id </label>
-                   <input type="number" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
-                    @error('category_id')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+               <form action="{{ route('subcategories.store') }}" method="Post">
+               @csrf
+               <div class="form-group">
+                   <label for="Category Name">Category Name </label>
+                   <select class="form-control" name="category_id">
+                   @foreach($category as $categories)  
+                    <option value="{{$categories->id}}">{{$categories->name}}</option>     
+                   @endforeach
+                  </select>
                  </div>
+
                  <div class="form-group">
                    <label for="exampleInputEmail1">SubCategory Name </label>
-                   <input type="text" class="form-control @error('product_name') is-invalid @enderror"  name="name" required="">
-                    @error('subcategory_name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                    @enderror
+                   <input type="text" class="form-control" name="name" required="">
                  </div>
                  <button type="submit" class="btn btn-info btn-block">Submit</button>
                </form>

@@ -76,9 +76,20 @@
       </li>
 
       <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+        
+          <!-- if(Auth::user()->profile_img)
+          {
+        <img id="navbarDropdown"  href="#" src="{{asset('storage/profile/'.Auth::user()->profile_img)}}" style="width:50px; height:50px; border-radius:50%;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+      } -->
+      @if(Auth::user()->profile_img)
+      <img id="navbarDropdown"  href="#" src="{{asset('storage/profile/'.Auth::user()->profile_img)}}" style="width:50px; height:50px; border-radius:50%;" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+      
+     @else
+      <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->name }}
           </a>
+     
+     @endif
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="{{ route('updateprofile') }}">{{ __('Profile') }}</a>

@@ -3,14 +3,16 @@
 namespace App\Http\Controllers;
 use App\Traits\CommonTrait;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     use CommonTrait;
-    public function __construct(Category $category)
+    public function __construct(Category $category,Product $product)
     {
      $this->category = $category;
+     $this->product = $product;
     }
     /**
      * Display a listing of the resource.
@@ -19,8 +21,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-       
-        // if (request()->ajax()) {
+        $categories = Category::orderBy('id','ASC')->get();
+        $product=$this->product->getAll();
+        
+
+        if (request()->ajax()) {
             $input=request()->product_id;
             
             $categories = $this->category->getAll($input);
@@ -34,22 +39,11 @@ class CategoryController extends Controller
             //     'last_page' 	=> $categories->lastPage(),
             //     'current_page' 	=> $categories->currentPage(),
             // ]]);
-        // }
+        }
+        return view('backend.product.category',compact('categories','product'));
         // return view('backend.product.new');
     }
-
-    public function category()
-    {
-        $categorydata = Category::orderBy('id','ASC')->get();
-        return view('backend.product.category',compact('categorydata'));
-        // $categorydata = DB::table('categories')
-        // ->join ('products','products.id', '=', 'categories.product_id')
-        // ->select('categories.name', 'products.name')
-        // ->get();
-        // return view('backend.product.category',compact('categorydata'));
-
-    }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -68,7 +62,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $category = $this->category->saveCategory($input);
+        return $this->index();
     }
 
     /**

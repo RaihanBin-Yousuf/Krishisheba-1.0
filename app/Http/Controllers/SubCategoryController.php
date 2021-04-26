@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Sub_Category;
 use Illuminate\Http\Request;
 
 class SubCategoryController extends Controller
 {
 
-    public function __construct(Sub_Category $sub_category)
+    public function __construct(Sub_Category $sub_category,Category $category)
     {
+     $this->category = $category;
      $this->sub_category = $sub_category;
     }
     /**
@@ -19,8 +21,10 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
+        $subcategories = Sub_Category::orderBy('id','ASC')->get();
+        $category=$this->category->getAll();
        
-        // if (request()->ajax()) {
+        if (request()->ajax()) {
             // dd(request());
             $input=request()->category_id;
             $sub_categories = $this->sub_category->getAll($input);
@@ -35,13 +39,9 @@ class SubCategoryController extends Controller
             //     'last_page' 	=> $sub_categories->lastPage(),
             //     'current_page' 	=> $sub_categories->currentPage(),
             // ]]);
-        // }
+        }
+        return view('backend.product.sub-category',compact('subcategories','category'));
         // return view('settings.categories.index');
-    }
-
-    public function subcategory()
-    {
-        return view('backend.product.sub-category');
     }
 
     /**
@@ -62,7 +62,9 @@ class SubCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        $subcategory = $this->subcategory->saveSubCategory($input);
+        return $this->index();
     }
 
     /**

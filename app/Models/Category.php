@@ -12,15 +12,24 @@ class Category extends Model
     ];
     public function getAll($input)
     {
-       
-       
-            $result = $this->latest()->where('product_id', $input)->get();
+        $result = $this->latest()->where('product_id', $input)->get();
         return $result;
+    }
+
+    public function getAllCategories($input)
+    {
+        $result = $this->latest()->get();
     }
 
     public function getbyCategoryId($input)
     {
         $category = $this->where('id', $input)->get()->first();
+        return $category;
+    }
+
+    public function saveCategory($input)
+    {
+        $category = $this->create($input);
         return $category;
     }
 }

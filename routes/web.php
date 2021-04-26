@@ -49,10 +49,10 @@ Route::get('/names',[ProductController::class,'names'])->name('names');
 Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->name('deleteProducById');
 
 Route::resource('categories', CategoryController::class);
-Route::get('/category',[CategoryController::class,'category'])->name('category');
+// Route::get('/category',[CategoryController::class,'category'])->name('category');
 
 Route::resource('subcategories', SubCategoryController::class);
-Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
+// Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
 
 
 

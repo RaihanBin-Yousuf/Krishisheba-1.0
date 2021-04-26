@@ -24,5 +24,11 @@ class Sub_Category extends Model
         $sub_category = $this->where('id', $input)->get()->first();
         return $sub_category;
     }
+
+    public function saveSubCategory($input)
+    {
+        $subcategory = $this->create($input);
+        return $subcategory;
+    }
 }
 
