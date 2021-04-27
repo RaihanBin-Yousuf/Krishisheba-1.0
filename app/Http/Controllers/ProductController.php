@@ -27,23 +27,8 @@ class ProductController extends Controller
     }
     public function index()
     {
-       
-        // if (request()->ajax()) {
-            $products = $this->product->getAll();
-            // if(request()->dropdown) {
-                // dd($products);
-
-                return $this->sendResponse(['data'=>$products]);
-            // }
-            // return $this->sendResponse(['data'=>$products, 'pages' => [
-            //     'total'=> $products->total(),
-            //     'next_page_url' => $products->nextPageUrl(),
-            //     'prev_page_url' => $products->previousPageUrl(),
-            //     'last_page' 	=> $products->lastPage(),
-            //     'current_page' 	=> $products->currentPage(),
-            // ]]);
-        // }
-        // return view('backend.product.index');
+        $products = $this->product->getAll();
+        return $this->sendResponse(['data'=>$products]);
     }
 
 

@@ -16,9 +16,10 @@ class Category extends Model
         return $result;
     }
 
-    public function getAllCategories($input)
+    public function getAllCategories()
     {
         $result = $this->latest()->get();
+        return $result;
     }
 
     public function getbyCategoryId($input)

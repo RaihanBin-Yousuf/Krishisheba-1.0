@@ -10,11 +10,10 @@ class Product extends Model
     protected $fillable = [
         'name',
     ];
+
     public function getAll()
     {
-
-            $result = $this->latest()->get();
-        //    dd($result);
+        $result = $this->latest()->get();
         return $result;
     }
 

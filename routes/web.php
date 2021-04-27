@@ -49,6 +49,7 @@ Route::get('/names',[ProductController::class,'names'])->name('names');
 Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->name('deleteProducById');
 
 Route::resource('categories', CategoryController::class);
+// Route::get('/categories/dropdown', )
 // Route::get('/category',[CategoryController::class,'category'])->name('category');
 
 Route::resource('subcategories', SubCategoryController::class);
