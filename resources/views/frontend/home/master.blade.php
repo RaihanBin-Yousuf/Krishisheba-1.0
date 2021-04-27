@@ -22,7 +22,7 @@
   <link href="{{ asset('frontend-asset/home_page/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.css') }}" rel="stylesheet">
 
-
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend-asset/home_page/css/style.css') }}" rel="stylesheet">
 
@@ -82,6 +82,7 @@
 <script src="{{ asset('frontend-asset/home_page/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.min.js') }}"></script>
 
+<script src="{{ mix('js/app.js') }}" defer></script>
 <!-- Template Main JS File -->
 <script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script>
 <!-- JS
