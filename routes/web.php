@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Commodities\PaddysController;
+use App\Http\Controllers\Commodities\RiceController;
 use App\Http\Controllers\ManagePostController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,9 @@ Route::get('/findproduct',[FrontTestController::class,'findproduct'])->name('fin
 // Home Page Commodities Rooute
 Route::resource('paddy', PaddysController::class);
 Route::get('/paddy_detailspage/{id}',[PaddysController::class,'paddy_detailspage']);
+
+Route::resource('rice', RiceController::class);
+Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
 
 

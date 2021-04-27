@@ -23,32 +23,44 @@
 								  <img class="form-filter-image" src="{{ asset('frontend-asset/market/icons/riceicon1.png') }}" alt="2591fa81cf29ff7bd588c662fd620b1e" />
 								</div>
 								<div class="col-sm-6 col-md-9 col-lg-10">
-								  <h4>ধান</h4>
+								  <h4>চাউল</h4>
 								</div>
 							</div>
 							<div class="mb-15 form-group">
 								<label class="filter__label" for="name">প্রকারভেদ</label>
 								<select name="search[2]" id="search_2" class="form-control">
 								<option disabled selected value="">নির্বাচন করুন</option>  
-								<option value="5">আউশ ধান</option>
-								<option value="4">আমন ধান</option>
-								<option value="25">বোরো ধান</option></select>
+								<option value="আতপ">আতপ</option>
+								<option value="সিদ্ধ">সিদ্ধ</option>
+								</select>
 							</div>
 					
 							<div class="mb-15 form-group">
-								<label class="filter__label" for="name">ধানের জাত</label>
+								<label class="filter__label" for="name">জাত</label>
 								<select name="search[3]" id="search_3" class="form-control">
 								<option disabled selected value="">নির্বাচন করুন</option>  
-								<option value="111">বিআর১ (চান্দিনা)</option>
-								<option value="136">বিআর২ (মালা)</option>
-								<option value="135">বিআর৩ (বিপ্লব)</option>
-								<option value="134">বিআর৪ (ব্রিশাইল)</option>
-								<option value="131">বিআর৭(ব্রি বালাম)</option>
-								<option value="130">বিআর৮ (আশা)</option>
-								<option value="129">বিআর৯ (সুফলা)</option>
-								<option value="128">বিআর১৯ (মঙ্গল)</option>
-								<option value="54">বিআর২৩ (দিশারী)</option>
-								<option value="979">বিআর২৫ (নয়াপাজাম)</option>
+								<option disabled selected value="">সিদ্ধ</option>
+								<option value="মিনিকেট">মিনিকেট</option>
+								<option value="স্বর্ণা-৫">স্বর্ণা-৫</option>
+								<option value="গুটি স্বর্ণা">গুটি স্বর্ণা</option>
+								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট</option>
+								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট</option>
+								<option value="মোটা সিদ্ধ">মোটা সিদ্ধ</option>
+								<option value="কাঠারী">কাঠারী</option>
+								<option value="বাসমতি">বাসমতি</option>
+
+								<option disabled selected value="">আতপ</option> 
+
+								<option value="মিনিকেট">মিনিকেট</option>
+								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট</option>
+								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট</option>
+								<option value="২৮ নং আতপ">২৮ নং আতপ</option>
+								<option value="বেতী">বেতী</option>
+								<option value="ইরি">ইরি</option>
+								<option value="কাঠারী">কাঠারী</option>
+								<option value="চিনিগুড়া">চিনিগুড়া</option>
+								<option value="পাইজাম">পাইজাম</option>
+							
 								</select>
 							</div>
 							<div class="mb-15 form-group">
@@ -158,32 +170,32 @@
 					<!--=======  Grid list view  =======-->
 					
 					<div class="shop-product-wrap grid row no-gutters mb-35">
-						@foreach($allpaddy as $paddy)
+						@foreach($allrice as $rice)
 						    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
 								<!--=======  Grid view product  =======-->
 								
 								<div class="gf-product shop-grid-view-product">
 									<div class="image">
-										<a href="paddy_detailspage/{{$paddy['id']}}">
+										<a href="rice_detailspage/{{$rice['id']}}">
 											<span class="onsale">Sale!</span>
-											<img src="{{asset('storage/posts/'.$paddy->product_image)}}"style="width:200px; height:186px;">
+											<img src="{{asset('storage/posts/'.$rice->product_image)}}"style="width:200px; height:186px;">
 										</a>
 										<div class="product-hover-icons">
 											<a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
 											<a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
-											<a href="paddy_detailspage/{{$paddy['id']}}" data-tooltip="Quick view"> <span class="icon_search"></span> </a>
+											<a href="rice_detailspage/{{$rice['id']}}" data-tooltip="Quick view"> <span class="icon_search"></span> </a>
 										</div>
 									</div>
 									<div class="product-content">
 										<div class="product-categories">
-											<a>পণ্য: {{ $paddy->product_name }}</a>
+											<a>পণ্য: {{ $rice->product_name }}</a>
 										</div>
 										<div class="product-categories">
-											<a>পণ্যের প্রকার: {{ $paddy->category }}</a>
+											<a>পণ্যের প্রকার: {{ $rice->category }}</a>
 										</div>
-										<h3 class="product-title"><a href="">মোট ওজন: {{ $paddy->total_weight }} {{ $paddy->weight_unit }}</a></h3>
+										<h3 class="product-title"><a href="">মোট ওজন: {{ $rice->total_weight }} {{ $rice->weight_unit }}</a></h3>
 										<div class="price-box">
-											<span class="discounted-price">৳ {{ $paddy->price_per_unit }} টাকা {{ $paddy->weight_unit }}</span>
+											<span class="discounted-price">৳ {{ $rice->price_per_unit }} টাকা {{ $rice->weight_unit }}</span>
 										</div>
 									</div>	
 								</div>
@@ -195,7 +207,7 @@
 									<div class="image">
 										<a href="">
 											<span class="onsale">Sale!</span>
-											<img src="{{asset('storage/posts/'.$paddy->product_image)}}"style="width:270px; height:250px;">
+											<img src="{{asset('storage/posts/'.$rice->product_image)}}"style="width:270px; height:250px;">
 										</a>
 										<div class="product-hover-icons">
 										</div>
@@ -232,7 +244,7 @@
 									
 									<div class="pagination-content text-center">
 										<ul>
-											<li><a class="active"></a>{!! $allpaddy->links() !!}</li>
+											<li><a class="active"></a>{!! $allrice->links() !!}</li>
 										</ul>
 									</div>
 									

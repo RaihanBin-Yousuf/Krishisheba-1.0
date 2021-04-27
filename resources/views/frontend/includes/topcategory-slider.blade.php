@@ -37,13 +37,13 @@
                         <!-- ধান চাউল গম ভুট্টা শীতকালীন সবজি গৃষ্ম কালীন সবজি বারোমাসি সবজি শীতকালীন ফল গৃষ্ম কালীন ফল বারোমাসি ফল -->
                         <div class="single-category">
                             <div class="category-image">
-                                <a href="shop-left-sidebar.html" title="চাউল">
+                                <a href="{{ route('rice.index') }}" title="চাউল">
                                     <img src="{{ asset('frontend-asset/assets_2/images/categories/rice.png') }}" class="img-fluid" alt="">
                                 </a>
                             </div>
                             <div class="category-title">
                                 <h3>
-                                    <a href="shop-left-sidebar.html"> চাউল</a>
+                                    <a href="{{ route('rice.index') }}"> চাউল</a>
                                 </h3>
                             </div>
                         </div>
