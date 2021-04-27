@@ -23,25 +23,12 @@ class CategoryController extends Controller
     {
         $categories = Category::orderBy('id','ASC')->get();
         $product=$this->product->getAll();
-        
-
         if (request()->ajax()) {
             $input=request()->product_id;
-            
             $categories = $this->category->getAll($input);
-            // if(request()->dropdown) {
-                return $this->sendResponse(['data'=>$categories]);
-            // }
-            // return $this->sendResponse(['data'=>$categories, 'pages' => [
-            //     'total'=> $categories->total(),
-            //     'next_page_url' => $categories->nextPageUrl(),
-            //     'prev_page_url' => $categories->previousPageUrl(),
-            //     'last_page' 	=> $categories->lastPage(),
-            //     'current_page' 	=> $categories->currentPage(),
-            // ]]);
+            return $this->sendResponse(['data'=>$categories]);
         }
         return view('backend.product.category',compact('categories','product'));
-        // return view('backend.product.new');
     }
     
     /**

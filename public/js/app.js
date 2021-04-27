@@ -18034,13 +18034,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const baseUrl = "http://127.0.0.1:8000";
-var CategoryService = {}; // CategoryServices.list = async (params) => {
-//   const res = await axios.get("/categories", {params: params})
-//   .then(response=> {return response.data.data.data })
-//   .catch(error=>{ return error; })
-//   return res;
-// }
+var CategoryService = {};
 
 CategoryService.dropdown = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
@@ -18075,59 +18069,7 @@ CategoryService.dropdown = /*#__PURE__*/function () {
   return function (_x) {
     return _ref.apply(this, arguments);
   };
-}(); // CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.save = async (data)=> {
-//   console.log('data faiaya');
-//   console.log(data);
-//   if(data.get('id')){
-//       console.log('not here...');
-//       let urlUpdate="/categories/"+data.get('id')+"/update";
-//       const res=await axios.post(urlUpdate, data).then(response=>{
-//           $.notify({ message:'Contact Updated Successfully'},{type:'success'});
-//           return response.data;
-//       }).catch(error=>{return [];});
-//       return res;
-//   }
-//   else{
-//       let urlSave="/categories/add";
-//       console.log('here..');
-//       console.log(data);
-//       const res = await axios.post(urlSave, data).then(response=>{
-//           $.notify({message:'Category Insert Successfully'},{
-//               type: 'success'
-//           });
-//           return response.data;
-//       }).catch(error=>{return []; });
-//       return res;
-//   }
-// }
-// CategoryServices.delete = async (data) => {
-//   const urlDelete = "/categories/"+data.id+"/delete";
-//   const res = await axios.delete(urlDelete, data)
-//   .then(response=> {
-//     $.notify({ message: 'Category Deleted' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-
+}();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CategoryService);
 
@@ -18375,13 +18317,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// const baseUrl = "http://127.0.0.1:8000";
-var SubcategoryService = {}; // CategoryServices.list = async (params) => {
-//   const res = await axios.get("/categories", {params: params})
-//   .then(response=> {return response.data.data.data })
-//   .catch(error=>{ return error; })
-//   return res;
-// }
+var SubcategoryService = {};
 
 SubcategoryService.dropdown = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
@@ -18416,59 +18352,7 @@ SubcategoryService.dropdown = /*#__PURE__*/function () {
   return function (_x) {
     return _ref.apply(this, arguments);
   };
-}(); // CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.save = async (data)=> {
-//   console.log('data faiaya');
-//   console.log(data);
-//   if(data.get('id')){
-//       console.log('not here...');
-//       let urlUpdate="/categories/"+data.get('id')+"/update";
-//       const res=await axios.post(urlUpdate, data).then(response=>{
-//           $.notify({ message:'Contact Updated Successfully'},{type:'success'});
-//           return response.data;
-//       }).catch(error=>{return [];});
-//       return res;
-//   }
-//   else{
-//       let urlSave="/categories/add";
-//       console.log('here..');
-//       console.log(data);
-//       const res = await axios.post(urlSave, data).then(response=>{
-//           $.notify({message:'Category Insert Successfully'},{
-//               type: 'success'
-//           });
-//           return response.data;
-//       }).catch(error=>{return []; });
-//       return res;
-//   }
-// }
-// CategoryServices.delete = async (data) => {
-//   const urlDelete = "/categories/"+data.id+"/delete";
-//   const res = await axios.delete(urlDelete, data)
-//   .then(response=> {
-//     $.notify({ message: 'Category Deleted' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-// CategoryServices.bulkActions = async (data) => {
-//   const urlBulk = "/categories/bulk-actions";
-//   const res = await axios.post(urlBulk, data)
-//   .then(response=> {
-//     $.notify({ message: 'Actions Completed' }, { type: 'success' });
-//     return response.data;
-//   }).catch(error=>{ return error; })
-//   return res;
-// }
-
+}();
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (SubcategoryService);
 
