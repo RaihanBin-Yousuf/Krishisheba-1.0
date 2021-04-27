@@ -51,8 +51,7 @@
 <hr class="hr_separator">
 
 <div id="product_1" class="col-md-12 d-none">
-
-	<a  href="{{ route('filter-paddy') }}">  
+	<a href="{{ route('paddy.index') }}">  
 	<div class="col-md-2">
 		<div class="circle-white--big">
 			<img class="product-img-big" src="{{ asset ('frontend-asset/market/icons/Agroimp__0017_cerealsf69c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAJWG275EEAJRI5EDQ%2F20201129%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20201129T172307Z&amp;X-Amz-Expires=900&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=f2f5d468dbbeaf38f37cd69eb85d41b4180d571e8d552647b9ae2e1e9112da5b') }}" alt="1bff36c19728eb694011bf6a5ace32a5" />

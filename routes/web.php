@@ -55,12 +55,14 @@ Route::resource('subcategories', SubCategoryController::class);
 // Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
 
 
-
+// manage Users Route
 Route::prefix('ManageUsers')->group(function () 
 {
 Route::resource('users', UsersController::class);
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
+Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('deleteUserById');
 });
+
 
 
 Route::resource('manage_posts', ManagePostController::class);

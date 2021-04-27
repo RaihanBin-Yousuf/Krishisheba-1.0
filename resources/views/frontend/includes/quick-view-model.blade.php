@@ -16,28 +16,28 @@
                                 <div class="tab-pane fade show active" id="single-slide1" role="tabpanel" aria-labelledby="single-slide-tab-1">
                                     <!--Single Product Image Start-->
                                     <div class="single-product-img img-full">
-                                        <img src="frontend-asset/assets_2/images/products/product01.jpg') }}" class="img-fluid" alt="">
+                                        <img src="frontend-asset/assets_2/images/products/product01.jpg'" class="img-fluid" alt="">
                                     </div>
                                     <!--Single Product Image End-->
                                 </div>
                                 <div class="tab-pane fade" id="single-slide2" role="tabpanel" aria-labelledby="single-slide-tab-2">
                                     <!--Single Product Image Start-->
                                     <div class="single-product-img img-full">
-                                        <img src="frontend-asset/assets_2/images/products/product02.jpg') }}" class="img-fluid" alt="">
+                                        <img src="frontend-asset/assets_2/images/products/product02.jpg" class="img-fluid" alt="">
                                     </div>
                                     <!--Single Product Image End-->
                                 </div>
                                 <div class="tab-pane fade" id="single-slide3" role="tabpanel" aria-labelledby="single-slide-tab-3">
                                     <!--Single Product Image Start-->
                                     <div class="single-product-img img-full">
-                                        <img src="frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
+                                        <img src="frontend-asset/assets_2/images/products/product03.jpg" class="img-fluid" alt="">
                                     </div>
                                     <!--Single Product Image End-->
                                 </div>
                                 <div class="tab-pane fade" id="single-slide4" role="tabpanel" aria-labelledby="single-slide-tab-4">
                                     <!--Single Product Image Start-->
                                     <div class="single-product-img img-full">
-                                        <img src="frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
+                                        <img src="frontend-asset/assets_2/images/products/product04.jpg" class="img-fluid" alt="">
                                     </div>
                                     <!--Single Product Image End-->
                                 </div>
@@ -47,19 +47,19 @@
                             <div class="product-small-image-list"> 
                                 <div class="nav small-image-slider" role="tablist">
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="single-slide-tab-1" href="#single-slide1"><img src="frontend-asset/assets_2/images/products/product01.jpg') }}"
+                                        <a data-toggle="tab" id="single-slide-tab-1" href="#single-slide1"><img src="frontend-asset/assets_2/images/products/product01.jpg"
                                             class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="single-slide-tab-2" href="#single-slide2"><img src="frontend-asset/assets_2/images/products/product02.jpg') }}"
+                                        <a data-toggle="tab" id="single-slide-tab-2" href="#single-slide2"><img src="frontend-asset/assets_2/images/products/product02.jpg"
                                             class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="single-slide-tab-3" href="#single-slide3"><img src="frontend-asset/assets_2/images/products/product03.jpg') }}"
+                                        <a data-toggle="tab" id="single-slide-tab-3" href="#single-slide3"><img src="frontend-asset/assets_2/images/products/product03.jpg"
                                             class="img-fluid" alt=""></a>
                                     </div>
                                     <div class="single-small-image img-full">
-                                        <a data-toggle="tab" id="single-slide-tab-4" href="#single-slide4"><img src="frontend-asset/assets_2/images/products/product04.jpg') }}"
+                                        <a data-toggle="tab" id="single-slide-tab-4" href="#single-slide4"><img src="frontend-asset/assets_2/images/products/product04.jpg"
                                             alt=""></a>
                                     </div>
                                 </div>

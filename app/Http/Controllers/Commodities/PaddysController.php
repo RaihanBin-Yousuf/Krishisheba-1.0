@@ -15,7 +15,7 @@ class PaddysController extends Controller
      */
     public function index()
     {
-        $allpaddy = ManagePost::where('product_name','ধান')->paginate(3);
+        $allpaddy = ManagePost::where('product_name','ধান')->paginate(6);
         return view("frontend.products.grain.paddy.filter",compact('allpaddy'));
     }
 

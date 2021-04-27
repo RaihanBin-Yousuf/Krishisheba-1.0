@@ -35,12 +35,11 @@
                   <thead>
                   <tr>  
                     <th class="text-center">Id</th>
+                    <th class="text-center">Image</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Contact</th>
                     <th class="text-center">NID NO</th>
-                    <th class="text-center">Birth Date</th>
-                    <th class="text-center">Address</th>
                     <th class="text-center">Rule</th>
                     <th class="text-center">Actions</th>
                   </tr>
@@ -49,12 +48,11 @@
                   <tr>
                       @foreach($allusers as $users)
                       <td>{{ $users->id }}</td>
+                      <td class="text-center py-0 align-middle"><img src="{{asset('storage/profile/'.$users->profile_img)}}" style="width:50px; height:50px; border-radius:50%;"></td>
                       <td>{{ $users->name }}</td>
                       <td>{{ $users->email }}</td>
                       <td>{{ $users->mobile }}</td>
                       <td>{{ $users->nid }}</td>
-                      <td>{{ $users->birth_date }}</td>
-                      <td>{{ $users->address }}</td>
                       <td>{{ $users->role }}</td>
                       <td class="text-center py-0 align-middle">
                           <div class=" btn-group-sm">
