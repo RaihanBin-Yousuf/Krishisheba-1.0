@@ -154,17 +154,204 @@
             </div>
             <div class="col-md-3">
               প্রস্তাব পাঠান
-              <input type="submit" value="Send Counter Offer" class="btn btn-solid btn--full btn--100p" data-disable-with="Send Counter Offer" />
+              <input type="submit" value="প্রস্তাব পাঠান" class="btn btn-solid btn--full btn--100p" data-disable-with="Send Counter Offer" />
             </div>
-          </div></br>
+          </div>
         <div >
-      </div>
-      <div class="col-md-3 float-right" >
-        <input type="submit" name="commit" value="Buy Product" class="btn btn-solid btn--full btn--100p" data-disable-with="Buy Product" />
+    </div>
+
+    <div class="row">
+      <div class="col-md-9"></div>
+      <div class="col-md-3 float-right" ><br>
+        <input type="submit" name="commit" value="Buy Product" class="btn btn-solid btn--full btn--100p"  />
       </div>
     </div>
-   
+  </div>  
 </section>
+
+ <!--=============================================
+	=            Related Product slider         =
+	=============================================-->
+	
+	<div class="slider related-product-slider mb-35">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  multisale  slider section title  =======-->
+                    <div class="section-title">
+                        <h3>Related Product</h3>
+                    </div>
+                    
+                    <!--=======  End of multisale slider section title  =======-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <!--=======  related product slider wrapper  =======-->
+                    
+                    <div class="related-product-slider-wrapper">
+                        <!--=======  single related slider product  =======-->
+                        
+                        <div class="gf-product related-slider-product">
+                            <div class="image">
+                                <a href="single-product.html">
+                                    <span class="onsale">Sale!</span>
+                                    <img src="{{ asset('frontend-asset/assets_2/images/products/product01.jpg') }}" class="img-fluid" alt="">
+                                </a>
+                                <div class="product-hover-icons">
+                                    <a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+                                    <a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+                                    <a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-categories">
+                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
+                                    <a href="shop-left-sidebar.html">Vegetables</a>
+                                </div>
+                                <h3 class="product-title"><a href="single-product.html">Ornare sed consequat nisl eget</a></h3>
+                                <div class="price-box">
+                                    <span class="main-price">$89.00</span>
+                                    <span class="discounted-price">$80.00</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--=======  End of single related slider product  =======-->
+                        <!--=======  single related slider product  =======-->
+                        
+                        <div class="gf-product related-slider-product">
+                            <div class="image">
+                                <a href="single-product.html">
+                                    <span class="onsale">Sale!</span>
+                                    <img src="{{ asset('frontend-asset/assets_2/images/products/product02.jpg') }}" class="img-fluid" alt="">
+
+                                </a>
+                                <div class="product-hover-icons">
+                                    <a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+                                    <a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+                                    <a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-categories">
+                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
+                                    <a href="shop-left-sidebar.html">Vegetables</a>
+                                </div>
+                                <h3 class="product-title"><a href="single-product.html">Ornare sed consequat nisl eget</a></h3>
+                                <div class="price-box">
+                                    <span class="main-price">$89.00</span>
+                                    <span class="discounted-price">$80.00</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--=======  End of single related slider product  =======-->
+                        <!--=======  single related slider product  =======-->
+                        
+                        <div class="gf-product related-slider-product">
+                            <div class="image">
+                                <a href="single-product.html">
+                                    <span class="onsale">Sale!</span>
+                                    <img src="{{ asset('frontend-asset/assets_2/images/products/product03.jpg') }}" class="img-fluid" alt="">
+                                </a>
+                                <div class="product-hover-icons">
+                                    <a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+                                    <a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+                                    <a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-categories">
+                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
+                                    <a href="shop-left-sidebar.html">Vegetables</a>
+                                </div>
+                                <h3 class="product-title"><a href="single-product.html">Ornare sed consequat nisl eget</a></h3>
+                                <div class="price-box">
+                                    <span class="main-price">$89.00</span>
+                                    <span class="discounted-price">$80.00</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--=======  End of single related slider product  =======-->
+                        <!--=======  single related slider product  =======-->
+                        
+                        <div class="gf-product related-slider-product">
+                            <div class="image">
+                                <a href="single-product.html">
+                                    <span class="onsale">Sale!</span>
+                                    <img src="{{ asset('frontend-asset/assets_2/images/products/product04.jpg') }}" class="img-fluid" alt="">
+                                </a>
+                                <div class="product-hover-icons">
+                                    <a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+                                    <a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+                                    <a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-categories">
+                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
+                                    <a href="shop-left-sidebar.html">Vegetables</a>
+                                </div>
+                                <h3 class="product-title"><a href="single-product.html">Ornare sed consequat nisl eget</a></h3>
+                                <div class="price-box">
+                                    <span class="main-price">$89.00</span>
+                                    <span class="discounted-price">$80.00</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--=======  End of single related slider product  =======-->
+                        <!--=======  single related slider product  =======-->
+                        
+                        <div class="gf-product related-slider-product">
+                            <div class="image">
+                                <a href="single-product.html">
+                                    <span class="onsale">Sale!</span>
+                                    <img src="{{ asset('frontend-asset/assets_2/images/products/product05.jpg') }}" class="img-fluid" alt="">
+                                </a>
+                                <div class="product-hover-icons">
+                                    <a href="#" data-tooltip="Add to cart"> <span class="icon_cart_alt"></span></a>
+                                    <a href="#" data-tooltip="Add to wishlist"> <span class="icon_heart_alt"></span> </a>
+                                    <a href="#" data-tooltip="Compare"> <span class="arrow_left-right_alt"></span> </a>
+                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span class="icon_search"></span> </a>
+                                </div>
+                            </div>
+                            <div class="product-content">
+                                <div class="product-categories">
+                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
+                                    <a href="shop-left-sidebar.html">Vegetables</a>
+                                </div>
+                                <h3 class="product-title"><a href="single-product.html">Ornare sed consequat nisl eget</a></h3>
+                                <div class="price-box">
+                                    <span class="main-price">$89.00</span>
+                                    <span class="discounted-price">$80.00</span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        <!--=======  End of single related slider product  =======-->
+                        
+                    </div>
+                    
+                    <!--=======  End of related product slider wrapper  =======-->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--=====  End of Related product slider  ======-->	
+
 <!-- ======= Footer ======= -->
 
 @include('frontend.includes.footer')

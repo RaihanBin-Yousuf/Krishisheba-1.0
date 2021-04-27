@@ -81,6 +81,7 @@
                         
                                 </div>
                                 <!--=======  End of single tab slider product  =======-->
+
                                 <!--=======  single tab slider item  =======-->
                                 <div class="single-tab-slider-item">
                                     <!--=======  tab slider sub product  =======-->
@@ -144,6 +145,7 @@
                         
                                 </div>
                                 <!--=======  End of single tab slider product  =======-->
+
                                 <!--=======  single tab slider item  =======-->
                                 <div class="single-tab-slider-item">
                                     <!--=======  tab slider sub product  =======-->
@@ -339,7 +341,8 @@
                             </div>
                                 
                             <!--=======  End of tab slider container  =======-->
-                            </div>
+                        </div>
+                        
                         <div class="tab-pane fade" id="new-arrivals" role="tabpanel" aria-labelledby="new-arrival-tab">
                             <!--=======  tab slider container  =======-->
                                                             
@@ -667,6 +670,7 @@
                                     
                             <!--=======  End of tab slider container  =======-->
                         </div>
+
                         <div class="tab-pane fade" id="on-sale" role="tabpanel" aria-labelledby="nav-onsale-tab">
                             <!--=======  tab slider container  =======-->
                                                             

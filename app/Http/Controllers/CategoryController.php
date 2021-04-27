@@ -54,6 +54,17 @@ class CategoryController extends Controller
         return $this->index();
     }
 
+    public function deleteCategoryById($id)
+	{
+		$data=Category::find($id);
+        $data->delete();
+
+        $notification=array(
+            'messege'=>'Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
+	}
     /**
      * Display the specified resource.
      *

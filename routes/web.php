@@ -50,7 +50,7 @@ Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->
 
 Route::resource('categories', CategoryController::class);
 // Route::get('/categories/dropdown', )
-// Route::get('/category',[CategoryController::class,'category'])->name('category');
+Route::get('/deletecategory/{id}',[CategoryController::class,'deleteCategoryById'])->name('deleteCategoryById');
 
 Route::resource('subcategories', SubCategoryController::class);
 // Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
