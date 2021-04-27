@@ -119,7 +119,7 @@
                 <!-- Admin Access -->
 
                 <!-- seller Access -->
-                @if(auth()->user()->role == 'seller')
+                @if(auth()->user()->role == 'buyer')
                   <li class="nav-item">
                     <a href="{{route('updateprofile')}}" class="nav-link">
                     <i class="nav-icon fas fa-user-secret"></i>
@@ -181,7 +181,7 @@
                 <!-- seller Access -->
 
                 <!-- buyer Access -->
-                @if(auth()->user()->role == 'buyer')
+                @if(auth()->user()->role == 'seller')
                   <li class="nav-item">
                     <a href="{{route('updateprofile')}}" class="nav-link">
                       <i class="nav-icon fas fa-user-secret"></i>
@@ -199,7 +199,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('manage_posts.index')}}" class="nav-link">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
                         আমার পণ্য

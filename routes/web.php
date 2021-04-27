@@ -47,6 +47,7 @@ Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
 
 //Admin Route
+Route::resource('allposts', CheckPostController::class);
 
 Route::resource('product', ProductController::class);
 Route::get('/names',[ProductController::class,'names'])->name('names');
@@ -59,7 +60,6 @@ Route::get('/deletecategory/{id}',[CategoryController::class,'deleteCategoryById
 Route::resource('subcategories', SubCategoryController::class);
 // Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
 
-
 // manage Users Route
 Route::prefix('ManageUsers')->group(function () 
 {
@@ -69,14 +69,8 @@ Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('d
 });
 
 
-
+//Seller and buyer route
 Route::resource('manage_posts', ManagePostController::class);
-
-
-
-//Seller route
-
-Route::resource('allposts', CheckPostController::class);
 Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updateprofile')->middleware('auth');
 Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
 // project task list

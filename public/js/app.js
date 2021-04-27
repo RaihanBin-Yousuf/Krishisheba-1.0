@@ -17587,20 +17587,20 @@ var Create = /*#__PURE__*/function (_Component) {
                       value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8",
-                      children: "\u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8"
+                      value: "\u0995\u09C7\u099C\u09BF",
+                      children: "\u0995\u09C7\u099C\u09BF"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+                      value: "\u09AE\u09A3",
+                      children: "\u09AE\u09A3"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+                      value: "\u09AA\u09BF\u09B8",
+                      children: "\u09AA\u09BF\u09B8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "\u099F\u09A8",
                       children: "\u099F\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u0995\u09C7\u099C\u09BF",
-                      children: "\u0995\u09C7\u099C\u09BF"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u0995\u09C7\u099C\u09BF",
-                      children: "\u0995\u09C7\u099C\u09BF"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "\u09AA\u09BF\u09B8",
-                      children: "\u09AA\u09BF\u09B8"
+                      value: "\u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8",
+                      children: "\u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8"
                     })]
                   })]
                 })
@@ -17747,9 +17747,6 @@ var Create = /*#__PURE__*/function (_Component) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "50 \u0995\u09C7\u099C\u09BF \u09AC\u09CD\u09AF\u09BE\u0997",
                       children: "50 \u0995\u09C7\u099C\u09BF \u09AC\u09CD\u09AF\u09BE\u0997"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      value: "1 \u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8",
-                      children: "1 \u09AE\u09C7\u099F\u09CD\u09B0\u09BF\u0995 \u099F\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "1 \u099F\u09A8",
                       children: "1 \u099F\u09A8"

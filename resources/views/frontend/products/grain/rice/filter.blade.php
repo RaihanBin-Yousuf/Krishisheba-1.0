@@ -38,28 +38,27 @@
 							<div class="mb-15 form-group">
 								<label class="filter__label" for="name">জাত</label>
 								<select name="search[3]" id="search_3" class="form-control">
-								<option disabled selected value="">নির্বাচন করুন</option>  
-								<option disabled selected value="">সিদ্ধ</option>
-								<option value="মিনিকেট">মিনিকেট</option>
-								<option value="স্বর্ণা-৫">স্বর্ণা-৫</option>
-								<option value="গুটি স্বর্ণা">গুটি স্বর্ণা</option>
-								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট</option>
-								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট</option>
-								<option value="মোটা সিদ্ধ">মোটা সিদ্ধ</option>
-								<option value="কাঠারী">কাঠারী</option>
-								<option value="বাসমতি">বাসমতি</option>
+								<option disabled selected value="">নির্বাচন করুন</option>
+								<option value="মিনিকেট">মিনিকেট(সিদ্ধ)</option>
+								<option value="স্বর্ণা-৫">স্বর্ণা-৫(সিদ্ধ)</option>
+								<option value="গুটি স্বর্ণা">গুটি স্বর্ণা(সিদ্ধ)</option>
+								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট(সিদ্ধ)</option>
+								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট(সিদ্ধ)</option>
+								<option value="মোটা সিদ্ধ">মোটা সিদ্ধ(সিদ্ধ)</option>
+								<option value="কাঠারী">কাঠারী(সিদ্ধ)</option>
+								<option value="বাসমতি">বাসমতি(সিদ্ধ)</option>
 
-								<option disabled selected value="">আতপ</option> 
+								<option value=""></option> 
 
 								<option value="মিনিকেট">মিনিকেট</option>
-								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট</option>
-								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট</option>
-								<option value="২৮ নং আতপ">২৮ নং আতপ</option>
-								<option value="বেতী">বেতী</option>
-								<option value="ইরি">ইরি</option>
-								<option value="কাঠারী">কাঠারী</option>
-								<option value="চিনিগুড়া">চিনিগুড়া</option>
-								<option value="পাইজাম">পাইজাম</option>
+								<option value="২৮ নং মিনিকেট">২৮ নং মিনিকেট(আতপ)</option>
+								<option value="২৯ নং মিনিকেট">২৯ নং মিনিকেট(আতপ)</option>
+								<option value="২৮ নং আতপ">২৮ নং আতপ(আতপ)</option>
+								<option value="বেতী">বেতী(আতপ)</option>
+								<option value="ইরি">ইরি(আতপ)</option>
+								<option value="কাঠারী">কাঠারী(আতপ)</option>
+								<option value="চিনিগুড়া">চিনিগুড়া(আতপ)</option>
+								<option value="পাইজাম">পাইজাম(আতপ)</option>
 							
 								</select>
 							</div>

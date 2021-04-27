@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Contact extends Component {
+export default class RiceDetailsPage extends Component {
     constructor(props) {
         super(props);
     }

@@ -121,7 +121,6 @@
   });
 </script>
 
-
 <!-- ChartJS -->
 <script src="{{ asset('backend-asset/plugins/chart.js/Chart.min.js')}}"></script>
 <!-- Sparkline -->

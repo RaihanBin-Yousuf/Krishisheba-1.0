@@ -582,12 +582,12 @@ class Create extends Component {
                             <div className="form-group" >
                                 <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
                                 <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>       
-                                    <option value="মেট্রিক টন">মেট্রিক টন</option>
+                                    <option value="">নির্বাচন করুন</option> 
+                                    <option value="কেজি">কেজি</option>
+                                    <option value="মণ">মণ</option>
+                                    <option value="পিস">পিস</option>  
                                     <option value="টন">টন</option>
-                                    <option value="কেজি">কেজি</option>
-                                    <option value="কেজি">কেজি</option>
-                                    <option value="পিস">পিস</option>
+                                    <option value="মেট্রিক টন">মেট্রিক টন</option>                                 
                                 </select>
                             </div>
                         </div>
@@ -664,7 +664,6 @@ class Create extends Component {
                                     <option value="">নির্বাচন করুন</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
-                                    <option value="1 মেট্রিক টন">1 মেট্রিক টন</option>
                                     <option value="1 টন">1 টন</option>
                                     <option disabled>অন্য প্যাকেজিং পদ্ধতি(মন্তব্যে উল্লেখ করুন)</option>
                                 </select>
