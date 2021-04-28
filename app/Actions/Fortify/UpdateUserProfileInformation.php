@@ -36,8 +36,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         } else {
             $user->forceFill([
                 'name' => $input['name'],
-                'mobile' => $input['mobile'],
+                // 'mobile' => $input['mobile'],
                 'email' => $input['email'],
+                // 'birth_date' => $input['birth_date'],
+                'address' => $input['address'],
             ])->save();
 
             $notification=array(
@@ -59,8 +61,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     {
         $user->forceFill([
             'name' => $input['name'],
-            'mobile' => $input['mobile'],
+            // 'mobile' => $input['mobile'],
             'email' => $input['email'],
+            // 'birth_date' => $input['birth_date'],
+            'address' => $input['address'],
             'email_verified_at' => null,
         ])->save();
 

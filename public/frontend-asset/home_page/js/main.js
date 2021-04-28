@@ -8,8 +8,19 @@
 function familyButtonClick(t,e){t.forEach(function(t){var i="#product_"+t,n="#button_"+t;t==e?($(i).attr("class","col-md-12 d-sm-block d-md-flex justify-content-center"),$(n).attr("class","family__button__pressed")):($(i).attr("class","col-md-12 d-none"),$(n).attr("class","family__button"))})}
 // End market
 
-// Only year input
+// profile pic upload and updade
+function readURL(input) {
+  if (input.files && input.files[0]) {
+      var reader = new FileReader();
 
+      reader.onload = function (e) {
+          $('#profileimage')
+              .attr('src', e.target.result);
+      };
+
+      reader.readAsDataURL(input.files[0]);
+  }
+}
 
 
 // Division Section select

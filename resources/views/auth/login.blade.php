@@ -18,7 +18,7 @@
         @csrf
           <div class="form-group">
             <label class="icofont-phone" for="user_mobileno">মোবাইল নম্বর*</label>
-            <input id="mobile" type="text" name="mobile" :value="old('mobile')" required autofocus class="form-control @error('mobile') is-invalid @enderror" autocomplete="mobile" placeholder=" 01816******* "  pattern="^\d{11}$" />
+            <input id="mobile" type="text" name="mobile" :value="old('mobile')" required autofocus class="form-control @error('mobile') is-invalid @enderror" autocomplete="mobile" placeholder=" 01816******* "  />
             @error('mobile')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
@@ -28,7 +28,6 @@
 
           <div class="form-group">
             <label class="icofont-ui-password" for="user_password"> পাসওয়ার্ড*</label>
-            <em>(6 characters minimum)</em>
             <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
             @error('password')
             <span class="invalid-feedback" role="alert">

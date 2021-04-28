@@ -50,11 +50,6 @@
 	<!-- Modernizer JS -->
 	<script src="{{ asset('frontend-asset/assets_2/js/vendor/modernizr-2.8.3.min.js') }}"></script>
   
- <!--  <link rel="stylesheet" media="all" href="../../assets/market/application-71e013ed541feaf22c818c5da6f14df4291704b57bf514a20fd0917bd7bcac16.css" data-turbolinks-track="reload" />
- -->
-<!-- 
-  <script src="frontend-asset/market/application-51881d7015bb6160c9e3e60b13d71d10fd44bea964eadc10c9fba379f672a859.js" data-turbolinks-track="reload"></script>
--->
 
   <!-- =======================================================
   * Template Name: Green - v2.2.0

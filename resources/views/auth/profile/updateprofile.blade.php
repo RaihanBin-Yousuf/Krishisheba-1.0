@@ -1,5 +1,12 @@
 @extends('backend.layouts.master')
 @section('content')
+<!-- <style>
+    .profileimg{
+  height: 100px;
+   width: 100px;
+  border-radius: 50%;
+  }
+</style> -->
 <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -25,33 +32,21 @@
                     <form method="POST" action="{{ route('user-profile-information.update') }}">
                         @csrf
                         @method('PUT')
-                        <div class="form-group row">
-                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('প্রোফাইল ছবি:') }}</label>
-                            <div class="col-md-6">    
-                                <input name="profile_picture" type="file">
+                        <!-- Profile Image -->
+                        <!-- <div class="form-group row">
+                                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('প্রোফাইল ছবি') }}</label>
+                            <div class="col-md-6">
+                            <img class="profileimg" id="profileimage" src="{{asset('storage/profile/'.Auth::user()->profile_img)}}" alt="your image" />
+                                <input type='file' name="profile_img" onchange="readURL(this);" />
                             </div>
-                        </div>
+                        </div> -->
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('নাম') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? auth()->user()->name }}" required autocomplete="name" autofocus>
+                                <input id="name" type="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') ?? auth()->user()->name }}" autocomplete="name" autofocus>
 
                                 @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="mobile" class="col-md-4 col-form-label text-md-right">{{ __('মোবাইল নাম্বার') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="mobile" type="mobile" class="form-control @error('mobile') is-invalid @enderror" name="mobile" value="{{ old('mobile') ?? auth()->user()->mobile }}" required pattern="^\d{11}$" autocomplete="mobile" autofocus>
-
-                                @error('mobile')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -73,8 +68,13 @@
                             </div>
                         </div>
 
-
-
+                        <div class="form-group row">
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('বর্তমান ঠিকানা') }}</label>
+                            <div class="col-md-6">
+                                <input id="address" type="string" class="form-control" name="address" value="{{ old('address') ?? auth()->user()->address }}" autocomplete="address">
+                            </div>
+                        </div>
+                        
                         <div class="mb-0 form-group row">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-info">
@@ -88,6 +88,20 @@
         </div>
     </div>
 </div>
+<!-- <script>
+      function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#profileimage')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script> -->
 @endsection
 
 

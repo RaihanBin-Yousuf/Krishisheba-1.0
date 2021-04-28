@@ -661,7 +661,8 @@ class Create extends Component {
                             <div className="form-group">
                                 <h5 htmlFor="">প্যাকেজিং পদ্ধতি*</h5>
                                 <select className="form-control" name="packaging_method" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>                          
+                                    <option value="">নির্বাচন করুন</option>
+                                    <option value="কেজি">1 কেজি</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
                                     <option value="1 টন">1 টন</option>

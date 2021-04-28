@@ -18242,6 +18242,9 @@ var Create = /*#__PURE__*/function (_Component) {
                       value: "",
                       children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+                      value: "\u0995\u09C7\u099C\u09BF",
+                      children: "1 \u0995\u09C7\u099C\u09BF"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                       value: "40 \u0995\u09C7\u099C\u09BF \u09AC\u09CD\u09AF\u09BE\u0997",
                       children: "40 \u0995\u09C7\u099C\u09BF \u09AC\u09CD\u09AF\u09BE\u0997"
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {

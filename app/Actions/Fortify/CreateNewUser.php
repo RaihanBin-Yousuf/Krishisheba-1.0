@@ -32,7 +32,9 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'role' => ['required', 'string', 'max:10'],
             'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+            // 'mobile' => ['required|regex:/^(01)[0-9]{9}$/'],
             'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+            // 'date_of_birth' => ['before:today'],
         ])->validate();
             // dd($input);
             if(empty($input['profile_img']))
@@ -51,6 +53,8 @@ class CreateNewUser implements CreatesNewUsers
             'nid' => $input['nid'],
             'mobile' => $input['mobile'],
             'email' => $input['email'],
+            'birth_date' => $input['birth_date'],
+            'address' => $input['address'],
             'password' => Hash::make($input['password']),           
             'profile_img' => $input['profile_img'],
             

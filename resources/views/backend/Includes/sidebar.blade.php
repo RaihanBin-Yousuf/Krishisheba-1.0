@@ -31,16 +31,17 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
+             
+                <!-- Admin Access -->
+                @if(auth()->user()->role == 'admin')
                 <li class="nav-item">
                   <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
                     <p>
-                    ড্যাশবোর্ড
+                    Dashboard
                     </p>
                   </a>
                 </li>
-                <!-- Admin Access -->
-                @if(auth()->user()->role == 'admin')
                 <li class="nav-item">
                   <a href="{{route('names')}}" class="nav-link {{($route=='names') ?'active':''}}">
                     <i class="fas fa-th nav-icon"></i>
@@ -115,13 +116,32 @@
                     </p>
                   </a>
                 </li>
+
+                <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                </li> 
                 @endif
                 <!-- Admin Access -->
 
                 <!-- seller Access -->
-                @if(auth()->user()->role == 'buyer')
+                @if(auth()->user()->role == 'seller')
+                <li class="nav-item">
+                  <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                    ড্যাশবোর্ড
+                    </p>
+                  </a>
+                </li>
                   <li class="nav-item">
-                    <a href="{{route('updateprofile')}}" class="nav-link">
+                    <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                     <i class="nav-icon fas fa-user-secret"></i>
                     <p>
                     আমার প্রোফাইল
@@ -130,7 +150,7 @@
                   </li>
                 
                   <li class="nav-item">
-                    <a href="{{route('updatepassword')}}" class="nav-link">
+                    <a href="{{route('updatepassword')}}" class="nav-link {{($route=='updatepassword') ?'active':''}}">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
                     পাসওয়ার্ড পরিবর্তন করুন
@@ -138,7 +158,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('manage_posts.create')}}" class="nav-link">
+                    <a href="{{route('manage_posts.create')}}" class="nav-link {{($route=='manage_posts.create') ?'active':''}}">
                     <i class="nav-icon fa fa-plus"></i>
                     <p>
                     পণ্য যুক্ত করুন
@@ -146,7 +166,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('manage_posts.index')}}" class="nav-link">
+                    <a href="{{route('manage_posts.index')}}" class="nav-link {{($route=='manage_posts.index') ?'active':''}}">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
                         আমার পণ্য
@@ -177,13 +197,32 @@
                       </p>
                     </a>
                   </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          <i class="nav-icon fas fa-sign-out-alt"></i><p>লগ আউট</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                </li> 
                 @endif
                 <!-- seller Access -->
 
                 <!-- buyer Access -->
-                @if(auth()->user()->role == 'seller')
+                @if(auth()->user()->role == 'buyer')
+                <li class="nav-item">
+                  <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                    ড্যাশবোর্ড
+                    </p>
+                  </a>
+                </li>
                   <li class="nav-item">
-                    <a href="{{route('updateprofile')}}" class="nav-link">
+                    <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                       <i class="nav-icon fas fa-user-secret"></i>
                       <p>
                       আমার প্রোফাইল
@@ -191,7 +230,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('updatepassword')}}" class="nav-link">
+                    <a href="{{route('updatepassword')}}" class="nav-link {{($route=='updatepassword') ?'active':''}}">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
                     পাসওয়ার্ড পরিবর্তন করুন
@@ -199,7 +238,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('manage_posts.index')}}" class="nav-link">
+                    <a href="{{route('manage_posts.index')}}" class="nav-link {{($route=='manage_posts.index') ?'active':''}}">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
                         আমার পণ্য
@@ -230,17 +269,36 @@
                       </p>
                     </a>
                   </li>
+
+                  <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          <i class="nav-icon fas fa-sign-out-alt"></i><p>লগ আউট</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                </li> 
                 @endif
                 <!-- buyer Access -->
 
                 <!-- transport Access -->
                 @if(auth()->user()->role == 'transport')
                   <li class="nav-item">
-                    <a href="{{route('updateprofile')}}" class="nav-link">
+                    <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                       <i class="nav-icon fas fa-user-secret"></i>
                       <p>
                       আমার প্রোফাইল
                         </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('updatepassword')}}" class="nav-link {{($route=='updatepassword') ?'active':''}}">
+                    <i class="nav-icon  fab fa-product-hunt"></i>
+                    <p>
+                    পাসওয়ার্ড পরিবর্তন করুন
+                      </p>
                     </a>
                   </li>
 
@@ -268,14 +326,14 @@
                       </p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-save"></i>
                     <p>
                         সংরক্ষিত তালিকা
                       </p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-bullhorn"></i>
@@ -284,10 +342,8 @@
                       </p>
                     </a>
                   </li>
-                @endif
-                <!-- transport Access -->
 
-                <li class="nav-item">
+                  <li class="nav-item">
                       <a class="nav-link" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
                           document.getElementById('logout-form').submit();">
@@ -296,7 +352,20 @@
                       <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                           @csrf
                       </form>
-                </li>         
+                </li> 
+                @endif
+                <!-- transport Access -->
+
+                <!-- <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          <i class="nav-icon fas fa-sign-out-alt"></i><p>লগ আউট</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                </li>          -->
           </ul>
        </nav>
           <!-- /.sidebar-menu -->
