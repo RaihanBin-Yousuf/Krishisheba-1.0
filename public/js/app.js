@@ -1883,6 +1883,8 @@ __webpack_require__(/*! ./new/managePostCreate */ "./resources/js/new/managePost
 
 __webpack_require__(/*! ./new/managePostCreate */ "./resources/js/new/managePostCreate.js");
 
+__webpack_require__(/*! ./frontend/home/Index */ "./resources/js/frontend/home/Index.js");
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -1975,6 +1977,504 @@ function Example() {
 if (document.getElementById('example')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(Example, {}), document.getElementById('example'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/frontend/home/Index.js":
+/*!*********************************************!*\
+  !*** ./resources/js/frontend/home/Index.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Index)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _includes_Hero__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../includes/Hero */ "./resources/js/frontend/includes/Hero.js");
+/* harmony import */ var _includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../includes/TopCategorySlider */ "./resources/js/frontend/includes/TopCategorySlider.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+var Index = /*#__PURE__*/function (_Component) {
+  _inherits(Index, _Component);
+
+  var _super = _createSuper(Index);
+
+  function Index() {
+    _classCallCheck(this, Index);
+
+    return _super.apply(this, arguments);
+  }
+
+  _createClass(Index, [{
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_2__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_3__.default, {})]
+      });
+    }
+  }]);
+
+  return Index;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+if (document.getElementById('react_fronend_index')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/frontend/includes/Hero.js":
+/*!************************************************!*\
+  !*** ./resources/js/frontend/includes/Hero.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Hero)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var Hero = /*#__PURE__*/function (_Component) {
+  _inherits(Hero, _Component);
+
+  var _super = _createSuper(Hero);
+
+  function Hero(props) {
+    _classCallCheck(this, Hero);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(Hero, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          id: "hero",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            id: "heroCarousel",
+            className: "carousel slide carousel-fade",
+            "data-ride": "carousel",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("ol", {
+              className: "carousel-indicators",
+              id: "hero-carousel-indicators"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "carousel-inner",
+              role: "listbox",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "carousel-item active",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "carousel-container",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "container",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
+                      className: "animate__animated animate__fadeInDown",
+                      children: ["\u09B8\u09CD\u09AC\u09BE\u0997\u09A4\u09AE  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                        children: "\u0995\u09C3\u09B7\u09BF\u09B8\u09C7\u09AC\u09BE\u09DF"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                      className: "animate__animated animate__fadeInUp",
+                      children: "\u0995\u09C3\u09B7\u09BF\u09A4\u09C7 \u09AC\u09BE\u0982\u09B2\u09BE\u09A6\u09C7\u09B6\u09C7\u09B0 \u09B8\u09BE\u09AB\u09B2\u09CD\u09AF \u0988\u09B0\u09CD\u09B7\u09A3\u09C0\u09DF\u0964 \u0995\u09C3\u09B7\u09BF\u099C\u09AE\u09BF \u0995\u09AE\u09A4\u09C7 \u09A5\u09BE\u0995\u09BE, \u099C\u09A8\u09B8\u0982\u0996\u09CD\u09AF\u09BE \u09AC\u09C3\u09A6\u09CD\u09A7\u09BF\u09B8\u09B9 \u099C\u09B2\u09AC\u09BE\u09DF\u09C1 \u09AA\u09B0\u09BF\u09AC\u09B0\u09CD\u09A4\u09A8\u09C7\u09B0 \u09AB\u09B2\u09C7 \u09AC\u09A8\u09CD\u09AF\u09BE, \u0996\u09B0\u09BE, \u09B2\u09AC\u09A3\u09BE\u0995\u09CD\u09A4\u09A4\u09BE \u0993 \u09AC\u09C8\u09B0\u09C0 \u09AA\u09CD\u09B0\u0995\u09C3\u09A4\u09BF\u09A4\u09C7\u0993 \u0996\u09BE\u09A6\u09CD\u09AF\u09B6\u09B8\u09CD\u09AF \u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7 \u09AC\u09BE\u0982\u09B2\u09BE\u09A6\u09C7\u09B6 \u098F\u0996\u09A8 \u09AC\u09BF\u09B6\u09CD\u09AC\u09C7 \u0989\u09A6\u09BE\u09B9\u09B0\u09A3\u0964 \u09A7\u09BE\u09A8, \u0997\u09AE \u0993 \u09AD\u09C1\u099F\u09CD\u099F\u09BE \u09AC\u09BF\u09B6\u09CD\u09AC\u09C7\u09B0 \u0997\u09DC \u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u0995\u09C7 \u09AA\u09C7\u099B\u09A8\u09C7 \u09AB\u09C7\u09B2\u09C7 \u0995\u09CD\u09B0\u09AE\u09C7\u0987 \u098F\u0997\u09BF\u09DF\u09C7 \u099A\u09B2\u099B\u09C7 \u09AC\u09BE\u0982\u09B2\u09BE\u09A6\u09C7\u09B6\u0964 \u09B8\u09AC\u099C\u09BF \u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7 \u09A4\u09C3\u09A4\u09C0\u09DF \u0986\u09B0 \u099A\u09BE\u09B2 \u0993 \u09AE\u09BE\u099B \u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7 \u09AC\u09BE\u0982\u09B2\u09BE\u09A6\u09C7\u09B6 \u098F\u0996\u09A8 \u09AC\u09BF\u09B6\u09CD\u09AC\u09C7 \u099A\u09A4\u09C1\u09B0\u09CD\u09A5 \u0985\u09AC\u09B8\u09CD\u09A5\u09BE\u09A8\u09C7\u0964"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                      href: "#about",
+                      className: "btn-get-started animate__animated animate__fadeInUp scrollto",
+                      children: " \u0986\u09B0\u0993 \u09AA\u09A1\u09BC\u09C1\u09A8"
+                    })]
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "carousel-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "carousel-container",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "container",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
+                      className: "animate__animated animate__fadeInDown",
+                      children: ["\u09B8\u09CD\u09AC\u09BE\u0997\u09A4\u09AE  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                        children: "\u0995\u09C3\u09B7\u09BF\u09B8\u09C7\u09AC\u09BE\u09DF"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                      className: "animate__animated animate__fadeInUp",
+                      children: "\u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u09A6\u09C7\u09B6\u09C7\u09B0 \u0985\u09B0\u09CD\u09A5\u09A8\u09C0\u09A4\u09BF \u098F\u0997\u09BF\u09DF\u09C7 \u09A8\u09BF\u09A4\u09C7 \u0995\u09C3\u09B7\u09BF\u09B0 \u09AD\u09C2\u09AE\u09BF\u0995\u09BE \u0985\u09AA\u09B0\u09BF\u09B8\u09C0\u09AE\u0964 \u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u099C\u09C0\u09AC\u09A8\u099C\u09C0\u09AC\u09C0\u0995\u09BE\u09B0 \u09AA\u09BE\u09B6\u09BE\u09AA\u09BE\u09B6\u09BF \u09A8\u09BF\u099C\u09C7\u09A6\u09C7\u09B0 \u0989\u09A8\u09CD\u09A8\u09DF\u09A8\u09C7 \u0986\u09AE\u09B0\u09BE \u0985\u09A8\u09C7\u0995\u09BE\u0982\u09B6\u09C7 \u0995\u09C3\u09B7\u09BF\u09B0 \u0989\u09AA\u09B0 \u09A8\u09BF\u09B0\u09CD\u09AD\u09B0\u09B6\u09C0\u09B2\u0964 \"\u0995\u09C3\u09B7\u0995\u09B8\u09C7\u09AC\u09BE\u09B0\" \u09AE\u09C2\u09B2 \u09B2\u0995\u09CD\u09B7\u09CD\u09AF \u0995\u09C3\u09B7\u0995\u09A6\u09C7\u09B0 \u0995\u09BE\u099B\u09C7 \u09A4\u09BE\u09A6\u09C7\u09B0  \u09A8\u09CD\u09AF\u09BE\u09AF\u09CD\u09AF\u09AE\u09C2\u09B2\u09CD\u09AF \u0986\u09A6\u09BE\u09DF \u0986\u09B0\u09CB \u09B8\u09B9\u099C\u09A4\u09B0 \u0995\u09B0\u09BE\u0964 \u09AA\u09CD\u09B0\u09AF\u09C1\u0995\u09CD\u09A4\u09BF\u09B0 \u0989\u09A8\u09CD\u09A8\u09DF\u09A8\u09C7 \u09AC\u09BF\u09B6\u09CD\u09AC \u09AF\u0996\u09A8 \u098F\u0997\u09BF\u09DF\u09C7 \u099A\u09B2\u099B\u09C7 \u09A4\u09BE\u09B0 \u09A8\u09BF\u099C\u09C7\u09B0 \u0985\u09A6\u09AE\u09CD\u09AF \u0997\u09A4\u09BF\u09A4\u09C7 , \u09B8\u09C7\u0987 \u0997\u09A4\u09BF\u09A4\u09C7 \u09AA\u09BF\u099B\u09BF\u09DF\u09C7 \u09A8\u09C7\u0987  \u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u0995\u09C3\u09B7\u09BF\u0996\u09BE\u09A4\u0964 \u0986\u09A7\u09C1\u09A8\u09BF\u0995\u09A4\u09BE\u09B0 \u099B\u09CB\u09DF\u09BE\u09DF \u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u0995\u09C3\u09B7\u0995\u09B0\u09BE \u0986\u0997\u09C7 \u09A5\u09C7\u0995\u09C7 \u09B8\u09B9\u099C \u09AA\u09A5 \u09AC\u09C7\u099B\u09C7 \u09A8\u09BF\u099A\u09CD\u099B\u09C7 \u098F\u09AC\u0982 \u09B8\u09AB\u09B2 \u0993 \u09B9\u099A\u09CD\u099B\u09C7 \u09AA\u09C1\u09B0\u09CB\u09A6\u09AE\u09C7\u0964 "
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                      href: "#about",
+                      className: "btn-get-started animate__animated animate__fadeInUp scrollto",
+                      children: "\u0986\u09B0\u0993 \u09AA\u09A1\u09BC\u09C1\u09A8"
+                    })]
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "carousel-item",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "carousel-container",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "container",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
+                      className: "animate__animated animate__fadeInDown",
+                      children: ["\u09B8\u09CD\u09AC\u09BE\u0997\u09A4\u09AE  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                        children: "\u0995\u09C3\u09B7\u09BF\u09B8\u09C7\u09AC\u09BE\u09DF"
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                      className: "animate__animated animate__fadeInUp",
+                      children: "\u09AC\u09BE\u0982\u09B2\u09BE\u09A6\u09C7\u09B6\u09C7\u09B0 \u099C\u09BE\u09A4\u09C0\u09DF \u0985\u09B0\u09CD\u09A5\u09A8\u09C0\u09A4\u09BF \u09A6\u09BE\u0981\u09DC\u09BF\u09DF\u09C7 \u0986\u099B\u09C7 \u0995\u09C3\u09B7\u09BF, \u09A4\u09C8\u09B0\u09BF \u09AA\u09CB\u09B6\u09BE\u0995\u09B6\u09BF\u09B2\u09CD\u09AA \u098F\u09AC\u0982 \u09AA\u09CD\u09B0\u09AC\u09BE\u09B8\u09C0 \u09B6\u09CD\u09B0\u09AE\u09BF\u0995\u09A6\u09C7\u09B0 \u09AA\u09BE\u09A0\u09BE\u09A8\u09CB \u09AC\u09C8\u09A6\u09C7\u09B6\u09BF\u0995 \u09AE\u09C1\u09A6\u09CD\u09B0\u09BE \u09AC\u09BE \u09B0\u09C7\u09AE\u09BF\u099F\u09CD\u09AF\u09BE\u09A8\u09CD\u09B8\u09C7\u09B0 \u0993\u09AA\u09B0\u0964 \u09B6\u09C7\u09B7\u09C7\u09B0 \u09A6\u09C1\u099F\u09BF \u0995\u09CB\u09A8\u09CB \u099A\u09BF\u09B0\u09B8\u09CD\u09A5\u09BE\u09DF\u09C0 \u09AC\u09CD\u09AF\u09AC\u09B8\u09CD\u09A5\u09BE \u09A8\u09DF\u0964 \u0995\u09C3\u09B7\u09BF \u099A\u09BF\u09B0\u09B8\u09CD\u09A5\u09BE\u09DF\u09C0\u0964 \u09A8\u09BE\u09A8\u09BE \u09B0\u0995\u09AE \u09AA\u09CD\u09B0\u09BE\u0995\u09C3\u09A4\u09BF\u0995 \u09A6\u09C1\u09B0\u09CD\u09AF\u09CB\u0997 \u098F\u09AC\u0982 \u0986\u09AC\u09B9\u09BE\u0993\u09DF\u09BE\u09B0 \u09AA\u09CD\u09B0\u09A4\u09BF\u0995\u09C2\u09B2\u09A4\u09BE \u09AE\u09CB\u0995\u09BE\u09AC\u09BF\u09B2\u09BE \u0995\u09B0\u09C7 \u09A4\u09BE\u0981\u0995\u09C7 \u099F\u09BF\u0995\u09C7 \u09A5\u09BE\u0995\u09A4\u09C7 \u09B9\u09DF\u0964 \u099C\u09BE\u09A4\u09BF\u0995\u09C7 \u0995\u09CD\u09B7\u09C1\u09A7\u09BE\u09AE\u09C1\u0995\u09CD\u09A4 \u09B0\u09BE\u0996\u09A4\u09C7 \u098F\u09AC\u0982 \u0985\u09AA\u09C1\u09B7\u09CD\u099F\u09BF \u09A5\u09C7\u0995\u09C7 \u09AC\u09BE\u0981\u099A\u09BE\u09A4\u09C7 \u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u0995\u09C3\u09B7\u0995 \u0993 \u0995\u09C3\u09B7\u09BF\u09AC\u09BF\u099C\u09CD\u099E\u09BE\u09A8\u09C0\u09A6\u09C7\u09B0 \u0985\u09AC\u09A6\u09BE\u09A8 \u0996\u09C1\u09AC \u0995\u09AE\u0987 \u0986\u09B2\u09CB\u099A\u09BF\u09A4 \u09B9\u09DF\u0964"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                      href: "#about",
+                      className: "btn-get-started animate__animated animate__fadeInUp scrollto",
+                      children: "\u0986\u09B0\u0993 \u09AA\u09A1\u09BC\u09C1\u09A8"
+                    })]
+                  })
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+              className: "carousel-control-prev",
+              href: "#heroCarousel",
+              role: "button",
+              "data-slide": "prev",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                className: "carousel-control-prev-icon icofont-simple-left",
+                "aria-hidden": "true"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                className: "sr-only",
+                children: "Previous"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("a", {
+              className: "carousel-control-next",
+              href: "#heroCarousel",
+              role: "button",
+              "data-slide": "next",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                className: "carousel-control-next-icon icofont-simple-right",
+                "aria-hidden": "true"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                className: "sr-only",
+                children: "Next"
+              })]
+            })]
+          })
+        })
+      });
+    }
+  }]);
+
+  return Hero;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
+
+/***/ }),
+
+/***/ "./resources/js/frontend/includes/TopCategorySlider.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/frontend/includes/TopCategorySlider.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TopCategorySlider)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var TopCategorySlider = /*#__PURE__*/function (_Component) {
+  _inherits(TopCategorySlider, _Component);
+
+  var _super = _createSuper(TopCategorySlider);
+
+  function TopCategorySlider(props) {
+    _classCallCheck(this, TopCategorySlider);
+
+    return _super.call(this, props);
+  }
+
+  _createClass(TopCategorySlider, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {}
+  }, {
+    key: "render",
+    value: function render() {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("section", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            className: "slider category-slider mb-35",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "container",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "col-lg-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                    className: "section-title",
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                      children: "top categories"
+                    })
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  className: "col-lg-12",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "category-slider-container",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "{{ route('paddy.index') }}",
+                          title: "\u09A7\u09BE\u09A8",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/paddy-1.png",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "{{ route('paddy.index') }}",
+                            children: "\u09A7\u09BE\u09A8"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "{{ route('rice.index') }}",
+                          title: "\u099A\u09BE\u0989\u09B2",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/rice.png",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "{{ route('rice.index') }}",
+                            children: " \u099A\u09BE\u0989\u09B2"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "shop-left-sidebar.html",
+                          title: "\u0997\u09AE",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/wheat.png",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "shop-left-sidebar.html",
+                            children: " \u0997\u09AE"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "shop-left-sidebar.html",
+                          title: " \u09B6\u09C0\u09A4\u0995\u09BE\u09B2\u09C0\u09A8 \u09B8\u09AC\u099C\u09BF",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/wintervegitables-1.jpg",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "shop-left-sidebar.html",
+                            children: "  \u09B6\u09C0\u09A4\u0995\u09BE\u09B2\u09C0\u09A8 \u09B8\u09AC\u099C\u09BF"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "shop-left-sidebar.html",
+                          title: "\u0997\u09CD\u09B0\u09C0\u09B7\u09CD\u09AE\u0995\u09BE\u09B2\u09C0\u09A8 \u09B8\u09AC\u099C\u09BF",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/summerseason-1.jpg",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "shop-left-sidebar.html",
+                            children: "\u0997\u09CD\u09B0\u09C0\u09B7\u09CD\u09AE\u0995\u09BE\u09B2\u09C0\u09A8 \u09B8\u09AC\u099C\u09BF"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "shop-left-sidebar.html",
+                          title: "\u09AC\u09BE\u09B0\u09CB\u09AE\u09BE\u09B8\u09BF \u09B8\u09AC\u099C\u09BF",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/alltimevegitable.jpg",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "shop-left-sidebar.html",
+                            children: " \u09AC\u09BE\u09B0\u09CB\u09AE\u09BE\u09B8\u09BF \u09B8\u09AC\u099C\u09BF"
+                          })
+                        })
+                      })]
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "single-category",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-image",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                          href: "shop-left-sidebar.html",
+                          title: "Beans",
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+                            src: "/frontend-asset/assets_2/images/categories/category7.png",
+                            className: "img-fluid",
+                            alt: ""
+                          })
+                        })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                        className: "category-title",
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "shop-left-sidebar.html",
+                            children: " Beans"
+                          })
+                        })
+                      })]
+                    })]
+                  })
+                })
+              })]
+            })
+          })
+        })
+      });
+    }
+  }]);
+
+  return TopCategorySlider;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+
 
 /***/ }),
 

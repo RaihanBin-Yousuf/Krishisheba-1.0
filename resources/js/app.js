@@ -23,3 +23,5 @@ require('./components/Example');
 require('./new/managePostCreate');
 // require('./Product/new');
 require('./new/managePostCreate');
+
+require('./frontend/home/Index');

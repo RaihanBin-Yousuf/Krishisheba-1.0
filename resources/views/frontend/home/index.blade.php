@@ -11,8 +11,9 @@
 <!-- =======End Top Bar and header ======= -->
 
 <!-- ======= Hero Section ======= -->
-    
-@include('frontend.includes.hero')
+
+{{-- @include('frontend.includes.hero') --}}
+<div class="managePostCreate" id="react_fronend_index"></div>
    
 <!-- End Hero -->
 
@@ -20,7 +21,7 @@
 =            category slider         =
 =============================================-->
 
-@include('frontend.includes.topcategory-slider')
+{{-- @include('frontend.includes.topcategory-slider') --}}
 
 <!--=====  End of category slider  ======-->
 
