@@ -10008,3 +10008,17 @@ h3 {
 .custom-post-form .agricultre-demand {
   margin-top: 20px;
 }
+
+.single-tab-slider-item {
+  width: 278px;
+}
+
+.slick-track {
+  opacity: 1;
+  width: 3892px;
+  transform: translate3d(-1112px, 0px, 0px);
+}
+
+.single-category {
+  width: 185px;
+}

@@ -9,10 +9,13 @@ require('./bootstrap');
 require('./jquery/bootstrap-notify/bootstrap-notify');
 require('./jquery/base');
 require ('./jquery/jquery.easing.min');
-// require('./theme');
-require('./jquery/jquery.dataTables');
+// require('./jquery/');
+// require('./jquery/jquery.dataTables');
 require('./jquery/aj-custom-select');
-
+require('./jquery/owl.carousel/owl.carousel');
+require('./jquery/php-email-form/validate');
+require('./jquery/venobox/venobox');
+// require('./jquery/main');
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -25,3 +28,4 @@ require('./new/managePostCreate');
 require('./new/managePostCreate');
 
 require('./frontend/home/Index');
+// require('./frontend/includes/TopCategorySlider');
