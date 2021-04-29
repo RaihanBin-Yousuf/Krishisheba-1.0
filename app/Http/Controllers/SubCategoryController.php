@@ -21,7 +21,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $subcategories = Sub_Category::orderBy('id','ASC')->get();
+        $subcategories =$this->sub_category->getAllsubCategories();
         $category=$this->category->getAllCategories();
        
         if (request()->ajax()) {

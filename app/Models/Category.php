@@ -33,4 +33,5 @@ class Category extends Model
         $category = $this->create($input);
         return $category;
     }
+    
 }

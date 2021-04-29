@@ -32,9 +32,8 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'role' => ['required', 'string', 'max:10'],
             'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
-            // 'mobile' => ['required|regex:/^(01)[0-9]{9}$/'],
             'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
-            // 'date_of_birth' => ['before:today'],
+            'photo' => ['nullable', 'image', 'max:2048'],
         ])->validate();
             // dd($input);
             if(empty($input['profile_img']))

@@ -19,6 +19,12 @@ class Sub_Category extends Model
         return $result;
     }
 
+    public function getAllsubCategories()
+    {
+        $result = $this->latest()->get();
+        return $result;
+    }
+
     public function getbySubCategoryId($input)
     {
         $sub_category = $this->where('id', $input)->get()->first();

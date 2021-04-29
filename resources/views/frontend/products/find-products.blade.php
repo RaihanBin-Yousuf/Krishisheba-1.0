@@ -60,7 +60,7 @@
 	</div>
 </a>
 
-<a href="products/চাল/filter.html">
+<a href="{{ route('rice.index') }}"> 
 <div class="col-md-2">
 	<div class="circle-white--big">
 		<img class="product-img-big" src="{{ asset('frontend-asset/market/icons/Barleyaf6c.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=AKIAJWG275EEAJRI5EDQ%2F20201129%2Feu-central-1%2Fs3%2Faws4_request&amp;X-Amz-Date=20201129T172307Z&amp;X-Amz-Expires=900&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=4f98e95cc4ad1131173b38000a255bd481cd4c8eb876db52e875f98023011aac') }}" alt="8f76dcc85e5b3391b78cf5b8d1b6eaa2" />

@@ -21,7 +21,7 @@ class ProductController extends Controller
      */
     public function names()
     {
-        $names = product::orderBy('id','ASC')->get();
+        $names = $this->product->getAll();
         return view('backend.product.names',compact('names'));
 
     }

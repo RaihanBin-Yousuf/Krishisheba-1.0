@@ -145,12 +145,13 @@
               </div>
             </div>
             <div class="col-md-3">
-              Price per Metric Ton:
-              <input type="number" name="new_price" id="offer[new_price]" class="form-control" required="required" min="0" step="0.01" placeholder="Current: 370.0৳ per MT" />
+              দাম
+              <input type="number" name="new_price" id="new_price" class="form-control" required="required" min="0" step="0.01" placeholder=" প্রতি {{$managepost['weight_unit']}} {{$managepost['price_per_unit']}}৳ " />
             </div>
             <div class="col-md-3">
-              Lot Weight (MT):
-              <input type="number" name="new_weight" id="offer[new_weight]" class="form-control" required="required" min="0" max="100.0" step="0.1" placeholder="Current: 100.0 MT" />
+            <!-- ওজন ({{$managepost['weight_unit']}}): -->
+            ওজন
+              <input type="number" name="new_weight" id="new_weight" class="form-control" required="required" min="0" step="0.1" placeholder="মোট ওজন: {{$managepost['total_weight']}} {{$managepost['weight_unit']}}" />
             </div>
             <div class="col-md-3">
               প্রস্তাব পাঠান
