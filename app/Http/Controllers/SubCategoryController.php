@@ -51,7 +51,8 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $subcategory = $this->subcategory->saveSubCategory($input);
+        // dd($input);
+        $subcategory = $this->sub_category->saveSubCategory($input);
         return $this->index();
     }
 

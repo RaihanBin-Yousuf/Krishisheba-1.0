@@ -9,11 +9,10 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     use CommonTrait;
-    public function __construct(Category $category,Product $product,Category $AllCategories)
+    public function __construct(Category $category,Product $product)
     {
      $this->category = $category;
      $this->product = $product;
-     $this->AllCategories = $AllCategories;
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +23,7 @@ class CategoryController extends Controller
     {
 
         // $categories = Category::orderBy('id','ASC')->get();
-        $categories = $this->AllCategories->getAllCategories();
+        $categories = $this->category->getAllCategories();
         $product=$this->product->getAll();
         if (request()->ajax()) {
             $input=request()->product_id;

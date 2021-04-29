@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\Product;
 class Category extends Model
 {
     protected $fillable = [
@@ -18,8 +18,14 @@ class Category extends Model
 
     public function getAllCategories()
     {
-        $result = $this->latest()->get();
+        $result = $this->with('product')->get();
+        // dd($result);
         return $result;
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class,'product_id','id');
     }
 
     public function getbyCategoryId($input)

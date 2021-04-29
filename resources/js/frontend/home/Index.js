@@ -9,12 +9,12 @@ import Service from '../includes/Service';
 import Cta from '../includes/Cta';
 import Contact from '../includes/Contact';
 import Footer from '../includes/Footer';
-import TopBarAndHeader from '../includes/TopBarAndHeader';
+// import TopBarAndHeader from '../includes/TopBarAndHeader';
 export default class Index extends Component {
     render() {
         return (
             <div>
-                <TopBarAndHeader/>
+                {/* <TopBarAndHeader/> */}
                 <Hero/>
                 <TopCategorySlider/>
                 <TabSlider/>

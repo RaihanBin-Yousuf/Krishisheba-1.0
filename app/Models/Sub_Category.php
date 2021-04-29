@@ -19,10 +19,16 @@ class Sub_Category extends Model
         return $result;
     }
 
+
     public function getAllsubCategories()
     {
-        $result = $this->latest()->get();
+        $result = $this->with('sub_category')->latest()->get();
         return $result;
+    }
+
+    public function sub_category()
+    {
+        return $this->belongsTo(Category::class,'category_id','id');
     }
 
     public function getbySubCategoryId($input)
@@ -33,6 +39,7 @@ class Sub_Category extends Model
 
     public function saveSubCategory($input)
     {
+        // dd($input);
         $subcategory = $this->create($input);
         return $subcategory;
     }
