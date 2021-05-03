@@ -64,27 +64,33 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        $input = $request->all();
+        // if($request->hasFile('product_image')) {
+        $imageName =time().'.'.$request->file('product_img')->extension();
+        $request->file('product_img')->storeAs('public/posts', $imageName);
+        dd($input);
+        // }
         // Validate the inputs
-        $request->validate([
-            'name' => 'required',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        // ]);
 
-        if ($request->hasFile('file')) {
+        // if ($request->hasFile('file')) {
 
-            $request->validate([
-                'image' => 'mimes:jpeg,bmp,png'
-            ]);
-            $request->file->store('product', 'public');
-            $product = new Product([
-                "name" => $request->get('name'),
-                "product_img" => $request->file->hashName()
-            ]);
-            $product->save(); 
-        }
-        $notification=array(
-            'messege'=>'Successfully Added',
-            'alert-type'=>'success'
-            );
+        //     $request->validate([
+        //         'image' => 'mimes:jpeg,bmp,png'
+        //     ]);
+        //     $request->file->store('product', 'public');
+        //     $product = new Product([
+        //         "name" => $request->get('name'),
+        //         "product_img" => $request->file->hashName()
+        //     ]);
+        //     $product->save(); 
+        // }
+        // $notification=array(
+        //     'messege'=>'Successfully Added',
+        //     'alert-type'=>'success'
+        //     );
         return Redirect()->back()->with($notification);
 
     }

@@ -83,7 +83,7 @@
                       <div>
                           <img style="height: 150px; width: 200px;" id="productimage" src="{{ asset('frontend-asset/home_page/img/ourcountry.jpg') }}" alt="your image" />
                           </div>
-                          <input type='file' name="file" onchange="readURL(this);" />
+                          <input type='file' name="product_img" onchange="readURL(this);" />
                       </div>
                   </div>
                  <button type="submit" class="btn btn-info btn-block">Submit</button>
