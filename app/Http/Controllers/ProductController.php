@@ -48,20 +48,48 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // public function store(Request $request)
+    // {
+    //     $product = new Product();
+    // 	$product->name = $request->name;
+    //     $imageName = time().'.'.$request->image->extension();  
+    //     $request->image->move(public_path('images'), $imageName);
+    //     $product->save();
+    //        $notification=array(
+    //                    'messege'=>'Successfully Added',
+    //                    'alert-type'=>'success'
+    //                     );
+    //        return Redirect()->back()->with($notification);
+    // }
+
     public function store(Request $request)
     {
-        // $data=array();
-    	//  $data['name']=$request->name;
-    	//  DB::table('products')->insert($data);
-        $product = new Product();
-    	$product->name = $request->name;
-        $product->save();
-           $notification=array(
-                       'messege'=>'Successfully Added',
-                       'alert-type'=>'success'
-                        );
-           return Redirect()->back()->with($notification);
+        // Validate the inputs
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        if ($request->hasFile('file')) {
+
+            $request->validate([
+                'image' => 'mimes:jpeg,bmp,png'
+            ]);
+            $request->file->store('product', 'public');
+            $product = new Product([
+                "name" => $request->get('name'),
+                "product_img" => $request->file->hashName()
+            ]);
+            $product->save(); 
+        }
+        $notification=array(
+            'messege'=>'Successfully Added',
+            'alert-type'=>'success'
+            );
+        return Redirect()->back()->with($notification);
+
     }
+
+
 
     public function deleteProducById($id)
 	{

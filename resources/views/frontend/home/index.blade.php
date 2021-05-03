@@ -12,8 +12,8 @@
 
 <!-- ======= Hero Section ======= -->
 
-{{-- @include('frontend.includes.hero') --}}
-<div class="managePostCreate" id="react_fronend_index"></div> 
+@include('frontend.includes.hero')
+<!-- <div class="managePostCreate" id="react_fronend_index"></div>  -->
    
 <!-- End Hero -->
 
@@ -21,7 +21,7 @@
 =            category slider         =
 =============================================-->
 
-{{-- @include('frontend.includes.topcategory-slider') --}}
+ @include('frontend.includes.topcategory-slider')
 
 <!--=====  End of category slider  ======-->
 
@@ -29,39 +29,39 @@
 =            Tab slider         =
 =============================================-->
 
-{{-- @include('frontend.includes.tab-slider') --}}
+@include('frontend.includes.tab-slider')
 
 <!--=====  End of Tab slider  ======-->
 
 <!-- ======= About Us Section ======= -->
-{{-- @include('frontend.includes.about-us') --}}
+@include('frontend.includes.about-us')
 <!-- End About Us Section -->
 
 <!--How Its works Section -->
-{{-- @include('frontend.includes.how-its-works') --}}
+@include('frontend.includes.how-its-works')
 
 <!-- End How Its works Section -->
 
 <!-- ======= Services Section ======= -->
-{{-- @include('frontend.includes.service') --}}
+@include('frontend.includes.service')
 
 <!-- End Services Section -->
 
 <!-- ======= Cta Section ======= -->
 
-{{-- @include('frontend.includes.cta') --}}
+<!-- @include('frontend.includes.cta') -->
 
 <!-- End Cta Section -->
 
 <!-- ======= Contact Section ======= -->
 
-{{-- @include('frontend.includes.contact') --}}
+@include('frontend.includes.contact')
 
 <!-- End Contact Section -->
 
 <!-- ======= Footer ======= -->
 
-{{-- @include('frontend.includes.footer') --}}
+@include('frontend.includes.footer')
 
 <!-- End Footer -->
 

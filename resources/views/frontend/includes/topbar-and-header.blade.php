@@ -33,7 +33,7 @@
            <li><a href="#contact">যোগাযোগ</a></li>
            <li class="drop-down"><a href="">আমাদের সম্পর্কে আরও</a>
              <ul>
-               <li><a href="{{ route('team') }}">আমাদের টিম</a></li>
+               <!-- <li><a href="{{ route('team') }}">আমাদের টিম</a></li> -->
                <li><a href="whyus.html">আমাদের সমাধান</a></li>
                <li><a  href="{{ route('faq') }}">জিজ্ঞাসা</a></li>
              </ul>
@@ -63,7 +63,7 @@
 											<a href="single-product.html"><img src="frontend-asset/assets_2/images/products/product01.jpg" class="img-fluid" alt=""></a>
 										</div>
 										<div class="cart-float-single-item-desc">
-											<p class="product-title"> <a href="single-product.html">Duis pulvinar obortis eleifend </a></p>
+											<p class="product-title"> <a href="single-product.html"></a></p>
 											<p class="price"><span class="count">1x</span> $20.50</p>
 										</div>
 									</div>
@@ -73,7 +73,7 @@
 											<a href="single-product.html"><img src="frontend-asset/assets_2/images/products/product02.jpg" class="img-fluid" alt=""></a>
 										</div>
 										<div class="cart-float-single-item-desc">
-											<p class="product-title"> <a href="single-product.html">Fusce ultricies dolor vitae</a></p>
+											<p class="product-title"> <a href="single-product.html"></a></p>
 											<p class="price"><span class="count">1x</span> $20.50</p>
 										</div>
 									</div>

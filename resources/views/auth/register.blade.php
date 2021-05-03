@@ -40,7 +40,12 @@
                                 <div>
                                     <img class="profileimg" id="profileimage" src="{{ asset('frontend-asset/demoprofile.jpg') }}" alt="your image" />
                                     </div>
-                                    <input type='file' name="profile_img" onchange="readURL(this);" />
+                                    <input type='file' class="@error('profile_img') is-invalid @enderror" name="profile_img" onchange="readURL(this);" />
+                                    @error('profile_img')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                 </div>
                             </div>
 

@@ -2244,8 +2244,8 @@ var AboutUs = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "section-titlehome",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
-                children: ["\u0986\u09AE\u09BE\u09A6\u09C7\u09B0  ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("green", {
-                  children: "\u09B8\u09AE\u09CD\u09AA\u09B0\u09CD\u0995\u09C7"
+                children: ["\u0986\u09AE\u09BE\u09A6\u09C7\u09B0", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("green", {
+                  children: " \u09B8\u09AE\u09CD\u09AA\u09B0\u09CD\u0995\u09C7"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\Admin\CheckPostController;
 use App\Http\Controllers\FrontTestController;
 use App\Http\Controllers\CategoryController;
@@ -44,7 +45,10 @@ Route::get('/paddy_detailspage/{id}',[PaddysController::class,'paddy_detailspage
 Route::resource('rice', RiceController::class);
 Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
-
+//Super Admin Route
+Route::resource('superadmin', SuperAdminController::class);
+// Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
+Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewadmin');
 
 //Admin Route
 Route::resource('allposts', CheckPostController::class);
@@ -59,6 +63,7 @@ Route::get('/deletecategory/{id}',[CategoryController::class,'deleteCategoryById
 
 Route::resource('subcategories', SubCategoryController::class);
 // Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
+Route::get('/deletesubcategory/{id}',[SubCategoryController::class,'deleteSubCategoryById'])->name('deleteSubCategoryById');
 
 // manage Users Route
 Route::prefix('ManageUsers')->group(function () 
@@ -67,6 +72,7 @@ Route::resource('users', UsersController::class);
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
 Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('deleteUserById');
 });
+//End Admin route
 
 
 //Seller and buyer route

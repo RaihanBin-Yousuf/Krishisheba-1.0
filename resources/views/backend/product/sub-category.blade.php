@@ -47,7 +47,8 @@
                   <td>{{ $sub_category->sub_category->name }}</td>
                   <td>
                   	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-                  	  <a href="" class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
+                      <a href={{"deletesubcategory/".$sub_category->id }} class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
+
                   </td>
                 </tr>
                 @endforeach

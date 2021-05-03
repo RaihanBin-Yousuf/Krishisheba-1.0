@@ -31,6 +31,35 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
+
+                <!-- Super Admin Access -->
+                @if(auth()->user()->role == 'sadmin')
+                <li class="nav-item">
+                  <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                    Dashboard
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('superadmin.index')}}" class="nav-link {{($route=='superadmin.index') ?'active':''}}">
+                    <i class="fas fa-th nav-icon"></i>
+                    <p>Access Admin</p>
+                  </a>
+                </li>
+
+                <li class="nav-item">
+                      <a class="nav-link" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+                          <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
+                      </a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                          @csrf
+                      </form>
+                </li> 
+                @endif
              
                 <!-- Admin Access -->
                 @if(auth()->user()->role == 'admin')

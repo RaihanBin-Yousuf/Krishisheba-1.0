@@ -14,7 +14,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         $all_users=[
-            [ "name" => "RAIHAN", "email" => "raihancox12@gmail.com", "mobile" => "01816064616","nid" => "5106894768","birth_date" => "02-07-1997","role" => "admin","password" => bcrypt('12121212'),"lat" => "21.443197","lng" => "91.983097"],
+            [ "name" => "RAIHAN", "email" => "raihancox12@gmail.com", "mobile" => "01816064616","nid" => "5106894768","birth_date" => "02-07-1997","role" => "sadmin","password" => bcrypt('12121212')],
+            [ "name" => "RAIHAN UDDIN", "email" => "raihanuddin200983@gmail.com", "mobile" => "01817273489","nid" => "510689475568","birth_date" => "02-07-1997","role" => "admin","password" => bcrypt('12121212'),"lat" => "21.443197","lng" => "91.983097"],
             [ "name" => "EMTIYAZ", "email" => "emtiyaz12@gmail.com", "mobile" => "01816064617","nid" => "345677544567","birth_date" => "10-11-2019","role" => "admin","password" =>  bcrypt('12121212'),"lat" => "22.351474","lng" => "91.834705"],
             [ "name" => "ROBIN", "email" => "robin12@gmail.com", "mobile" => "01816064618","nid" => "5106894769","birth_date" => "12-11-2017","role" => "admin","password" =>  bcrypt('12121212')],
             [ "name" => "ABISHEK", "email" => "abishek12@gmail.com", "mobile" => "01816064619","nid" => "345775445756","birth_date" => "11-10-2010","role" => "admin","password" =>  bcrypt('12121212')],

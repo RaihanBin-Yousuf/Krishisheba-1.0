@@ -26,6 +26,8 @@ class User extends Authenticatable
         'birth_date',
         'password',
         'profile_img',
+        'nid_front_img',
+        'access_to',
         'lat',
         'lng'
     ];
@@ -48,4 +50,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getAllUsers()
+    {
+        $result = $this->latest()->get();
+        return $result;
+    }
+
+
+   public function accessToAdmin($input,$id)
+   {
+    //    print_r($id);
+    //    dd($input);
+    $user = $this->updateOrCreate(['id'=>$id], $input);
+    return $user;
+   }
 }

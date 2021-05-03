@@ -163,7 +163,7 @@
         
   </script>
 
-    <script>
+      <script>
             $(document).on("click", "#delete", function(e){
                 e.preventDefault();
                  var link = $(this).attr("href");
@@ -185,6 +185,22 @@
                   }
                 });
                });
-       </script>
+      </script>
+      <script>
+      // product pic upload
+        function readURL(input) {
+          if (input.files && input.files[0]) {
+              var reader = new FileReader();
+
+              reader.onload = function (e) {
+                  $('#productimage')
+                      .attr('src', e.target.result);
+              };
+
+              reader.readAsDataURL(input.files[0]);
+          }
+        }
+
+      </script>
 </body>
 </html>

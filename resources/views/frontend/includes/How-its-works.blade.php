@@ -17,8 +17,7 @@
           </ul>
         </div>
         <div class="col-lg-6 order-1 order-lg-2" id="video_div">
-                  <!-- <video id="video" playsinline="true" autoplay="autoplay" muted="muted" loop="loop" type="video/mp4" src="https://agrimp-prod.s3.amazonaws.com/public/AgriMarketPlace_howitworks_demo.mov"></video> -->
-                  <video id="video" playsinline="true" autoplay="autoplay" muted="muted" loop="loop" type="video/mp4" src="{{ asset('frontend-asset/market/Beautiful Nature Around The World.mkv') }}"></video>
+                  <video id="video" playsinline="true" autoplay="autoplay" muted="muted" loop="loop" type="video/mp4" ></video>
         </div>
       </div>
     </div>

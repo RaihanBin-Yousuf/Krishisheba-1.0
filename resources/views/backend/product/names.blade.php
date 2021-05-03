@@ -31,19 +31,21 @@
                 <thead>
                 <tr>
                   <th>Product Id </th>
+                  <th>Product Iamge </th>
                   <th>Product Name </th>
                   <th>Action</th>
-                </tr>
+                </tr>1
                 </thead>
                 <tbody>
               
                 <tr>
-                @foreach($names as $productname)
-                  <td>{{ $productname->id }}</td>
-                  <td>{{ $productname->name }}</td>
+                @foreach($names as $products)
+                  <td>{{ $products->id }}</td>
+                  <td><img src="{{asset('storage/product/'.$products->product_img)}}" style="width:100px; height:100px; border-radius:50%;"></td>
+                  <td>{{ $products->name }}</td>
                   <td>
                   	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
-                  	  <a href={{"deleteproduct/".$productname->id }} class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
+                  	  <a href={{"deleteproduct/".$products->id }} class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
                 @endforeach
@@ -64,7 +66,7 @@
               </button>
             </div>
             <div class="modal-body">
-               <form action="{{ route('product.store') }}" method="Post">
+               <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                	@csrf
                  <div class="form-group">
                    <label for="exampleInputEmail1">Product Name </label>
@@ -75,6 +77,15 @@
                     </span>
                     @enderror
                  </div>
+                 <div class="row">
+                      <div class="col-md-6 form-group">
+                      <label for="profile_image">Product Image</label>
+                      <div>
+                          <img style="height: 150px; width: 200px;" id="productimage" src="{{ asset('frontend-asset/home_page/img/ourcountry.jpg') }}" alt="your image" />
+                          </div>
+                          <input type='file' name="file" onchange="readURL(this);" />
+                      </div>
+                  </div>
                  <button type="submit" class="btn btn-info btn-block">Submit</button>
                </form>
             </div>

@@ -13,7 +13,7 @@ export default class AboutUs extends Component {
                 <section id="whyus" className="whyus">
                     <div className="container">
                     <div className="section-titlehome">
-                        <h2>আমাদের  <green>সম্পর্কে</green></h2>
+                        <h2>আমাদের<green> সম্পর্কে</green></h2>
                         </div>
                 
                         <div className="row">

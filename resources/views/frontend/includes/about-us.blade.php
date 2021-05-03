@@ -1,9 +1,8 @@
 <section id="whyus" class="whyus">
     <div class="container">
       <div class="section-titlehome">
-        <h2>আমাদের  <green>সম্পর্কে<green></h2>
+      <h2>আমাদের <span class="green">সম্পর্কে</span></h2>
         </div>
-  
         <div class="row">
           <div class="col-lg-6 order-1 order-lg-2">
             

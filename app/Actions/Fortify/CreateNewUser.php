@@ -33,7 +33,8 @@ class CreateNewUser implements CreatesNewUsers
             'role' => ['required', 'string', 'max:10'],
             'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
             'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
-            'photo' => ['nullable', 'image', 'max:2048'],
+            'profile_img' => ['nullable', 'image', 'max:2048'],
+            
         ])->validate();
             // dd($input);
             if(empty($input['profile_img']))

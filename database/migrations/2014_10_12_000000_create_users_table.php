@@ -18,17 +18,21 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->nullable()->unique();
             $table->string('mobile')->unique();
-            $table->string('nid')->nullable();
+            $table->bigInteger('nid')->nullable();
             $table->string('birth_date')->nullable();
             $table->string('address')->nullable();
             $table->string('role')->nullable();
             $table->string('password');
             $table->string('profile_img')->nullable();
-            $table->string('lat')->nullable();
-            $table->string('lng')->nullable();
+            $table->string('nid_front_img')->nullable();
+            $table->integer('access_to')->default('0');
+            $table->decimal('latitude', 10, 8)->default('0.00');
+            $table->decimal('longitude', 11, 8)->default('0.00');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
+           
         });
     }
 
