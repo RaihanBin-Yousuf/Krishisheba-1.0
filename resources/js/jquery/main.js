@@ -1,7 +1,4 @@
-// import jqueryDataTables = require("./jquery.dataTables");
-import $ from 'jquery';
-
-const main=(function ($) {
+(function ($) {
 	"use strict";
 
 	/*--
@@ -1027,7 +1024,9 @@ const main=(function ($) {
 		$('[data-method="'+$value+'"]').slideDown();
 
 	});
+	
+
+
+
+
 })(jQuery);
-
-
-export default main;
