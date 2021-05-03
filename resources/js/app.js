@@ -15,7 +15,11 @@ require('./jquery/aj-custom-select');
 require('./jquery/owl.carousel/owl.carousel');
 require('./jquery/php-email-form/validate');
 require('./jquery/venobox/venobox');
+// require('./jquery/slick');
+
+require('slick-carousel');
 // require('./jquery/main');
+require('./custom');
 /**
  * Next, we will create a fresh React component instance and attach it to
  * the page. Then, you may begin adding components to this application

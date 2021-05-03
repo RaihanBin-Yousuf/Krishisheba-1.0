@@ -3,10 +3,15 @@
 
 // Variables
 @import 'variables';
-
+@import "~slick-carousel/slick/slick"; 
+@import "~slick-carousel/slick/slick-theme";
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 @import './components/products.scss';
 @import './components/hero.scss';
 @import './components/tabSlider.scss';
 @import './components/TopCategorySlider.scss';
+// @import './components/slick.scss';
+
+// @import './components/slick-theme.scss';
+// @import './components/slick-theme.scss';
