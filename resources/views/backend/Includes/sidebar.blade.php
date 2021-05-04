@@ -48,21 +48,10 @@
                     <p>Access Admin</p>
                   </a>
                 </li>
-
-                <li class="nav-item">
-                      <a class="nav-link" href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();">
-                          <i class="nav-icon fas fa-sign-out-alt"></i><p>Logout</p>
-                      </a>
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                          @csrf
-                      </form>
-                </li> 
                 @endif
              
                 <!-- Admin Access -->
-                @if(auth()->user()->role == 'admin')
+                @if(auth()->user()->role == 'admin' or auth()->user()->role == 'sadmin' )
                 <li class="nav-item">
                   <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>

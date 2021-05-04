@@ -72,10 +72,10 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $user=$request->all();
+        $user['id']=$request->access_to;
+        $user['access_to']=1;
        $this->user->accessToAdmin($user,$user['id']);
-    //    dd($superAdminId);
+       return view('backend.superadmin.adminview');
     }
 
     /**
@@ -86,7 +86,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+        $viewadmin = User::find($id);
+        // dd($viewadmin);
+        return view('backend.superadmin.adminview',compact('viewadmin'));
     }
 
     /**

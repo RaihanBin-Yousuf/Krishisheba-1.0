@@ -45,14 +45,16 @@ Route::get('/paddy_detailspage/{id}',[PaddysController::class,'paddy_detailspage
 Route::resource('rice', RiceController::class);
 Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
+
 //Super Admin Route
 Route::resource('superadmin', SuperAdminController::class);
 // Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
 Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewadmin');
 
+
+
 //Admin Route
 Route::resource('allposts', CheckPostController::class);
-
 Route::resource('product', ProductController::class);
 Route::get('/names',[ProductController::class,'names'])->name('names');
 Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->name('deleteProducById');

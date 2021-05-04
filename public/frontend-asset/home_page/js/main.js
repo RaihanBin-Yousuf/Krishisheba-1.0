@@ -5,7 +5,17 @@
 * License: https://bootstrapmade.com/license/
 */
 // start market
-function familyButtonClick(t,e){t.forEach(function(t){var i="#product_"+t,n="#button_"+t;t==e?($(i).attr("class","col-md-12 d-sm-block d-md-flex justify-content-center"),$(n).attr("class","family__button__pressed")):($(i).attr("class","col-md-12 d-none"),$(n).attr("class","family__button"))})}
+function familyButtonClick(t,e)
+{
+  t.forEach(function(t)
+  {
+    var i="#product_"+t,
+    n="#button_"+t;
+    t==e?($(i).attr("class","col-md-12 d-sm-block d-md-flex justify-content-center"),
+    $(n).attr("class","family__button__pressed")):($(i).attr("class","col-md-12 d-none"),
+    $(n).attr("class","family__button"))
+  })
+php}
 // End market
 
 // profile pic upload and updade

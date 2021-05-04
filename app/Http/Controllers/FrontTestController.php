@@ -24,9 +24,7 @@ class FrontTestController extends Controller
     public function findproduct(){
         return view("frontend.products.find-products");
     }
-    public function paddy_product_detailspage(){
-        return view("frontend.products.grain.paddy.paddy_product_detailspage");
-    }
+    
     /**
      * Show the form for creating a new resource.
      *

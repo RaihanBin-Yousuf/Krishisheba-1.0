@@ -93,12 +93,11 @@
               
                 </div>
                 <form action="{{ route('users.store') }}" method="Post">
-              @csrf
+                    @csrf
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ACCESS TO:</label>
-                        <input type="hidden" value="{{$viewadmin['id']}}">
-                        <input type="checkbox" value="1" name="access_to"/>
+                        <input type="checkbox" value="{{$viewadmin['id']}}" name="access_to"/>
                       </div>
                     </div>
                 <!-- /.card-body -->
