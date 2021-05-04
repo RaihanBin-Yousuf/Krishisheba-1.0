@@ -23,6 +23,12 @@ class Product extends Model
         $product = $this->where('id', $input)->get()->first();
         return $product;
     }
+
+    public function saveProduct($input)
+    {
+        $manageProduct = $this->create($input);
+        return $manageProduct;
+    }
 }
 
 
