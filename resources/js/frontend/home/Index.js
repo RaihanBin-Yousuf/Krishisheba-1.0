@@ -15,26 +15,67 @@ import Faq from '../includes/Faq';
 import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
+
 export default class Index extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            show_page: null,
+            productId: '',
+        };
+        this.showPage = this.showPage.bind(this);
+        this.productDetails = this.productDetails.bind(this);
+    }
+
+    showPage(page) {
+        this.setState({ ['show_page']: page });
+    }
+
+    componentDidMount() {
+
+    }
+
+    productDetails(data) {
+        console.log('data :>> ', data);
+        this.setState({ ['productId']: data.id, });
+        this.showPage('filter');
+    }
+
     render() {
+        let showPageName = '';
+        if(this.state.show_page === null) {
+            showPageName = <div>
+                                <Hero/>
+                                <TopCategorySlider productDetails={this.productDetails}/>
+                                <TabSlider/>
+                                <AboutUs/>
+                                <HowItsWorks/>
+                                <Service/>
+                                <Cta/>
+                                <Contact/>
+                                <Footer/>
+                            </div>
+        } else if(this.state.show_page === 'productdetails') {
+            showPageName = <DetailsPage/>
+        } else if(this.state.show_page === 'findProducts') {
+            showPageName = <FindProducts/>
+        } else if(this.state.show_page === 'team') {
+            showPageName = <Team/>
+        } else if(this.state.show_page === 'faq') {
+            showPageName = <Faq/>
+        } else if(this.state.show_page === 'filter') {
+            showPageName = <Filter/>
+        }
         return (
-            <div>
+            <>  
+                {showPageName}
                 {/* <TopBarAndHeader/> */}
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}
-                {/* <FindProducts/> */}
                 {/* <Filter/> */}
-                {/* <DetailsPage/> */}
-                <Hero/>
-                <TopCategorySlider/>
-                <TabSlider/>
-                <AboutUs/>
-                <HowItsWorks/>
-                <Service/>
-                <Cta/>
-                <Contact/>
-                <Footer/>
-            </div>
+                {/* <Footer/> */}
+                
+            </>
         )
     }
 }

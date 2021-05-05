@@ -15,7 +15,7 @@ export default class Faq extends Component {
                         <div className="container">
 
                             <div className="section-titlehome">
-                                <h2>জিজ্ঞাসা কৃত <green>প্রশ্ন সমূহ</green></h2>
+                                <h2>জিজ্ঞাসা কৃত </h2><span className="green">প্রশ্ন সমূহ</span>
                             </div>
                             <div className="row">
                                 <div className="col-lg-12">

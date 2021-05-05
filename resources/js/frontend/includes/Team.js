@@ -13,7 +13,7 @@ export default class Team extends Component {
                 <section id="team" className="team section-bg">
                     <div className="container">
                         <div className="section-titlehome">
-                            <h2>আমাদের  <green>TEAM</green></h2>
+                            <h2>আমাদের  <span className="green">TEAM</span></h2>
                         </div>
                         <div className="row">
                             <div className="col-lg-4 col-md-6 d-flex align-items-stretch">

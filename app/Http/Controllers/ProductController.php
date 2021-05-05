@@ -23,8 +23,8 @@ class ProductController extends Controller
     {
         $names = $this->product->getAll();
         return view('backend.product.names',compact('names'));
-
     }
+    
     public function index()
     {
         $products = $this->product->getAll();
