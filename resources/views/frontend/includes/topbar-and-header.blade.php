@@ -39,7 +39,7 @@
              </ul>
            </li>
            <li></li>
-           <div class="shopping-cart" id="react-shopping-cart"></div>
+           
          </ul>
        </nav><!-- .nav-menu -->
      </div>

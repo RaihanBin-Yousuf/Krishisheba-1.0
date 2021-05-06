@@ -9,22 +9,13 @@ export default class TopBarAndHeader extends Component {
         
     }
 
-    Whyus() {
-        const anchor = document.querySelector('#whyus')
-        anchor.scrollIntoView({ behavior: 'smooth', block: 'nearest',delay: 5000, inline: 'nearest' })
-    }
-    
-    OurServices() {
-        const anchor = document.querySelector('#services')
+    pageOnClickScroller(id) {
+        const anchor = document.querySelector('#'+id)
         anchor.scrollIntoView({ behavior: 'smooth', block: 'nearest',delay: 5000, inline: 'nearest' })
     }
 
-    loginPage() {
-        window.location.href = "/login";
-    }
-
-    registerPage() {
-        window.location.href = "/register";
+    onClickPage(url) {
+        window.location.href = "/"+url;
     }
 
     slideUp() {
@@ -46,8 +37,8 @@ export default class TopBarAndHeader extends Component {
                                 <i className="icofont-envelope"></i> <a href="mailto:contact@example.com">contact@example.com</a>
                                 <i className="icofont-phone"></i> +1 5589 55488 55
                             </div>
-                            <button className="login-btn"><a onClick={this.loginPage}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
-                            <a onClick={this.registerPage} className="get-started-btn scrollto">নিবন্ধন</a> 
+                            <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
+                            <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
                         </div>
                     </div>
                     <header id="header" className="fixed-top">
@@ -56,10 +47,10 @@ export default class TopBarAndHeader extends Component {
                         <nav className="nav-menu d-none d-lg-block">
                             <ul>
                                 <li><a href="">হোম</a></li>
-                                <li><a onClick={this.Whyus}>আমাদের সমাধান</a></li>
-                                <li><a onClick={this.OurServices}>সেবাসমূহ</a></li>
+                                <li><a onClick={()=>this.pageOnClickScroller('whyus')}>আমাদের সমাধান</a></li>
+                                <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
                                 <li><a href="{{ route('findproduct') }}">পণ্য</a></li>
-                                <li><a href="#contact">যোগাযোগ</a></li>
+                                <li><a onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
                                 <li className="drop-down"><a href="">আমাদের সম্পর্কে আরও</a>
                                     <ul>
                                     <li><a href="{{ route('team') }}">আমাদের টিম</a></li>

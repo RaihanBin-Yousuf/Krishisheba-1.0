@@ -15,7 +15,6 @@ import Faq from '../includes/Faq';
 import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
-import ShoppingCart from '../includes/ShoppingCart';
 
 export default class Index extends Component {
     constructor(props) {
@@ -54,8 +53,6 @@ export default class Index extends Component {
         let showPageName = '';
         if(this.state.show_page === null) {
             showPageName = <div>
-                                {/* <ShoppingCart/> */}
-
                                 <Hero/>
                                 <TopCategorySlider productDetails={this.productDetails}/>
                                 <TabSlider addCount={this.addCount} data={this.state}/>
@@ -64,7 +61,6 @@ export default class Index extends Component {
                                 <Service/>
                                 <Cta/>
                                 <Contact/>
-                                <Footer/>
                             </div>
         } else if(this.state.show_page === 'productdetails') {
             showPageName = <DetailsPage/>
@@ -86,7 +82,7 @@ export default class Index extends Component {
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}
                 {/* <Filter/> */}
-                {/* <Footer/> */}
+                <Footer/>
                 
             </>
         )

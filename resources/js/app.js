@@ -33,5 +33,4 @@ require('./new/managePostCreate');
 require('./new/managePostCreate');
 
 require('./frontend/home/Index');
-require('./frontend/includes/ShoppingCart');
 // require('./frontend/includes/TopCategorySlider');
