@@ -35,7 +35,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <th>User Id</th>
+                    <!-- <th>User Id</th> -->
                     <th>Product Name</th>
                     <th>Product Image</th>
                     <th>category</th>
@@ -49,7 +49,7 @@
 
                   @foreach($allposts as $allpost)
                       <tr>
-                        <td class="text-center py-0 align-middle">{{ $allpost->user_id }}</td>
+                        <!-- <td class="text-center py-0 align-middle">{{ $allpost->user_id }}</td> -->
                         <td class="text-center py-0 align-middle">{{ $allpost->product_name }}</td>
                         <td class="text-center py-0 align-middle"><img src="{{asset('storage/posts/'.$allpost->product_image)}}" style="width:121px; height:121px; border-radius:50%;"></td>
                         <td class="text-center py-0 align-middle">{{ $allpost->category }}</td>

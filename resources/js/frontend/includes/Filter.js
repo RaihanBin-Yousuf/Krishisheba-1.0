@@ -512,14 +512,14 @@ export default class Filter extends Component {
                                                 </div>
                                             </div>
                                             <div className="mb-15 form-group">
-                                                <label className="filter__label" htmlFor="name">প্রকারভেদ</label>
+                                                <label className="filter__label" htmlFor="name">পণ্যের প্রকারভেদ</label>
                                                 <select name="category" onChange={this.subcategorySelect} id="search_2" className="form-control">
                                                     {categoryDropdown}
                                                 </select>
                                             </div>
                                     
                                             <div className="mb-15 form-group">
-                                                <label className="filter__label" htmlFor="name">ধানের জাত</label>
+                                                <label className="filter__label" htmlFor="name">পণ্যের জাত</label>
                                                 <select name="sub_category" onChange={this.handleInputChange} id="search_3" className="form-control">
                                                    {subcategoryDropdown}
                                                 </select>

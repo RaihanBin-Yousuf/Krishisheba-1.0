@@ -34,7 +34,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <th class="text-center">Id</th>
+                    <!-- <th class="text-center">Id</th> -->
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Contact</th>
@@ -48,7 +48,7 @@
                   <tbody>
                   <tr>
                       @foreach($allsellers as $sellers)
-                      <td>{{ $sellers->id }}</td>
+                      <!-- <td>{{ $sellers->id }}</td> -->
                       <td>{{ $sellers->name }}</td>
                       <td>{{ $sellers->email }}</td>
                       <td>{{ $sellers->mobile }}</td>

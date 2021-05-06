@@ -26,13 +26,13 @@ class CreateUsersTable extends Migration
             $table->string('profile_img')->nullable();
             $table->string('nid_front_img')->nullable();
             $table->integer('access_to')->default('0');
+            $table->string('check_box')->nullable();
             $table->decimal('latitude', 10, 8)->default('0.00');
             $table->decimal('longitude', 11, 8)->default('0.00');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
 
-           
         });
     }
 

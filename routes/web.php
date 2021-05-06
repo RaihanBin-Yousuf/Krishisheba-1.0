@@ -47,8 +47,8 @@ Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
 
 //Super Admin Route
-Route::resource('superadmin', SuperAdminController::class);
-// Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
+// Route::resource('superadmin', SuperAdminController::class);
+Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
 Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewadmin');
 
 
@@ -72,6 +72,7 @@ Route::prefix('ManageUsers')->group(function ()
 {
 Route::resource('users', UsersController::class);
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
+Route::get('/buyer',[UsersController::class,'buyer'])->name('buyer');
 Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('deleteUserById');
 });
 //End Admin route

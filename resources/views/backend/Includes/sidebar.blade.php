@@ -31,26 +31,6 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-
-                <!-- Super Admin Access -->
-                @if(auth()->user()->role == 'sadmin')
-                <li class="nav-item">
-                  <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
-                    <p>
-                    Dashboard
-                    </p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="{{route('superadmin.index')}}" class="nav-link {{($route=='superadmin.index') ?'active':''}}">
-                    <i class="fas fa-th nav-icon"></i>
-                    <p>Access Admin</p>
-                  </a>
-                </li>
-                @endif
-             
-                <!-- Admin Access -->
                 @if(auth()->user()->role == 'admin' or auth()->user()->role == 'sadmin' )
                 <li class="nav-item">
                   <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
@@ -60,6 +40,20 @@
                     </p>
                   </a>
                 </li>
+                @endif
+                <!-- Super Admin Access -->
+                @if(auth()->user()->role == 'sadmin')
+
+                <li class="nav-item">
+                  <a href="{{route('alladmin')}}" class="nav-link {{($route=='alladmin') ?'active':''}}">
+                    <i class="fas fa-th nav-icon"></i>
+                    <p>Access Admin</p>
+                  </a>
+                </li>
+                @endif
+             
+                <!-- Admin Access -->
+                @if(auth()->user()->role == 'admin' or auth()->user()->role == 'sadmin' )
                 <li class="nav-item">
                   <a href="{{route('names')}}" class="nav-link {{($route=='names') ?'active':''}}">
                     <i class="fas fa-th nav-icon"></i>
@@ -97,6 +91,12 @@
                       <a href="{{route('seller')}}" class="nav-link {{($route=='seller') ?'active':''}}">
                         <i class="fas fa-users nav-icon"></i>
                         <p>Sellers</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{{route('buyer')}}" class="nav-link {{($route=='buyer') ?'active':''}}">
+                        <i class="fas fa-users nav-icon"></i>
+                        <p>Buyers</p>
                       </a>
                     </li>
                   </ul>

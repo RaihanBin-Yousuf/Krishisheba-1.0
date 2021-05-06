@@ -19,14 +19,15 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $allusers = $this->user->getAllUsers()
-        ->where('role','!=','sadmin')
-        ->where('role','!=','admin');
+        $allusers = $this->user->getAllUsers();
+        // ->where('role','!=','sadmin')
+        // ->where('role','!=','admin');
         return view('backend.manage_users.index',compact('allusers'));
     }
     public function AllAdmin()
     {
-        $alladmin = User::where(['role'=>'admin','access_to'=>'0'])->get();
+        // $alladmin = User::where(['role'=>'admin','access_to'=>'0'])->get();
+        $alladmin = User::where(['role'=>'admin'])->get();
         return view('backend.superadmin.accessadmin',compact('alladmin'));
     }
 
@@ -38,8 +39,15 @@ class UsersController extends Controller
     }
     public function seller()
     {
-        $allsellers = User::where('role','seller')->get();
+        $allsellers = $this->user->getAllUsers()
+        ->where('role','seller');
         return view('backend.manage_users.seller',compact('allsellers'));
+    }
+    public function buyer()
+    {
+        $allbuyers = $this->user->getAllUsers()
+        ->where('role','buyer');
+        return view('backend.manage_users.buyer',compact('allbuyers'));
     }
 
     /**
@@ -73,9 +81,9 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         $user['id']=$request->access_to;
-        $user['access_to']=1;
-       $this->user->accessToAdmin($user,$user['id']);
-       return view('backend.superadmin.adminview');
+        $user['access_to']=Auth::user()->id;
+       $this->user->accessTo($user,$user['id']);
+       return back();
     }
 
     /**
@@ -86,9 +94,7 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        $viewadmin = User::find($id);
-        // dd($viewadmin);
-        return view('backend.superadmin.adminview',compact('viewadmin'));
+        
     }
 
     /**

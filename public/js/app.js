@@ -3874,7 +3874,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                           className: "filter__label",
                           htmlFor: "name",
-                          children: "\u09AA\u09CD\u09B0\u0995\u09BE\u09B0\u09AD\u09C7\u09A6"
+                          children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09AA\u09CD\u09B0\u0995\u09BE\u09B0\u09AD\u09C7\u09A6"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
                           name: "category",
                           onChange: this.subcategorySelect,
@@ -3887,7 +3887,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
                           className: "filter__label",
                           htmlFor: "name",
-                          children: "\u09A7\u09BE\u09A8\u09C7\u09B0 \u099C\u09BE\u09A4"
+                          children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
                           name: "sub_category",
                           onChange: this.handleInputChange,

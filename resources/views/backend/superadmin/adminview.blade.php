@@ -18,9 +18,9 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
+        <div class="row ">
           <!-- left column -->
-          <div class="col-md-9">
+          <div class="col-md-6">
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
@@ -32,7 +32,7 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-6 form-group">
+                        <div class="col-md-12 form-group text-center">
                             <label for="profile_image">প্রোফাইল ছবি</label>
                             <div>
                                 <img style="height: 100px; width: 100px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewadmin->profile_img)}}"/>
@@ -40,7 +40,7 @@
                         </div>
                     </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductName">Name:</label>
                         <div>
@@ -50,32 +50,32 @@
                       </div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleProductCategory ">Email:</label>
                         <div>{{$viewadmin['email']}}</div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">Contact NO:</label>
                         <div>{{$viewadmin['mobile']}}</div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ROLE:</label>
                         <div>{{$viewadmin['role']}}</div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ADDRESS:</label>
                         <div>{{$viewadmin['address']}}</div>
                       </div>
                     </div>
                     
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">NID NO:</label>
                         <div>{{$viewadmin['nid']}}</div>
@@ -101,37 +101,50 @@
                       </div>
                     </div>
                 <!-- /.card-body -->
-
-                <div class="card-footer">
+                <div>
                   <button type="submit" class="btn btn-info">Submit</button>
                 </div>
-
               </form>
-              <div>
-              <form action="mailto:{{$viewadmin['email']}}" method="post" enctype="text/plain">
-              <h4>MAIL FROM</h4>
-              <div class="col-md-9 form-group">
-                  <label for="user-name">NAME*</label>
-                  <input id="name" type="text" class="form-control" name="name" value="{{$viewadmin['name']}}" autofocus>
-              </div> 
-              <div class="col-md-9 form-group">
-                  <label for="user-name">EMAIL*</label>
-                  <input id="email" type="email" class="form-control" name="email" value="{{$viewadmin['email']}}" required autocomplete="name" autofocus>
-              </div> 
-              <div class="col-md-9 form-group">
-                  <label for="user-name">COMMENT*</label>
-                  <div className="form-group">
-                      <textarea className="form-control" id="description"  onChange={this.handleInputChange} rows="5" column="5"></textarea>
-                  </div>
-              </div>   
-              <button type="submit" class="btn btn-info">Submit</button>
-              </form>
+              <div>       
               </div>
             </div>
             <!-- /.card -->
           </div>
           <!--/.col (left) -->
         </div>
+          <div class="row float right">
+              <div class="col-md-12">
+                  <form action="mailto:info@w3docs.com" method="get" enctype="text/plain">
+                        <div class="card card-info">
+                            <div class="card-header">
+                              <a style="font-size: 20px;" class="btn btn float-left">SEND MAIL</a>                            
+                              <!-- <a class="btn btn-outline-primary float-right" href="{{route('users.index')}}"><i class="fas fa-sign-in-alt"></i>  Users Table </a> -->
+                              <div class="card-body">                                 
+                                <div>
+                                  <label for="name">Name:
+                                    <input type="text" name="name" id="name" />
+                                  </label>
+                                </div>
+                                <div>
+                                  <label for="email">Email:
+                                    <input type="text" name="email" id="email" />
+                                  </label>
+                                </div>
+                                <div>
+                                  <label>Comments:</label>
+                                  <br />
+                                  <textarea name="comments" rows="12" cols="35"></textarea>
+                                </div>
+                                <div>
+                                  <input type="submit" name="submit" value="Send" />
+                                  <input type="reset" name="reset" value="Clear Form" />
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                  </form>
+              </div>
+          </div>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>

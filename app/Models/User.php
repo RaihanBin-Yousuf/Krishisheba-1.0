@@ -28,8 +28,8 @@ class User extends Authenticatable
         'profile_img',
         'nid_front_img',
         'access_to',
-        'lat',
-        'lng'
+        'latitude ',
+        'longitude '
     ];
 
     /**
@@ -58,7 +58,7 @@ class User extends Authenticatable
     }
 
 
-   public function accessToAdmin($input,$id)
+   public function accessTo($input,$id)
    {
     //    print_r($id);
     //    dd($input);

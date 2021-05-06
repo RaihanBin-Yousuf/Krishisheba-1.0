@@ -34,7 +34,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <th class="text-center">Id</th>
+                    <!-- <th class="text-center">Id</th> -->
                     <th class="text-center">Image</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
@@ -47,7 +47,7 @@
                   <tbody>
                   <tr>
                       @foreach($allusers as $users)
-                      <td>{{ $users->id }}</td>
+                      <!-- <td>{{ $users->id }}</td> -->
                       <td class="text-center py-0 align-middle"><img src="{{asset('storage/profile/'.$users->profile_img)}}" style="width:50px; height:50px; border-radius:50%;"></td>
                       <td>{{ $users->name }}</td>
                       <td>{{ $users->email }}</td>

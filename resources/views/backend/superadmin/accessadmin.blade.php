@@ -34,7 +34,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <th class="text-center">Id</th>
+                    <!-- <th class="text-center">Id</th> -->
+                    <th class="text-center">Access Admin</th>
                     <th class="text-center">Image</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
@@ -47,13 +48,21 @@
                   <tbody>
                   <tr>
                       @foreach($alladmin as $admins)
-                      <td>{{ $admins->id }}</td>
+                      <!-- <td>{{ $admins->id }}</td> -->
+                      <td>
+                          @if($admins->access_to>0)
+                            <input type="checkbox" checked>
+                          @else
+                            <input type="checkbox">
+                          @endif
+                      </td>
                       <td class="text-center py-0 align-middle"><img src="{{asset('storage/profile/'.$admins->profile_img)}}" style="width:50px; height:50px; border-radius:50%;"></td>
                       <td>{{ $admins->name }}</td>
                       <td>{{ $admins->email }}</td>
                       <td>{{ $admins->mobile }}</td>
                       <td>{{ $admins->nid }}</td>
                       <td>{{ $admins->role }}</td>
+                      
                       <td class="text-center py-0 align-middle">
                           <div class=" btn-group-sm">
                             <a href="viewadmin/{{$admins['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
