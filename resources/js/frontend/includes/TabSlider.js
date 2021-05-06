@@ -3,7 +3,6 @@ import React, { Component } from 'react'
 export default class TabSlider extends Component {
     render() {
         let pdata = this.props.data ? this.props.data.count : '0';
-        console.log('pdata :>> ', pdata);
         return (
             <div>
                 <div className="slider tab-slider mb-35">

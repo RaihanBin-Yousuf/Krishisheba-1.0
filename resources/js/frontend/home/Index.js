@@ -21,7 +21,7 @@ export default class Index extends Component {
         super(props);
         this.state = {
             show_page: null,
-            productId: '',
+            product: [],
             count: 0
         };
         this.showPage = this.showPage.bind(this);
@@ -38,8 +38,8 @@ export default class Index extends Component {
     }
 
     productDetails(data) {
-        console.log('data :>> ', data);
-        this.setState({ ['productId']: data.id, });
+        // console.log('data :>> ', data);
+        this.setState({ ['product']: data, });
         this.showPage('filter');
     }
 
@@ -49,7 +49,7 @@ export default class Index extends Component {
     }
 
     render() {
-        console.log('this.state :>> ', this.state);
+        // console.log('this.state :>> ', this.state);
         let showPageName = '';
         if(this.state.show_page === null) {
             showPageName = <div>
@@ -71,12 +71,12 @@ export default class Index extends Component {
         } else if(this.state.show_page === 'faq') {
             showPageName = <Faq/>
         } else if(this.state.show_page === 'filter') {
-            showPageName = <Filter/>
+            showPageName = <Filter data = {this.state} />
         }
         return (
             <>  
                 {/* <ShoppingCart data={this.state} /> */}
-                <TopBarAndHeader data={this.state}/>
+                <TopBarAndHeader data={this.state} showPage={this.showPage}/>
 
                 {showPageName}
                 {/* <Faq/> skipped */}

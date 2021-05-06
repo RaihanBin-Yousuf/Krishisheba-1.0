@@ -46,7 +46,7 @@ export default class TopBarAndHeader extends Component {
                         <h1 className="logo mr-auto"><a href="">কৃষিসেবা</a></h1>
                         <nav className="nav-menu d-none d-lg-block">
                             <ul>
-                                <li><a href="">হোম</a></li>
+                                <li><a onClick={()=>this.props.showPage(null)}>হোম</a></li>
                                 <li><a onClick={()=>this.pageOnClickScroller('whyus')}>আমাদের সমাধান</a></li>
                                 <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
                                 <li><a href="{{ route('findproduct') }}">পণ্য</a></li>
