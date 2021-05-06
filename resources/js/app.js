@@ -6,6 +6,7 @@
 
 require('./bootstrap');
 //jquery components
+require('jquery');
 require('./jquery/bootstrap-notify/bootstrap-notify');
 require('./jquery/base');
 require ('./jquery/jquery.easing.min');
@@ -14,7 +15,7 @@ require ('./jquery/jquery.easing.min');
 require('./jquery/aj-custom-select');
 require('./jquery/owl.carousel/owl.carousel');
 require('./jquery/php-email-form/validate');
-require('./jquery/venobox/venobox');
+// require('./jquery/venobox/venobox');
 // require('./jquery/slick');
 
 require('slick-carousel');
@@ -32,4 +33,5 @@ require('./new/managePostCreate');
 require('./new/managePostCreate');
 
 require('./frontend/home/Index');
+require('./frontend/includes/ShoppingCart');
 // require('./frontend/includes/TopCategorySlider');

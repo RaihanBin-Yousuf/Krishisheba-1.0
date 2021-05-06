@@ -10263,3 +10263,17 @@ h3 {
 .single-category {
   width: 185px;
 }
+
+.login-btn {
+  outline: none;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #5cb874;
+  font-size: 15px;
+}
+
+.nav-menu ul li a {
+  text-decoration: none;
+}

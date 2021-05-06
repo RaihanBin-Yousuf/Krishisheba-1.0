@@ -22,7 +22,6 @@
   <link href="{{ asset('frontend-asset/home_page/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.css') }}" rel="stylesheet">
 
-  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   <!-- Template Main CSS File -->
   <link href="{{ asset('frontend-asset/home_page/css/style.css') }}" rel="stylesheet">
 
@@ -49,6 +48,7 @@
 
 	<!-- Modernizer JS -->
 	<script src="{{ asset('frontend-asset/assets_2/js/vendor/modernizr-2.8.3.min.js') }}"></script>
+  <link href="{{ mix('css/app.css') }}" rel="stylesheet">
   
 
   <!-- =======================================================
@@ -69,6 +69,8 @@
 <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
 <!-- Vendor JS Files -->
+<script src="{{ mix('js/app.js') }}" defer></script>
+
 <script src="{{ asset('frontend-asset/home_page/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/jquery.easing/jquery.easing.min.js') }}"></script>
@@ -77,7 +79,6 @@
 <script src="{{ asset('frontend-asset/home_page/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.min.js') }}"></script>
 
-<script src="{{ mix('js/app.js') }}" defer></script>
 <!-- Template Main JS File -->
 <script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script>
 <!-- JS
@@ -94,6 +95,7 @@
 
 <!-- Main JS -->
 <script src="{{ asset('frontend-asset/assets_2/js/main.js') }}"></script>
+
 </body>
 
 </html>

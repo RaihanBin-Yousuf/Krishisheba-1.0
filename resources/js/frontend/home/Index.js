@@ -15,6 +15,7 @@ import Faq from '../includes/Faq';
 import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
+import ShoppingCart from '../includes/ShoppingCart';
 
 export default class Index extends Component {
     constructor(props) {
@@ -22,9 +23,11 @@ export default class Index extends Component {
         this.state = {
             show_page: null,
             productId: '',
+            count: 0
         };
         this.showPage = this.showPage.bind(this);
         this.productDetails = this.productDetails.bind(this);
+        this.addCount = this.addCount.bind(this);
     }
 
     showPage(page) {
@@ -41,13 +44,21 @@ export default class Index extends Component {
         this.showPage('filter');
     }
 
+    addCount() {
+        const count = this.state.count +1;
+        this.setState({ ['count']: count});
+    }
+
     render() {
+        console.log('this.state :>> ', this.state);
         let showPageName = '';
         if(this.state.show_page === null) {
             showPageName = <div>
+                                {/* <ShoppingCart/> */}
+
                                 <Hero/>
                                 <TopCategorySlider productDetails={this.productDetails}/>
-                                <TabSlider/>
+                                <TabSlider addCount={this.addCount} data={this.state}/>
                                 <AboutUs/>
                                 <HowItsWorks/>
                                 <Service/>
@@ -68,8 +79,10 @@ export default class Index extends Component {
         }
         return (
             <>  
+                {/* <ShoppingCart data={this.state} /> */}
+                <TopBarAndHeader data={this.state}/>
+
                 {showPageName}
-                {/* <TopBarAndHeader/> */}
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}
                 {/* <Filter/> */}

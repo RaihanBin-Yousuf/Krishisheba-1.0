@@ -6,7 +6,7 @@
     
 <!-- ======= Top Bar and header ======= -->
 
-@include('frontend.includes.topbar-and-header')
+{{-- @include('frontend.includes.topbar-and-header') --}}
 
 <!-- =======End Top Bar and header ======= -->
 
