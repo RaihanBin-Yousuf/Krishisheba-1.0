@@ -1,0 +1,20 @@
+ Volume in drive E is PERSONAL
+ Volume Serial Number is CE95-F311
+
+ Directory of E:\FInal project\Final Project(1)practice\public\storage\product
+
+05/07/2021  12:09 AM    <DIR>          .
+05/07/2021  12:09 AM    <DIR>          ..
+04/12/2021  12:01 AM           724,056 all time food.png
+05/06/2021  11:49 PM           577,712 all time vegetables.jpg
+05/07/2021  12:08 AM            74,014 flowers.jpg
+04/24/2021  10:50 PM           513,814 paddy-1.jpg
+05/07/2021  12:01 AM            80,362 paddy-2.jpg
+05/07/2021  12:09 AM                 0 productname.txt
+04/27/2021  09:30 PM           115,876 rice.jpg
+04/20/2021  03:12 PM           157,200 summer food.jpg
+04/12/2021  12:01 AM            59,459 summer vegitable.jpg
+04/20/2021  03:13 PM           115,113 winter food.jpg
+04/20/2021  03:04 PM           125,538 winter vegitables.jpg
+              11 File(s)      2,543,144 bytes
+               2 Dir(s)  230,064,340,992 bytes free

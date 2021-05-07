@@ -1,0 +1,22 @@
+ Volume in drive E is PERSONAL
+ Volume Serial Number is CE95-F311
+
+ Directory of E:\FInal project\Final Project(1)practice\public\storage\profile
+
+05/06/2021  05:45 PM    <DIR>          .
+05/06/2021  05:45 PM    <DIR>          ..
+05/06/2021  05:20 PM             6,739 images-1.jpg
+05/06/2021  05:20 PM             7,807 images-2.jpg
+05/06/2021  05:19 PM           129,247 images-3.jpg
+05/06/2021  05:20 PM           124,181 images-4.jpg
+05/06/2021  05:45 PM                 0 name.txt
+04/30/2021  01:22 AM           363,447 raihan.jpg
+05/06/2021  05:26 PM           228,770 team-1.jpg
+04/12/2021  12:01 AM           494,797 team-2.jpg
+04/12/2021  12:01 AM           333,761 team-3.jpg
+05/06/2021  05:39 PM           188,748 team-4.jpg
+05/06/2021  05:20 PM             6,723 team-5.jpg
+06/18/2020  04:08 AM            49,059 team-6.jpg
+06/18/2020  04:08 AM            40,201 team-7.jpg
+              13 File(s)      1,973,480 bytes
+               2 Dir(s)  230,071,353,344 bytes free
