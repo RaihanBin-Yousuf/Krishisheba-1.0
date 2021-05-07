@@ -32,7 +32,7 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Id </th>
+                  <!-- <th>Id </th> -->
                   <th>Category Name </th>
                   <th>Product id </th>
                   <th>Action</th>
@@ -42,7 +42,7 @@
 
                 @foreach($categories as $category)
                 <tr>
-                  <td>{{ $category->id }}</td>
+                  <!-- <td>{{ $category->id }}</td> -->
                   <td>{{ $category->name }}</td>
                   <td>{{ $category->product->name }}</td>
                   <td>

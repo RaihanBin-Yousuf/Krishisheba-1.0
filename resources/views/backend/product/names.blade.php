@@ -34,7 +34,7 @@
                   <th>Product Iamge </th>
                   <th>Product Name </th>
                   <th>Action</th>
-                </tr>1
+                </tr>
                 </thead>
                 <tbody>
               
