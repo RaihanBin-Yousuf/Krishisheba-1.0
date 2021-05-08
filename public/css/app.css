@@ -112,7 +112,7 @@
   cursor: pointer;
   background: transparent;
   color: transparent;
-  top: 5%;
+  top: 50%;
   transform: translate(0, -50%);
   padding: 0;
   border: none;
@@ -139,7 +139,7 @@
   font-family: "slick";
   font-size: 20px;
   line-height: 1;
-  color: black;
+  color: white;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -391,7 +391,7 @@ sup {
   top: -0.5em;
 }
 
-a {
+/* a {
   color: #3490dc;
   text-decoration: none;
   background-color: transparent;
@@ -399,7 +399,7 @@ a {
 a:hover {
   color: #1d68a7;
   text-decoration: underline;
-}
+} */
 
 a:not([href]):not([class]) {
   color: inherit;

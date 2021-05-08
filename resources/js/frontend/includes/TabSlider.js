@@ -34,7 +34,7 @@ export default class TabSlider extends Component {
             featureList = <div className="gf-product tab-slider-sub-product">
                                 <div className="image">
                                     <a href="single-product.html">
-                                        <img src={'/storage/posts/'+feature.product_image} className="img-fluid" alt=""/>
+                                        <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
                                         <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
@@ -45,12 +45,14 @@ export default class TabSlider extends Component {
                                 </div>
                                 <div className="product-content">
                                     <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">{feature.product_name}</a>,
-                                        <a href="shop-left-sidebar.html">{feature.category}</a>
+                                        <a href="shop-left-sidebar.html">পণ্য: {feature.product_name}</a>
                                     </div>
-                                    <h3 className="product-title"><a href="single-product.html">Sed tempor ehicula non commodo</a></h3>
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {feature.category}</a>
+                                    </div>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {feature.total_weight} {feature.weight_unit}</a></h3>
                                     <div className="price-box">
-                                        <span className="discounted-price">$80.00</span>
+                                        <span className="discounted-price">১ {feature.weight_unit} ৳ {feature.price_per_unit} </span>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +62,7 @@ export default class TabSlider extends Component {
             newArrivalList = <div className="gf-product tab-slider-sub-product">
                                 <div className="image">
                                     <a href="single-product.html">
-                                        <img src={'/storage/posts'+arrival.product_image} className="img-fluid" alt=""/>
+                                        <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
                                         <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
@@ -71,12 +73,14 @@ export default class TabSlider extends Component {
                                 </div>
                                 <div className="product-content">
                                     <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">{arrival.product_name}</a>,
-                                        <a href="shop-left-sidebar.html">Vegetables</a>
+                                        <a href="shop-left-sidebar.html">পণ্য: {arrival.product_name}</a>
                                     </div>
-                                    <h3 className="product-title"><a href="single-product.html">Sed tempor ehicula non commodo</a></h3>
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {arrival.category}</a>
+                                    </div>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {arrival.total_weight} {arrival.weight_unit}</a></h3>
                                     <div className="price-box">
-                                        <span className="discounted-price">$80.00</span>
+                                        <span className="discounted-price">১ {arrival.weight_unit} ৳ {arrival.price_per_unit} </span>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +90,7 @@ export default class TabSlider extends Component {
             onSaleList = <div className="gf-product tab-slider-sub-product">
                             <div className="image">
                                 <a href="single-product.html">
-                                    <img src="/frontend-asset/assets_2/images/products/product02.jpg" className="img-fluid" alt=""/>
+                                <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
                                 </a>
                                 <div className="product-hover-icons">
                                     <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
@@ -96,14 +100,16 @@ export default class TabSlider extends Component {
                                 </div>
                             </div>
                             <div className="product-content">
-                                <div className="product-categories">
-                                    <a href="shop-left-sidebar.html">Fast Foods</a>,
-                                    <a href="shop-left-sidebar.html">Vegetables</a>
-                                </div>
-                                <h3 className="product-title"><a href="single-product.html">Sed tempor ehicula non commodo</a></h3>
-                                <div className="price-box">
-                                    <span className="discounted-price">$80.00</span>
-                                </div>
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্য: {sale.product_name}</a>
+                                    </div>
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {sale.category}</a>
+                                    </div>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {sale.total_weight} {sale.weight_unit}</a></h3>
+                                    <div className="price-box">
+                                        <span className="discounted-price">১ {sale.weight_unit} ৳ {sale.price_per_unit} </span>
+                                    </div>
                             </div>
                         </div>
                                 ));

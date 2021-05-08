@@ -122,6 +122,10 @@ h5 {
 h6 {
   font-size: 12px;
   line-height: 14px; } */
+.postsimage{
+  width:200px; 
+  height:186px;
+}
 
 p:last-child {
   margin-bottom: 0; }
@@ -2147,7 +2151,7 @@ button.slick-arrow.slick-next {
     font-size: 15px;
     line-height: 23px;
     color: #222;
-    font-weight: 500;
+    font-weight: 700;
     text-transform: uppercase;
     position: relative;
     padding: 10px 20px;
@@ -2159,7 +2163,7 @@ button.slick-arrow.slick-next {
     .tab-slider-wrapper .nav-tabs .nav-link.active {
       color: #80bb01;
       text-transform: uppercase;
-      font-weight: 500;
+      font-weight: 700;
       border: none;
       background: none; }
       .tab-slider-wrapper .nav-tabs .nav-link.active:before {
