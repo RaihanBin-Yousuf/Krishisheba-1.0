@@ -80,7 +80,7 @@
 <script src="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.min.js') }}"></script>
 
 <!-- Template Main JS File -->
-<script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script>
+{{-- <script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script> --}}
 <!-- JS
 ============================================ -->
 <!-- jQuery JS -->
@@ -94,7 +94,7 @@
 <script src="{{ asset('frontend-asset/assets_2/js/plugins.js') }}"></script>
 
 <!-- Main JS -->
-<script src="{{ asset('frontend-asset/assets_2/js/main.js') }}"></script>
+{{-- <script src="{{ asset('frontend-asset/assets_2/js/main.js') }}"></script> --}}
 
 </body>
 

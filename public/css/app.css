@@ -112,7 +112,7 @@
   cursor: pointer;
   background: transparent;
   color: transparent;
-  top: 50%;
+  top: 5%;
   transform: translate(0, -50%);
   padding: 0;
   border: none;
@@ -139,7 +139,7 @@
   font-family: "slick";
   font-size: 20px;
   line-height: 1;
-  color: white;
+  color: black;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

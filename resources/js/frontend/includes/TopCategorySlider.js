@@ -23,24 +23,59 @@ export default class TopCategorySlider extends Component {
 
     
     render() {
+        const settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            arrows: true,
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 5,
+                  slidesToScroll: 1
+                }
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: 3,
+                  slidesToScroll: 2,
+                  infinite: false,
+                  dots: true
+                }
+              },
+              {
+                breakpoint: 480,
+                settings: {
+                  slidesToShow: 2,
+                  slidesToScroll: 2,
+                  infinite: false,
+                  dots: true
+                }
+              }
+            ]
+          };
         let productList = '';
         productList = this.state.products.map(product=> (
-            productList = <div className="single-category  slick-slide slick-cloned" onClick ={()=>this.props.productDetails(product)} key={product.id}>
-                                <div className="category-image">
-                                    <a title="ধান">
-                                        <img src={"/storage/product/"+product.product_img} className="img-fluid" alt=""/>
-                                    </a>
-                                </div>
-                                <div className="category-title">
-                                    <h3>
-                                        <p>{product.name}</p>
-                                    </h3>
-                                </div>
+        productList = <div className="single-category" onClick ={()=>this.props.productDetails(product)} key={product.id}>
+                            <div className="category-image">
+                                <a title="ধান">
+                                    <img src={"/storage/product/"+product.product_img} className="img-fluid" alt=""/>
+                                </a>
                             </div>
+                            <div className="category-title">
+                                <h3>
+                                    <p>{product.name}</p>
+                                </h3>
+                            </div>
+                        </div>
                         ));
         return (<>
                 <section>
-                    <div className="slider category-slider mb-35">
+                    <div className="slider category-slider mb-35 ">
                         <div className="container">
                             <div className="row">
                                 <div className="col-lg-12">
@@ -49,22 +84,19 @@ export default class TopCategorySlider extends Component {
                                     </div>  
                                 </div>
                             </div>
-                            <div className="row">
-                                <div className="col-lg-12">
-                                    <div className="category-slider-container slick-initialized slick-slider">
-                                            {/* <button className="slick-prev slick-arrow"><i className="fa fa-caret-left"></i></button> */}
-                                        <div className="slick-list draggable">
-                                            <div className="slick-track">
-                                                    <Slider/>
-                                                        {productList}
-                                                    <Slider/>
-                                            </div>
-                                        </div>
-                                            {/* <button className="slick-next slick-arrow"><i className="fa fa-caret-right"></i></button> */}
-                                    </div>
+                            <div className="row ">
+                                <div className="col-lg-12 ">
+                                    <div className="category-slider-container bg-white shadow">
 
+                                        <Slider {...settings}>
+                                            {productList}
+                                        </Slider>
+                                    </div>
                                 </div>
                             </div>
+                                   
+
+                           
                         </div>
                     </div>
                 </section>

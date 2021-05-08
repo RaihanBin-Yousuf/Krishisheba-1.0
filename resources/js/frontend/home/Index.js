@@ -15,6 +15,7 @@ import Faq from '../includes/Faq';
 import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
+import Test from '../includes/Test';
 
 export default class Index extends Component {
     constructor(props) {
@@ -72,6 +73,8 @@ export default class Index extends Component {
             showPageName = <Faq/>
         } else if(this.state.show_page === 'filter') {
             showPageName = <Filter data = {this.state} />
+        } else if (this.state.show_page === 'test') {
+            showPageName = <Test data={this.state} />
         }
         return (
             <>  

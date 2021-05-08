@@ -2025,7 +2025,7 @@ a.single-sale-add-to-cart-btn {
 
 .slider .slick-arrow {
   position: absolute;
-  top: -30px;
+  top: -50px;
   right: 10px;
   background: none;
   border: none;
@@ -2035,8 +2035,8 @@ a.single-sale-add-to-cart-btn {
     color: #80bb01;
     border-color: #80bb01; }
   .slider .slick-arrow i.fa {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     border: 2px solid #999;
     color: #999;
     padding-top: 2px;
@@ -2049,12 +2049,17 @@ a.single-sale-add-to-cart-btn {
     border-color: #999; }
 
 .slider .slick-prev {
-  right: 40px; }
+  left: 60rem; }
   .slider .slick-prev i.fa {
     padding-right: 2px; }
 
 .slider .slick-next i.fa {
-  padding-left: 2px; }
+  padding-left: 2px; 
+}
+
+button.slick-arrow.slick-next {
+  left: 64rem;
+}
 
 /*----------  06.1 category slider  ----------*/
 .category-slider-container {
