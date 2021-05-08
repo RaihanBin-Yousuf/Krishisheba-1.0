@@ -25,9 +25,15 @@ class ManagePostController extends Controller
      */
     public function index()
     {
-                //   auth user Data
-        // $data = ManagePost::where('user_id', Auth::user()->id)->get();
-        $data = $this->manage_post::where('user_id', Auth::user()->id)->get();
+        if(request()->ajax()) {
+            if(request()->type) {
+               $data = $this->manage_post->homePage();
+               return $this->sendResponse($data);
+            }
+        }
+        $userId = Auth::user()->id;
+
+        $data = $this->manage_post::where('user_id', $userId)->get();
         return view('backend.manage_posts.index',compact('data'));
         // return $this->sendResponse(['data'=>$data]);
         

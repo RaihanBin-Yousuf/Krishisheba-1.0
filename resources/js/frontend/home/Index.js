@@ -56,7 +56,7 @@ export default class Index extends Component {
             showPageName = <div>
                                 <Hero/>
                                 <TopCategorySlider productDetails={this.productDetails}/>
-                                <TabSlider addCount={this.addCount} data={this.state}/>
+                                <TabSlider addCount={this.addCount} data={this.state} />
                                 <AboutUs/>
                                 <HowItsWorks/>
                                 <Service/>

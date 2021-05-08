@@ -21,6 +21,17 @@ class ManagePost extends Model
         // dd($Post);
     }
 
+    public function homePage()
+    {  
+        if(request()->type == "feature") {
+           $feature = $this->skip(0)->take(10)->get();
+            $onSale = $this->skip(10)->take(10)->get();
+            $newArrival = $this->skip(20)->take(10)->get();
+        }
+        $data = ['feature'=>$feature, 'sale'=>$onSale, 'new'=>$newArrival];
+        return $data;
+    }
+
     public function savePost($input, $post=null)
     {
         if (empty($post)) {

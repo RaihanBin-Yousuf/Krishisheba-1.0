@@ -49,13 +49,13 @@ export default class TopBarAndHeader extends Component {
                                 <li><a onClick={()=>this.props.showPage(null)}>হোম</a></li>
                                 <li><a onClick={()=>this.pageOnClickScroller('whyus')}>আমাদের সমাধান</a></li>
                                 <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
-                                <li><a href="{{ route('findproduct') }}">পণ্য</a></li>
+                                <li><a onClick={()=>this.props.showPage('findProducts')}>পণ্য</a></li>
                                 <li><a onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
-                                <li className="drop-down"><a href="">আমাদের সম্পর্কে আরও</a>
+                                <li className="drop-down"><a >আমাদের সম্পর্কে আরও</a>
                                     <ul>
-                                    <li><a href="{{ route('team') }}">আমাদের টিম</a></li>
-                                    <li><a href="whyus.html">আমাদের সমাধান</a></li>
-                                    <li><a  href="{{ route('faq') }}">জিজ্ঞাসা</a></li>
+                                    <li><a onClick={()=>this.props.showPage('team')}>আমাদের টিম</a></li>
+                                    {/* <li><a href="whyus.html">আমাদের সমাধান</a></li> */}
+                                    <li><a onClick={()=>this.props.showPage('faq')}>জিজ্ঞাসা</a></li>
                                     </ul>
                                 </li>
                                 <li></li>
