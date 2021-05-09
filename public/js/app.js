@@ -2227,7 +2227,9 @@ var Index = /*#__PURE__*/function (_Component) {
         showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_13__.default, {});
       } else if (this.state.show_page === 'filter') {
         showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_15__.default, {
-          data: this.state
+          addProduct: this.addProduct,
+          data: this.state,
+          viewDetails: this.viewDetails
         });
       } else if (this.state.show_page === 'cart') {
         showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_20__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {

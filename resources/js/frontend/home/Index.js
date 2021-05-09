@@ -104,7 +104,7 @@ export default class Index extends Component {
         } else if(this.state.show_page === 'faq') {
             showPageName = <Faq/>
         } else if(this.state.show_page === 'filter') {
-            showPageName = <Filter data = {this.state} />
+            showPageName = <Filter addProduct={this.addProduct} data={this.state} viewDetails={this.viewDetails}/>
         } else if (this.state.show_page === 'cart') {
             showPageName = <Cart data={this.state} />
         } else if (this.state.show_page === 'checkout') {
