@@ -7,10 +7,17 @@ export default class TopBarAndHeader extends Component {
             cartShow: false,
         }
         this.onCartShow = this.onCartShow.bind(this);
+        this.viewCart = this.viewCart.bind(this);
     }
 
     componentDidMount() {
         
+    }
+
+    viewCart() {
+
+        $("#cart-floating-box").stop().slideUp(1000);
+        this.props.showPage('cart');
     }
 
     pageOnClickScroller(id) {
@@ -35,6 +42,8 @@ export default class TopBarAndHeader extends Component {
     
     render() {
         // let pdata = this.props.data ? this.props.data.count : '0';
+        let cartCount = this.props.data.addCart.length;
+        // console.log('this.props.data.addCart.length :>> ', );
         let addCartList = '';
         addCartList = this.props.data.addCart.map(product=> (
         addCartList = <div className="cart-float-single-item d-flex" key={product.id}>
@@ -79,6 +88,7 @@ export default class TopBarAndHeader extends Component {
                                     </ul>
                                 </li>
                                 <li></li>
+                                {cartCount >0 ?
                                 <div className="shopping-cart" id="shopping-cart"  >
                                     <a onClick={this.onCartShow}>
                                         <div className="cart-icon d-inline-block">
@@ -97,10 +107,10 @@ export default class TopBarAndHeader extends Component {
                                             {addCartList}
                                         </div>
                                         <div className="floating-cart-btn text-center">
-                                            <a className="float-right" onClick={()=>this.props.showPage('cart')}>View Cart</a>
+                                            <a className="float-right" onClick={this.viewCart}>View Cart</a>
                                         </div>
                                     </div>
-                                </div>
+                                </div>: ''}
                             </ul>
                         </nav>
                         </div>
