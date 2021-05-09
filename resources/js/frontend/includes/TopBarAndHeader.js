@@ -97,7 +97,7 @@ export default class TopBarAndHeader extends Component {
                                             {addCartList}
                                         </div>
                                         <div className="floating-cart-btn text-center">
-                                            <a className="float-right" href="">View Cart</a>
+                                            <a className="float-right" onClick={()=>this.props.showPage('cart')}>View Cart</a>
                                         </div>
                                     </div>
                                 </div>
