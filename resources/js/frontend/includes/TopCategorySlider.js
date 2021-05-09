@@ -62,7 +62,7 @@ export default class TopCategorySlider extends Component {
         productList = this.state.products.map(product=> (
         productList = <div className="single-category" onClick ={()=>this.props.productDetails(product)} key={product.id}>
                             <div className="category-image">
-                                <a title="ধান">
+                                <a title={product.name}>
                                     <img src={"/storage/product/"+product.product_img} className="img-fluid" alt=""/>
                                 </a>
                             </div>

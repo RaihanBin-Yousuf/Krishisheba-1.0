@@ -23,11 +23,13 @@ export default class Index extends Component {
         this.state = {
             show_page: null,
             product: [],
-            count: 0
+            count: 0,
+            product_info: []
         };
         this.showPage = this.showPage.bind(this);
         this.productDetails = this.productDetails.bind(this);
         this.addCount = this.addCount.bind(this);
+        this.viewDetails = this.viewDetails.bind(this);
     }
 
     showPage(page) {
@@ -44,6 +46,10 @@ export default class Index extends Component {
         this.showPage('filter');
     }
 
+    viewDetails(data) {
+        console.log('data :>> ', data);
+    }
+
     addCount() {
         const count = this.state.count +1;
         this.setState({ ['count']: count});
@@ -56,7 +62,7 @@ export default class Index extends Component {
             showPageName = <div>
                                 <Hero/>
                                 <TopCategorySlider productDetails={this.productDetails}/>
-                                <TabSlider addCount={this.addCount} data={this.state} />
+                                <TabSlider addCount={this.addCount} data={this.state} viewDetails={this.viewDetails}/>
                                 <AboutUs/>
                                 <HowItsWorks/>
                                 <Service/>

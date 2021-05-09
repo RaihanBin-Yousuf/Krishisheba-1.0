@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ManagePostService from '../../services/ManagePostService';
+import Slider from "react-slick";
 
 export default class TabSlider extends Component {
     constructor(props) {
@@ -36,11 +37,11 @@ export default class TabSlider extends Component {
                                     <a href="single-product.html">
                                         <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
                                     </a>
-                                    <div className="product-hover-icons">
+                                    <div className="product-hover-icons ">
                                         <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
                                         <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                        <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                        <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
                                     </div>
                                 </div>
                                 <div className="product-content">
@@ -68,7 +69,7 @@ export default class TabSlider extends Component {
                                         <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
                                         <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                        <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                        <a onClick={()=>this.props.viewDetails(arrival)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
                                     </div>
                                 </div>
                                 <div className="product-content">
@@ -87,32 +88,69 @@ export default class TabSlider extends Component {
                                 ));
         let onSaleList = '';
         onSaleList = this.state.on_sale.map(sale=> (
-            onSaleList = <div className="gf-product tab-slider-sub-product">
-                            <div className="image">
-                                <a href="single-product.html">
-                                <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
-                                </a>
-                                <div className="product-hover-icons">
-                                    <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                    <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                    <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                    <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+            onSaleList = 
+                            <div className="gf-product tab-slider-sub-product">
+                                <div className="image">
+                                    <a href="single-product.html">
+                                    <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
+                                    </a>
+                                    <div className="product-hover-icons">
+                                        <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                        <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
+                                        <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
+                                        <a onClick={()=>this.props.viewDetails(sale)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                    </div>
+                                </div>
+                                <div className="product-content">
+                                        <div className="product-categories">
+                                            <a href="shop-left-sidebar.html">পণ্য: {sale.product_name}</a>
+                                        </div>
+                                        <div className="product-categories">
+                                            <a href="shop-left-sidebar.html">পণ্যের প্রকার: {sale.category}</a>
+                                        </div>
+                                        <h3 className="product-title"><a href="single-product.html">মোট ওজন: {sale.total_weight} {sale.weight_unit}</a></h3>
+                                        <div className="price-box">
+                                            <span className="discounted-price">১ {sale.weight_unit} ৳ {sale.price_per_unit} </span>
+                                        </div>
                                 </div>
                             </div>
-                            <div className="product-content">
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্য: {sale.product_name}</a>
-                                    </div>
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {sale.category}</a>
-                                    </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {sale.total_weight} {sale.weight_unit}</a></h3>
-                                    <div className="price-box">
-                                        <span className="discounted-price">১ {sale.weight_unit} ৳ {sale.price_per_unit} </span>
-                                    </div>
-                            </div>
-                        </div>
                                 ));
+
+        const settings = {
+            dots: false,
+            infinite: true,
+            speed: 500,
+            slidesToShow: 4,
+            slidesToScroll: 1,
+            arrows: true,
+            responsive: [
+                {
+                breakpoint: 1024,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 1
+                }
+                },
+                {
+                breakpoint: 600,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2,
+                    infinite: false,
+                    dots: true
+                }
+                },
+                {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2,
+                    infinite: false,
+                    dots: true
+                }
+                }
+            ]
+            };
         return (
             <div>
                 <div className="slider tab-slider mb-35">
@@ -132,73 +170,26 @@ export default class TabSlider extends Component {
                                     </nav>
                                     <div className="tab-content" id="nav-tabContent">
                                         <div className="tab-pane fade show active" id="featured" role="tabpanel" aria-labelledby="featured-tab">
-                                            <div className="tab-slider-container slick-initialized slick-slider">
-                                                {/* <button className="slick-prev slick-arrow"><i className="fa fa-caret-left"></i></button> */}
-                                                <div className="slick-list draggable">
-                                                    <div className="slick-track">
-                                                        <div className="single-tab-slider-item slick-slide slick-cloned">
-                                                            <div className="gf-product tab-slider-sub-product">
-                                                                <div className="image">
-                                                                    <a href="single-product.html">
-                                                                        <span className="onsale">Sale!</span>
-                                                                        <img src="/frontend-asset/assets_2/images/products/product01.jpg" className="img-fluid" alt=""/>
-                                                                    </a>
-                                                                    <div className="product-hover-icons">
-                                                                        <a className="active" onClick={this.props.addCount} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                                                        <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                                                        <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                                                        <a href="#" data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="product-content">
-                                                                    <div className="product-categories">
-                                                                        <a href="shop-left-sidebar.html">Fast Foods</a>,
-                                                                        <a href="shop-left-sidebar.html">Vegetables</a>
-                                                                    </div>
-                                                                    <h3 className="product-title"><a href="single-product.html">Sed tempor ehicula non commodo</a></h3>
-                                                                    <div className="price-box">
-                                                                        <span className="main-price">{pdata}</span>
-                                                                        <span className="discounted-price">{pdata}</span>
-                                                                    </div>
-                                                                </div>  
-                                                            </div>
-                                                            {featureList}
-                                                        </div>
-            
-                                                    </div>
-                                                </div>
-                                                {/* <button type="button" className="slick-next slick-arrow"><i className="fa fa-caret-right"></i></button> */}
-
+                                            <div className="tab-slider-container bg-white shadow">
+                                                <Slider {...settings}>
+                                                        {featureList}
+                                                </Slider>
                                             </div>
                                         </div>
                                         {/* start */}
-                                        <div className="tab-pane fade" id="new-arrivals" role="tabpanel" aria-labelledby="new-arrival-tab">
-                                        <div className="tab-slider-container slick-initialized slick-slider">
-                                                {/* <button className="slick-prev slick-arrow"><i className="fa fa-caret-left"></i></button> */}
-                                                <div className="slick-list draggable">
-                                                    <div className="slick-track">
-                                                        <div className="single-tab-slider-item slick-slide slick-cloned">
-                                                            {newArrivalList}
-                                                        </div>
-            
-                                                    </div>
-                                                </div>
-                                                {/* <button type="button" className="slick-next slick-arrow"><i className="fa fa-caret-right"></i></button> */}
-
+                                        <div className="tab-pane fade" id="new-arrivals" role="tabpanel" aria-labelledby="new-arrival-tab">   
+                                            <div className="tab-slider-container bg-white shadow">
+                                                <Slider {...settings}>
+                                                        {newArrivalList}
+                                                </Slider>
                                             </div>
                                         </div>
                                         {/* end  */}
                                         <div className="tab-pane fade" id="on-sale" role="tabpanel" aria-labelledby="nav-onsale-tab">
-                                            <div className="tab-slider-container slick-initialized slick-slider">
-                                                <div className="slick-list draggable">
-                                                    <div className="slick-track">
-                                                        <div className="single-tab-slider-item slick-slide slick-cloned">
-                                                            {onSaleList}
-                                                        </div>
-                                                        
-                                                    {/* end  */}
-                                                    </div>
-                                                </div>
+                                            <div className="tab-slider-container bg-white shadow">
+                                                <Slider {...settings}>
+                                                        {onSaleList}
+                                                </Slider>
                                             </div>
                                         </div>
                                     </div>
