@@ -3,6 +3,10 @@ import React, { Component } from 'react'
 export default class TopBarAndHeader extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            cartShow: false,
+        }
+        this.onCartShow = this.onCartShow.bind(this);
     }
 
     componentDidMount() {
@@ -18,16 +22,34 @@ export default class TopBarAndHeader extends Component {
         window.location.href = "/"+url;
     }
 
-    slideUp() {
-        $("#cart-floating-box").stop().slideUp(1000);
-    }
+    onCartShow() {
+        if(this.state.cartShow) {
+            $("#cart-floating-box").stop().slideDown(1000);
+            this.setState({ ['cartShow']:false});
+        } else {
+            $("#cart-floating-box").stop().slideUp(1000);
+            this.setState({ ['cartShow']:true});
 
-    slideDown() {
-        $("#cart-floating-box").stop().slideDown(1000);
+        }
     }
     
     render() {
-        let pdata = this.props.data ? this.props.data.count : '0';
+        console.log('this.state.cartShow :>> ', this.state.cartShow);
+        // let pdata = this.props.data ? this.props.data.count : '0';
+        // console.log('this.props.data.addCart :>> ', this.props.data.addCart);
+        let addCartList = '';
+        addCartList = this.props.data.addCart.map(product=> (
+        addCartList = <div className="cart-float-single-item d-flex" key={product.id}>
+                            <span className="remove-item"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-times"></i></a></span>
+                            <div className="cart-float-single-item-image">
+                                <a href="single-product.html"><img src={'/storage/posts/'+product.product_image} className="img-fluid" alt=""/></a>
+                            </div>
+                            <div className="cart-float-single-item-desc">
+                                <p className="product-title"> <a href="single-product.html">{product.product_name} </a></p>
+                                <p className="price"><span className="count">1x</span> ${product.price_per_unit}</p>
+                            </div>
+                        </div>
+                        ));
         return (
             <div>
                 <section>
@@ -59,45 +81,26 @@ export default class TopBarAndHeader extends Component {
                                     </ul>
                                 </li>
                                 <li></li>
-                                <div className="shopping-cart" id="shopping-cart" onMouseEnter={this.slideDown} onMouseLeave={this.slideUp}>
-                                    <a href="cart.html">
+                                <div className="shopping-cart" id="shopping-cart"  >
+                                    <a onClick={this.onCartShow}>
                                         <div className="cart-icon d-inline-block">
                                             <span className="icon_bag_alt"></span>
                                         </div>
-                                        <div className="cart-info d-inline-block">
+                                        <div className="cart-info d-inline-block" >
                                             <p>Shopping Cart 
                                                 <span>
-                                                    {pdata} items
+                                                    {this.props.data.addCart.length} items
                                                 </span>
                                             </p>
                                         </div>
                                     </a>
-                                    <div className="cart-floating-box" id="cart-floating-box">
-                                        <div className="cart-items">
-                                            <div className="cart-float-single-item d-flex">
-                                                <span className="remove-item"><a href="#"><i className="fa fa-times"></i></a></span>
-                                                <div className="cart-float-single-item-image">
-                                                    <a href="single-product.html"><img src="frontend-asset/assets_2/images/products/product01.jpg" className="img-fluid" alt=""/></a>
-                                                </div>
-                                                <div className="cart-float-single-item-desc">
-                                                    <p className="product-title"> <a href="single-product.html">Duis pulvinar obortis eleifend </a></p>
-                                                    <p className="price"><span className="count">1x</span> $20.50</p>
-                                                </div>
-                                            </div>
-                                            <div className="cart-float-single-item d-flex">
-                                                <span className="remove-item"><a href="#"><i className="fa fa-times"></i></a></span>
-                                                <div className="cart-float-single-item-image">
-                                                    <a href="single-product.html"><img src="frontend-asset/assets_2/images/products/product02.jpg" className="img-fluid" alt=""/></a>
-                                                </div>
-                                                <div className="cart-float-single-item-desc">
-                                                    <p className="product-title"> <a href="single-product.html">Fusce ultricies dolor vitae</a></p>
-                                                    <p className="price"><span className="count">1x</span> $20.50</p>
-                                                </div>
-                                            </div>
+                                    <div className="cart-floating-box bg-white" id="cart-floating-box">
+                                        <div className="cart-items ">
+                                            {addCartList}
                                         </div>
-                                            <div className="floating-cart-btn text-center">
-                                                <a className="float-right" href="">View Cart</a>
-                                            </div>
+                                        <div className="floating-cart-btn text-center">
+                                            <a className="float-right" href="">View Cart</a>
+                                        </div>
                                     </div>
                                 </div>
                             </ul>

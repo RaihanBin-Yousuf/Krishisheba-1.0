@@ -23,13 +23,14 @@ export default class Index extends Component {
         this.state = {
             show_page: null,
             product: [],
-            count: 0,
+            addCart: [],
             product_info: []
         };
         this.showPage = this.showPage.bind(this);
         this.productDetails = this.productDetails.bind(this);
-        this.addCount = this.addCount.bind(this);
+        this.addProduct = this.addProduct.bind(this);
         this.viewDetails = this.viewDetails.bind(this);
+        this.removeProduct = this.removeProduct.bind(this);
     }
 
     showPage(page) {
@@ -42,17 +43,48 @@ export default class Index extends Component {
 
     productDetails(data) {
         // console.log('data :>> ', data);
+        
         this.setState({ ['product']: data, });
         this.showPage('filter');
     }
 
     viewDetails(data) {
         console.log('data :>> ', data);
+        this.setState({ ['product_info']: data });
+        this.showPage('productdetails');
     }
 
-    addCount() {
-        const count = this.state.count +1;
-        this.setState({ ['count']: count});
+    addProduct(product) {
+        console.log('product.id :>> ', product.id);
+        const productArray = this.state.addCart;
+        const checkItems = _.filter(this.state.addCart, function(cart) { //checking same product can't insert twice
+            console.log('checking cart.id :>> ', cart.id);
+            return cart.id == product.id;
+        });
+        if(checkItems.length>0) { 
+            $.notify({message: 'Already Added'}, {type: 'danger'});
+        } else {
+            productArray.push(product);
+            this.setState({
+                ['addCart'] : productArray,
+            }); //,()=>{this.productPrice()}
+        }
+        // this.setState({ ['addCart']: product});
+    }
+
+    removeProduct(product) {
+        console.log('product.id :>> ', product.id);
+        const productArray = this.state.addCart;
+        const checkItems = _.filter(this.state.addCart, function(cart) { //checking same product can't insert twice
+            console.log('checking cart.id :>> ', cart.id);
+            return cart.id == product.id;
+        });
+        if(checkItems.length>0) { 
+            productArray.pop(product);
+            this.setState({
+                ['addCart'] : productArray,
+            }); //,()=>{this.productPrice()}
+        }
     }
 
     render() {
@@ -62,7 +94,7 @@ export default class Index extends Component {
             showPageName = <div>
                                 <Hero/>
                                 <TopCategorySlider productDetails={this.productDetails}/>
-                                <TabSlider addCount={this.addCount} data={this.state} viewDetails={this.viewDetails}/>
+                                <TabSlider addProduct={this.addProduct} data={this.state} viewDetails={this.viewDetails}/>
                                 <AboutUs/>
                                 <HowItsWorks/>
                                 <Service/>
@@ -70,7 +102,7 @@ export default class Index extends Component {
                                 <Contact/>
                             </div>
         } else if(this.state.show_page === 'productdetails') {
-            showPageName = <DetailsPage/>
+            showPageName = <DetailsPage data={this.state} showPage={this.showPage}/>
         } else if(this.state.show_page === 'findProducts') {
             showPageName = <FindProducts/>
         } else if(this.state.show_page === 'team') {
@@ -85,7 +117,7 @@ export default class Index extends Component {
         return (
             <>  
                 {/* <ShoppingCart data={this.state} /> */}
-                <TopBarAndHeader data={this.state} showPage={this.showPage}/>
+                <TopBarAndHeader data={this.state} showPage={this.showPage} removeProduct={this.removeProduct}/>
 
                 {showPageName}
                 {/* <Faq/> skipped */}

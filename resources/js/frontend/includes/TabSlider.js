@@ -32,13 +32,13 @@ export default class TabSlider extends Component {
         let pdata = this.props.data ? this.props.data.count : '0';
         let featureList = '';
         featureList = this.state.feature.map(feature=> (
-            featureList = <div className="gf-product tab-slider-sub-product">
+            featureList = <div className="gf-product tab-slider-sub-product" key={feature.id}>
                                 <div className="image">
                                     <a href="single-product.html">
                                         <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons ">
-                                        <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                        <a onClick={()=>this.props.addProduct(feature)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
                                         <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
                                         <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
@@ -60,13 +60,13 @@ export default class TabSlider extends Component {
                             ));
         let newArrivalList = '';
         newArrivalList = this.state.new_arrival.map(arrival=> (
-            newArrivalList = <div className="gf-product tab-slider-sub-product">
+            newArrivalList = <div className="gf-product tab-slider-sub-product" key={arrival.id}>
                                 <div className="image">
                                     <a href="single-product.html">
                                         <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
-                                        <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                        <a onClick={()=>this.props.addProduct(arrival)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
                                         <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
                                         <a onClick={()=>this.props.viewDetails(arrival)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
@@ -89,13 +89,13 @@ export default class TabSlider extends Component {
         let onSaleList = '';
         onSaleList = this.state.on_sale.map(sale=> (
             onSaleList = 
-                            <div className="gf-product tab-slider-sub-product">
+                            <div className="gf-product tab-slider-sub-product" key={sale.id}>
                                 <div className="image">
                                     <a href="single-product.html">
                                     <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
-                                        <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                        <a onClick={()=>this.props.addProduct(sale)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
                                         <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
                                         <a onClick={()=>this.props.viewDetails(sale)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
