@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 
 export default class DetailsPage extends Component {
     render() {
-        console.log('this.props.data :>> ', this.props.data);
+        // console.log('this.props.data :>> ', this.props.data);
+        let previousPage = this.props.data.prev_page;
         let pdata = this.props.data.product_info
         return (
             <div>
@@ -11,7 +12,7 @@ export default class DetailsPage extends Component {
                         <div className="container offer-show">
                             <div className="row pt-2">
                                 <div className="col-md-12">
-                                    <a onClick ={()=>this.props.showPage(null)}>
+                                    <a onClick ={()=>this.props.showPage(previousPage)}>
                                     <img className="icn-arrow--left" src="/frontend-asset/market/icons/grey_arrow_down-d595d8db881c98fbae6ad8cec7f0727191deefa0327a7adebda0e52d64e7fd85.png" alt="Grey arrow down" />
                                     Return to filter board
                                     </a>

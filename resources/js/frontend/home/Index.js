@@ -24,6 +24,7 @@ export default class Index extends Component {
         super(props);
         this.state = {
             show_page: null,
+            prev_page: null,
             product: [],
             addCart: [],
             product_info: []
@@ -36,7 +37,7 @@ export default class Index extends Component {
     }
 
     showPage(page) {
-        this.setState({ ['show_page']: page });
+        this.setState({ ['show_page']: page, ['prev_page']: this.state.show_page});
     }
 
     componentDidMount() {

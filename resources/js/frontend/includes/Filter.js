@@ -481,7 +481,7 @@ export default class Filter extends Component {
 
     render() {
         let pdata = this.props.data.product;
-
+        console.log('this.state.postProduct :>> ', this.state.postProduct);
         let categoryDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.categorieslist) {
                 this.state.categorieslist.map(category=>(
@@ -503,13 +503,14 @@ export default class Filter extends Component {
             ));
         };
         let managePostProductList = '';
+        if(this.state.postProduct) {
         managePostProductList = this.state.postProduct.map(product=> (
             managePostProductList = <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                         <div className="gf-product shop-grid-view-product">
                                             <div className="image">
                                                 <a href="paddy_detailspage/{{$paddy['id']}}">
                                                     <span className="onsale">Sale!</span>
-                                                    <img src={"/storage/product/"+pdata.product_img} width="200px" height="186px"/>
+                                                    <img src={"/storage/posts/"+product.product_image} width="200px" height="186px"/>
                                                 </a>
                                                 <div className="product-hover-icons">
                                                 <a onClick={()=>this.props.addProduct(product)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
@@ -560,7 +561,7 @@ export default class Filter extends Component {
                                         </div>		
                                     </div>
                             ));
-        
+        }
         return (
             <div>
                 <section>
