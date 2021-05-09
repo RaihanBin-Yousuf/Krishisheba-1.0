@@ -16,6 +16,8 @@ import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
 import Test from '../includes/Test';
+import Cart from '../includes/Cart';
+import Checkout from '../includes/Checkout';
 
 export default class Index extends Component {
     constructor(props) {
@@ -113,6 +115,12 @@ export default class Index extends Component {
             showPageName = <Filter data = {this.state} />
         } else if (this.state.show_page === 'test') {
             showPageName = <Test data={this.state} />
+        }
+         else if (this.state.show_page === 'cart') {
+            showPageName = <Cart data={this.state} />
+        }
+        else if (this.state.show_page === 'checkout') {
+            showPageName = <Checkout data={this.state} />
         }
         return (
             <>  
