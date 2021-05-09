@@ -512,21 +512,21 @@ export default class Filter extends Component {
                                                     <img src={"/storage/product/"+pdata.product_img} width="200px" height="186px"/>
                                                 </a>
                                                 <div className="product-hover-icons">
-                                                    <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                                <a onClick={()=>this.props.addProduct(product)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                                     <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                                    <a href="paddy_detailspage/{{$paddy['id']}}" data-tooltip="Quick view"> <span className="icon_search"></span> </a>
+                                                    <a onClick={()=>this.props.viewDetails(product)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
                                                 </div>
                                             </div>
                                             <div className="product-content">
                                                 <div className="product-categories">
-                                                    <a>পণ্য:paddyproduct_name</a>
+                                                    <a>পণ্য: {product.product_name}</a>
                                                 </div>
                                                 <div className="product-categories">
-                                                    <a>পণ্যের প্রকার: paddycategory </a>
+                                                    <a>পণ্যের প্রকার: {product.category} </a>
                                                 </div>
-                                                <h3 className="product-title"><a href="">মোট ওজন: paddy total_weight paddy weight_unit </a></h3>
+                                                <h3 className="product-title"><a href="">মোট ওজন: {product.total_weight} {product.weight_unit} </a></h3>
                                                 <div className="price-box">
-                                                    <span className="discounted-price">৳ paddy  price_per_unit  টাকা  $paddy weight_unit</span>
+                                                    <span className="discounted-price">১ {product.weight_unit} ৳ {product.price_per_unit} </span>
                                                 </div>
                                             </div>	
                                         </div>
