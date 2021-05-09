@@ -8,11 +8,11 @@ export default class Cart extends Component {
         let cartList = '';
         cartList = pdata.map(product=> (
         cartList = <tr>
-                        <td className="pro-thumbnail"><a href="#"><img src="assets/images/products/product01.jpg" className="img-fluid" alt="Product"/></a></td>
-                        <td className="pro-title"><a href="#">Cillum dolore tortor nisl fermentum</a></td>
-                        <td className="pro-price"><span>$29.00</span></td>
+                        <td className="pro-thumbnail"><a href="#"><img src={"/storage/posts/"+product.product_image} className="img-fluid" alt="Product"/></a></td>
+                        <td className="pro-title">{product.category}</td>
+                        <td className="pro-price"><span>৳ {product.price_per_unit}</span></td>
                         <td className="pro-quantity"><div className="pro-qty"><input type="text" value="1"/></div></td> 
-                        <td className="pro-subtotal"><span>$29.00</span></td>
+                        <td className="pro-subtotal"><span>৳ {product.price_per_unit}</span></td>
                         <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
                     </tr>
                     ));
