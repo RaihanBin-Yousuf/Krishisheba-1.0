@@ -33,7 +33,7 @@ class ManagePostController extends Controller
         }
         $userId = Auth::user()->id;
 
-        $data = $this->manage_post::where('user_id', $userId)->get();
+        $data = ManagePost::where('user_id', $userId)->get();
         return view('backend.manage_posts.index',compact('data'));
         // return $this->sendResponse(['data'=>$data]);
         

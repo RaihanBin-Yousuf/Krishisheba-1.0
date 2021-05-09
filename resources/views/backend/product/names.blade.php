@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Dashboard</h1>
+            <h1 class="m-0 text-dark"></h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -30,17 +30,14 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Product Id </th>
-                  <th>Product Iamge </th>
+                  <th>Product Image </th>
                   <th>Product Name </th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-              
-                <tr>
                 @foreach($names as $products)
-                  <td>{{ $products->id }}</td>
+                <tr>
                   <td><img src="{{asset('storage/product/'.$products->product_img)}}" style="width:100px; height:100px; border-radius:50%;"></td>
                   <td>{{ $products->name }}</td>
                   <td>

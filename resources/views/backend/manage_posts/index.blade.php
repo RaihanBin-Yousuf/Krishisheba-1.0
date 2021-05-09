@@ -60,8 +60,8 @@
                         <td class="align-middle">
                             <div class=" btn-group-sm">
                               <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                              <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                              <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                              <a href={{"deletePost/".$posts->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
+
                             </div>
                         </td>
                     </tr>

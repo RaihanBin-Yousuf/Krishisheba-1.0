@@ -19,9 +19,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $allusers = $this->user->getAllUsers();
-        // ->where('role','!=','sadmin')
-        // ->where('role','!=','admin');
+        $allusers = $this->user->getAllUsers()
+        ->where('role','!=','sadmin')
+        ->where('role','!=','admin');
         return view('backend.manage_users.index',compact('allusers'));
     }
     public function AllAdmin()
@@ -48,6 +48,13 @@ class UsersController extends Controller
         $allbuyers = $this->user->getAllUsers()
         ->where('role','buyer');
         return view('backend.manage_users.buyer',compact('allbuyers'));
+    }
+
+    public function viewuser($id)
+    {
+        $viewuser = User::find($id);
+        // dd($viewadmin);
+        return view('backend.manage_users.userprofileview',compact('viewuser'));
     }
 
     /**
@@ -83,7 +90,11 @@ class UsersController extends Controller
         $user['id']=$request->access_to;
         $user['access_to']=Auth::user()->id;
        $this->user->accessTo($user,$user['id']);
-       return back();
+       $notification=array(
+        'messege'=>'profile updated',
+        'alert-type'=>'info'
+         );
+         return Redirect()->back()->with($notification);
     }
 
     /**

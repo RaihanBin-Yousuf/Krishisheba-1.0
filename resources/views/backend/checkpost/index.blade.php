@@ -36,8 +36,8 @@
                   <thead>
                   <tr>  
                     <!-- <th>User Id</th> -->
-                    <th>Product Name</th>
                     <th>Product Image</th>
+                    <th>Product Name</th>
                     <th>category</th>
                     <th>Sub Category</th>
                     <th>divisions</th>
@@ -50,8 +50,8 @@
                   @foreach($allposts as $allpost)
                       <tr>
                         <!-- <td class="text-center py-0 align-middle">{{ $allpost->user_id }}</td> -->
-                        <td class="text-center py-0 align-middle">{{ $allpost->product_name }}</td>
                         <td class="text-center py-0 align-middle"><img src="{{asset('storage/posts/'.$allpost->product_image)}}" style="width:121px; height:121px; border-radius:50%;"></td>
+                        <td class="text-center py-0 align-middle">{{ $allpost->product_name }}</td>
                         <td class="text-center py-0 align-middle">{{ $allpost->category }}</td>
                         <td class="text-center py-0 align-middle">{{ $allpost->sub_category }}</td>
                         <td class="text-center py-0 align-middle">{{ $allpost->divisions }}</td>
@@ -60,7 +60,7 @@
                             <div class=" btn-group-sm">
                               <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
                               <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                              <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                              <a href={{"deletePost/".$allpost->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>

@@ -55,6 +55,7 @@ Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewad
 
 //Admin Route
 Route::resource('allposts', CheckPostController::class);
+Route::get('/deletePost/{id}',[CheckPostController::class,'destroy'])->name('deletePost');
 Route::resource('product', ProductController::class);
 Route::get('/names',[ProductController::class,'names'])->name('names');
 Route::get('deleteproduct/{id}',[ProductController::class,'deleteProducById'])->name('deleteProducById');
@@ -80,6 +81,8 @@ Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('d
 
 //Seller and buyer route
 Route::resource('manage_posts', ManagePostController::class);
+// Route::get('/deleteUserPost/{id}',[ManagePostController::class,'deleteUserPost'])->name('deleteUserPost');
+
 Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updateprofile')->middleware('auth');
 Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
 // project task list

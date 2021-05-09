@@ -25,7 +25,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3>All Seller Table
+                <h3>Seller Table
                 <a class="btn btn-info float-right" href="{{route('users.create')}}"><i class="fa fa-plus"> </i> Add New User </a>
                 </h3>
               </div>
@@ -34,7 +34,8 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>  
-                    <!-- <th class="text-center">Id</th> -->
+                    <th class="text-center">Access Seller</th>
+                    <th class="text-center">Image</th>
                     <th class="text-center">Name</th>
                     <th class="text-center">Email</th>
                     <th class="text-center">Contact</th>
@@ -46,24 +47,30 @@
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                      @foreach($allsellers as $sellers)
-                      <!-- <td>{{ $sellers->id }}</td> -->
-                      <td>{{ $sellers->name }}</td>
-                      <td>{{ $sellers->email }}</td>
-                      <td>{{ $sellers->mobile }}</td>
-                      <td>{{ $sellers->nid }}</td>
-                      <td>{{ $sellers->birth_date }}</td>
-                      <td>{{ $sellers->address }}</td>
-                      <td>{{ $sellers->role }}</td>
-                      <td class="text-center py-0 align-middle">
-                          <div class=" btn-group-sm">
-                            <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                            <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
-                            <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                          </div>
-                      </td>
-                    </tr>
+                    @foreach($allsellers as $sellers)
+                      <tr>
+                        <td>
+                            @if($sellers->access_to>0)
+                              <input type="checkbox" checked>
+                            @else
+                              <input type="checkbox">
+                            @endif
+                        </td>
+                        <td class="text-center py-0 align-middle"><img src="{{asset('storage/profile/'.$sellers->profile_img)}}" style="width:50px; height:50px; border-radius:50%;"></td>
+                        <td>{{ $sellers->name }}</td>
+                        <td>{{ $sellers->email }}</td>
+                        <td>{{ $sellers->mobile }}</td>
+                        <td>{{ $sellers->nid }}</td>
+                        <td>{{ $sellers->birth_date }}</td>
+                        <td>{{ $sellers->address }}</td>
+                        <td>{{ $sellers->role }}</td>
+                        <td class="text-center py-0 align-middle">
+                            <div class=" btn-group-sm">
+                              <a href="viewuser/{{$sellers['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                              <a href={{"deleteuser/".$sellers->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </td>
+                      </tr>
                     @endforeach
                   </tbody>
                 </table>

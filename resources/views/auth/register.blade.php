@@ -126,11 +126,14 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="nid">
                                 </div>
                             </div>
-                            <!-- <div class="row">                        
+                            <!-- <div class="row">
                                 <div class="col-md-6 form-group">
-                                    <label for="nid">এনআইডি*</label>
-                                    <input id="nid" type="nid" class="form-control @error('nid') is-invalid @enderror" name="nid" value="{{ old('nid') }}" required autocomplete="nid">
-                                        @error('nid')
+                                <label for="nid_image">NID ছবি</label>
+                                <div>
+                                    <img class="nidimg" id="nidimage"/>
+                                    </div>
+                                    <input type='file' class="@error('nid_front_img') is-invalid @enderror" name="nid_front_img" onchange="readURL(this);" />
+                                    @error('nid_front_img')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>

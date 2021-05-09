@@ -35,7 +35,7 @@
                         <div class="col-md-12 form-group text-center">
                             <label for="profile_image">প্রোফাইল ছবি</label>
                             <div>
-                                <img style="height: 100px; width: 100px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewadmin->profile_img)}}"/>
+                                <img style="height: 100px; width: 100px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewuser->profile_img)}}"/>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                       <div class="form-group">
                         <label for="exampleProductName">Name:</label>
                         <div>
-                        {{$viewadmin['name']}}
+                        {{$viewuser['name']}}
                         </div>
                         
                       </div>
@@ -53,32 +53,32 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleProductCategory ">Email:</label>
-                        <div>{{$viewadmin['email']}}</div>
+                        <div>{{$viewuser['email']}}</div>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">Contact NO:</label>
-                        <div>{{$viewadmin['mobile']}}</div>
+                        <div>{{$viewuser['mobile']}}</div>
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ROLE:</label>
-                        <div>{{$viewadmin['role']}}</div>
+                        <div>{{$viewuser['role']}}</div>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ADDRESS:</label>
-                        <div>{{$viewadmin['address']}}</div>
+                        <div>{{$viewuser['address']}}</div>
                       </div>
                     </div>
                     
                     <div class="col-md-3">
                       <div class="form-group">
                         <label for="exampleProductCategory ">NID NO:</label>
-                        <div>{{$viewadmin['nid']}}</div>
+                        <div>{{$viewuser['nid']}}</div>
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -97,7 +97,7 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="exampleProductCategory ">ACCESS TO:</label>
-                        <input type="checkbox" value="{{$viewadmin['id']}}" name="access_to"/>
+                        <input type="checkbox" value="{{$viewuser['id']}}" name="access_to"/>
                       </div>
                     </div>
                 <!-- /.card-body -->
@@ -114,7 +114,7 @@
         </div>
           <div class="row float right">
               <div class="col-md-12">
-                  <form action="mailto:{{$viewadmin['email']}}" method="post" enctype="text/plain">
+                  <form action="mailto:info@w3docs.com" method="get" enctype="text/plain">
                         <div class="card card-info">
                             <div class="card-header">
                               <a style="font-size: 20px;" class="btn btn float-left">SEND MAIL</a>                            
@@ -122,20 +122,22 @@
                               <div class="card-body">                                 
                                 <div>
                                   <label for="name">Name:
-                                    <input type="text" name="name" id="name" value="{{$viewadmin['name']}}" />
+                                    <input type="text" name="name" id="name" />
                                   </label>
                                 </div>
                                 <div>
                                   <label for="email">Email:
-                                    <input type="text" name="email" id="email" value="{{$viewadmin['email']}}" />
+                                    <input type="text" name="email" id="email" />
                                   </label>
                                 </div>
                                 <div>
                                   <label>Comments:</label>
                                   <br />
-                                  <textarea name="comments" rows="12" cols="35"></textarea><br>
-                                  <input type="submit" value="Send">
-                                  <input type="reset" value="Reset">
+                                  <textarea name="comments" rows="12" cols="35"></textarea>
+                                </div>
+                                <div>
+                                  <input type="submit" name="submit" value="Send" />
+                                  <input type="reset" name="reset" value="Clear Form" />
                                 </div>
                               </div>
                             </div>

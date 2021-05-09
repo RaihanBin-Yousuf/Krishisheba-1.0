@@ -3,11 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\ManagePost;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 
 class CheckPostController extends Controller
 {
+    public function __construct(ManagePost $manage_post) {
+        $this->manage_post = $manage_post;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -86,6 +90,13 @@ class CheckPostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data=ManagePost::find($id);
+        $data->delete();
+
+        $notification=array(
+            'messege'=>'Post Data Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
     }
 }
