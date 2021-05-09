@@ -42,23 +42,18 @@ export default class Index extends Component {
     }
 
     productDetails(data) {
-        // console.log('data :>> ', data);
-        
         this.setState({ ['product']: data, });
         this.showPage('filter');
     }
 
     viewDetails(data) {
-        console.log('data :>> ', data);
         this.setState({ ['product_info']: data });
         this.showPage('productdetails');
     }
 
     addProduct(product) {
-        console.log('product.id :>> ', product.id);
         const productArray = this.state.addCart;
         const checkItems = _.filter(this.state.addCart, function(cart) { //checking same product can't insert twice
-            console.log('checking cart.id :>> ', cart.id);
             return cart.id == product.id;
         });
         if(checkItems.length>0) { 
@@ -73,10 +68,8 @@ export default class Index extends Component {
     }
 
     removeProduct(product) {
-        console.log('product.id :>> ', product.id);
         const productArray = this.state.addCart;
         const checkItems = _.filter(this.state.addCart, function(cart) { //checking same product can't insert twice
-            console.log('checking cart.id :>> ', cart.id);
             return cart.id == product.id;
         });
         if(checkItems.length>0) { 
@@ -88,7 +81,6 @@ export default class Index extends Component {
     }
 
     render() {
-        // console.log('this.state :>> ', this.state);
         let showPageName = '';
         if(this.state.show_page === null) {
             showPageName = <div>

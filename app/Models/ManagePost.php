@@ -15,6 +15,14 @@ class ManagePost extends Model
         'final_delivery_date','offer_end_date','own_vehicle','divisions',
         'district','thana','villege','comments' ,'product_image',
     ];
+    public function filterPage()
+    {
+        if(request()->byProductName) {
+            $productName = request()->byProductName;
+            return $this->where('product_name', $productName)->get();
+        }
+    }
+
     public function getAll()
     {
         return $this->latest()->get();

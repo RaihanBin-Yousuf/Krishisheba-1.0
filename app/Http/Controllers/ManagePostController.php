@@ -30,6 +30,10 @@ class ManagePostController extends Controller
                $data = $this->manage_post->homePage();
                return $this->sendResponse($data);
             }
+            if(request()->byProductName) {
+                $data = $this->manage_post->filterPage();
+                return $this->sendResponse($data);
+            }
         }
         $userId = Auth::user()->id;
 

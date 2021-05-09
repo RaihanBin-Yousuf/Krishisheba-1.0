@@ -34,9 +34,7 @@ export default class TopBarAndHeader extends Component {
     }
     
     render() {
-        console.log('this.state.cartShow :>> ', this.state.cartShow);
         // let pdata = this.props.data ? this.props.data.count : '0';
-        // console.log('this.props.data.addCart :>> ', this.props.data.addCart);
         let addCartList = '';
         addCartList = this.props.data.addCart.map(product=> (
         addCartList = <div className="cart-float-single-item d-flex" key={product.id}>

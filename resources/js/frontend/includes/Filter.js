@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CategoryService from '../../services/CategoryService';
 import SubcateoryService from '../../services/SubcateoryService';
-
+import ManagePostService from '../../services/ManagePostService';
 export default class Filter extends Component {
     constructor(props) {
         super(props);
@@ -11,6 +11,7 @@ export default class Filter extends Component {
             districtList: [],
             ['category_id']: 0,
             ['sub_category_id']: 0,
+            postProduct: [],
             divisionList : [{name : 'Barishal', value : 'বরিশাল'},{name : 'Chattogram', value : 'চট্টগ্রাম'},{name : 'Dhaka', value : 'ঢাকা'},{name : 'Khulna', value : 'খুলনা'},{name : 'Mymensingh', value : 'ময়মনসিংহ'},{name : 'Rajshahi', value : 'রাজশাহী'},{name : 'Rangpur', value : 'রংপুর'},{name : 'Sylhet', value : 'সিলেট'}],
             query: {
                 category: '',
@@ -28,11 +29,20 @@ export default class Filter extends Component {
         this.subcategorySelect = this.subcategorySelect.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getDistrictList = this.getDistrictList.bind(this);
-        this.getThanaList =this.getThanaList.bind(this);
+        this.getThanaList = this.getThanaList.bind(this);
+        this.getPostProductByName = this.getPostProductByName.bind(this);
 
     }
     componentDidMount() {
         this.getCategories();
+        this.getPostProductByName();
+    }
+
+   async getPostProductByName() {
+       const getPostProductByName = await ManagePostService.list({'byProductName' : this.props.data.product.name});
+       console.log('all post data by Product Name:>> ', getPostProductByName);
+        this.setState({ ['postProduct']: getPostProductByName})
+
     }
 
     async getCategories() {
@@ -492,8 +502,65 @@ export default class Filter extends Component {
                     divisionListDropdown.push(<option key={division.name} value={division.name}>{division.value}</option>)
             ));
         };
-
-        console.log('this.state :>> ', this.state);
+        let managePostProductList = '';
+        managePostProductList = this.state.postProduct.map(product=> (
+            managePostProductList = <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
+                                        <div className="gf-product shop-grid-view-product">
+                                            <div className="image">
+                                                <a href="paddy_detailspage/{{$paddy['id']}}">
+                                                    <span className="onsale">Sale!</span>
+                                                    <img src={"/storage/product/"+pdata.product_img} width="200px" height="186px"/>
+                                                </a>
+                                                <div className="product-hover-icons">
+                                                    <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                                    <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
+                                                    <a href="paddy_detailspage/{{$paddy['id']}}" data-tooltip="Quick view"> <span className="icon_search"></span> </a>
+                                                </div>
+                                            </div>
+                                            <div className="product-content">
+                                                <div className="product-categories">
+                                                    <a>পণ্য:paddyproduct_name</a>
+                                                </div>
+                                                <div className="product-categories">
+                                                    <a>পণ্যের প্রকার: paddycategory </a>
+                                                </div>
+                                                <h3 className="product-title"><a href="">মোট ওজন: paddy total_weight paddy weight_unit </a></h3>
+                                                <div className="price-box">
+                                                    <span className="discounted-price">৳ paddy  price_per_unit  টাকা  $paddy weight_unit</span>
+                                                </div>
+                                            </div>	
+                                        </div>
+                                        <div className="gf-product shop-list-view-product">
+                                            <div className="image">
+                                                <a href="">
+                                                    <span className="onsale">Sale!</span>
+                                                    <img src={"/storage/product/"+pdata.product_img} width="270px" height="250px"/>
+                                                </a>
+                                                <div className="product-hover-icons">
+                                                </div>
+                                            </div>
+                                            <div className="product-content">
+                                                <div className="product-categories">
+                                                    <a>Fast Foods</a>,
+                                                    <a>Vegetables</a>
+                                                </div>
+                                                <h3 className="product-title"><a href="">Ornare sed consequat nisl</a></h3>
+                                                <div className="price-box mb-20">
+                                                    <span className="main-price">$89.00</span>
+                                                    <span className="discounted-price">$80.00</span>
+                                                </div>
+                                                <p className="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
+                                                <div className="list-product-icons">
+                                                    <a href="#"> <span className="icon_search"></span> </a>
+                                                    <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
+                                                    <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
+                                                    <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
+                                                </div>
+                                            </div>
+                                        </div>		
+                                    </div>
+                            ));
+        
         return (
             <div>
                 <section>
@@ -600,61 +667,7 @@ export default class Filter extends Component {
                                     </div>
                                     <div className="shop-product-wrap grid row no-gutters mb-35">
                                         {/* @foreach($allpaddy as $paddy) */}
-                                            <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
-                                                <div className="gf-product shop-grid-view-product">
-                                                    <div className="image">
-                                                        <a href="paddy_detailspage/{{$paddy['id']}}">
-                                                            <span className="onsale">Sale!</span>
-                                                            <img src={"/storage/product/"+pdata.product_img} width="200px" height="186px"/>
-                                                        </a>
-                                                        <div className="product-hover-icons">
-                                                            <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                                            <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                                            <a href="paddy_detailspage/{{$paddy['id']}}" data-tooltip="Quick view"> <span className="icon_search"></span> </a>
-                                                        </div>
-                                                    </div>
-                                                    <div className="product-content">
-                                                        <div className="product-categories">
-                                                            <a>পণ্য:paddyproduct_name</a>
-                                                        </div>
-                                                        <div className="product-categories">
-                                                            <a>পণ্যের প্রকার: paddycategory </a>
-                                                        </div>
-                                                        <h3 className="product-title"><a href="">মোট ওজন: paddy total_weight paddy weight_unit </a></h3>
-                                                        <div className="price-box">
-                                                            <span className="discounted-price">৳ paddy  price_per_unit  টাকা  $paddy weight_unit</span>
-                                                        </div>
-                                                    </div>	
-                                                </div>
-                                                <div className="gf-product shop-list-view-product">
-                                                    <div className="image">
-                                                        <a href="">
-                                                            <span className="onsale">Sale!</span>
-                                                            <img src={"/storage/product/"+pdata.product_img} width="270px" height="250px"/>
-                                                        </a>
-                                                        <div className="product-hover-icons">
-                                                        </div>
-                                                    </div>
-                                                    <div className="product-content">
-                                                        <div className="product-categories">
-                                                            <a>Fast Foods</a>,
-                                                            <a>Vegetables</a>
-                                                        </div>
-                                                        <h3 className="product-title"><a href="">Ornare sed consequat nisl</a></h3>
-                                                        <div className="price-box mb-20">
-                                                            <span className="main-price">$89.00</span>
-                                                            <span className="discounted-price">$80.00</span>
-                                                        </div>
-                                                        <p className="product-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere esse tempora magnam dolorem tenetur eos eligendi non temporibus qui enim. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, magni.</p>
-                                                        <div className="list-product-icons">
-                                                            <a href="#"> <span className="icon_search"></span> </a>
-                                                            <a href="#" data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                                            <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                                            <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                                        </div>
-                                                    </div>
-                                                </div>		
-                                            </div>
+                                            {managePostProductList}
                                         {/* @endforeach*/}
                                     </div>
 
