@@ -112,7 +112,7 @@ export default class DetailsPage extends Component {
                                             </div>
                                             <br/>
                                             <div className="col-md-6 float-right">
-                                                <input type="submit" name="commit" value="নমুনার জন্য অনুরোধ" className="btn btn-solid btn--full btn--100p" data-disable-with="Buy Product" />
+                                                <input type="submit" name="commit" value="নমুনার জন্য অনুরোধ" className="btn btn-solid btn--full btn--100p"/>
                                             </div>
                                         </div>
                                     </div>
@@ -150,8 +150,9 @@ export default class DetailsPage extends Component {
                                     </div>
                                     <div className="row">
                                         <div className="col-md-9"></div>
-                                            <div className="col-md-3 float-right" onClick={()=>this.props.addProduct(pdata)}><br/>
-                                                <input value="Buy Product" className="btn btn-solid btn--full btn--100p"/>
+                                            <div className="col-md-3 float-right"><br/>
+                                                {/* <input type="submit" name="commit" value="Buy Product" className="btn btn-solid btn--full btn--100p"  />  */}
+                                                <button onClick={()=>this.props.addProduct(pdata)} className="btn btn-solid btn--full btn--100p">Buy Product</button>
                                             </div>
                                         </div>
                                     </div>

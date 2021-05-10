@@ -2472,6 +2472,7 @@ var Index = /*#__PURE__*/function (_Component) {
         });
       } else if (this.state.show_page === 'productdetails') {
         showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
+          addProduct: this.addProduct,
           data: this.state,
           showPage: this.showPage
         });
@@ -2506,7 +2507,7 @@ var Index = /*#__PURE__*/function (_Component) {
           showPage: this.showPage,
           removeProduct: this.removeProduct,
           viewDetails: this.viewDetails
-        }), showPageName, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
+        }), showPageName, this.state.show_page === 'productdetails' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
       });
     }
   }]);
@@ -3868,21 +3869,20 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                           type: "submit",
                           name: "commit",
                           value: "\u09A8\u09AE\u09C1\u09A8\u09BE\u09B0 \u099C\u09A8\u09CD\u09AF \u0985\u09A8\u09C1\u09B0\u09CB\u09A7",
-                          className: "btn btn-solid btn--full btn--100p",
-                          "data-disable-with": "Buy Product"
+                          className: "btn btn-solid btn--full btn--100p"
                         })
                       })]
                     })]
                   })
                 })]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
               className: "col-md-12 offer-show__col",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                 className: "row offer-form-table",
-                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "container",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                     className: "row",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                       className: "col-md-3 tool-tip-info",
@@ -3938,22 +3938,23 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                         "data-disable-with": "Send Counter Offer"
                       })]
                     })]
-                  })
-                })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                className: "row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                  className: "col-md-9"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                  className: "col-md-3 float-right",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                    type: "submit",
-                    name: "commit",
-                    value: "Buy Product",
-                    className: "btn btn-solid btn--full btn--100p"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    className: "row",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                      className: "col-md-9"
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      className: "col-md-3 float-right",
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                        onClick: function onClick() {
+                          return _this.props.addProduct(pdata);
+                        },
+                        className: "btn btn-solid btn--full btn--100p",
+                        children: "Buy Product"
+                      })]
+                    })]
                   })]
-                })]
-              })]
+                })
+              })
             })]
           })
         })
@@ -4497,48 +4498,46 @@ var Filter = /*#__PURE__*/function (_Component) {
             _this$setState3,
             _this2 = this;
 
-        var category_id, res, category;
+        var res, category;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                category_id = categoryId;
-                console.log('categoryId :>> ', categoryId);
-                _context3.next = 4;
+                _context3.next = 2;
                 return _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_3__.default.dropdown({
                   "category_id": categoryId
                 });
 
-              case 4:
+              case 2:
                 res = _context3.sent;
-                _context3.next = 7;
+                _context3.next = 5;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_2__.default.details(categoryId);
 
-              case 7:
+              case 5:
                 category = _context3.sent;
 
                 if (!(categoryId == 'নির্বাচন করুন')) {
-                  _context3.next = 12;
+                  _context3.next = 10;
                   break;
                 }
 
                 category.name = '';
-                _context3.next = 15;
+                _context3.next = 13;
                 break;
 
-              case 12:
-                _context3.next = 14;
+              case 10:
+                _context3.next = 12;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_2__.default.details(categoryId);
 
-              case 14:
+              case 12:
                 category = _context3.sent;
 
-              case 15:
+              case 13:
                 this.setState((_this$setState3 = {}, _defineProperty(_this$setState3, 'subCategorieslist', res), _defineProperty(_this$setState3, "query", _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'category', category.name), _defineProperty(_objectSpread2, 'sub_category', ''), _objectSpread2))), _this$setState3), function () {
                   _this2.getPost();
                 }); // this.getPost();
 
-              case 16:
+              case 14:
               case "end":
                 return _context3.stop();
             }
@@ -4571,14 +4570,11 @@ var Filter = /*#__PURE__*/function (_Component) {
       var target = event.target;
       var name = target.name;
       var value = target.value;
-      console.log('name :>> ', name);
-      console.log('value :>> ', value);
       this.setState({
         query: _objectSpread(_objectSpread({}, this.state.query), {}, _defineProperty({}, name, value))
       }, function () {
         _this3.getPost();
       });
-      console.log('this.state.query :>> ', this.state.query);
     }
   }, {
     key: "getDistrictList",
@@ -4852,7 +4848,7 @@ var Filter = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this4 = this;
 
-      console.log('this.state.query :>> ', this.state.query);
+      // console.log('this.state.query :>> ', this.state.query);
       var pdata = this.props.data.product;
       var categoryDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
@@ -12235,7 +12231,7 @@ var Create = /*#__PURE__*/function (_Component) {
       post: {
         product_id: '',
         total_weight: 1,
-        weight_unit: 1,
+        weight_unit: '',
         price_per_unit: 1,
         advance_payment: 1,
         category_id: 0,

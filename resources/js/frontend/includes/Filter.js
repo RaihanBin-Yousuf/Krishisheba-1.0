@@ -85,9 +85,6 @@ export default class Filter extends Component {
     }
 
     async getSubCategories(categoryId) {
-        let category_id = categoryId;
-        console.log('categoryId :>> ', categoryId);
-        
         const res = await SubcateoryService.dropdown({"category_id": categoryId});
         let category = await CategoryService.details(categoryId);
         if(categoryId=='নির্বাচন করুন'){
@@ -120,15 +117,12 @@ export default class Filter extends Component {
         const target = event.target;
         const name = target.name;
         const value = target.value;
-        console.log('name :>> ', name);
-        console.log('value :>> ', value);
         this.setState({
             query :{
                 ...this.state.query,
               [name] : value
               }
         },()=>{this.getPost();});
-        console.log('this.state.query :>> ', this.state.query);
         
     }
 
@@ -534,7 +528,7 @@ export default class Filter extends Component {
     }
 
     render() {
-        console.log('this.state.query :>> ', this.state.query);
+        // console.log('this.state.query :>> ', this.state.query);
         let pdata = this.props.data.product;
         let categoryDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.categorieslist) {

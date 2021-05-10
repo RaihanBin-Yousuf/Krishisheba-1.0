@@ -196,7 +196,7 @@ export default class Index extends Component {
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}
                 {/* <Filter/> */}
-                <Footer/>
+                {this.state.show_page === 'productdetails' ? '' : <Footer/>}
                 
             </>
         )
