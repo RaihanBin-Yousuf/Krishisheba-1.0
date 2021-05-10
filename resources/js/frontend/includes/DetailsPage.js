@@ -148,17 +148,16 @@ export default class DetailsPage extends Component {
                                             <input type="submit" value="প্রস্তাব পাঠান" className="btn btn-solid btn--full btn--100p" data-disable-with="Send Counter Offer" />
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div className="row">
-                                <div className="col-md-9"></div>
-                                <div className="col-md-3 float-right"><br/>
-                                    <input type="submit" name="commit" value="Buy Product" className="btn btn-solid btn--full btn--100p"  />
-                                </div>
+                                    <div className="row">
+                                        <div className="col-md-9"></div>
+                                            <div className="col-md-3 float-right" onClick={()=>this.props.addProduct(pdata)}><br/>
+                                                <input value="Buy Product" className="btn btn-solid btn--full btn--100p"/>
+                                            </div>
+                                        </div>
+                                    </div>
                             </div>
                         </div>
-                    </div>
-                    
+                    </div>                 
                 </section>
             </div>
         )

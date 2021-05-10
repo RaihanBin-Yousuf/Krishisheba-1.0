@@ -173,7 +173,7 @@ export default class Index extends Component {
                                 <Contact/>
                             </div>
         } else if(this.state.show_page === 'productdetails') {
-            showPageName = <DetailsPage data={this.state} showPage={this.showPage}/>
+            showPageName = <DetailsPage addProduct={this.addProduct} data={this.state} showPage={this.showPage}/>
         } else if(this.state.show_page === 'findProducts') {
             showPageName = <FindProducts/>
         } else if(this.state.show_page === 'team') {

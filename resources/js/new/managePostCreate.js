@@ -26,7 +26,7 @@ class Create extends Component {
             post : {
                 product_id : '',
                 total_weight : 1,
-                weight_unit : 1,
+                weight_unit : '',
                 price_per_unit : 1,
                 advance_payment : 1,
                 category_id : 0,
