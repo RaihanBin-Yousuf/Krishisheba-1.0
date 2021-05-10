@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CategoryService from '../../services/CategoryService';
 import SubcateoryService from '../../services/SubcateoryService';
 import ManagePostService from '../../services/ManagePostService';
+import Pagination from '../../components/Paginations';
 export default class Filter extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,13 @@ export default class Filter extends Component {
                 production_type: '',
             },
         };
+        this.page = 1;
+        this.limit = 10;
+        this.count = 0;
+        this.sort = 'id';
+        this.sortdirection = 'desc';
+        this.query = '';
+        this.handlePageChange = this.handlePageChange.bind(this);
         this.categorySelect = this.categorySelect.bind(this);
         this.getCategories = this.getCategories.bind(this);
         this.getSubCategories = this.getSubCategories.bind(this);
@@ -33,9 +41,20 @@ export default class Filter extends Component {
         this.getPostProductByName = this.getPostProductByName.bind(this);
 
     }
+
     componentDidMount() {
         this.getCategories();
         this.getPostProductByName();
+    }
+
+    handlePageChange(event) {
+        const target = event.target;
+        const page = target.getAttribute('data-page');
+        const lastPage = Math.ceil(this.count / this.limit);
+        if ( 1 <= page && page <= lastPage && page != this.page ) {
+            this.page = page;
+            this.getItems();
+        }
     }
 
    async getPostProductByName() {
@@ -677,9 +696,7 @@ export default class Filter extends Component {
                                             <div className="row">
                                                 <div className="col-lg-12">
                                                     <div className="pagination-content text-center">
-                                                        <ul>
-                                                            <li><a className="active"></a> $allpaddy links </li>
-                                                        </ul>
+                                                        <Pagination page={this.page} pageChange={this.handlePageChange} count={this.count} limit={this.limit} />
                                                     </div>
                                                 </div>
                                             </div>

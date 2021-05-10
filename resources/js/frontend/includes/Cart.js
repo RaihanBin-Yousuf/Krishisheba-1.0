@@ -19,8 +19,10 @@ export default class Cart extends Component {
                         <td className="pro-thumbnail"><a href="#"><img src={"/storage/posts/"+product.product_image} className="img-fluid" alt="Product"/></a></td>
                         <td className="pro-title">{product.category}</td>
                         <td className="pro-price"><span>৳ {product.price_per_unit}</span></td>
+                        <td className="available-quantity"><span>{product.total_unit == 'Nan' ? 'Nan': product.total_unit} {product.total_unit == 'Nan' ? '' : product.weight_unit}</span></td>
                         <td className="pro-quantity"><div className="pro-qty"><input type="number" value={product.quantity} onChange={(e)=>this.props.updateQty(e, product)} /></div></td> 
-                        <td className="pro-subtotal"><span>৳ {product.total_each_price}</span></td>
+                        <td className="pro-each-total"><span>৳ {product.total_each_price}</span></td>
+                        <td className="pro-service">৳ {product.each_total_fee}</td>
                         <td className="pro-remove"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-trash-o"></i></a></td>
                     </tr>
                     ));
@@ -40,8 +42,10 @@ export default class Cart extends Component {
                                                         <th className="pro-thumbnail">Image</th>
                                                         <th className="pro-title">Product</th>
                                                         <th className="pro-price">Price</th>
+                                                        <th className="available-quantity">Available Quantity</th>
                                                         <th className="pro-quantity">Quantity</th>
-                                                        <th className="pro-subtotal">Total</th>
+                                                        <th className="pro-each-total">Total</th>
+                                                        <th className="pro-service">Service fee</th>
                                                         <th className="pro-remove">Remove</th>
                                                     </tr>
                                                 </thead>
@@ -102,8 +106,8 @@ export default class Cart extends Component {
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
                                                     <h4>Cart Summary</h4>
-                                                    <p>Sub Total <span>${this.props.data.totalPrice}.00</span></p>
-                                                    <p>Shipping Cost <span>$00.00</span></p>
+                                                    <p>Sub Total <span>${this.props.data.subTotal}.00</span></p>
+                                                    <p>Service Fee <span>${this.props.data.serviceFee}.00</span></p>
                                                     <h2>Grand Total <span>${this.props.data.totalPrice}.00</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">

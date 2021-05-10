@@ -31,6 +31,8 @@ export default class Index extends Component {
             product_info: [],
             products: [],
             totalPrice: 0,
+            serviceFee: 0,
+            subTotal: 0,
 
         };
         this.showPage = this.showPage.bind(this);
@@ -79,6 +81,20 @@ export default class Index extends Component {
         } else {
             product.quantity = 1;
             product.total_each_price = product.price_per_unit;
+            product.total_unit = product.total_weight - product.quantity;
+            if(product.weight_unit == 'কেজি') {
+                product.each_service_fee = 5;
+            } else if(product.weight_unit == 'মণ') {
+                product.each_service_fee = 200;
+            } else if(product.weight_unit == 'পিস') {
+                product.each_service_fee = 1;
+            } else if(product.weight_unit == 'টন') {
+                product.each_service_fee = 1000;
+            } 
+            product.each_total_fee = product.quantity * product.each_service_fee;
+            //  else if(product.weight_unit == 'মেট্রিক টন') {
+            //     product.each_service_fee = 1;
+            // } 
             productArray.push(product);
             this.setState({
                 ['addCart'] : productArray,
@@ -96,7 +112,15 @@ export default class Index extends Component {
         this.state.addCart.map(product => {
             if(product.id == inputproduct.id) {
                 product.quantity = e.target.value;
+                let total_quantity_weight =  product.total_weight - product.quantity;
+                if(total_quantity_weight<1) {
+                    product.total_unit = 'Nan';
+                    $.notify({message: "No more Quantity available."}, {type: 'danger'});
+                } else {
+                    product.total_unit = total_quantity_weight;
+                }
                 product.total_each_price = product.quantity * product.price_per_unit;
+                product.each_total_fee = product.quantity * product.each_service_fee;
             }
             filterProducts.push(product);
         }) 
@@ -107,12 +131,18 @@ export default class Index extends Component {
     }
 
     totalPrice() {
-        let grandTotalPrice = 0;
+        let grandSubTotalPrice = 0;
+        let grandTotalServiceFee = 0;
         this.state.addCart.map(product => {
-            grandTotalPrice = grandTotalPrice + product.total_each_price;
+            grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
+            grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
         });
-        console.log('grand :>> ', grandTotalPrice);
-        this.setState({ ['totalPrice'] : grandTotalPrice});
+        let grandTotalPrice = grandSubTotalPrice - grandTotalServiceFee;
+        this.setState({ 
+            ['totalPrice'] : grandTotalPrice, 
+            ['serviceFee']: grandTotalServiceFee,
+            ['subTotal']: grandSubTotalPrice,
+        });
     }
 
 

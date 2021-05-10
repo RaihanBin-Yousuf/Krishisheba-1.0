@@ -22,7 +22,7 @@ export default class TopBarAndHeader extends Component {
 
     pageOnClickScroller(id) {
         const anchor = document.querySelector('#'+id)
-        anchor.scrollIntoView({ behavior: 'smooth', block: 'nearest',delay: 5000, inline: 'nearest' })
+        anchor.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest'});
     }
 
     onClickPage(url) {
