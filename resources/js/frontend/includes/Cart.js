@@ -11,7 +11,6 @@ export default class Cart extends Component {
     
     render() {
         let pdata = this.props.data.addCart;
-        console.log('pdata :>> ', pdata);
         let cartList = '';
         cartList = pdata.map(product=> (
         cartList = <tr key={product.id}>

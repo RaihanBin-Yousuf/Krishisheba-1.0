@@ -2708,7 +2708,6 @@ var Cart = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var pdata = this.props.data.addCart;
-      console.log('pdata :>> ', pdata);
       var cartList = '';
       cartList = pdata.map(function (product) {
         return cartList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
@@ -4373,6 +4372,7 @@ var Filter = /*#__PURE__*/function (_Component) {
       name: 'Sylhet',
       value: 'সিলেট'
     }]), _defineProperty(_this$state, "query", (_query = {
+      product_name: _this.props.data.product.name,
       category: '',
       sub_category: '',
       divisions: '',
@@ -4426,7 +4426,7 @@ var Filter = /*#__PURE__*/function (_Component) {
               case 0:
                 _context.next = 2;
                 return _services_ManagePostService__WEBPACK_IMPORTED_MODULE_4__.default.paginate({
-                  byProductName: this.props.data.product.name,
+                  query: this.state.query,
                   sort: this.sort,
                   direction: this.sortdirection,
                   page: this.page,
@@ -4435,10 +4435,10 @@ var Filter = /*#__PURE__*/function (_Component) {
 
               case 2:
                 getposts = _context.sent;
+                console.log('getPosts :>> ', getposts);
                 this.page = getposts.current_page;
                 this.limit = getposts.per_page;
                 this.count = getposts.total;
-                console.log('getposts :>> ', getposts);
                 this.setState(_defineProperty({}, 'postProduct', getposts.data));
 
               case 8:
@@ -4493,28 +4493,52 @@ var Filter = /*#__PURE__*/function (_Component) {
     key: "getSubCategories",
     value: function () {
       var _getSubCategories = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(categoryId) {
-        var _this$setState3;
+        var _objectSpread2,
+            _this$setState3,
+            _this2 = this;
 
-        var res, category;
+        var category_id, res, category;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                _context3.next = 2;
+                category_id = categoryId;
+                console.log('categoryId :>> ', categoryId);
+                _context3.next = 4;
                 return _services_SubcateoryService__WEBPACK_IMPORTED_MODULE_3__.default.dropdown({
                   "category_id": categoryId
                 });
 
-              case 2:
+              case 4:
                 res = _context3.sent;
-                _context3.next = 5;
+                _context3.next = 7;
                 return _services_CategoryService__WEBPACK_IMPORTED_MODULE_2__.default.details(categoryId);
 
-              case 5:
-                category = _context3.sent;
-                this.setState((_this$setState3 = {}, _defineProperty(_this$setState3, 'subCategorieslist', res), _defineProperty(_this$setState3, "query", _objectSpread(_objectSpread({}, this.state.query), {}, _defineProperty({}, 'category', category.name))), _this$setState3));
-
               case 7:
+                category = _context3.sent;
+
+                if (!(categoryId == 'নির্বাচন করুন')) {
+                  _context3.next = 12;
+                  break;
+                }
+
+                category.name = '';
+                _context3.next = 15;
+                break;
+
+              case 12:
+                _context3.next = 14;
+                return _services_CategoryService__WEBPACK_IMPORTED_MODULE_2__.default.details(categoryId);
+
+              case 14:
+                category = _context3.sent;
+
+              case 15:
+                this.setState((_this$setState3 = {}, _defineProperty(_this$setState3, 'subCategorieslist', res), _defineProperty(_this$setState3, "query", _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'category', category.name), _defineProperty(_objectSpread2, 'sub_category', ''), _objectSpread2))), _this$setState3), function () {
+                  _this2.getPost();
+                }); // this.getPost();
+
+              case 16:
               case "end":
                 return _context3.stop();
             }
@@ -4542,6 +4566,8 @@ var Filter = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleInputChange",
     value: function handleInputChange(event) {
+      var _this3 = this;
+
       var target = event.target;
       var name = target.name;
       var value = target.value;
@@ -4549,16 +4575,26 @@ var Filter = /*#__PURE__*/function (_Component) {
       console.log('value :>> ', value);
       this.setState({
         query: _objectSpread(_objectSpread({}, this.state.query), {}, _defineProperty({}, name, value))
+      }, function () {
+        _this3.getPost();
       });
+      console.log('this.state.query :>> ', this.state.query);
     }
   }, {
     key: "getDistrictList",
     value: function getDistrictList(e) {
       var _objectSpread4;
 
-      var division = e.target.value;
+      var division = '';
+
+      if (division == 'নির্বাচন করুন') {
+        division = '';
+      } else {
+        division = e.target.value;
+      }
+
       this.setState({
-        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread4 = {}, _defineProperty(_objectSpread4, 'divisions', e.target.value), _defineProperty(_objectSpread4, 'district', ''), _defineProperty(_objectSpread4, 'thana', ''), _objectSpread4))
+        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread4 = {}, _defineProperty(_objectSpread4, 'divisions', division), _defineProperty(_objectSpread4, 'district', ''), _defineProperty(_objectSpread4, 'thana', ''), _objectSpread4))
       });
       var districtList = '';
 
@@ -4588,14 +4624,22 @@ var Filter = /*#__PURE__*/function (_Component) {
                     }
 
       document.getElementById("district").innerHTML = districtList;
+      this.getPost();
     }
   }, {
     key: "getThanaList",
     value: function getThanaList(event) {
       var _objectSpread5;
 
-      var districtName = event.target.value;
+      var districtName = '';
       var thanaList = '';
+
+      if (districtName == 'নির্বাচন করুন') {
+        districtName = '';
+      } else {
+        districtName = event.target.value;
+      }
+
       this.setState({
         query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread5 = {}, _defineProperty(_objectSpread5, 'district', districtName), _defineProperty(_objectSpread5, 'thana', ''), _objectSpread5))
       }); // set Barguna division thana
@@ -4801,14 +4845,15 @@ var Filter = /*#__PURE__*/function (_Component) {
                                                                                                                                       }
 
       document.getElementById("police_station").innerHTML = thanaList;
+      this.getPost();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
+      console.log('this.state.query :>> ', this.state.query);
       var pdata = this.props.data.product;
-      console.log('this.state.postProduct :>> ', this.state.postProduct);
       var categoryDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
@@ -4874,7 +4919,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                   className: "product-hover-icons",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
                     onClick: function onClick() {
-                      return _this2.props.addProduct(product);
+                      return _this4.props.addProduct(product);
                     },
                     "data-tooltip": "Add to cart",
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -4888,7 +4933,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     }), " "]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
                     onClick: function onClick() {
-                      return _this2.props.viewDetails(product);
+                      return _this4.props.viewDetails(product);
                     },
                     "data-tooltip": "Quick view",
                     "data-toggle": "modal",
@@ -6439,10 +6484,9 @@ var TabSlider = /*#__PURE__*/function (_Component) {
 
               case 2:
                 res = _context.sent;
-                console.log('response on page :>> ', res);
                 this.setState((_this$setState = {}, _defineProperty(_this$setState, 'feature', res.feature), _defineProperty(_this$setState, 'new_arrival', res["new"]), _defineProperty(_this$setState, 'on_sale', res.sale), _this$setState));
 
-              case 5:
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -13352,7 +13396,6 @@ ManagePostService.paginate = /*#__PURE__*/function () {
             return axios.get("/manage_posts", {
               params: data
             }).then(function (response) {
-              console.log('response :>> ', response);
               return response.data.data.data;
             })["catch"](function (error) {
               return error;

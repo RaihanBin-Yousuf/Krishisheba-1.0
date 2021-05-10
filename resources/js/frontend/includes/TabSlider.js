@@ -19,7 +19,6 @@ export default class TabSlider extends Component {
 
     async getManagePost() {
         const res =await ManagePostService.list({'type': 'feature'});
-        console.log('response on page :>> ', res);
         this.setState({
             ['feature']: res.feature,
             ['new_arrival']: res.new,

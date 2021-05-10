@@ -15,6 +15,7 @@ export default class Filter extends Component {
             postProduct: [],
             divisionList : [{name : 'Barishal', value : 'বরিশাল'},{name : 'Chattogram', value : 'চট্টগ্রাম'},{name : 'Dhaka', value : 'ঢাকা'},{name : 'Khulna', value : 'খুলনা'},{name : 'Mymensingh', value : 'ময়মনসিংহ'},{name : 'Rajshahi', value : 'রাজশাহী'},{name : 'Rangpur', value : 'রংপুর'},{name : 'Sylhet', value : 'সিলেট'}],
             query: {
+                product_name: this.props.data.product.name,
                 category: '',
                 sub_category: '',
                 divisions: '',
@@ -59,16 +60,16 @@ export default class Filter extends Component {
 
    async getPost() {
         const getposts = await ManagePostService.paginate({
-            byProductName : this.props.data.product.name,
+            query : this.state.query,
             sort : this.sort,
             direction : this.sortdirection,
             page: this.page,
             limit: this.limit,
         });
+        console.log('getPosts :>> ', getposts);
         this.page = getposts.current_page;
         this.limit = getposts.per_page;
         this.count = getposts.total;
-        console.log('getposts :>> ', getposts);
         this.setState({ ['postProduct']: getposts.data})
 
     }
@@ -84,15 +85,25 @@ export default class Filter extends Component {
     }
 
     async getSubCategories(categoryId) {
+        let category_id = categoryId;
+        console.log('categoryId :>> ', categoryId);
+        
         const res = await SubcateoryService.dropdown({"category_id": categoryId});
-        const category = await CategoryService.details(categoryId);
+        let category = await CategoryService.details(categoryId);
+        if(categoryId=='নির্বাচন করুন'){
+            category.name='';
+        } else {
+            category = await CategoryService.details(categoryId);
+        }
         this.setState({
             ['subCategorieslist']: res,
             query : {
                 ...this.state.query,
                 ['category']: category.name,
+                ['sub_category']: '',
             }
-        });
+        },()=>{this.getPost();});
+        // this.getPost();
     }
 
     categorySelect(event) {
@@ -114,17 +125,25 @@ export default class Filter extends Component {
         this.setState({
             query :{
                 ...this.state.query,
-              [name]: value
+              [name] : value
               }
-        });
+        },()=>{this.getPost();});
+        console.log('this.state.query :>> ', this.state.query);
+        
     }
 
    getDistrictList(e) {
-       let division = e.target.value;
+        let division ='';
+        if(division == 'নির্বাচন করুন') {
+            division = '';
+        } else {
+            division = e.target.value;
+        }
+
         this.setState({
             query: {
                 ...this.state.query,
-              ['divisions']: e.target.value,
+              ['divisions']: division,
               ['district']: '',
               ['thana']: '',
               }
@@ -162,11 +181,17 @@ export default class Filter extends Component {
             districtList = '<option disabled selected>নির্বাচন করুন</option><option value="Sylhet">সিলেট</option><option value="Moulvibazar">মৌলভীবাজার</option><option value="Habiganj">হবিগঞ্জ</option><option value="Sunamganj">সুনামগঞ্জ</option>';
         }
         document.getElementById("district").innerHTML= districtList;
+        this.getPost();
     }
 
     getThanaList(event) {
-        let districtName = event.target.value;
+        let districtName = '';
         let thanaList = '';
+        if(districtName == 'নির্বাচন করুন') {
+            districtName = '';
+        } else {
+            districtName = event.target.value;
+        }
         this.setState({
             query : {
               ...this.state.query,
@@ -505,11 +530,12 @@ export default class Filter extends Component {
          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kurigram Sadar">কুড়িগ্রাম সদর</option><option value="Bhurungamari">ভুরুঙ্গামারী</option><option value="Char Rajibpur">চর রাজিবপুর</option><option value="Chilmari">চিলমারী</option><option value="Nageshwari">নাগেশ্বরী</option><option value="Phulbari">ফুলবাড়ী</option><option value="Rajarhat">রাজারহাট</option><option value="Raomari">রৌমারী</option><option value="Ulipur">উলিপুর</option>';
         }
         document.getElementById("police_station").innerHTML= thanaList;
+        this.getPost();
     }
 
     render() {
+        console.log('this.state.query :>> ', this.state.query);
         let pdata = this.props.data.product;
-        console.log('this.state.postProduct :>> ', this.state.postProduct);
         let categoryDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.categorieslist) {
                 this.state.categorieslist.map(category=>(

@@ -30,9 +30,9 @@ class ManagePostController extends Controller
                $data = $this->manage_post->homePage();
                return $this->sendResponse($data);
             }
-            if(request()->byProductName) {
-                $productName = request()->byProductName;
-                $data = $this->manage_post->where('product_name', $productName)->paginate(6);
+            if(request()->query) {
+                $data = $this->manage_post->filterPage();
+                // dd($data);
                 return $this->sendResponse(['data'=>$data, 'pages' => [
                     'total'=> $data->total(),
                     'next_page_url' => $data->nextPageUrl(),

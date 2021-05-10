@@ -19,9 +19,14 @@ class ManagePost extends Model
     ];
     public function filterPage()
     {
-        if(request()->byProductName) {
-            $productName = request()->byProductName;
-            return $this->where('product_name', $productName)->get();
+        if(request()->query) {
+            // $data = request()->query;
+            $data = request()->all();
+            $objData = json_decode($data['query']);// convert string into object
+            $arrData = (array)$objData; //convert object into array
+            $result = array_filter($arrData); //remove empty value in array
+            // dd($result);
+            return $this->where($result)->paginate(6);
         }
     }
 
