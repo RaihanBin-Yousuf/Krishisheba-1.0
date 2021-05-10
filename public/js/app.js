@@ -4579,7 +4579,8 @@ var Filter = /*#__PURE__*/function (_Component) {
   }, {
     key: "getDistrictList",
     value: function getDistrictList(e) {
-      var _objectSpread4;
+      var _objectSpread4,
+          _this4 = this;
 
       var division = '';
 
@@ -4589,9 +4590,6 @@ var Filter = /*#__PURE__*/function (_Component) {
         division = e.target.value;
       }
 
-      this.setState({
-        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread4 = {}, _defineProperty(_objectSpread4, 'divisions', division), _defineProperty(_objectSpread4, 'district', ''), _defineProperty(_objectSpread4, 'thana', ''), _objectSpread4))
-      });
       var districtList = '';
 
       if (division == 'Barishal') {
@@ -4620,12 +4618,17 @@ var Filter = /*#__PURE__*/function (_Component) {
                     }
 
       document.getElementById("district").innerHTML = districtList;
-      this.getPost();
+      this.setState({
+        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread4 = {}, _defineProperty(_objectSpread4, 'divisions', division), _defineProperty(_objectSpread4, 'district', ''), _defineProperty(_objectSpread4, 'thana', ''), _objectSpread4))
+      }, function () {
+        _this4.getPost();
+      });
     }
   }, {
     key: "getThanaList",
     value: function getThanaList(event) {
-      var _objectSpread5;
+      var _objectSpread5,
+          _this5 = this;
 
       var districtName = '';
       var thanaList = '';
@@ -4634,11 +4637,8 @@ var Filter = /*#__PURE__*/function (_Component) {
         districtName = '';
       } else {
         districtName = event.target.value;
-      }
+      } // set Barguna division thana
 
-      this.setState({
-        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread5 = {}, _defineProperty(_objectSpread5, 'district', districtName), _defineProperty(_objectSpread5, 'thana', ''), _objectSpread5))
-      }); // set Barguna division thana
 
       if (districtName == 'Barguna') {
         thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Amtali">আমতলী</option><option value="Bamna">বামনা</option><option value="Barguna Sadar">বরগুনা সদর</option><option value="Betagi">বেতাগী</option><option value="Patharghata">পাথরঘাটা</option><option value="Taltali">তালতলী</option>';
@@ -4840,13 +4840,17 @@ var Filter = /*#__PURE__*/function (_Component) {
                                                                                                                                         thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kurigram Sadar">কুড়িগ্রাম সদর</option><option value="Bhurungamari">ভুরুঙ্গামারী</option><option value="Char Rajibpur">চর রাজিবপুর</option><option value="Chilmari">চিলমারী</option><option value="Nageshwari">নাগেশ্বরী</option><option value="Phulbari">ফুলবাড়ী</option><option value="Rajarhat">রাজারহাট</option><option value="Raomari">রৌমারী</option><option value="Ulipur">উলিপুর</option>';
                                                                                                                                       }
 
+      this.setState({
+        query: _objectSpread(_objectSpread({}, this.state.query), {}, (_objectSpread5 = {}, _defineProperty(_objectSpread5, 'district', districtName), _defineProperty(_objectSpread5, 'thana', ''), _objectSpread5))
+      }, function () {
+        _this5.getPost();
+      });
       document.getElementById("police_station").innerHTML = thanaList;
-      this.getPost();
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this6 = this;
 
       // console.log('this.state.query :>> ', this.state.query);
       var pdata = this.props.data.product;
@@ -4915,7 +4919,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                   className: "product-hover-icons",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
                     onClick: function onClick() {
-                      return _this4.props.addProduct(product);
+                      return _this6.props.addProduct(product);
                     },
                     "data-tooltip": "Add to cart",
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -4929,7 +4933,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     }), " "]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
                     onClick: function onClick() {
-                      return _this4.props.viewDetails(product);
+                      return _this6.props.viewDetails(product);
                     },
                     "data-tooltip": "Quick view",
                     "data-toggle": "modal",
@@ -4962,6 +4966,12 @@ var Filter = /*#__PURE__*/function (_Component) {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
                     className: "discounted-price",
                     children: ["\u09E7 ", product.weight_unit, " \u09F3 ", product.price_per_unit, " "]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "product-place",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                    className: "division",
+                    children: [product.divisions, " ", product.district, " "]
                   })
                 })]
               })]

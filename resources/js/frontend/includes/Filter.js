@@ -134,14 +134,6 @@ export default class Filter extends Component {
             division = e.target.value;
         }
 
-        this.setState({
-            query: {
-                ...this.state.query,
-              ['divisions']: division,
-              ['district']: '',
-              ['thana']: '',
-              }
-        });
         let districtList = '';
         if(division == 'Barishal'){
             districtList = '<option disabled selected>নির্বাচন করুন</option><option value="Barguna">বরগুনা জেলা</option><option value="Barishal">বরিশাল জেলা</option><option value="Bhola">ভোলা জেলা</option><option value="Jhalokati">ঝালকাঠি জেলা</option><option value="Patuakhali">পটুয়াখালী জেলা</option><option value="Pirojpur">পিরোজপুর জেলা</option>';
@@ -175,7 +167,16 @@ export default class Filter extends Component {
             districtList = '<option disabled selected>নির্বাচন করুন</option><option value="Sylhet">সিলেট</option><option value="Moulvibazar">মৌলভীবাজার</option><option value="Habiganj">হবিগঞ্জ</option><option value="Sunamganj">সুনামগঞ্জ</option>';
         }
         document.getElementById("district").innerHTML= districtList;
-        this.getPost();
+        
+        this.setState({
+            query: {
+                ...this.state.query,
+              ['divisions']: division,
+              ['district']: '',
+              ['thana']: '',
+              }
+        },()=>{this.getPost();});
+        
     }
 
     getThanaList(event) {
@@ -186,13 +187,7 @@ export default class Filter extends Component {
         } else {
             districtName = event.target.value;
         }
-        this.setState({
-            query : {
-              ...this.state.query,
-            ['district'] : districtName,
-            ['thana'] : '',
-            }
-        });
+        
         // set Barguna division thana
         if(districtName == 'Barguna') {
          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Amtali">আমতলী</option><option value="Bamna">বামনা</option><option value="Barguna Sadar">বরগুনা সদর</option><option value="Betagi">বেতাগী</option><option value="Patharghata">পাথরঘাটা</option><option value="Taltali">তালতলী</option>';
@@ -523,8 +518,15 @@ export default class Filter extends Component {
         else if(districtName == 'Kurigram') {
          thanaList = '<option disabled selected>নির্বাচন করুন</option><option value="Kurigram Sadar">কুড়িগ্রাম সদর</option><option value="Bhurungamari">ভুরুঙ্গামারী</option><option value="Char Rajibpur">চর রাজিবপুর</option><option value="Chilmari">চিলমারী</option><option value="Nageshwari">নাগেশ্বরী</option><option value="Phulbari">ফুলবাড়ী</option><option value="Rajarhat">রাজারহাট</option><option value="Raomari">রৌমারী</option><option value="Ulipur">উলিপুর</option>';
         }
+        this.setState({
+            query : {
+              ...this.state.query,
+            ['district'] : districtName,
+            ['thana'] : '',
+            }
+        },()=>{this.getPost();});
         document.getElementById("police_station").innerHTML= thanaList;
-        this.getPost();
+        
     }
 
     render() {
@@ -576,6 +578,9 @@ export default class Filter extends Component {
                                                 <h3 className="product-title"><a href="">মোট ওজন: {product.total_weight} {product.weight_unit} </a></h3>
                                                 <div className="price-box">
                                                     <span className="discounted-price">১ {product.weight_unit} ৳ {product.price_per_unit} </span>
+                                                </div>
+                                                <div className="product-place">
+                                                    <span className="division">{product.divisions} {product.district} </span>
                                                 </div>
                                             </div>	
                                         </div>
