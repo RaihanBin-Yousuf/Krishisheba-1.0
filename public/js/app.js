@@ -2432,7 +2432,7 @@ var Index = /*#__PURE__*/function (_Component) {
         grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
         grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
       });
-      var grandTotalPrice = grandSubTotalPrice - grandTotalServiceFee;
+      var grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
       this.setState((_this$setState7 = {}, _defineProperty(_this$setState7, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState7, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState7, 'subTotal', grandSubTotalPrice), _this$setState7));
     }
   }, {

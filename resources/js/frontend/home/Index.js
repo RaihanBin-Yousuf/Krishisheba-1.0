@@ -137,7 +137,7 @@ export default class Index extends Component {
             grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
             grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
         });
-        let grandTotalPrice = grandSubTotalPrice - grandTotalServiceFee;
+        let grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
         this.setState({ 
             ['totalPrice'] : grandTotalPrice, 
             ['serviceFee']: grandTotalServiceFee,
