@@ -15,7 +15,6 @@ import Faq from '../includes/Faq';
 import FindProducts from '../includes/FindProducts';
 import Filter from '../includes/Filter';
 import DetailsPage from '../includes/DetailsPage';
-import Test from '../includes/Test';
 import Cart from '../includes/Cart';
 import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
