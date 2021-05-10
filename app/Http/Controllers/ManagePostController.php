@@ -31,8 +31,15 @@ class ManagePostController extends Controller
                return $this->sendResponse($data);
             }
             if(request()->byProductName) {
-                $data = $this->manage_post->filterPage();
-                return $this->sendResponse($data);
+                $productName = request()->byProductName;
+                $data = $this->manage_post->where('product_name', $productName)->paginate(6);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
             }
         }
         $userId = Auth::user()->id;

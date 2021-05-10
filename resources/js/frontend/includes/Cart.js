@@ -1,4 +1,3 @@
-import { support } from 'jquery';
 import React, { Component } from 'react'
 
 export default class Cart extends Component {

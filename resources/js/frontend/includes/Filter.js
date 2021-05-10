@@ -38,13 +38,13 @@ export default class Filter extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.getDistrictList = this.getDistrictList.bind(this);
         this.getThanaList = this.getThanaList.bind(this);
-        this.getPostProductByName = this.getPostProductByName.bind(this);
+        this.getPost = this.getPost.bind(this);
 
     }
 
     componentDidMount() {
         this.getCategories();
-        this.getPostProductByName();
+        this.getPost();
     }
 
     handlePageChange(event) {
@@ -53,14 +53,23 @@ export default class Filter extends Component {
         const lastPage = Math.ceil(this.count / this.limit);
         if ( 1 <= page && page <= lastPage && page != this.page ) {
             this.page = page;
-            this.getItems();
+            this.getPost();
         }
     }
 
-   async getPostProductByName() {
-       const getPostProductByName = await ManagePostService.list({'byProductName' : this.props.data.product.name});
-       console.log('all post data by Product Name:>> ', getPostProductByName);
-        this.setState({ ['postProduct']: getPostProductByName})
+   async getPost() {
+        const getposts = await ManagePostService.paginate({
+            byProductName : this.props.data.product.name,
+            sort : this.sort,
+            direction : this.sortdirection,
+            page: this.page,
+            limit: this.limit,
+        });
+        this.page = getposts.current_page;
+        this.limit = getposts.per_page;
+        this.count = getposts.total;
+        console.log('getposts :>> ', getposts);
+        this.setState({ ['postProduct']: getposts.data})
 
     }
 
@@ -695,9 +704,9 @@ export default class Filter extends Component {
                                         <div className="container">
                                             <div className="row">
                                                 <div className="col-lg-12">
-                                                    <div className="pagination-content text-center">
+                                                    {/* <div className="pagination-content text-center"> */}
                                                         <Pagination page={this.page} pageChange={this.handlePageChange} count={this.count} limit={this.limit} />
-                                                    </div>
+                                                    {/* </div> */}
                                                 </div>
                                             </div>
                                         </div>
