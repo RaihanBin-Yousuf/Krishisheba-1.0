@@ -102,7 +102,7 @@ export default class Cart extends Component {
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
                                                     <h4>Cart Summary</h4>
-                                                    <p>Sub Total <span>$1250.00</span></p>
+                                                    <p>Sub Total <span>${this.props.data.totalPrice}.00</span></p>
                                                     <p>Shipping Cost <span>$00.00</span></p>
                                                     <h2>Grand Total <span>${this.props.data.totalPrice}.00</span></h2>
                                                 </div>
