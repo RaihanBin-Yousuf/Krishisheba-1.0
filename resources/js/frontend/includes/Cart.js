@@ -1,19 +1,27 @@
+import { support } from 'jquery';
 import React, { Component } from 'react'
 
 export default class Cart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
+
+
     
     render() {
         let pdata = this.props.data.addCart;
         console.log('pdata :>> ', pdata);
         let cartList = '';
         cartList = pdata.map(product=> (
-        cartList = <tr>
+        cartList = <tr key={product.id}>
                         <td className="pro-thumbnail"><a href="#"><img src={"/storage/posts/"+product.product_image} className="img-fluid" alt="Product"/></a></td>
                         <td className="pro-title">{product.category}</td>
                         <td className="pro-price"><span>৳ {product.price_per_unit}</span></td>
-                        <td className="pro-quantity"><div className="pro-qty"><input type="text" value="1"/></div></td> 
-                        <td className="pro-subtotal"><span>৳ {product.price_per_unit}</span></td>
-                        <td className="pro-remove"><a href="#"><i className="fa fa-trash-o"></i></a></td>
+                        <td className="pro-quantity"><div className="pro-qty"><input type="number" value={product.quantity} onChange={(e)=>this.props.updateQty(e, product)} /></div></td> 
+                        <td className="pro-subtotal"><span>৳ {product.total_each_price}</span></td>
+                        <td className="pro-remove"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-trash-o"></i></a></td>
                     </tr>
                     ));
 
@@ -96,7 +104,7 @@ export default class Cart extends Component {
                                                     <h4>Cart Summary</h4>
                                                     <p>Sub Total <span>$1250.00</span></p>
                                                     <p>Shipping Cost <span>$00.00</span></p>
-                                                    <h2>Grand Total <span>$1250.00</span></h2>
+                                                    <h2>Grand Total <span>${this.props.data.totalPrice}.00</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
                                                     <button className="checkout-btn">Checkout</button>

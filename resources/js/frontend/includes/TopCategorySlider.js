@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
-import TopCategoryServices from '../../services/TopCategoryServices';
 import Slider from "react-slick";
 export default class TopCategorySlider extends Component {
     constructor(props) {
         super(props); 
         this.state = {
-            products: []
         };
-        this.getProductDetails = this.getProductDetails.bind(this);
     }
 
     componentDidMount() {
-       this.getProductDetails();
     }
 
-    async getProductDetails() {
-        const res = await TopCategoryServices.list();
-        this.setState ({
-            ['products']: res,
-        })
-    }
+    
 
     
     render() {
@@ -59,7 +50,7 @@ export default class TopCategorySlider extends Component {
             ]
           };
         let productList = '';
-        productList = this.state.products.map(product=> (
+        productList = this.props.data.products.map(product=> (
         productList = <div className="single-category" onClick ={()=>this.props.productDetails(product)} key={product.id}>
                             <div className="category-image">
                                 <a title={product.name}>

@@ -4,7 +4,7 @@ export default class TopBarAndHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cartShow: false,
+            cartShow: true,
         }
         this.onCartShow = this.onCartShow.bind(this);
         this.viewCart = this.viewCart.bind(this);
@@ -49,10 +49,10 @@ export default class TopBarAndHeader extends Component {
         addCartList = <div className="cart-float-single-item d-flex" key={product.id}>
                             <span className="remove-item"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-times"></i></a></span>
                             <div className="cart-float-single-item-image">
-                                <a href="single-product.html"><img src={'/storage/posts/'+product.product_image} className="img-fluid" alt=""/></a>
+                                <a onClick={()=>this.props.viewDetails(product)}><img src={'/storage/posts/'+product.product_image} className="img-fluid" alt=""/></a>
                             </div>
-                            <div className="cart-float-single-item-desc">
-                                <p className="product-title"> <a href="single-product.html">{product.product_name} </a></p>
+                            <div className="cart-float-single-item-desc" onClick={()=>this.props.viewDetails(product)}>
+                                <p className="product-title"> <a >{product.product_name} </a></p>
                                 <p className="price"><span className="count">1x</span> ${product.price_per_unit}</p>
                             </div>
                         </div>
@@ -107,7 +107,14 @@ export default class TopBarAndHeader extends Component {
                                             {addCartList}
                                         </div>
                                         <div className="floating-cart-btn text-center">
-                                            <a className="float-right" onClick={this.viewCart}>View Cart</a>
+                                            <div className="row">
+                                                <div className="col pt-3 font-weight-bold">
+                                                    Total =${this.props.data.totalPrice}
+                                                </div>
+                                                <div className="col">
+                                                    <a className="float-right" onClick={this.viewCart}>View Cart</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>: ''}

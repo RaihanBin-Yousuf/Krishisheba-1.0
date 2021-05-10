@@ -18,6 +18,7 @@ import DetailsPage from '../includes/DetailsPage';
 import Test from '../includes/Test';
 import Cart from '../includes/Cart';
 import Checkout from '../includes/Checkout';
+import TopCategoryServices from '../../services/TopCategoryServices';
 
 export default class Index extends Component {
     constructor(props) {
@@ -27,13 +28,20 @@ export default class Index extends Component {
             prev_page: null,
             product: [],
             addCart: [],
-            product_info: []
+            product_info: [],
+            products: [],
+            totalPrice: 0,
+
         };
         this.showPage = this.showPage.bind(this);
         this.productDetails = this.productDetails.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.viewDetails = this.viewDetails.bind(this);
         this.removeProduct = this.removeProduct.bind(this);
+        this.topCategorySlider = this.topCategorySlider.bind(this);
+        this.updateQty = this.updateQty.bind(this);
+        this.totalPrice = this.totalPrice.bind(this);
+
     }
 
     showPage(page) {
@@ -41,7 +49,14 @@ export default class Index extends Component {
     }
 
     componentDidMount() {
+        this.topCategorySlider();
+    }
 
+    async topCategorySlider() {
+        const res = await TopCategoryServices.list();
+        this.setState ({
+            ['products']: res,
+        })
     }
 
     productDetails(data) {
@@ -62,13 +77,44 @@ export default class Index extends Component {
         if(checkItems.length>0) { 
             $.notify({message: 'Already Added'}, {type: 'danger'});
         } else {
+            product.quantity = 1;
+            product.total_each_price = product.price_per_unit;
             productArray.push(product);
             this.setState({
                 ['addCart'] : productArray,
-            }); //,()=>{this.productPrice()}
+            },()=>{this.totalPrice()}); //
         }
         // this.setState({ ['addCart']: product});
     }
+
+    
+    updateQty(e, inputproduct) {
+        const filterProducts = [];
+        if(e.target.value <= 0) {
+            $.notify({message: "Must have 1 Product."}, {type: 'danger'});
+        } else {
+        this.state.addCart.map(product => {
+            if(product.id == inputproduct.id) {
+                product.quantity = e.target.value;
+                product.total_each_price = product.quantity * product.price_per_unit;
+            }
+            filterProducts.push(product);
+        }) 
+        this.setState({
+            ['addCart'] : filterProducts,
+        },()=>{this.totalPrice()});//
+        }
+    }
+
+    totalPrice() {
+        let grandTotalPrice = 0;
+        this.state.addCart.map(product => {
+            grandTotalPrice = grandTotalPrice + product.total_each_price;
+        });
+        console.log('grand :>> ', grandTotalPrice);
+        this.setState({ ['totalPrice'] : grandTotalPrice});
+    }
+
 
     removeProduct(product) {
         const productArray = this.state.addCart;
@@ -79,7 +125,7 @@ export default class Index extends Component {
             productArray.pop(product);
             this.setState({
                 ['addCart'] : productArray,
-            }); //,()=>{this.productPrice()}
+            },()=>{this.totalPrice()});
         }
     }
 
@@ -88,8 +134,8 @@ export default class Index extends Component {
         if(this.state.show_page === null) {
             showPageName = <div>
                                 <Hero/>
-                                <TopCategorySlider productDetails={this.productDetails}/>
-                                <TabSlider addProduct={this.addProduct} data={this.state} viewDetails={this.viewDetails}/>
+                                <TopCategorySlider productDetails={this.productDetails} data={this.state}/>
+                                <TabSlider addProduct={this.addProduct}  data={this.state} viewDetails={this.viewDetails}/>
                                 <AboutUs/>
                                 <HowItsWorks/>
                                 <Service/>
@@ -107,14 +153,14 @@ export default class Index extends Component {
         } else if(this.state.show_page === 'filter') {
             showPageName = <Filter addProduct={this.addProduct} data={this.state} viewDetails={this.viewDetails}/>
         } else if (this.state.show_page === 'cart') {
-            showPageName = <Cart data={this.state} />
+            showPageName = <Cart data={this.state} updateQty={this.updateQty} totalPrice={this.totalPrice} removeProduct={this.removeProduct}/>
         } else if (this.state.show_page === 'checkout') {
             showPageName = <Checkout data={this.state} />
         }
         return (
             <>  
                 {/* <ShoppingCart data={this.state} /> */}
-                <TopBarAndHeader data={this.state} showPage={this.showPage} removeProduct={this.removeProduct}/>
+                <TopBarAndHeader data={this.state} showPage={this.showPage} removeProduct={this.removeProduct} viewDetails={this.viewDetails}/>
 
                 {showPageName}
                 {/* <Faq/> skipped */}
