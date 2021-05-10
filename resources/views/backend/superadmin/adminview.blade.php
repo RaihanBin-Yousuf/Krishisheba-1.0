@@ -33,9 +33,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 form-group text-center">
-                            <label for="profile_image">প্রোফাইল ছবি</label>
+                            <label for="profile_image">Profile Picture</label>
                             <div>
-                                <img style="height: 100px; width: 100px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewadmin->profile_img)}}"/>
+                                <img style="height: 150px; width: 150px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewadmin->profile_img)}}"/>
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                         <div class="form-group">
                             <label for="nid image">এনআইডি ছবি</label>
                             <div>
-                                <!-- <img style="height: 200px; width: 350px;" class="profileimg" id="profileimage" src="{{ asset('frontend-asset/nid.png') }}" alt="your image" /> -->
+                                <img style="height: 200px; width: 350px;" class="nidimg" src="{{asset('/storage/nidcard/'.$viewadmin->nid_front_img)}}" alt="nid image" />
                                 <!-- <img style="height: 200px; width: 350px;" class="profileimg" id="profileimage" alt="your image" /> -->
                               </div>
                         </div>
@@ -102,7 +102,7 @@
                     </div>
                 <!-- /.card-body -->
                 <div>
-                  <button type="submit" class="btn btn-info">Submit</button>
+                  <button type="submit" class="btn btn-info btn-lg">Submit</button>
                 </div>
               </form>
               <div>       

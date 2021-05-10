@@ -1,4 +1,5 @@
 @extends('frontend.home.master')
+@section('title','Login Page')
 @section('home')
  <!-- ======= Top Bar and header ======= -->
 

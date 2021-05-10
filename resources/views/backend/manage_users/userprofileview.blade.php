@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section('title','User Profile Page')
 @section('content')
 
 <section class="content-header">
@@ -8,7 +9,7 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="{{route('users.index')}}">Admin</a></li>
+              <li class="breadcrumb-item"><a href="{{route('users.index')}}">User</a></li>
               <li class="breadcrumb-item active">profile</li>
             </ol>
           </div>
@@ -24,7 +25,7 @@
             <!-- general form elements -->
             <div class="card card-info">
               <div class="card-header">
-              <a style="font-size: 20px;" class="btn btn float-left">Admin Profile</a>
+              <a style="font-size: 20px;" class="btn btn float-left">User Profile</a>
                 <!-- <a class="btn btn-outline-primary float-right" href="{{route('users.index')}}"><i class="fas fa-sign-in-alt"></i>  Users Table </a> -->
               </div>
               <!-- /.card-header -->
@@ -33,9 +34,9 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-12 form-group text-center">
-                            <label for="profile_image">প্রোফাইল ছবি</label>
+                            <label for="profile_image">Profile Picture</label>
                             <div>
-                                <img style="height: 100px; width: 100px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewuser->profile_img)}}"/>
+                                <img style="height: 150px; width: 150px; border-radius: 50%;" src="{{asset('/storage/profile/'.$viewuser->profile_img)}}"/>
                             </div>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                         <div class="form-group">
                             <label for="nid image">এনআইডি ছবি</label>
                             <div>
-                                <!-- <img style="height: 200px; width: 350px;" class="profileimg" id="profileimage" src="{{ asset('frontend-asset/nid.png') }}" alt="your image" /> -->
+                                <img style="height: 200px; width: 350px;" class="nidimg" src="{{asset('/storage/nidcard/'.$viewuser->nid_front_img)}}" alt="nid image" />
                                 <!-- <img style="height: 200px; width: 350px;" class="profileimg" id="profileimage" alt="your image" /> -->
                               </div>
                         </div>

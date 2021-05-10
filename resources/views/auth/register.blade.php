@@ -1,5 +1,6 @@
 
 @extends('frontend.home.master')
+@section('title','Registration Page')
 @section('home')
  <!-- ======= Top Bar and header ======= -->
 
@@ -9,8 +10,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Register') }}
-                    </div>
+                    <div class="card-header">নিবন্ধন করুন</div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}" enctype='multipart/form-data'>
                             @csrf
@@ -126,20 +126,20 @@
                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" autocomplete="nid">
                                 </div>
                             </div>
-                            <!-- <div class="row">
+                            <div class="row">
                                 <div class="col-md-6 form-group">
                                 <label for="nid_image">NID ছবি</label>
                                 <div>
                                     <img class="nidimg" id="nidimage"/>
                                     </div>
-                                    <input type='file' class="@error('nid_front_img') is-invalid @enderror" name="nid_front_img" onchange="readURL(this);" />
+                                    <input type='file' class="@error('nid_front_img') is-invalid @enderror" name="nid_front_img" onchange="readnidimage(this);" />
                                     @error('nid_front_img')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
                                         @enderror
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="row">
                                 <div class="col-md-3 form-group">
                                     <button type="submit" class="btn btn-primary">
@@ -154,7 +154,7 @@
         </div>
     </div>
 </section>
-<!-- <script>
+<script>
       function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -167,5 +167,18 @@
                 reader.readAsDataURL(input.files[0]);
             }
         }
-</script> -->
+
+        function readnidimage(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#nidimage')
+                        .attr('src', e.target.result);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+</script>
 @endsection

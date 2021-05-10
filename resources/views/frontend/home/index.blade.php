@@ -1,5 +1,5 @@
 @extends('frontend.home.master')
-
+@section('title','কৃষিসেবা - হোম')
 @section('home')
 
 <main id="main">

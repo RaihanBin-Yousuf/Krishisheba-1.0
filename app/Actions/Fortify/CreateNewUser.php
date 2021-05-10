@@ -34,6 +34,7 @@ class CreateNewUser implements CreatesNewUsers
             'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
             'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
             'profile_img' => ['nullable', 'image', 'max:2048'],
+            'nid_front_img' => ['required', 'image', 'max:2048'],
             
         ])->validate();
             // dd($input);
@@ -47,6 +48,10 @@ class CreateNewUser implements CreatesNewUsers
                 $input['profile_img']->storeAs('public/profile', $imageName);
                 $input['profile_img'] =$imageName;
             }
+
+            $imageName =time().'.'.$input['nid_front_img']->extension();
+            $input['nid_front_img']->storeAs('public/nidcard', $imageName);
+            $input['nid_front_img'] =$imageName;
         return User::create([
             'name' => $input['name'],
             'role' => $input['role'],
@@ -57,6 +62,7 @@ class CreateNewUser implements CreatesNewUsers
             'address' => $input['address'],
             'password' => Hash::make($input['password']),           
             'profile_img' => $input['profile_img'],
+            'nid_front_img' => $input['nid_front_img'],
             
         ]);
     }

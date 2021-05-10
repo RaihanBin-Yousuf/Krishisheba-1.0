@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section('title','Index')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">

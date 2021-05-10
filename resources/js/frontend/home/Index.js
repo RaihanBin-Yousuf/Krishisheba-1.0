@@ -20,6 +20,7 @@ import Cart from '../includes/Cart';
 import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
 
+import nothing from '../../services/TopCategoryServices';
 export default class Index extends Component {
     constructor(props) {
         super(props);

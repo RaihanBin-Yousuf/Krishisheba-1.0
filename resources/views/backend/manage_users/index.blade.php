@@ -1,4 +1,5 @@
 @extends('backend.layouts.master')
+@section('title','Users Table')
 @section('content')
 <!-- Content Header (Page header) -->
 <section class="content-header">
@@ -63,8 +64,7 @@
                             <td>{{ $users->role }}</td>
                             <td class="text-center py-0 align-middle">
                                 <div class=" btn-group-sm">
-                                  <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                                  <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                                  <a href="viewuser/{{$users['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                                   <a href={{"deleteuser/".$users->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
                                 </div>
                             </td>

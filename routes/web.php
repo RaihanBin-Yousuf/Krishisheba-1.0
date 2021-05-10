@@ -75,6 +75,7 @@ Route::resource('users', UsersController::class);
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
 Route::get('/buyer',[UsersController::class,'buyer'])->name('buyer');
 Route::get('deleteuser/{id}',[UsersController::class,'deleteUserById'])->name('deleteUserById');
+Route::get('/viewuser/{id}',[UsersController::class,'viewuser'])->name('viewuser');
 });
 //End Admin route
 
