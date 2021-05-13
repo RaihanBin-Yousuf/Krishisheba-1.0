@@ -67,6 +67,7 @@ export default class TopBarAndHeader extends Component {
                                 <i className="icofont-phone"></i> +8801816555777
                             </div>
                             <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
+                            {/* বাহির */}
                             <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
                         </div>
                     </div>
