@@ -18,13 +18,12 @@ import DetailsPage from '../includes/DetailsPage';
 import Cart from '../includes/Cart';
 import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
-
-import nothing from '../../services/TopCategoryServices';
+import UserServices from '../../services/UserServices';
 export default class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show_page: null,
+            show_page: 'cart',
             prev_page: null,
             product: [],
             addCart: [],
@@ -33,6 +32,7 @@ export default class Index extends Component {
             totalPrice: 0,
             serviceFee: 0,
             subTotal: 0,
+            authUser: [],
 
         };
         this.showPage = this.showPage.bind(this);
@@ -43,7 +43,8 @@ export default class Index extends Component {
         this.topCategorySlider = this.topCategorySlider.bind(this);
         this.updateQty = this.updateQty.bind(this);
         this.totalPrice = this.totalPrice.bind(this);
-
+        this.getAuthUser = this.getAuthUser.bind(this);
+        this.setAuthUser = this.setAuthUser.bind(this);
     }
 
     showPage(page) {
@@ -52,6 +53,29 @@ export default class Index extends Component {
 
     componentDidMount() {
         this.topCategorySlider();
+        this.getAuthUser();
+    }
+
+    async getAuthUser() {
+        const user = await UserServices.get();
+        console.log('user :>> ', user);
+        if(user) {
+            this.setState({
+                authUser: user,
+            })
+        } else {
+        this.setState({
+            authUser: user.data,
+            })
+        }
+    }
+
+    async setAuthUser() {
+        const user = await UserServices.get();
+        console.log('user :>> ', user);
+            this.setState({
+                authUser: user,
+            },()=>{this.showPage('checkout')})
     }
 
     async topCategorySlider() {
@@ -183,9 +207,9 @@ export default class Index extends Component {
         } else if(this.state.show_page === 'filter') {
             showPageName = <Filter addProduct={this.addProduct} data={this.state} viewDetails={this.viewDetails}/>
         } else if (this.state.show_page === 'cart') {
-            showPageName = <Cart data={this.state} updateQty={this.updateQty} totalPrice={this.totalPrice} removeProduct={this.removeProduct}/>
+            showPageName = <Cart data={this.state} showPage={this.showPage} updateQty={this.updateQty} getAuthUser={this.getAuthUser} setAuthUser={this.setAuthUser} totalPrice={this.totalPrice} removeProduct={this.removeProduct}/>
         } else if (this.state.show_page === 'checkout') {
-            showPageName = <Checkout data={this.state} />
+            showPageName = <Checkout data={this.state} showPage={this.showPage}/>
         }
         return (
             <>  

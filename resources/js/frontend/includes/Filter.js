@@ -617,6 +617,7 @@ export default class Filter extends Component {
         }
         return (
             <div>
+               
                 <section>
                     <div className="shop-page-container mb-50">
                         <div className="container">

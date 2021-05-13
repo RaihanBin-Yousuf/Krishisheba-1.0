@@ -1,15 +1,37 @@
 import React, { Component } from 'react'
-
+import Login from './Login';
+import UserServices from '../../services/UserServices';
 export default class Cart extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loginForm: false,
         }
+        this.showCheck = this.showCheck.bind(this);
+        this.loginFormClose = this.loginFormClose.bind(this);
+        // this.setAuthUser = this.setAuthUser.bind(this);
     }
 
+    componentDidMount() {
+    }
 
+    loginFormClose() {
+        this.setState({
+            loginForm: false,
+        })
+    }
+
+    showCheck() {
+        if(this.props.data.authUser.data == "not found") {
+            this.setState({ ['loginForm']: true})
+        } else {
+            this.props.showPage('checkout');
+        }
+    }
+    
     
     render() {
+        console.log('this.state :>> ', this.state);
         let pdata = this.props.data.addCart;
         let cartList = '';
         cartList = pdata.map(product=> (
@@ -27,6 +49,7 @@ export default class Cart extends Component {
 
         return (
             <div>
+                {this.props.data.authUser.data == "not found" && this.state.loginForm ? <Login loginFormClose={this.loginFormClose} setAuthUser={this.props.setAuthUser}/>: ''}
                <section> 
                     <div className="page-section section mb-50">
                         <div className="container">
@@ -109,7 +132,7 @@ export default class Cart extends Component {
                                                     <h2>Grand Total <span>${this.props.data.totalPrice}.00</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
-                                                    <button className="checkout-btn">Checkout</button>
+                                                    <button onClick={this.showCheck}>Checkout</button>
                                                     <button className="update-btn">Update Cart</button>
                                                 </div>
                                             </div>

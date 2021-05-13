@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
@@ -19,6 +20,13 @@ class UsersController extends Controller
      */
     public function index()
     {
+        if(request()->ajax()) {
+            $user = auth()->user();
+            if(empty($user)) {
+                $user = ['data'=>"not found"];
+            }
+            return $this->sendResponse($user);
+        }
         $allusers = $this->user->getAllUsers()
         ->where('role','!=','sadmin')
         ->where('role','!=','admin');
@@ -87,6 +95,19 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+        if(request()->ajax()) {
+            $input = request()->all();
+            // $input["password"] = Hash::make($input['password']);
+            $user = Auth::attempt($input);
+            // dd($user);
+            if($user == false) {
+                // dd($user);
+                return $this->sendError(['error'=>'অনুগ্রহপূর্বক আবার চেষ্টা করুন']);
+            }
+            else {
+                return $this->sendResponse($user);
+            }
+        }
         $user['id']=$request->access_to;
         $user['access_to']=Auth::user()->id;
        $this->user->accessTo($user,$user['id']);
