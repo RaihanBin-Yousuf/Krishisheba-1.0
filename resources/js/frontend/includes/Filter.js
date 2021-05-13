@@ -563,9 +563,9 @@ export default class Filter extends Component {
                                                     <img src={"/storage/posts/"+product.product_image} width="200px" height="186px"/>
                                                 </a>
                                                 <div className="product-hover-icons">
-                                                <a onClick={()=>this.props.addProduct(product)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                                    <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                                    <a onClick={()=>this.props.viewDetails(product)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                                <a onClick={()=>this.props.addProduct(product)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                    <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                                    <a onClick={()=>this.props.viewDetails(product)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
                                                 </div>
                                             </div>
                                             <div className="product-content">
@@ -682,13 +682,13 @@ export default class Filter extends Component {
                                                 <span style={{fontSize: '10px'}}>থেকে</span>
                                                 <input type="text" name="interval[price_per_ton][end]" id="interval_price_per_ton_end" className="form-interval" step="any" />
                                             </div>	
-                                            <div className="mb-15 form-group">
+                                            {/* <div className="mb-15 form-group">
                                                 <h3 className="sidebar-title">Filter By Price</h3>
                                                 <div className="sidebar-price">
                                                     <div id="price-range"></div>
                                                     <input type="text" id="price-amount" readOnly/>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                             <div className="compare-btns">
                                                 <a href="#" className="clear-all">Clear all</a>
                                                 <a href="#" className="compare">Search</a>
@@ -705,7 +705,7 @@ export default class Filter extends Component {
                                                     <a href="#" data-target="list"><i className="fa fa-list"></i></a>
                                                 </div>
                                             </div>
-                                            <div className="col-lg-8 col-md-8 col-sm-12 d-flex flex-column flex-sm-row justify-content-between align-items-left align-items-sm-center">
+                                            {/* <div className="col-lg-8 col-md-8 col-sm-12 d-flex flex-column flex-sm-row justify-content-between align-items-left align-items-sm-center">
                                                 <div className="sort-by-dropdown d-flex align-items-center mb-xs-10">
                                                     <p className="mr-10">Sort By: </p>
                                                     <select name="sort-by" id="sort-by" className="nice-select">
@@ -716,7 +716,7 @@ export default class Filter extends Component {
                                                         <option value="0">Sort By Price: High to Low</option>
                                                     </select>
                                                 </div>
-                                            </div>
+                                            </div> */}
                                         </div>
                                     </div>
                                     <div className="shop-product-wrap grid row no-gutters mb-35">

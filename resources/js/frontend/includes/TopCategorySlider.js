@@ -71,7 +71,7 @@ export default class TopCategorySlider extends Component {
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="section-title">
-                                        <h3>top categories</h3>
+                                        <h3>পন্যের বিভাগসমুহ</h3>
                                     </div>  
                                 </div>
                             </div>

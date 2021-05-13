@@ -33,14 +33,13 @@ export default class TabSlider extends Component {
         featureList = this.state.feature.map(feature=> (
             featureList = <div className="gf-product tab-slider-sub-product" key={feature.id}>
                                 <div className="image">
-                                    <a href="single-product.html">
+                                    <a onClick={()=>this.props.viewDetails(feature)}>
                                         <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons ">
-                                        <a onClick={()=>this.props.addProduct(feature)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                        <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                        <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                        <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                        <a onClick={()=>this.props.addProduct(feature)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                        <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                        <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
                                     </div>
                                 </div>
                                 <div className="product-content">
@@ -61,7 +60,7 @@ export default class TabSlider extends Component {
         newArrivalList = this.state.new_arrival.map(arrival=> (
             newArrivalList = <div className="gf-product tab-slider-sub-product" key={arrival.id}>
                                 <div className="image">
-                                    <a href="single-product.html">
+                                    <a onClick={()=>this.props.viewDetails(feature)}>
                                         <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
@@ -90,7 +89,8 @@ export default class TabSlider extends Component {
             onSaleList = 
                             <div className="gf-product tab-slider-sub-product" key={sale.id}>
                                 <div className="image">
-                                    <a href="single-product.html">
+                                    <a onClick={()=>this.props.viewDetails(feature)}>
+                                    <span className="onsale">Sale!</span>
                                     <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
@@ -160,11 +160,11 @@ export default class TabSlider extends Component {
                                     <nav>
                                         <div className="nav nav-tabs" id="nav-tab" role="tablist">
                                             <a className="nav-item nav-link active" id="featured-tab" data-toggle="tab" href="#featured" role="tab"
-                                                aria-selected="true">Featured</a>
+                                                aria-selected="true">নতুন সংযোজন</a>
                                             <a className="nav-item nav-link" id="new-arrival-tab" data-toggle="tab" href="#new-arrivals" role="tab"
-                                                aria-selected="false">New Arrival</a>
+                                                aria-selected="false">ছাড় % পণ্য</a>
                                             <a className="nav-item nav-link" id="nav-onsale-tab" data-toggle="tab" href="#on-sale" role="tab"
-                                                aria-selected="false">On Sale</a>
+                                                aria-selected="false">বিক্রিত পণ্য</a>
                                         </div>
                                     </nav>
                                     <div className="tab-content" id="nav-tabContent">

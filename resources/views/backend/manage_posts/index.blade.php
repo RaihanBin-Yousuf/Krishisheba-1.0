@@ -27,7 +27,7 @@
             <div class="card">
               <div class="card-header">
                 <h3>My Post Table
-                <a class="btn btn-info float-right btn-sm"  href="{{route('manage_posts.create')}}"><i class="fa fa-plus"></i> Add Post </a>
+                <a class="btn btn-info float-right btn-sm"  href="{{route('manage_posts.create')}}"><i class="fa fa-plus"></i> পণ্য যুক্ত করুন </a>
                 </h3>
               </div>
               <!-- /.card-header -->

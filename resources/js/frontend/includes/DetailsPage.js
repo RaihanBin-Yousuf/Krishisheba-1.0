@@ -14,7 +14,7 @@ export default class DetailsPage extends Component {
                                 <div className="col-md-12">
                                     <a onClick ={()=>this.props.showPage(previousPage)}>
                                     <img className="icn-arrow--left" src="/frontend-asset/market/icons/grey_arrow_down-d595d8db881c98fbae6ad8cec7f0727191deefa0327a7adebda0e52d64e7fd85.png" alt="Grey arrow down" />
-                                    Return to filter board
+                                    পূর্বের পেজে ফিরে যান
                                     </a>
                                 </div>
                                 <div className="col-md-3 pt-2">
@@ -25,7 +25,7 @@ export default class DetailsPage extends Component {
                                     <div className="offer-show__my-list-actions">
                                         <a href="#">
                                         <img src="/frontend-asset/market/logos/list.png" alt="List" />
-                                        <span>Add To List</span>
+                                        <span> পছন্দের তালিকায় যোগ করুন</span>
                                         </a>
                                     </div>
                                 </div>
@@ -51,8 +51,8 @@ export default class DetailsPage extends Component {
                                                     <div className="col-md-6">{pdata.final_delivery_date}</div>
                                                 </div>
                                                 <div className="row">
-                                                    <div className="col-md-6"><strong className="text-checkout--strong">অগ্রিম পরিশোধ (30%):</strong></div>
-                                                    <div className="col-md-6"><span className="text-checkout">৳{pdata.advance_payment}</span></div>
+                                                    <div className="col-md-6"><strong className="text-checkout--strong">অগ্রিম পরিশোধ </strong></div>
+                                                    <div className="col-md-6"><span className="text-checkout">% {pdata.advance_payment}</span></div>
                                                 </div>
                                             </div>
                                             <div className="col-md-6">
@@ -124,7 +124,7 @@ export default class DetailsPage extends Component {
                                 <div className="container">
                                     <div className="row">
                                         <div className="col-md-3 tool-tip-info">
-                                            <h4></h4>
+                                            <h4>পাল্টা প্রস্তাব পাঠান</h4>
                                             <div className="tool-tip">
                                                 <i className="tool-tip__icon-info">i</i>
                                                 <p className="tool-tip__hidden-bottom">

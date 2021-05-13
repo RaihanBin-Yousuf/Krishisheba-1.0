@@ -37,14 +37,14 @@ export default class Cart extends Component {
                                             <table className="table">
                                                 <thead>
                                                     <tr>
-                                                        <th className="pro-thumbnail">Image</th>
-                                                        <th className="pro-title">Product</th>
-                                                        <th className="pro-price">Price</th>
-                                                        <th className="available-quantity">Available Quantity</th>
-                                                        <th className="pro-quantity">Quantity</th>
-                                                        <th className="pro-each-total">Total</th>
-                                                        <th className="pro-service">Service fee</th>
-                                                        <th className="pro-remove">Remove</th>
+                                                        <th className="pro-thumbnail">পণ্যের ছবি</th>
+                                                        <th className="pro-title">পণ্যের বিভাগ</th>
+                                                        <th className="pro-price">পণ্যের দাম </th>
+                                                        <th className="available-quantity">বাকি পরিমাণ</th>
+                                                        <th className="pro-quantity">পরিমাণ</th>
+                                                        <th className="pro-each-total">মোট </th>
+                                                        <th className="pro-service">পরিসেবা চার্জ</th>
+                                                        <th className="pro-remove">সরান</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -55,46 +55,15 @@ export default class Cart extends Component {
                                     </form>
                                     <div className="row">
                                         <div className="col-lg-6 col-12">
-                                            <div className="calculate-shipping">
-                                                <h4>Calculate Shipping</h4>
-                                                <form action="#">
-                                                    <div className="row">
-                                                        <div className="col-md-6 col-12 mb-25">
-                                                            <select className="nice-select">
-                                                                <option>Bangladesh</option>
-                                                                <option>China</option>
-                                                                <option>country</option>
-                                                                <option>India</option>
-                                                                <option>Japan</option>
-                                                            </select>
-                                                        </div>
-                                                        <div className="col-md-6 col-12 mb-25">
-                                                            <select className="nice-select">
-                                                                <option>Dhaka</option>
-                                                                <option>Barisal</option>
-                                                                <option>Khulna</option>
-                                                                <option>Comilla</option>
-                                                                <option>Chittagong</option>
-                                                            </select>
-                                                        </div>
-                                                        <div className="col-md-6 col-12 mb-25">
-                                                            <input type="text" placeholder="Postcode / Zip"/>
-                                                        </div>
-                                                        <div className="col-md-6 col-12 mb-25">
-                                                            <input type="submit" value="Estimate"/>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div className="discount-coupon">
-                                                <h4>Discount Coupon Code</h4>
+                                           <div className="discount-coupon">
+                                                <h4>ছাড়ের কুপন কোড</h4>
                                                 <form action="#">
                                                     <div className="row">
                                                         <div className="col-md-6 col-12 mb-25">
                                                             <input type="text" placeholder="Coupon Code"/>
                                                         </div>
                                                         <div className="col-md-6 col-12 mb-25">
-                                                            <input type="submit" value="Apply Code"/>
+                                                            <input href="#" type="submit" value="প্রয়োগ করুন"/>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -103,14 +72,13 @@ export default class Cart extends Component {
                                         <div className="col-lg-6 col-12 d-flex">
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
-                                                    <h4>Cart Summary</h4>
-                                                    <p>Sub Total <span>${this.props.data.subTotal}.00</span></p>
-                                                    <p>Service Fee <span>${this.props.data.serviceFee}.00</span></p>
-                                                    <h2>Grand Total <span>${this.props.data.totalPrice}.00</span></h2>
+                                                    <h4>সারসংক্ষেপ</h4>
+                                                    <p>মোট <span>৳{this.props.data.subTotal}.00</span></p>
+                                                    <p>পরিসেবা চার্জ <span>৳{this.props.data.serviceFee}.00</span></p>
+                                                    <h2>সর্বমোট <span>৳{this.props.data.totalPrice}.00</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
-                                                    <button className="checkout-btn">Checkout</button>
-                                                    <button className="update-btn">Update Cart</button>
+                                                    <button className="checkout-btn">লেনদেন</button>
                                                 </div>
                                             </div>
                                         </div>

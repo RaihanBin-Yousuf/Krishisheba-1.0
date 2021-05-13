@@ -1852,7 +1852,7 @@ a.single-sale-add-to-cart-btn {
     margin-bottom: 0;
     color: #fff;
     text-transform: uppercase;
-    font-size: 1em;
+    font-size: 20px;
     line-height: 1.5;
     margin-right: 100px;
     background: #80bb01;
@@ -2020,7 +2020,7 @@ button.slick-arrow.slick-next {
 .tab-slider-wrapper .nav-tabs {
   border-bottom: 0; }
   .tab-slider-wrapper .nav-tabs .nav-link {
-    font-size: 15px;
+    font-size: 18px;
     line-height: 23px;
     color: #222;
     font-weight: 700;

@@ -2247,7 +2247,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-
 var Index = /*#__PURE__*/function (_Component) {
   _inherits(Index, _Component);
 
@@ -2467,7 +2466,7 @@ var Index = /*#__PURE__*/function (_Component) {
             addProduct: this.addProduct,
             data: this.state,
             viewDetails: this.viewDetails
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_Cta__WEBPACK_IMPORTED_MODULE_9__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
         });
       } else if (this.state.show_page === 'productdetails') {
         showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_21__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
@@ -2787,28 +2786,28 @@ var Cart = /*#__PURE__*/function (_Component) {
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("tr", {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-thumbnail",
-                              children: "Image"
+                              children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099B\u09AC\u09BF"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-title",
-                              children: "Product"
+                              children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09AC\u09BF\u09AD\u09BE\u0997"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-price",
-                              children: "Price"
+                              children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09A6\u09BE\u09AE "
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "available-quantity",
-                              children: "Available Quantity"
+                              children: "\u09AC\u09BE\u0995\u09BF \u09AA\u09B0\u09BF\u09AE\u09BE\u09A3"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-quantity",
-                              children: "Quantity"
+                              children: "\u09AA\u09B0\u09BF\u09AE\u09BE\u09A3"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-each-total",
-                              children: "Total"
+                              children: "\u09AE\u09CB\u099F "
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-service",
-                              children: "Service fee"
+                              children: "\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C"
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("th", {
                               className: "pro-remove",
-                              children: "Remove"
+                              children: "\u09B8\u09B0\u09BE\u09A8"
                             })]
                           })
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("tbody", {
@@ -2818,67 +2817,12 @@ var Cart = /*#__PURE__*/function (_Component) {
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                     className: "row",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                       className: "col-lg-6 col-12",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                        className: "calculate-shipping",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-                          children: "Calculate Shipping"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
-                          action: "#",
-                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                            className: "row",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                              className: "col-md-6 col-12 mb-25",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                                className: "nice-select",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Bangladesh"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "China"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "country"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "India"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Japan"
-                                })]
-                              })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                              className: "col-md-6 col-12 mb-25",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("select", {
-                                className: "nice-select",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Dhaka"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Barisal"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Khulna"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Comilla"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("option", {
-                                  children: "Chittagong"
-                                })]
-                              })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                              className: "col-md-6 col-12 mb-25",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                                type: "text",
-                                placeholder: "Postcode / Zip"
-                              })
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                              className: "col-md-6 col-12 mb-25",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
-                                type: "submit",
-                                value: "Estimate"
-                              })
-                            })]
-                          })
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                         className: "discount-coupon",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-                          children: "Discount Coupon Code"
+                          children: "\u099B\u09BE\u09A1\u09BC\u09C7\u09B0 \u0995\u09C1\u09AA\u09A8 \u0995\u09CB\u09A1"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("form", {
                           action: "#",
                           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -2892,13 +2836,14 @@ var Cart = /*#__PURE__*/function (_Component) {
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                               className: "col-md-6 col-12 mb-25",
                               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                                href: "#",
                                 type: "submit",
-                                value: "Apply Code"
+                                value: "\u09AA\u09CD\u09B0\u09AF\u09BC\u09CB\u0997 \u0995\u09B0\u09C1\u09A8"
                               })
                             })]
                           })
                         })]
-                      })]
+                      })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                       className: "col-lg-6 col-12 d-flex",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -2906,29 +2851,26 @@ var Cart = /*#__PURE__*/function (_Component) {
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                           className: "cart-summary-wrap",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
-                            children: "Cart Summary"
+                            children: "\u09B8\u09BE\u09B0\u09B8\u0982\u0995\u09CD\u09B7\u09C7\u09AA"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-                            children: ["Sub Total ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-                              children: ["$", this.props.data.subTotal, ".00"]
+                            children: ["\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                              children: ["\u09F3", this.props.data.subTotal, ".00"]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-                            children: ["Service Fee ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-                              children: ["$", this.props.data.serviceFee, ".00"]
+                            children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                              children: ["\u09F3", this.props.data.serviceFee, ".00"]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("h2", {
-                            children: ["Grand Total ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-                              children: ["$", this.props.data.totalPrice, ".00"]
+                            children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                              children: ["\u09F3", this.props.data.totalPrice, ".00"]
                             })]
                           })]
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                           className: "cart-summary-button",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                             className: "checkout-btn",
-                            children: "Checkout"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
-                            className: "update-btn",
-                            children: "Update Cart"
-                          })]
+                            children: "\u09B2\u09C7\u09A8\u09A6\u09C7\u09A8"
+                          })
                         })]
                       })
                     })]
@@ -3650,7 +3592,7 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                       className: "icn-arrow--left",
                       src: "/frontend-asset/market/icons/grey_arrow_down-d595d8db881c98fbae6ad8cec7f0727191deefa0327a7adebda0e52d64e7fd85.png",
                       alt: "Grey arrow down"
-                    }), "Return to filter board"]
+                    }), "\u09AA\u09C2\u09B0\u09CD\u09AC\u09C7\u09B0 \u09AA\u09C7\u099C\u09C7 \u09AB\u09BF\u09B0\u09C7 \u09AF\u09BE\u09A8"]
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                   className: "col-md-3 pt-2",
@@ -3671,7 +3613,7 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                         src: "/frontend-asset/market/logos/list.png",
                         alt: "List"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
-                        children: "Add To List"
+                        children: " \u09AA\u099B\u09A8\u09CD\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE\u09AF\u09BC \u09AF\u09CB\u0997 \u0995\u09B0\u09C1\u09A8"
                       })]
                     })
                   })
@@ -3732,13 +3674,13 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                             className: "col-md-6",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
                               className: "text-checkout--strong",
-                              children: "\u0985\u0997\u09CD\u09B0\u09BF\u09AE \u09AA\u09B0\u09BF\u09B6\u09CB\u09A7 (30%):"
+                              children: "\u0985\u0997\u09CD\u09B0\u09BF\u09AE \u09AA\u09B0\u09BF\u09B6\u09CB\u09A7 "
                             })
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                             className: "col-md-6",
                             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
                               className: "text-checkout",
-                              children: ["\u09F3", pdata.advance_payment]
+                              children: ["% ", pdata.advance_payment]
                             })
                           })]
                         })]
@@ -3885,7 +3827,9 @@ var DetailsPage = /*#__PURE__*/function (_Component) {
                     className: "row",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                       className: "col-md-3 tool-tip-info",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h4", {
+                        children: "\u09AA\u09BE\u09B2\u09CD\u099F\u09BE \u09AA\u09CD\u09B0\u09B8\u09CD\u09A4\u09BE\u09AC \u09AA\u09BE\u09A0\u09BE\u09A8"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
                         className: "tool-tip",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
                           className: "tool-tip__icon-info",
@@ -4920,13 +4864,13 @@ var Filter = /*#__PURE__*/function (_Component) {
                     onClick: function onClick() {
                       return _this6.props.addProduct(product);
                     },
-                    "data-tooltip": "Add to cart",
+                    "data-tooltip": "\u09AC\u09CD\u09AF\u09BE\u0997\u09C7 \u09AF\u09C1\u0995\u09CD\u09A4 \u0995\u09B0\u09C1\u09A8",
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                       className: "icon_cart_alt"
                     })]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("a", {
                     href: "#",
-                    "data-tooltip": "Add to wishlist",
+                    "data-tooltip": "\u09AA\u099B\u09A8\u09CD\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE\u09AF\u09BC \u09B0\u09BE\u0996\u09C1\u09A8",
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                       className: "icon_heart_alt"
                     }), " "]
@@ -4934,7 +4878,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                     onClick: function onClick() {
                       return _this6.props.viewDetails(product);
                     },
-                    "data-tooltip": "Quick view",
+                    "data-tooltip": "\u09AC\u09BF\u09B8\u09CD\u09A4\u09BE\u09B0\u09BF\u09A4 \u09A6\u09C7\u0996\u09C1\u09A8",
                     "data-toggle": "modal",
                     "data-target": "#quick-view-modal-container",
                     children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
@@ -5209,21 +5153,6 @@ var Filter = /*#__PURE__*/function (_Component) {
                           step: "any"
                         })]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                        className: "mb-15 form-group",
-                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
-                          className: "sidebar-title",
-                          children: "Filter By Price"
-                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                          className: "sidebar-price",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                            id: "price-range"
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                            type: "text",
-                            id: "price-amount",
-                            readOnly: true
-                          })]
-                        })]
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                         className: "compare-btns",
                         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
                           href: "#",
@@ -5241,9 +5170,9 @@ var Filter = /*#__PURE__*/function (_Component) {
                   className: "col-lg-8 order-1 order-lg-2 mb-sm-35 mb-xs-35",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                     className: "shop-header mb-35",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                       className: "row",
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                         className: "col-lg-4 col-md-4 col-sm-12 d-flex align-items-center",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                           className: "view-mode-icons mb-xs-10",
@@ -5262,36 +5191,7 @@ var Filter = /*#__PURE__*/function (_Component) {
                             })
                           })]
                         })
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                        className: "col-lg-8 col-md-8 col-sm-12 d-flex flex-column flex-sm-row justify-content-between align-items-left align-items-sm-center",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                          className: "sort-by-dropdown d-flex align-items-center mb-xs-10",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
-                            className: "mr-10",
-                            children: "Sort By: "
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
-                            name: "sort-by",
-                            id: "sort-by",
-                            className: "nice-select",
-                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "0",
-                              children: "Sort By Popularity"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "0",
-                              children: "Sort By Average Rating"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "0",
-                              children: "Sort By Newness"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "0",
-                              children: "Sort By Price: Low to High"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
-                              value: "0",
-                              children: "Sort By Price: High to Low"
-                            })]
-                          })]
-                        })
-                      })]
+                      })
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                     className: "shop-product-wrap grid row no-gutters mb-35",
@@ -6518,7 +6418,9 @@ var TabSlider = /*#__PURE__*/function (_Component) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "image",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-              href: "single-product.html",
+              onClick: function onClick() {
+                return _this2.props.viewDetails(feature);
+              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: '/storage/posts/' + feature.product_image,
                 className: "postsimage"
@@ -6529,27 +6431,21 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                 onClick: function onClick() {
                   return _this2.props.addProduct(feature);
                 },
-                "data-tooltip": "Add to cart",
+                "data-tooltip": "\u09AC\u09CD\u09AF\u09BE\u0997\u09C7 \u09AF\u09C1\u0995\u09CD\u09A4 \u0995\u09B0\u09C1\u09A8",
                 children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   className: "icon_cart_alt"
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 href: "#",
-                "data-tooltip": "Add to wishlist",
+                "data-tooltip": "\u09AA\u099B\u09A8\u09CD\u09A6\u09C7\u09B0 \u09A4\u09BE\u09B2\u09BF\u0995\u09BE\u09AF\u09BC \u09B0\u09BE\u0996\u09C1\u09A8",
                 children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   className: "icon_heart_alt"
-                }), " "]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
-                href: "#",
-                "data-tooltip": "Compare",
-                children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                  className: "arrow_left-right_alt"
                 }), " "]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 onClick: function onClick() {
                   return _this2.props.viewDetails(feature);
                 },
-                "data-tooltip": "Quick view",
+                "data-tooltip": "\u09AC\u09BF\u09B8\u09CD\u09A4\u09BE\u09B0\u09BF\u09A4 \u09A6\u09C7\u0996\u09C1\u09A8",
                 "data-toggle": "modal",
                 "data-target": "#quick-view-modal-container",
                 children: [" ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
@@ -6594,7 +6490,9 @@ var TabSlider = /*#__PURE__*/function (_Component) {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "image",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-              href: "single-product.html",
+              onClick: function onClick() {
+                return _this2.props.viewDetails(feature);
+              },
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: '/storage/posts/' + arrival.product_image,
                 className: "postsimage"
@@ -6669,12 +6567,17 @@ var TabSlider = /*#__PURE__*/function (_Component) {
           className: "gf-product tab-slider-sub-product",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "image",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
-              href: "single-product.html",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
+              onClick: function onClick() {
+                return _this2.props.viewDetails(feature);
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "onsale",
+                children: "Sale!"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: '/storage/posts/' + sale.product_image,
                 className: "postsimage"
-              })
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "product-hover-icons",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
@@ -6793,7 +6696,7 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                         href: "#featured",
                         role: "tab",
                         "aria-selected": "true",
-                        children: "Featured"
+                        children: "\u09A8\u09A4\u09C1\u09A8 \u09B8\u0982\u09AF\u09CB\u099C\u09A8"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
                         className: "nav-item nav-link",
                         id: "new-arrival-tab",
@@ -6801,7 +6704,7 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                         href: "#new-arrivals",
                         role: "tab",
                         "aria-selected": "false",
-                        children: "New Arrival"
+                        children: "\u099B\u09BE\u09A1\u09BC % \u09AA\u09A3\u09CD\u09AF"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
                         className: "nav-item nav-link",
                         id: "nav-onsale-tab",
@@ -6809,7 +6712,7 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                         href: "#on-sale",
                         role: "tab",
                         "aria-selected": "false",
-                        children: "On Sale"
+                        children: "\u09AC\u09BF\u0995\u09CD\u09B0\u09BF\u09A4 \u09AA\u09A3\u09CD\u09AF"
                       })]
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -7205,7 +7108,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
                 className: "count",
                 children: "1x"
-              }), " $", product.price_per_unit]
+              }), " \u09F3", product.price_per_unit]
             })]
           })]
         }, product.id);
@@ -7222,11 +7125,11 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
                   className: "icofont-envelope"
                 }), " ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                  href: "mailto:contact@example.com",
+                  href: "mailto:krishisheva@gmail.com",
                   children: "contact@example.com"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("i", {
                   className: "icofont-phone"
-                }), " +1 5589 55488 55"]
+                }), " +8801816555777"]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 className: "login-btn",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
@@ -7304,10 +7207,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("ul", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                          onClick: function onClick() {
-                            return _this2.props.showPage('team');
-                          },
-                          children: "\u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u099F\u09BF\u09AE"
+                          children: "\u0986\u09AE\u09BE\u09A6\u09C7\u09B0 \u0993\u09AF\u09BC\u09C7\u09AC\u09B8\u09BE\u0987\u099F"
                         })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("li", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
@@ -7331,8 +7231,8 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                         className: "cart-info d-inline-block",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
-                          children: ["Shopping Cart", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
-                            children: [this.props.data.addCart.length, " items"]
+                          children: ["\u09AC\u09BE\u099C\u09BE\u09B0\u09C7\u09B0 \u09AC\u09CD\u09AF\u09BE\u0997", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                            children: [this.props.data.addCart.length, " \u099F\u09BF \u09AA\u09A3\u09CD\u09AF"]
                           })]
                         })
                       })]
@@ -7342,22 +7242,30 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
                         className: "cart-items ",
                         children: addCartList
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                        className: "floating-cart-btn text-center",
-                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                          className: "row",
-                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
-                            className: "col pt-3 font-weight-bold",
-                            children: ["Total =$", this.props.data.totalPrice]
-                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-                            className: "col",
-                            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
-                              className: "float-right",
-                              onClick: this.viewCart,
-                              children: "View Cart"
-                            })
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                        className: "cart-calculation",
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "calculation-details",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                            children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                              children: ["\u09F3", this.props.data.serviceFee, ".00"]
+                            })]
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                            children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
+                              children: ["\u09F3", this.props.data.totalPrice, ".00"]
+                            })]
                           })]
-                        })
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                          className: "floating-cart-btn text-center",
+                          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            href: "checkout.html",
+                            children: "\u09B2\u09C7\u09A8\u09A6\u09C7\u09A8"
+                          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                            className: "float-right",
+                            onClick: this.viewCart,
+                            children: "\u09AC\u09CD\u09AF\u09BE\u0997\u09C7 \u09A6\u09C7\u0996\u09C1\u09A8 "
+                          })]
+                        })]
                       })]
                     })]
                   }) : '']
@@ -7519,7 +7427,7 @@ var TopCategorySlider = /*#__PURE__*/function (_Component) {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                     className: "section-title",
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h3", {
-                      children: "top categories"
+                      children: "\u09AA\u09A8\u09CD\u09AF\u09C7\u09B0 \u09AC\u09BF\u09AD\u09BE\u0997\u09B8\u09AE\u09C1\u09B9"
                     })
                   })
                 })

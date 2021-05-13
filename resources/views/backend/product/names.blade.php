@@ -78,7 +78,7 @@
                       <div class="col-md-6 form-group">
                       <label for="profile_image">Product Image</label>
                       <div>
-                          <img style="height: 150px; width: 200px;" id="productimage" src="{{ asset('frontend-asset/home_page/img/ourcountry.jpg') }}" alt="your image" />
+                          <img style="height: 150px; width: 200px;" id="productimage"/>
                           </div>
                           <input type='file' name="product_img" onchange="readURL(this);" />
                       </div>
