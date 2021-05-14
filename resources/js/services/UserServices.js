@@ -24,4 +24,17 @@ UserServices.login = async (data)=> {
             return res;
 }
 
+UserServices.logout = async (data)=> {
+    const res = await axios.post("/ManageUsers/users", data)
+                        .then(response => {
+                            if(response.data.error) {
+                                $.notify({message : response.data.error.error}, {type: 'danger'});
+                            } else {
+                                $.notify({message : 'Logout Successfully'}, {type: 'success'});
+                            }
+                            return response.data;
+                        }).catch(error=>{ return []; });
+            return res;
+}
+
 export default UserServices;

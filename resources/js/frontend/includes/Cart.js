@@ -102,7 +102,7 @@ export default class Cart extends Component {
                                                 </div>
                                                 <div className="cart-summary-button">
                                                     <button className="checkout-btn">লেনদেন</button>
-                                                    <button onClick={this.showCheck}>Checkout</button>
+                                                    <button onClick={this.showCheck}>বিল পরিশোধ</button>
                                                     <button className="update-btn">Update Cart</button>
                                                 </div>
                                             </div>

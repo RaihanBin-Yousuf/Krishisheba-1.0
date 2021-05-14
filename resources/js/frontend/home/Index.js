@@ -214,7 +214,7 @@ export default class Index extends Component {
         return (
             <>  
                 {/* <ShoppingCart data={this.state} /> */}
-                <TopBarAndHeader data={this.state} showPage={this.showPage} removeProduct={this.removeProduct} viewDetails={this.viewDetails}/>
+                <TopBarAndHeader data={this.state} showPage={this.showPage} getAuthUser={this.getAuthUser} removeProduct={this.removeProduct} viewDetails={this.viewDetails}/>
 
                 {showPageName}
                 {/* <Faq/> skipped */}

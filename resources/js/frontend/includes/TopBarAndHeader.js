@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import UserServices from '../../services/UserServices';
 export default class TopBarAndHeader extends Component {
     constructor(props) {
         super(props);
@@ -8,10 +8,18 @@ export default class TopBarAndHeader extends Component {
         }
         this.onCartShow = this.onCartShow.bind(this);
         this.viewCart = this.viewCart.bind(this);
+        this.onlogout = this.onlogout.bind(this);
     }
 
     componentDidMount() {
-        
+        // this.onlogout();
+    }
+
+    async onlogout() {
+        const logout = await UserServices.logout({'logout': 'user'});
+        if(logout.success) {
+            this.props.getAuthUser();
+        }
     }
 
     viewCart() {
@@ -41,6 +49,8 @@ export default class TopBarAndHeader extends Component {
     }
     
     render() {
+        // console.log('this.props in header :>> ', this.props);
+        let authUser = this.props.data.authUser.data;
         // let pdata = this.props.data ? this.props.data.count : '0';
         let cartCount = this.props.data.addCart.length;
         // console.log('this.props.data.addCart.length :>> ', );
@@ -66,9 +76,17 @@ export default class TopBarAndHeader extends Component {
                                 <i className="icofont-envelope"></i> <a href="mailto:krishisheva@gmail.com">contact@example.com</a>
                                 <i className="icofont-phone"></i> +8801816555777
                             </div>
-                            <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
-                            {/* বাহির */}
-                            <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
+                            {authUser == "not found" ?
+                            <>
+                                <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
+                                {/* বাহির */}
+                                <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
+                            </> : 
+                            <>
+                                <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>আমার অ্যাকাউন্ট</b></i></a></button>
+                                {/* বাহির */}
+                                <a onClick={this.onlogout} className="get-started-btn scrollto">বাহির</a> 
+                            </> }
                         </div>
                     </div>
                     <header id="header" className="fixed-top">

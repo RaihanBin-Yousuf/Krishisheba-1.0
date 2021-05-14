@@ -96,6 +96,11 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         if(request()->ajax()) {
+            if(request()->logout) {
+                $user = Auth::logout();
+                // dd($user);
+                return $this->sendResponse($user);
+            }
             $input = request()->all();
             // $input["password"] = Hash::make($input['password']);
             $user = Auth::attempt($input);
