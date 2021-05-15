@@ -4788,7 +4788,7 @@ var Filter = /*#__PURE__*/function (_Component) {
       divisions: '',
       district: '',
       thana: ''
-    }, _defineProperty(_query, "sub_category", ''), _defineProperty(_query, "production_type", ''), _query)), _this$state);
+    }, _defineProperty(_query, "sub_category", ''), _defineProperty(_query, "production_type", ''), _defineProperty(_query, "start_price", 0), _defineProperty(_query, "end_price", 0), _query)), _this$state);
     _this.page = 1;
     _this.limit = 10;
     _this.count = 0;
@@ -5601,22 +5601,24 @@ var Filter = /*#__PURE__*/function (_Component) {
                           htmlFor: "ppt",
                           children: "\u09AE\u09C2\u09B2\u09CD\u09AF \u09AA\u09B0\u09BF\u09B8\u09C0\u09AE\u09BE"
                         }), " (\u09F3)", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                          type: "text",
-                          name: "interval[price_per_ton][start]",
+                          type: "number",
+                          name: "start_price",
                           id: "interval_price_per_ton_start",
                           className: "form-interval",
-                          step: "any"
+                          step: "any",
+                          onChange: this.handleInputChange
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
                           style: {
                             fontSize: '10px'
                           },
                           children: "\u09A5\u09C7\u0995\u09C7"
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
-                          type: "text",
-                          name: "interval[price_per_ton][end]",
+                          type: "number",
+                          name: "end_price",
                           id: "interval_price_per_ton_end",
                           className: "form-interval",
-                          step: "any"
+                          step: "any",
+                          onChange: this.handleInputChange
                         })]
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                         className: "compare-btns",
