@@ -19,6 +19,7 @@ import Cart from '../includes/Cart';
 import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
 import UserServices from '../../services/UserServices';
+import Login from '../includes/Login';
 export default class Index extends Component {
     constructor(props) {
         super(props);
@@ -33,6 +34,7 @@ export default class Index extends Component {
             serviceFee: 0,
             subTotal: 0,
             authUser: [],
+            loginForm: false,
 
         };
         this.showPage = this.showPage.bind(this);
@@ -45,6 +47,24 @@ export default class Index extends Component {
         this.totalPrice = this.totalPrice.bind(this);
         this.getAuthUser = this.getAuthUser.bind(this);
         this.setAuthUser = this.setAuthUser.bind(this);
+        this.showCheck = this.showCheck.bind(this);
+        this.loginFormClose = this.loginFormClose.bind(this);
+    }
+
+    loginFormClose() {
+        this.setState({
+            loginForm: false,
+        })
+    }
+
+    showCheck() {
+        console.log('login form');
+        if(this.state.authUser.data == "not found") {
+            this.setState({ ['loginForm']: true})
+        } else {
+            this.showPage('checkout');
+            
+        }
     }
 
     showPage(page) {
@@ -216,8 +236,8 @@ export default class Index extends Component {
         return (
             <>  
                 {/* <ShoppingCart data={this.state} /> */}
-                <TopBarAndHeader data={this.state} showPage={this.showPage} getAuthUser={this.getAuthUser} removeProduct={this.removeProduct} viewDetails={this.viewDetails}/>
-
+                <TopBarAndHeader data={this.state} showPage={this.showPage} getAuthUser={this.getAuthUser} removeProduct={this.removeProduct} viewDetails={this.viewDetails} showCheck={this.showCheck}/>
+                {this.state.authUser.data == "not found" && this.state.loginForm ? <Login loginFormClose={this.loginFormClose} setAuthUser={this.setAuthUser}/>: ''}
                 {showPageName}
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}

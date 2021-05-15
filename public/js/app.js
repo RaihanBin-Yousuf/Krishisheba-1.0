@@ -2193,7 +2193,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _includes_Checkout__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../includes/Checkout */ "./resources/js/frontend/includes/Checkout.js");
 /* harmony import */ var _services_TopCategoryServices__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../services/TopCategoryServices */ "./resources/js/services/TopCategoryServices.js");
 /* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _includes_Login__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../includes/Login */ "./resources/js/frontend/includes/Login.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -2249,6 +2250,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Index = /*#__PURE__*/function (_Component) {
   _inherits(Index, _Component);
 
@@ -2270,7 +2272,8 @@ var Index = /*#__PURE__*/function (_Component) {
       totalPrice: 0,
       serviceFee: 0,
       subTotal: 0,
-      authUser: []
+      authUser: [],
+      loginForm: false
     };
     _this.showPage = _this.showPage.bind(_assertThisInitialized(_this));
     _this.productDetails = _this.productDetails.bind(_assertThisInitialized(_this));
@@ -2282,15 +2285,35 @@ var Index = /*#__PURE__*/function (_Component) {
     _this.totalPrice = _this.totalPrice.bind(_assertThisInitialized(_this));
     _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
     _this.setAuthUser = _this.setAuthUser.bind(_assertThisInitialized(_this));
+    _this.showCheck = _this.showCheck.bind(_assertThisInitialized(_this));
+    _this.loginFormClose = _this.loginFormClose.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Index, [{
+    key: "loginFormClose",
+    value: function loginFormClose() {
+      this.setState({
+        loginForm: false
+      });
+    }
+  }, {
+    key: "showCheck",
+    value: function showCheck() {
+      console.log('login form');
+
+      if (this.state.authUser.data == "not found") {
+        this.setState(_defineProperty({}, 'loginForm', true));
+      } else {
+        this.showPage('checkout');
+      }
+    }
+  }, {
     key: "showPage",
     value: function showPage(page) {
-      var _this$setState;
+      var _this$setState2;
 
-      this.setState((_this$setState = {}, _defineProperty(_this$setState, 'show_page', page), _defineProperty(_this$setState, 'prev_page', this.state.show_page), _this$setState));
+      this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'show_page', page), _defineProperty(_this$setState2, 'prev_page', this.state.show_page), _this$setState2));
     }
   }, {
     key: "componentDidMount",
@@ -2505,7 +2528,7 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "totalPrice",
     value: function totalPrice() {
-      var _this$setState7;
+      var _this$setState8;
 
       var grandSubTotalPrice = 0;
       var grandTotalServiceFee = 0;
@@ -2516,7 +2539,7 @@ var Index = /*#__PURE__*/function (_Component) {
         }
       });
       var grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
-      this.setState((_this$setState7 = {}, _defineProperty(_this$setState7, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState7, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState7, 'subTotal', grandSubTotalPrice), _this$setState7));
+      this.setState((_this$setState8 = {}, _defineProperty(_this$setState8, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState8, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState8, 'subTotal', grandSubTotalPrice), _this$setState8));
     }
   }, {
     key: "removeProduct",
@@ -2543,36 +2566,36 @@ var Index = /*#__PURE__*/function (_Component) {
       var showPageName = '';
 
       if (this.state.show_page === null) {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
             productDetails: this.productDetails,
             data: this.state
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
             addProduct: this.addProduct,
             data: this.state,
             viewDetails: this.viewDetails
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
         });
       } else if (this.state.show_page === 'productdetails') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
           addProduct: this.addProduct,
           data: this.state,
           showPage: this.showPage
         });
       } else if (this.state.show_page === 'findProducts') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
       } else if (this.state.show_page === 'team') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
       } else if (this.state.show_page === 'faq') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
       } else if (this.state.show_page === 'filter') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
           addProduct: this.addProduct,
           data: this.state,
           viewDetails: this.viewDetails
         });
       } else if (this.state.show_page === 'cart') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
           data: this.state,
           showPage: this.showPage,
           updateQty: this.updateQty,
@@ -2582,20 +2605,24 @@ var Index = /*#__PURE__*/function (_Component) {
           removeProduct: this.removeProduct
         });
       } else if (this.state.show_page === 'checkout') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
           data: this.state,
           showPage: this.showPage
         });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
           data: this.state,
           showPage: this.showPage,
           getAuthUser: this.getAuthUser,
           removeProduct: this.removeProduct,
-          viewDetails: this.viewDetails
-        }), showPageName, this.state.show_page === 'productdetails' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
+          viewDetails: this.viewDetails,
+          showCheck: this.showCheck
+        }), this.state.authUser.data == "not found" && this.state.loginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Login__WEBPACK_IMPORTED_MODULE_22__.default, {
+          loginFormClose: this.loginFormClose,
+          setAuthUser: this.setAuthUser
+        }) : '', showPageName, this.state.show_page === 'productdetails' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
       });
     }
   }]);
@@ -2606,7 +2633,7 @@ var Index = /*#__PURE__*/function (_Component) {
 
 
 if (document.getElementById('react_fronend_index')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_22__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
 }
 
 /***/ }),
@@ -3082,7 +3109,15 @@ var Cart = /*#__PURE__*/function (_Component) {
       if (this.props.data.authUser.data == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
-        this.props.showPage('checkout');
+        if (this.props.data.authUser.data.access_to == 0) {
+          $.notify({
+            message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
+          }, {
+            type: 'danger'
+          });
+        } else {
+          this.props.showPage('checkout');
+        }
       }
     }
   }, {
@@ -7648,7 +7683,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      cartShow: true
+      cartShow: false
     };
     _this.onCartShow = _this.onCartShow.bind(_assertThisInitialized(_this));
     _this.viewCart = _this.viewCart.bind(_assertThisInitialized(_this));
@@ -7719,12 +7754,12 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
   }, {
     key: "onCartShow",
     value: function onCartShow() {
-      if (this.state.cartShow) {
+      if (this.state.cartShow == false) {
         $("#cart-floating-box").stop().slideDown(1000);
-        this.setState(_defineProperty({}, 'cartShow', false));
+        this.setState(_defineProperty({}, 'cartShow', true));
       } else {
         $("#cart-floating-box").stop().slideUp(1000);
-        this.setState(_defineProperty({}, 'cartShow', true));
+        this.setState(_defineProperty({}, 'cartShow', false));
       }
     }
   }, {
@@ -7922,7 +7957,9 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                         className: "cart-info d-inline-block",
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                          children: ["\u09AC\u09BE\u099C\u09BE\u09B0\u09C7\u09B0 \u09AC\u09CD\u09AF\u09BE\u0997", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
+                          children: ["\u09AC\u09BE\u099C\u09BE\u09B0\u09C7\u09B0 \u09AC\u09CD\u09AF\u09BE\u0997 ", this.state.cartShow ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+                            className: "pl-3 fa fa-times"
+                          }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                             children: [this.props.data.addCart.length, " \u099F\u09BF \u09AA\u09A3\u09CD\u09AF"]
                           })]
                         })
@@ -7949,7 +7986,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
                           className: "floating-cart-btn text-center",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-                            href: "checkout.html",
+                            onClick: this.props.showCheck,
                             children: "\u09B2\u09C7\u09A8\u09A6\u09C7\u09A8"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
                             className: "float-right",

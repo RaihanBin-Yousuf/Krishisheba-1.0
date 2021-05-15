@@ -25,8 +25,11 @@ export default class Cart extends Component {
         if(this.props.data.authUser.data == "not found") {
             this.setState({ ['loginForm']: true})
         } else {
-            this.props.showPage('checkout');
-            
+            if(this.props.data.authUser.data.access_to == 0) {
+                $.notify({message : 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'}, {type: 'danger'});
+            } else {
+                this.props.showPage('checkout');
+            }
         }
     }
     

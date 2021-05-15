@@ -4,7 +4,7 @@ export default class TopBarAndHeader extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            cartShow: true,
+            cartShow: false,
         }
         this.onCartShow = this.onCartShow.bind(this);
         this.viewCart = this.viewCart.bind(this);
@@ -22,6 +22,7 @@ export default class TopBarAndHeader extends Component {
         }
     }
 
+
     viewCart() {
 
         $("#cart-floating-box").stop().slideUp(1000);
@@ -38,12 +39,12 @@ export default class TopBarAndHeader extends Component {
     }
 
     onCartShow() {
-        if(this.state.cartShow) {
+        if(this.state.cartShow== false) {
             $("#cart-floating-box").stop().slideDown(1000);
-            this.setState({ ['cartShow']:false});
+            this.setState({ ['cartShow']:true});
         } else {
             $("#cart-floating-box").stop().slideUp(1000);
-            this.setState({ ['cartShow']:true});
+            this.setState({ ['cartShow']:false});
 
         }
     }
@@ -114,7 +115,7 @@ export default class TopBarAndHeader extends Component {
                                                 <span className="icon_bag_alt"></span>
                                             </div>
                                             <div className="cart-info d-inline-block" >
-                                                <p>বাজারের ব্যাগ
+                                                <p>বাজারের ব্যাগ {this.state.cartShow?<i className="pl-3 fa fa-times"></i> : ''}
                                                     <span>
                                                         {this.props.data.addCart.length} টি পণ্য
                                                     </span>
@@ -133,7 +134,7 @@ export default class TopBarAndHeader extends Component {
                                                     <p>সর্বমোট <span>৳{this.props.data.totalPrice}.00</span></p>
                                                 </div>
                                                 <div className="floating-cart-btn text-center">
-                                                    <a href="checkout.html">লেনদেন</a>
+                                                    <a onClick={this.props.showCheck}>লেনদেন</a>
                                                     <a className="float-right" onClick={this.viewCart}>ব্যাগে দেখুন </a>
                                                 </div>
                                             </div>
