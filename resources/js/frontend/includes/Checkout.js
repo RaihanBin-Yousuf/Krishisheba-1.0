@@ -1,9 +1,31 @@
 import React, { Component } from 'react'
-
+import Bkash from './Bkash';
 export default class Checkout extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showBkash: null,
+        };
+        this.bkashForm = this.bkashForm.bind(this);
+    }
+
+    bkashForm(data) {
+        if(this.props.data.authUser.access_to == 0) {
+            $.notify({message : 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'}, {type: 'danger'});
+        } else {
+            this.setState({ ['showBkash']: data });
+        }
+    }
+
     render() {
+        let pdata = this.props.data;
+        let payoutlist = '';
+        payoutlist = this.props.data.addCart.map(cart=>(
+            payoutlist = <li>{cart.sub_category} - {cart.quantity} {cart.weight_unit}<span>৳ {cart.total_each_price}</span></li>
+        ));
         return (
             <div>
+                {this.state.showBkash == 'show'?<Bkash data={this.props.data} bkashForm={this.bkashForm} />: ''}
                <section>
                     <div className="page-section section mb-50">
                         <div className="container">
@@ -66,7 +88,7 @@ export default class Checkout extends Component {
                                                         <div className="col-12 mb-20">
                                                             <div className="check-box">
                                                                 <input type="checkbox" id="create_account"/>
-                                                                <label for="create_account">Create an Acount?</label>
+                                                                <label htmlFor="create_account">Create an Acount?</label>
                                                             </div>
                                                         </div>	
                                                     </div>	
@@ -79,14 +101,11 @@ export default class Checkout extends Component {
                                                         <div className="checkout-cart-total">
                                                             <h4>Product <span>Total</span></h4>
                                                             <ul>
-                                                                <li>Cillum dolore tortor nisl X 01 <span>$25.00</span></li>
-                                                                <li>Auctor gravida pellentesque X 02 <span>$50.00</span></li>
-                                                                <li>Condimentum posuere consectetur X 01 <span>$29.00</span></li>
-                                                                <li>Habitasse dictumst elementum X 01 <span>$10.00</span></li>
+                                                                {payoutlist}
                                                             </ul>
-                                                            <p>Sub Total <span>$104.00</span></p>
-                                                            <p>Shipping Fee <span>$00.00</span></p>
-                                                            <h4>Grand Total <span>$104.00</span></h4>
+                                                            <p>মোট <span>৳ {pdata.subTotal}</span></p>
+                                                            <p>পরিসেবা চার্জ <span>৳ {pdata.serviceFee}</span></p>
+                                                            <h4>সর্বমোট <span>৳ {pdata.totalPrice}</span></h4>
                                                         </div>
                                                     </div>
                                                     <div className="col-12">
@@ -94,26 +113,33 @@ export default class Checkout extends Component {
                                                         <div className="checkout-payment-method">									
                                                             <div className="single-method">
                                                                 <input type="radio" id="payment_bank" name="payment-method" value="bank"/>
-                                                                <label for="payment_bank">Direct Bank Transfer</label>
+                                                                <label htmlFor="payment_bank">Direct Bank Transfer</label>
                                                                 <p data-method="bank">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                                             </div>											
                                                             <div className="single-method">
                                                                 <input type="radio" id="payment_cash" name="payment-method" value="cash"/>
-                                                                <label for="payment_cash">Cash on Delivery</label>
+                                                                <label htmlFor="payment_cash">Cash on Delivery</label>
                                                                 <p data-method="cash">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                                             </div>										
                                                             <div className="single-method">
                                                                 <input type="radio" id="payment_payoneer" name="payment-method" value="payoneer"/>
-                                                                <label for="payment_payoneer">Stripe</label>
+                                                                <label htmlFor="payment_payoneer">Stripe</label>
                                                                 <p data-method="payoneer">Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country.</p>
                                                             </div>
                                                             
                                                             <div className="single-method">
                                                                 <input type="checkbox" id="accept_terms"/>
-                                                                <label for="accept_terms">I’ve read and accept the terms & conditions</label>
+                                                                <label htmlFor="accept_terms">I’ve read and accept the terms & conditions</label>
                                                             </div>										
                                                         </div>			
-                                                        <button className="place-order">Place order</button>			
+                                                        <div className="row">
+                                                            <div className="col">
+                                                                <button className="place-order">Place order</button>			
+                                                            </div>
+                                                            <div className="col mt-4 p-2 rounded text-center bg-white shadow" onClick={()=>this.bkashForm('show')}>
+                                                                <img src="/bkash/bkash_logo.png" width="150px" alt="" />
+                                                            </div>
+                                                        </div>
                                                     </div>								
                                                 </div>
                                             </div>							

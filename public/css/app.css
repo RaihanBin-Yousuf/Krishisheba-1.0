@@ -10357,3 +10357,64 @@ h3 {
 .login-form-background a {
   margin-left: 2rem;
 }
+
+.bkash-background {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
+  height: 140%;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.4);
+  align-items: center;
+  /* Extra Small Devices, Phones */
+}
+@media only screen and (max-width: 992px) {
+  .bkash-background {
+    /* your mobile css, change this as you please */
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 225%;
+  }
+}
+@media only screen and (max-width: 762px) {
+  .bkash-background {
+    /* your mobile css, change this as you please */
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 250%;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .bkash-background {
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 450%;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .bkash-background {
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 650%;
+  }
+}
+.bkash-background .bkash-cart {
+  background-color: #f7084f;
+  top: 10rem;
+  position: fixed;
+}
+.bkash-background .bkash-cart .bkash-btn {
+  margin: 0.05rem;
+}
+.bkash-background .bkash-cart .bkash-full-details {
+  box-shadow: -3px 1px 17px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 15px 0px 15px 15px;
+}
+.bkash-background .bkash-cart .bkash-help {
+  color: white;
+}
+.bkash-background .bkash-cart .bkash-help:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  color: black;
+  font-weight: bold;
+}
+.bkash-background input {
+  text-align: center;
+}

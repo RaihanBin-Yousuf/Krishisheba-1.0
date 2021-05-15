@@ -21,6 +21,10 @@ class UsersController extends Controller
     public function index()
     {
         if(request()->ajax()) {
+            if(request()->access_to) {
+                $user = $this->user->getAdmin();
+                return $this->sendResponse($user);
+            }
             $user = auth()->user();
             if(empty($user)) {
                 $user = ['data'=>"not found"];

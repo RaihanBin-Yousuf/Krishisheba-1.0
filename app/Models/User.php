@@ -65,4 +65,9 @@ class User extends Authenticatable
     $user = $this->updateOrCreate(['id'=>$id], $input);
     return $user;
    }
+
+   public function getAdmin()
+   {
+       return $this->where('id',request()->access_to)->get();
+   }
 }

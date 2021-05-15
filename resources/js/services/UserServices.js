@@ -37,4 +37,16 @@ UserServices.logout = async (data)=> {
             return res;
 }
 
+UserServices.permission = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/users", {params: data})
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
+
 export default UserServices;
