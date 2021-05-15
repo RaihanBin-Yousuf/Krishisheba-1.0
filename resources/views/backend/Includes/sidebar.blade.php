@@ -136,6 +136,14 @@
                     </p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{route('googlemap.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-inbox"></i>
+                  <p>
+                      Google Map
+                    </p>
+                  </a>
+                </li>
 
                 <li class="nav-item">
                       <a class="nav-link" href="{{ route('logout') }}"

@@ -17,7 +17,7 @@ require('./jquery/owl.carousel/owl.carousel');
 require('./jquery/php-email-form/validate');
 // require('./jquery/venobox/venobox');
 // require('./jquery/slick');
-
+require('react-google-maps');
 require('slick-carousel');
 // require('./jquery/main');
 require('./custom');
@@ -28,9 +28,9 @@ require('./custom');
  */
 
 require('./components/Example');
-require('./new/managePostCreate');
 // require('./Product/new');
-require('./new/managePostCreate');
+require('./backend/managePostCreate');
 
 require('./frontend/home/Index');
+require('./backend/MapGoogle');
 // require('./frontend/includes/TopCategorySlider');

@@ -681,9 +681,9 @@ export default class Filter extends Component {
                                             </div>	
                                             <div className="mb-15 form-group">
                                                 <label className="filter__label" htmlFor="ppt">মূল্য পরিসীমা</label> (৳)<br/>
-                                                <input type="number" name="start_price" id="interval_price_per_ton_start" className="form-interval" step="any" onChange={this.handleInputChange} />
+                                                <input type="number" min="1" name="start_price" id="interval_price_per_ton_start" className="form-interval" step="any" onChange={this.handleInputChange} />
                                                 <span style={{fontSize: '10px'}}>থেকে</span>
-                                                <input type="number" name="end_price" id="interval_price_per_ton_end" className="form-interval" step="any" onChange={this.handleInputChange} />
+                                                <input type="number" min="1" name="end_price" id="interval_price_per_ton_end" className="form-interval" step="any" onChange={this.handleInputChange} />
                                             </div>	
                                             {/* <div className="mb-15 form-group">
                                                 <h3 className="sidebar-title">Filter By Price</h3>

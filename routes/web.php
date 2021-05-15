@@ -8,8 +8,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Commodities\PaddysController;
 use App\Http\Controllers\Commodities\RiceController;
+use App\Http\Controllers\GoogleMapController;
 use App\Http\Controllers\ManagePostController;
 use App\Http\Controllers\SubCategoryController;
+use App\Models\GoogleMap;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -88,3 +90,4 @@ Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updat
 Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
 // project task list
 // https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit
+Route::resource('googlemap', GoogleMapController::class);
