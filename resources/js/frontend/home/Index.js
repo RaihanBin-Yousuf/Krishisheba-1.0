@@ -158,8 +158,10 @@ export default class Index extends Component {
         let grandSubTotalPrice = 0;
         let grandTotalServiceFee = 0;
         this.state.addCart.map(product => {
-            grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
-            grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+            if(product.total_unit != 'Nan') {
+                grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
+                grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+            }
         });
         let grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
         this.setState({ 

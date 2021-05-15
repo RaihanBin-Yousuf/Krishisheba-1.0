@@ -2510,8 +2510,10 @@ var Index = /*#__PURE__*/function (_Component) {
       var grandSubTotalPrice = 0;
       var grandTotalServiceFee = 0;
       this.state.addCart.map(function (product) {
-        grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
-        grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+        if (product.total_unit != 'Nan') {
+          grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
+          grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+        }
       });
       var grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
       this.setState((_this$setState7 = {}, _defineProperty(_this$setState7, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState7, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState7, 'subTotal', grandSubTotalPrice), _this$setState7));
