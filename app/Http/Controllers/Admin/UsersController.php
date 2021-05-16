@@ -24,6 +24,9 @@ class UsersController extends Controller
             if(request()->access_to) {
                 $user = $this->user->getAdmin();
                 return $this->sendResponse($user);
+            } else if(request()->all) {
+                $users = $this->user->get();
+                return $this->sendResponse($users);
             }
             $user = auth()->user();
             if(empty($user)) {

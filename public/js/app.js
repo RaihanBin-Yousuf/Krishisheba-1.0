@@ -1901,6 +1901,31 @@ __webpack_require__(/*! ./backend/MapGoogle */ "./resources/js/backend/MapGoogle
 
 /***/ }),
 
+/***/ "./resources/js/backend/Loading.js":
+/*!*****************************************!*\
+  !*** ./resources/js/backend/Loading.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+var Loading = function Loading(props) {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("div", {
+    className: "loading d-flex justify-content-center align-items-center h-100",
+    children: "Loading..."
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Loading);
+
+/***/ }),
+
 /***/ "./resources/js/backend/MapGoogle.js":
 /*!*******************************************!*\
   !*** ./resources/js/backend/MapGoogle.js ***!
@@ -1912,11 +1937,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ MapGoogle)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-google-maps */ "./node_modules/react-google-maps/lib/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-google-maps */ "./node_modules/react-google-maps/lib/index.js");
+/* harmony import */ var _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../.././js/services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Loading */ "./resources/js/backend/Loading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -1940,13 +1977,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
- // function Map() {
-//   return  (<GoogleMap
-//     defaultZoom={8}
-//     defaultCenter={{ lat: -34.397, lng: 150.644 }}
-//   />);
-// }
-// const WrappedMap = 
+ // import GoogleMapService from '../.././js/services/GoogleMapService';
+
+
 
 
 
@@ -1964,6 +1997,8 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       selectPosition: null,
+      users: null,
+      authUser: null,
       location: [{
         id: 1,
         name: 'Md. Emtiyaz Uddin',
@@ -1997,10 +2032,82 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
       }]
     };
     _this.setSelectPosition = _this.setSelectPosition.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
+    _this.getAllUsers = _this.getAllUsers.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(MapGoogle, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAuthUser();
+      this.getAllUsers();
+    }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__.default.get();
+
+              case 2:
+                data = _context.sent;
+                console.log('data :>> ', data);
+                this.setState(_defineProperty({}, 'authUser', data));
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "getAllUsers",
+    value: function () {
+      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__.default.all({
+                  'all': 'all'
+                });
+
+              case 2:
+                response = _context2.sent;
+                console.log('users ::>', response);
+                this.setState(_defineProperty({}, 'users', response));
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getAllUsers() {
+        return _getAllUsers.apply(this, arguments);
+      }
+
+      return getAllUsers;
+    }()
+  }, {
     key: "setSelectPosition",
     value: function setSelectPosition(data) {
       this.setState({
@@ -2012,73 +2119,121 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      // console.log('this.state.select :>> ', this.state.selectPosition);
+      if (!this.state.authUser) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {});
+      } else if (!this.state.users) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {});
+      }
+
+      var auth = {
+        lat: 22.3609389,
+        lng: 91.8568732
+      };
+
+      if (this.state.authUser) {
+        auth = this.state.authUser;
+      }
+
+      console.log('auth :>> ', auth);
       var userDetails = this.state.selectPosition;
-      var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withGoogleMap)(function (props) {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.GoogleMap, {
+      console.log('userDetails :>> ', userDetails);
+      var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_3__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_3__.withGoogleMap)(function (props) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.GoogleMap, {
           defaultZoom: 17,
           defaultCenter: {
-            lat: 22.3609389,
-            lng: 91.8568732
+            lat: Number(_this2.state.authUser.lat),
+            lng: Number(_this2.state.authUser.lng)
           },
-          children: [_this2.state.location.map(function (position) {
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.Marker, {
+          children: [_this2.state.users.map(function (position) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.Marker, {
               position: {
-                lat: position.lat,
-                lng: position.lng
+                lat: Number(position.lat),
+                lng: Number(position.lng)
               },
               onClick: function onClick() {
                 _this2.setSelectPosition(position);
+              },
+              onMouseEnter: function onMouseEnter() {
+                _this2.setSelectPosition(position);
               }
             }, position.id);
-          }), userDetails && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.InfoWindow, {
+          }), userDetails && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.InfoWindow, {
             position: {
-              lat: userDetails.lat,
-              lng: userDetails.lng
+              lat: Number(userDetails.lat),
+              lng: Number(userDetails.lng)
             },
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
-                children: ["Name: ", userDetails.name]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h4", {
-                children: ["Mobile: ", userDetails.mobile]
-              })]
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col-5 mr-3",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("img", {
+                    src: 'storage/profile/' + userDetails.profile_img,
+                    width: "150px",
+                    alt: ""
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: "col mt-3",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Name:"
+                    }), " ", userDetails.name]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Email:"
+                    }), " ", userDetails.email]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Contact:"
+                    }), " ", userDetails.mobile]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Address:"
+                    }), " ", userDetails.address]
+                  })]
+                })]
+              })
             })
           })]
         });
       }));
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
           children: "In react page"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(WrappedMap, {
+        }), this.state.users ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(WrappedMap, {
           isMarkerShown: true,
           googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyB9vLP-epdJF-YtsJDng8CHEVB5l9TnDNk",
-          loadingElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          loadingElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             style: {
               height: "100%"
             }
           }),
-          containerElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          containerElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             style: {
               height: "400px"
             }
           }),
-          mapElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          mapElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
             style: {
               height: "100%"
             }
           })
-        })]
+        }) : '']
       });
     }
   }]);
 
   return MapGoogle;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
 
 if (document.getElementById('react_map_google')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(MapGoogle, {}), document.getElementById('react_map_google'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(MapGoogle, {}), document.getElementById('react_map_google'));
 }
 
 /***/ }),
@@ -14024,7 +14179,7 @@ CategoryService.details = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/categories/" + id).then(function (response) {
+            return axios__WEBPACK_IMPORTED_MODULE_1___default().get("/googlemap/" + id).then(function (response) {
               return response.data.data.data;
             })["catch"](function (error) {
               return error;
@@ -14537,7 +14692,7 @@ UserServices.get = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
   }, _callee);
 }));
 
-UserServices.login = /*#__PURE__*/function () {
+UserServices.all = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -14545,24 +14700,12 @@ UserServices.login = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
-              if (response.data.error) {
-                $.notify({
-                  message: response.data.error.error
-                }, {
-                  type: 'danger'
-                });
-              } else {
-                $.notify({
-                  message: 'Login Successfully'
-                }, {
-                  type: 'success'
-                });
-              }
-
-              return response.data;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
             })["catch"](function (error) {
-              return [];
+              return error;
             });
 
           case 2:
@@ -14582,7 +14725,7 @@ UserServices.login = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.logout = /*#__PURE__*/function () {
+UserServices.login = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -14599,7 +14742,7 @@ UserServices.logout = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Logout Successfully'
+                  message: 'Login Successfully'
                 }, {
                   type: 'success'
                 });
@@ -14627,7 +14770,7 @@ UserServices.logout = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.permission = /*#__PURE__*/function () {
+UserServices.logout = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -14635,12 +14778,24 @@ UserServices.permission = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
-              return response.data.data;
+            return axios.post("/ManageUsers/users", data).then(function (response) {
+              if (response.data.error) {
+                $.notify({
+                  message: response.data.error.error
+                }, {
+                  type: 'danger'
+                });
+              } else {
+                $.notify({
+                  message: 'Logout Successfully'
+                }, {
+                  type: 'success'
+                });
+              }
+
+              return response.data;
             })["catch"](function (error) {
-              return error;
+              return [];
             });
 
           case 2:
@@ -14657,6 +14812,39 @@ UserServices.permission = /*#__PURE__*/function () {
 
   return function (_x3) {
     return _ref4.apply(this, arguments);
+  };
+}();
+
+UserServices.permission = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            _context5.next = 2;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 2:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x4) {
+    return _ref5.apply(this, arguments);
   };
 }();
 

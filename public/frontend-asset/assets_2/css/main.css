@@ -2313,7 +2313,10 @@ button.slick-arrow.slick-next {
     .tab-slider-sub-product .image a {
       display: block; }
       .tab-slider-sub-product .image a img {
-        width: 100%; }
+        /* width: 100%; */
+        width: 250px;
+        height: 216px;
+       }
   .tab-slider-sub-product .product-content .product-categories {
     margin-bottom: 7px; }
     .tab-slider-sub-product .product-content .product-categories a {

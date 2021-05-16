@@ -11,6 +11,20 @@ UserServices.get = async () => {
     return res;
 };
 
+
+UserServices.all = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/users", {params: data})
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
+
+
 UserServices.login = async (data)=> {
     const res = await axios.post("/ManageUsers/users", data)
                         .then(response => {
