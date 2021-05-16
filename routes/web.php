@@ -53,6 +53,7 @@ Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
 Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewadmin');
 
+Route::post('users', [UsersController::class,'notify'])->name('users.notify');
 
 
 //Admin Route

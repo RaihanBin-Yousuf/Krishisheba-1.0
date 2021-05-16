@@ -115,20 +115,21 @@
         </div>
           <div class="row float right">
               <div class="col-md-12">
-                  <form action="mailto:info@w3docs.com" method="get" enctype="text/plain">
+                  <form action="{{route('users.notify')}}" method="post">
+                      @csrf
                         <div class="card card-info">
                             <div class="card-header">
-                              <a style="font-size: 20px;" class="btn btn float-left">SEND MAIL</a>                            
+                              <a style="font-size: 20px;" class="btn btn float-left">SEND Message</a>                            
                               <!-- <a class="btn btn-outline-primary float-right" href="{{route('users.index')}}"><i class="fas fa-sign-in-alt"></i>  Users Table </a> -->
                               <div class="card-body">                                 
                                 <div>
                                   <label for="name">Name:
-                                    <input type="text" name="name" id="name" />
+                                    <input type="text" value="Md rahi" name="name" id="name" />
                                   </label>
                                 </div>
                                 <div>
-                                  <label for="email">Email:
-                                    <input type="text" name="email" id="email" />
+                                  <label for="mobile">mobile:
+                                    <input type="text" value="01775585011" name="mobile" id="mobile" />
                                   </label>
                                 </div>
                                 <div>

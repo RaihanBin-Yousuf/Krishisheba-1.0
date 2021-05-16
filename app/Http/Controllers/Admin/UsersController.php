@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-
+use Twilio\Rest\Client;
 class UsersController extends Controller
 {
     public function __construct(User $user) {
@@ -150,6 +150,18 @@ class UsersController extends Controller
     public function edit($id)
     {
         //
+    }
+
+    public function notify(Request $request)
+    {
+        $input = $request->all();
+        // dd($input);
+        //first create twillow account
+        $account_sid = ""; //set your Twillow SID
+        $auth_token = ""; //set your Twillow Auth token
+        $twilio_number = ""; // set your twillo number
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create('+880'.$input['mobile'], ['from' => $twilio_number, 'body' => $input['comments']]);
     }
 
     /**
