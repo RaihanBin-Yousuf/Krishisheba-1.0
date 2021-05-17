@@ -25,6 +25,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('profile_img')->nullable();
             $table->string('nid_front_img')->nullable();
+            //for retail buyers
+            $table->string('trade_lisence_no')->nullable();
+            //for separate farmer
+            $table->string('farmer_id_no')->nullable();
             $table->integer('access_to')->default('0');
             $table->decimal('lat', 10, 8)->default('0.00');
             $table->decimal('lng', 11, 8)->default('0.00');
