@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Twilio\Rest\Client;
+
+use Laravel\Fortify\Rules\Password;
+
+use Illuminate\Support\Facades\Validator;
 class UsersController extends Controller
 {
     public function __construct(User $user) {
@@ -39,6 +43,8 @@ class UsersController extends Controller
         ->where('role','!=','admin');
         return view('backend.manage_users.index',compact('allusers'));
     }
+
+
     public function AllAdmin()
     {
         // $alladmin = User::where(['role'=>'admin','access_to'=>'0'])->get();
@@ -141,6 +147,8 @@ class UsersController extends Controller
         
     }
 
+    
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -157,11 +165,87 @@ class UsersController extends Controller
         $input = $request->all();
         // dd($input);
         //first create twillow account
-        $account_sid = ""; //set your Twillow SID
-        $auth_token = ""; //set your Twillow Auth token
-        $twilio_number = ""; // set your twillo number
+        $account_sid = "ACfbe5df71eebfa889982ce06258186e8c"; //set your Twillow SID
+        $auth_token = "03a327a3e028d01f85fad7e0a2fd4dc0"; //set your Twillow Auth token
+        $twilio_number = "+17472325099"; // set your twillo number
         $client = new Client($account_sid, $auth_token);
         $client->messages->create('+880'.$input['mobile'], ['from' => $twilio_number, 'body' => $input['comments']]);
+    }
+
+    public function newuser(Request $request)
+    {
+        $input= $request->all();
+        $this->validate($request, [
+            'name' => ['required', 'string'],
+            'password' => ['required', 'string', new Password, 'confirmed'],
+            'role' => ['required', 'string', 'max:10'],
+            'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+            'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+            'profile_img' => ['nullable', 'image', 'max:2048'],
+            'nid_front_img' => ['required', 'image', 'max:2048'],
+            ]);
+            // dd($input);
+            if(empty($input['profile_img']))
+            {
+                $input['profile_img']='';
+            }
+            else
+            {
+                $imageName =time().'.'.$input['profile_img']->extension();
+                $input['profile_img']->storeAs('public/profile', $imageName);
+                $input['profile_img'] =$imageName;
+            }
+
+            $imageName =time().'.'.$input['nid_front_img']->extension();
+            $input['nid_front_img']->storeAs('public/nidcard', $imageName);
+            $input['nid_front_img'] =$imageName;
+            // dd($input);
+            $token = "03a327a3e028d01f85fad7e0a2fd4dc0";
+            $twilio_sid = "ACfbe5df71eebfa889982ce06258186e8c";
+            $twilio_verify_sid = "VAf85b8c91235b361f166646e1e19e52d2";
+            $twilio = new Client($twilio_sid, $token);
+            $twilio->verify->v2->services($twilio_verify_sid)
+                ->verifications
+                ->create('+880'.$input['mobile'], "sms");
+
+            
+            User::create([
+                'name' => $input['name'],
+                'role' => $input['role'],
+                'nid' => $input['nid'],
+                'mobile' => $input['mobile'],
+                'email' => $input['email'],
+                'birth_date' => $input['birth_date'],
+                'address' => $input['address'],
+                'password' => Hash::make($input['password']),           
+                'profile_img' => $input['profile_img'],
+                'nid_front_img' => $input['nid_front_img'],
+                
+            ]);
+        return redirect()->route('verify')->with(['mobile' => $input['mobile']]);
+    }
+
+    public function verify(Request $request)
+    {
+        $data = $request->validate([
+            'verification_code' => ['required', 'numeric'],
+            'mobile' => ['required', 'string'],
+        ]);
+        /* Get credentials from .env */
+        $token = "03a327a3e028d01f85fad7e0a2fd4dc0";
+        $twilio_sid = "ACfbe5df71eebfa889982ce06258186e8c";
+        $twilio_verify_sid = "VAf85b8c91235b361f166646e1e19e52d2";
+        $twilio = new Client($twilio_sid, $token);
+        $verification = $twilio->verify->v2->services($twilio_verify_sid)
+            ->verificationChecks
+            ->create($data['verification_code'], array('to' => '+880'.$data['mobile']));
+        if ($verification->valid) {
+            $user = tap(User::where('mobile', $data['mobile']))->update(['access_to' => '99']);
+            /* Authenticate user */
+            Auth::login($user->first());
+            return redirect()->route('dashboard')->with(['message' => 'Phone number verified']);
+        }
+        return back()->with(['mobile' => $data['mobile'], 'error' => 'Invalid verification code entered!']);
     }
 
     /**

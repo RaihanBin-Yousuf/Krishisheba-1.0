@@ -55,6 +55,18 @@ Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewad
 
 Route::post('users', [UsersController::class,'notify'])->name('users.notify');
 
+Route::get('/verify', function () {
+    return view('auth.verify');
+})->name('verify');
+
+
+Route::get('/registration', function () {
+    return view('auth.register');
+})->name('registration');
+
+Route::post('/verify', [UsersController::class, 'verify'])->name('verify');
+
+Route::post('/registration', [UsersController::class, 'newuser'])->name('registration');
 
 //Admin Route
 Route::resource('allposts', CheckPostController::class);

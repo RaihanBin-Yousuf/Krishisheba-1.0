@@ -129,7 +129,7 @@
                                 </div>
                                 <div>
                                   <label for="mobile">mobile:
-                                    <input type="text" value="01775585011" name="mobile" id="mobile" />
+                                    <input type="text" value="{{$viewuser['mobile']}}" name="mobile" id="mobile" />
                                   </label>
                                 </div>
                                 <div>

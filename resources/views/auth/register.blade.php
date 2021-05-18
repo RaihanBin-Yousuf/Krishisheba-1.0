@@ -12,7 +12,7 @@
                 <div class="card">
                     <div class="card-header">নিবন্ধন করুন</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('register') }}" enctype='multipart/form-data'>
+                        <form method="POST" action="{{ route('registration') }}" enctype='multipart/form-data'>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
