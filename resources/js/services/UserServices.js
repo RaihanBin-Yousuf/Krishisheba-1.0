@@ -38,6 +38,19 @@ UserServices.login = async (data)=> {
             return res;
 }
 
+UserServices.updateLoc = async (data)=> {
+    const res = await axios.post("/ManageUsers/location", data)
+                        .then(response => {
+                            if(response.data.error) {
+                                $.notify({message : response.data.error.error}, {type: 'danger'});
+                            } else {
+                                $.notify({message : 'Location Update Successfully'}, {type: 'success'});
+                            }
+                            return response.data;
+                        }).catch(error=>{ return []; });
+            return res;
+}
+
 UserServices.logout = async (data)=> {
     const res = await axios.post("/ManageUsers/users", data)
                         .then(response => {

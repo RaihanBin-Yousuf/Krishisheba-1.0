@@ -1947,9 +1947,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-
-
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -2034,6 +2034,7 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
     _this.setSelectPosition = _this.setSelectPosition.bind(_assertThisInitialized(_this));
     _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
     _this.getAllUsers = _this.getAllUsers.bind(_assertThisInitialized(_this));
+    _this.getLocation = _this.getLocation.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -2042,30 +2043,80 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
     value: function componentDidMount() {
       this.getAuthUser();
       this.getAllUsers();
+      this.getLocation();
     }
   }, {
-    key: "getAuthUser",
+    key: "getLocation",
+    value: function getLocation() {
+      var _this2 = this;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          return _this2.showPosition(position);
+        });
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  }, {
+    key: "showPosition",
     value: function () {
-      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var data;
+      var _showPosition = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(position) {
+        var location, updateLocation;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                console.log('my position :>> ', position);
+                location = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+                console.log('my latitude lat::> ', position.coords.latitude);
+                console.log('my longitude lng::> ', position.coords.longitude);
+                _context.next = 6;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__.default.updateLoc(location);
+
+              case 6:
+                updateLocation = _context.sent;
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function showPosition(_x) {
+        return _showPosition.apply(this, arguments);
+      }
+
+      return showPosition;
+    }()
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
                 return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__.default.get();
 
               case 2:
-                data = _context.sent;
+                data = _context2.sent;
                 console.log('data :>> ', data);
                 this.setState(_defineProperty({}, 'authUser', data));
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getAuthUser() {
@@ -2077,28 +2128,28 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
   }, {
     key: "getAllUsers",
     value: function () {
-      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
         var response;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_4__.default.all({
                   'all': 'all'
                 });
 
               case 2:
-                response = _context2.sent;
+                response = _context3.sent;
                 console.log('users ::>', response);
                 this.setState(_defineProperty({}, 'users', response));
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function getAllUsers() {
@@ -2117,7 +2168,7 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       if (!this.state.authUser) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Loading__WEBPACK_IMPORTED_MODULE_5__.default, {});
@@ -2141,20 +2192,20 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.GoogleMap, {
           defaultZoom: 17,
           defaultCenter: {
-            lat: Number(_this2.state.authUser.lat),
-            lng: Number(_this2.state.authUser.lng)
+            lat: Number(_this3.state.authUser.lat),
+            lng: Number(_this3.state.authUser.lng)
           },
-          children: [_this2.state.users.map(function (position) {
+          children: [_this3.state.users.map(function (position) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.Marker, {
               position: {
                 lat: Number(position.lat),
                 lng: Number(position.lng)
               },
               onClick: function onClick() {
-                _this2.setSelectPosition(position);
+                _this3.setSelectPosition(position);
               },
               onMouseEnter: function onMouseEnter() {
-                _this2.setSelectPosition(position);
+                _this3.setSelectPosition(position);
               }
             }, position.id);
           }), userDetails && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_3__.InfoWindow, {
@@ -4007,18 +4058,13 @@ var Index = /*#__PURE__*/function (_Component) {
       var _this5 = this;
 
       var productArray = this.state.addCart;
-
-      var checkItems = _.filter(this.state.addCart, function (cart) {
-        //checking same product can't insert twice
-        return cart.id == product.id;
+      var newArray = productArray.filter(function (current) {
+        return current.id !== product.id;
       });
-
-      if (checkItems.length > 0) {
-        productArray.pop(product);
-        this.setState(_defineProperty({}, 'addCart', productArray), function () {
-          _this5.totalPrice();
-        });
-      }
+      console.log('productArray :>> ', newArray);
+      this.setState(_defineProperty({}, 'addCart', newArray), function () {
+        _this5.totalPrice();
+      });
     }
   }, {
     key: "render",
@@ -14770,7 +14816,7 @@ UserServices.login = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.logout = /*#__PURE__*/function () {
+UserServices.updateLoc = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -14778,7 +14824,7 @@ UserServices.logout = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
+            return axios.post("/ManageUsers/location", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -14787,7 +14833,7 @@ UserServices.logout = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Logout Successfully'
+                  message: 'Location Update Successfully'
                 }, {
                   type: 'success'
                 });
@@ -14815,7 +14861,7 @@ UserServices.logout = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.permission = /*#__PURE__*/function () {
+UserServices.logout = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -14823,12 +14869,24 @@ UserServices.permission = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
-              return response.data.data;
+            return axios.post("/ManageUsers/users", data).then(function (response) {
+              if (response.data.error) {
+                $.notify({
+                  message: response.data.error.error
+                }, {
+                  type: 'danger'
+                });
+              } else {
+                $.notify({
+                  message: 'Logout Successfully'
+                }, {
+                  type: 'success'
+                });
+              }
+
+              return response.data;
             })["catch"](function (error) {
-              return error;
+              return [];
             });
 
           case 2:
@@ -14845,6 +14903,39 @@ UserServices.permission = /*#__PURE__*/function () {
 
   return function (_x4) {
     return _ref5.apply(this, arguments);
+  };
+}();
+
+UserServices.permission = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            _context6.next = 2;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 2:
+            res = _context6.sent;
+            return _context6.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function (_x5) {
+    return _ref6.apply(this, arguments);
   };
 }();
 

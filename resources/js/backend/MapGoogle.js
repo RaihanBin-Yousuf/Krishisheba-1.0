@@ -22,13 +22,35 @@ export default class MapGoogle extends Component {
         this.setSelectPosition = this.setSelectPosition.bind(this);
         this.getAuthUser = this.getAuthUser.bind(this);
         this.getAllUsers = this.getAllUsers.bind(this);
+        this.getLocation= this.getLocation.bind(this);
 
     }
 
     componentDidMount() {
         this.getAuthUser();
         this.getAllUsers();
+        this.getLocation();
     }
+
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position=>this.showPosition(position));
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+    }
+
+    async showPosition(position) {
+        console.log('my position :>> ', position);
+        const location = {
+            lat: position.coords.latitude,
+            lng:  position.coords.longitude
+        }
+        console.log('my latitude lat::> ',position.coords.latitude);
+        console.log('my longitude lng::> ', position.coords.longitude);
+        const updateLocation = await UserServices.updateLoc(location);
+      }
+  
 
     async getAuthUser() {
         const data = await UserServices.get();

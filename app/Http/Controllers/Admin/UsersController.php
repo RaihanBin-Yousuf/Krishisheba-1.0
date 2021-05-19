@@ -109,6 +109,7 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         if(request()->ajax()) {
+            
             if(request()->logout) {
                 $user = Auth::logout();
                 // dd($user);
@@ -134,6 +135,16 @@ class UsersController extends Controller
         'alert-type'=>'info'
          );
          return Redirect()->back()->with($notification);
+    }
+
+    public function location()
+    {
+        if(request()->ajax()) {
+                $input = request()->all();
+                $id = Auth::user()->id;
+                $data = $this->user->where('id',$id)->update($input);
+                return $this->sendResponse($data);
+        }
     }
 
     /**

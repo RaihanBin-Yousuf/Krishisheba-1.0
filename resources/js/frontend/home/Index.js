@@ -191,18 +191,13 @@ export default class Index extends Component {
         });
     }
 
-
     removeProduct(product) {
         const productArray = this.state.addCart;
-        const checkItems = _.filter(this.state.addCart, function(cart) { //checking same product can't insert twice
-            return cart.id == product.id;
-        });
-        if(checkItems.length>0) { 
-            productArray.pop(product);
-            this.setState({
-                ['addCart'] : productArray,
-            },()=>{this.totalPrice()});
-        }
+        const newArray = productArray.filter((current)=> current.id !==product.id)
+        console.log('productArray :>> ', newArray);
+        this.setState({
+            ['addCart'] : newArray,
+        },()=>{this.totalPrice()});
     }
 
     render() {
