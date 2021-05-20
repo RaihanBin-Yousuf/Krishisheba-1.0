@@ -8,7 +8,8 @@ export default class TabSlider extends Component {
         this.state = {
             feature: [],
             new_arrival: [],
-            on_sale: []
+            on_sale: [],
+            farmer_sale: [],
         }
         this.getManagePost = this.getManagePost.bind(this);
     }
@@ -23,12 +24,40 @@ export default class TabSlider extends Component {
             ['feature']: res.feature,
             ['new_arrival']: res.new,
             ['on_sale']: res.sale,
+            ['farmer_sale']: res.farmer,
         })
 
     }
 
     render() {
         let pdata = this.props.data ? this.props.data.count : '0';
+        let farmerlist = '';
+        farmerlist = this.state.farmer_sale.map(farmer=> (
+            farmerlist = <div className="gf-product tab-slider-sub-product" key={farmer.id}>
+                                <div className="image">
+                                    <a onClick={()=>this.props.viewDetails(farmer)}>
+                                        <img src={'/storage/posts/'+farmer.product_image} className="postsimage"/>
+                                    </a>
+                                    <div className="product-hover-icons ">
+                                        <a onClick={()=>this.props.addProduct(farmer)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                        <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                        <a onClick={()=>this.props.viewDetails(farmer)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                    </div>
+                                </div>
+                                <div className="product-content">
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্য: {farmer.product_name}</a>
+                                    </div>
+                                    <div className="product-categories">
+                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {farmer.category}</a>
+                                    </div>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {farmer.total_weight} {farmer.weight_unit}</a></h3>
+                                    <div className="price-box">
+                                        <span className="discounted-price">১ {farmer.weight_unit} ৳ {farmer.price_per_unit} </span>
+                                    </div>
+                                </div>
+                            </div>
+                            ));
         let featureList = '';
         featureList = this.state.feature.map(feature=> (
             featureList = <div className="gf-product tab-slider-sub-product" key={feature.id}>
@@ -165,6 +194,8 @@ export default class TabSlider extends Component {
                                                 aria-selected="false">ছাড় % পণ্য</a>
                                             <a className="nav-item nav-link" id="nav-onsale-tab" data-toggle="tab" href="#on-sale" role="tab"
                                                 aria-selected="false">বিক্রিত পণ্য</a>
+                                            <a className="nav-item nav-link" id="farmer-tab" data-toggle="tab" href="#farmer" role="tab"
+                                                aria-selected="false">কৃষকদের পণ্য তালিকা</a>
                                         </div>
                                     </nav>
                                     <div className="tab-content" id="nav-tabContent">
@@ -188,6 +219,13 @@ export default class TabSlider extends Component {
                                             <div className="tab-slider-container bg-white shadow">
                                                 <Slider {...settings}>
                                                         {onSaleList}
+                                                </Slider>
+                                            </div>
+                                        </div>
+                                        <div className="tab-pane fade" id="farmer" role="tabpanel" aria-labelledby="farmer-tab">
+                                            <div className="tab-slider-container bg-white shadow">
+                                                <Slider {...settings}>
+                                                        {farmerlist}
                                                 </Slider>
                                             </div>
                                         </div>

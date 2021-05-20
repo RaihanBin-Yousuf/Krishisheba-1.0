@@ -11,7 +11,7 @@ class ManagePost extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id','product_name','total_weight','weight_unit',
+        'user_id', 'user_role','product_name','total_weight','weight_unit',
         'price_per_unit','advance_payment','category','sub_category',
         'production_type','product_production_year','packaging_method','initial_delivery_date',
         'final_delivery_date','offer_end_date','own_vehicle','divisions',
@@ -68,8 +68,9 @@ class ManagePost extends Model
            $feature = $this->skip(0)->take(10)->get();
             $onSale = $this->skip(10)->take(10)->get();
             $newArrival = $this->skip(20)->take(10)->get();
+            $farmerlist = $this->where('user_role', 'farmer')->get();
         }
-        $data = ['feature'=>$feature, 'sale'=>$onSale, 'new'=>$newArrival];
+        $data = ['feature'=>$feature, 'sale'=>$onSale, 'new'=>$newArrival, 'farmer'=> $farmerlist];
         return $data;
     }
 

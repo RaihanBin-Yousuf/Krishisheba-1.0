@@ -62,6 +62,7 @@ class ManagePostController extends Controller
     {
         $input = $request->all();
         $input['user_id']=Auth::user()->id;
+        $input['user_role']=Auth::user()->role;
         $product= $this->product->getbyProductId($input['product_id']);
         $input['product_name'] =$product->name;
         $category = $this->category->getbyCategoryId($input['category_id']);

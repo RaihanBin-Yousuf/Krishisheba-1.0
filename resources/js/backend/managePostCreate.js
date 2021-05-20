@@ -4,6 +4,7 @@ import CategoryServices from '../services/CategoryService';
 import PostService from '../services/PostService';
 import ProductServices from '../services/ProductServices';
 import SubcateoryService from '../services/SubcateoryService';
+import UserServices from '../services/UserServices';
 class Create extends Component {
     constructor(props) {
         super(props);
@@ -18,6 +19,7 @@ class Create extends Component {
         let datethen = nextDate.toISOString().substr(0,10);
         
         this.state = {
+            authuser: [],
             submitshowoff: false,
             productslist: [],
             categorieslist: [],
@@ -55,10 +57,17 @@ class Create extends Component {
             this.divisionsList = this.divisionsList.bind(this);
             this.thanaList = this.thanaList.bind(this);
             this.onSubmitShowoff = this.onSubmitShowoff.bind(this);
+            this.getUser = this.getUser.bind(this);
         }
 
         componentDidMount() {
             this.getProduct();
+            this.getUser();
+        }
+
+       async getUser() {
+            const user = await UserServices.get();
+            this.setState({ ['authuser']: user});
         }
 
         onSubmitShowoff() {
@@ -115,6 +124,7 @@ class Create extends Component {
             if (name == 'product_image') {
                 value = target.files[0];
             };
+
             this.setState({
                   post :{
                     ...this.state.post,
@@ -125,12 +135,50 @@ class Create extends Component {
     
         async handleSubmit(event) {
             event.preventDefault();
-            const cpost = this.state.post;
-            let formdata = new FormData();
-            Object.keys(cpost).map(key => {
-                formdata.append(key, cpost[key]);
-            });
-            const res = await PostService.save(formdata);
+            if(this.state.authuser.role == 'farmer') {
+                const cpost = this.state.post;
+                let formdata = new FormData();
+                Object.keys(cpost).map(key => {
+                    formdata.append(key, cpost[key]);
+                });
+                const res = await PostService.save(formdata);
+            } else {
+                if(this.state.post.weight_unit == 'কেজি') {
+                    if(this.state.post.total_weight > 800) {
+                        $.notify({message: '৮০০ কেজির উপরে নেয়া যাবে না.'}, {type: 'danger'});
+                    } else {
+                            const cpost = this.state.post;
+                            let formdata = new FormData();
+                            Object.keys(cpost).map(key => {
+                                formdata.append(key, cpost[key]);
+                            });
+                            const res = await PostService.save(formdata);
+                    }
+                } else if(this.state.post.weight_unit == 'মণ') {
+                    if(this.state.post.total_weight > 20) {
+                        $.notify({message: '২০ মনের উপরে নেয়া যাবে না'}, {type: 'danger'});
+                    } else {
+                            const cpost = this.state.post;
+                            let formdata = new FormData();
+                            Object.keys(cpost).map(key => {
+                                formdata.append(key, cpost[key]);
+                            });
+                            const res = await PostService.save(formdata);
+                    }
+                } else if(this.state.post.weight_unit == 'পিস') {
+                    if(this.state.post.total_weight > 80) {
+                        $.notify({message: '৮০ পিস এর উপরে নেয়া যাবে না'}, {type: 'danger'});
+                    } else {
+                            const cpost = this.state.post;
+                            let formdata = new FormData();
+                            Object.keys(cpost).map(key => {
+                                formdata.append(key, cpost[key]);
+                            });
+                            const res = await PostService.save(formdata);
+                }
+                }
+
+            }
             // if (res.success) {
             //     this.props.showForm(null);
             // }
@@ -527,7 +575,7 @@ class Create extends Component {
         }
     render() {
         console.log('post Data');
-        console.log(this.state.post);
+        console.log(this.state.authuser);
         let productDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.productslist) {
                 this.state.productslist.map(product=>(
@@ -581,6 +629,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group" >
                                 <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
+                                {this.state.authuser.role == 'farmer'?
                                 <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
                                     <option value="">নির্বাচন করুন</option> 
                                     <option value="কেজি">কেজি</option>
@@ -588,7 +637,13 @@ class Create extends Component {
                                     <option value="পিস">পিস</option>  
                                     <option value="টন">টন</option>
                                     <option value="মেট্রিক টন">মেট্রিক টন</option>                                 
-                                </select>
+                                </select> :
+                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
+                                    <option value="">নির্বাচন করুন</option> 
+                                    <option value="কেজি">কেজি</option>
+                                    <option value="মণ">মণ</option>
+                                    <option value="পিস">পিস</option>                                 
+                                </select> }
                             </div>
                         </div>
         
@@ -665,7 +720,8 @@ class Create extends Component {
                                     <option value="কেজি">1 কেজি</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
-                                    <option value="1 টন">1 টন</option>
+                                    {this.state.authuser.role == 'farmer' ?
+                                    <option value="1 টন">1 টন</option>: ''}
                                     <option disabled>অন্য প্যাকেজিং পদ্ধতি(মন্তব্যে উল্লেখ করুন)</option>
                                 </select>
                             </div>

@@ -16,6 +16,7 @@ class CreateManagePostsTable extends Migration
         Schema::create('manage_posts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->string('user_role')->nullable();
             $table->string('product_name')->nullable();
             $table->integer('total_weight')->nullable();
             $table->string('weight_unit')->nullable();
