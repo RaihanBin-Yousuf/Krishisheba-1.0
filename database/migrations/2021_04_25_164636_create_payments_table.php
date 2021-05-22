@@ -15,17 +15,22 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->nullable();
-            $table->string('product_name')->nullable();
-            $table->integer('total_weight')->nullable();
-            $table->string('weight_unit')->nullable();
-            $table->integer('price_per_unit')->nullable();
+            $table->integer('admin_accept_id');
+            $table->integer('seller_id');
+            $table->integer('buyer_id');
+            $table->string('product_name');
+            $table->bigInteger('total_weight');
+            $table->double('total_amount', 15, 4);
+            $table->string('weight_unit');
+            $table->string('service_fee');
+            $table->integer('price_per_unit');
             $table->string('advance_payment')->nullable();
-            $table->string('category')->nullable();
-            $table->string('sub_category')->nullable();
+            $table->string('category');
+            $table->string('sub_category');
             $table->string('production_type')->nullable();
             $table->string('product_production_year')->nullable();
             $table->string('packaging_method')->nullable();
+            $table->boolean('accept_payment')->default(0);
             $table->timestamps();
         });
     }

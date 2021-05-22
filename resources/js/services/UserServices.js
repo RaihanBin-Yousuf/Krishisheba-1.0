@@ -11,6 +11,17 @@ UserServices.get = async () => {
     return res;
 };
 
+UserServices.buyer = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/users/"+data)
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
 
 UserServices.all = async (data) => {
     const res = await axios

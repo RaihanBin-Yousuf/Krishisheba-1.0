@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Amount;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 
-class AmountController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AmountController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Amount  $amount
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Amount $amount)
+    public function show(Transaction $transaction)
     {
         //
     }
@@ -52,10 +52,10 @@ class AmountController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Amount  $amount
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Amount $amount)
+    public function edit(Transaction $transaction)
     {
         //
     }
@@ -64,10 +64,10 @@ class AmountController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Amount  $amount
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Amount $amount)
+    public function update(Request $request, Transaction $transaction)
     {
         //
     }
@@ -75,10 +75,10 @@ class AmountController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Amount  $amount
+     * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Amount $amount)
+    public function destroy(Transaction $transaction)
     {
         //
     }

@@ -155,7 +155,9 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        
+        $buyer = User::findorfail($id);
+        // dd($id);
+        return $this->sendResponse($buyer);
     }
 
     

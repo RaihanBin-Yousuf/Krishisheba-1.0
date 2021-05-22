@@ -3012,8 +3012,6 @@ var Create = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      console.log('post Data');
-      console.log(this.state.authuser);
       var productDropdown = [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("option", {
         children: "\u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
       })];
@@ -4448,8 +4446,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _services_PaymentService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/PaymentService */ "./resources/js/services/PaymentService.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 
 
@@ -4485,6 +4496,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Bkash = /*#__PURE__*/function (_Component) {
   _inherits(Bkash, _Component);
 
@@ -4498,11 +4510,21 @@ var Bkash = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       showCount: 0,
-      adminAccount: []
+      adminAccount: [],
+      buyer: [],
+      buyercontact: _this.props.data.authUser.mobile,
+      seller: _this.props.data.authUser,
+      productprice: _this.props.data.subTotal,
+      servicefee: _this.props.data.serviceFee,
+      product: _this.props.data.addCart[0],
+      code: ''
     };
     _this.setCount = _this.setCount.bind(_assertThisInitialized(_this));
     _this.setunCount = _this.setunCount.bind(_assertThisInitialized(_this));
     _this.permissionUser = _this.permissionUser.bind(_assertThisInitialized(_this));
+    _this.buyerDetails = _this.buyerDetails.bind(_assertThisInitialized(_this));
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -4510,31 +4532,64 @@ var Bkash = /*#__PURE__*/function (_Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.permissionUser();
+      this.buyerDetails();
     }
   }, {
-    key: "permissionUser",
+    key: "buyerDetails",
     value: function () {
-      var _permissionUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var user;
+      var _buyerDetails = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var buyerId, buyer;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return _services_UserServices__WEBPACK_IMPORTED_MODULE_2__.default.permission({
-                  'access_to': this.props.data.authUser.access_to
-                });
+                buyerId = this.props.data.addCart[0];
+                _context.next = 3;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_2__.default.buyer(buyerId.user_id);
 
-              case 2:
-                user = _context.sent;
-                this.setState(_defineProperty({}, 'adminAccount', user[0]));
+              case 3:
+                buyer = _context.sent;
+                console.log('buyer details:>> ', buyer);
+                this.setState(_defineProperty({}, 'buyer', buyer));
 
-              case 4:
+              case 6:
               case "end":
                 return _context.stop();
             }
           }
         }, _callee, this);
+      }));
+
+      function buyerDetails() {
+        return _buyerDetails.apply(this, arguments);
+      }
+
+      return buyerDetails;
+    }()
+  }, {
+    key: "permissionUser",
+    value: function () {
+      var _permissionUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_2__.default.permission({
+                  'access_to': this.props.data.authUser.access_to
+                });
+
+              case 2:
+                user = _context2.sent;
+                this.setState(_defineProperty({}, 'adminAccount', user[0]));
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
       }));
 
       function permissionUser() {
@@ -4559,49 +4614,115 @@ var Bkash = /*#__PURE__*/function (_Component) {
       this.setState(_defineProperty({}, 'showCount', count));
     }
   }, {
+    key: "handleInputChange",
+    value: function handleInputChange(event) {
+      var target = event.target;
+      var name = target.name;
+      var value = target.value;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+
+      var digits_only = function digits_only(string) {
+        return _toConsumableArray(string).every(function (c) {
+          return '0123456789'.includes(c);
+        });
+      };
+
+      if (this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact)) {
+        if (this.state.code.length == 6) {
+          var _digits_only = function _digits_only(string) {
+            return _toConsumableArray(string).every(function (c) {
+              return '0123456789'.includes(c);
+            });
+          };
+
+          if (_digits_only(this.state.code)) {
+            var cpost = {
+              adminAccount: JSON.stringify(this.state.adminAccount),
+              buyer: JSON.stringify(this.state.buyer),
+              seller: JSON.stringify(this.state.seller),
+              productprice: JSON.stringify(this.state.productprice),
+              servicefee: JSON.stringify(this.state.servicefee),
+              product: JSON.stringify(this.state.product),
+              code: this.state.code
+            };
+            var res = _services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.save(cpost);
+            console.log('res :>> ', res);
+
+            if (res.success) {
+              this.setunCount();
+            }
+          } else {
+            $.notify({
+              message: 'Please Enter only Digit code'
+            }, {
+              type: 'warning'
+            });
+          }
+        } else {
+          $.notify({
+            message: 'Please Enter Six digit Code'
+          }, {
+            type: 'warning'
+          });
+        }
+      } else {
+        $.notify({
+          message: 'Invalid Number'
+        }, {
+          type: 'danger'
+        });
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var showContent = '';
+      console.log('this. :>> ', this.state);
 
       if (this.state.showCount == 0) {
-        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "bkash-full-details w-75 p-2 ml-5 text-light mt-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u09AE\u09BE\u09B0\u09CD\u099A\u09C7\u09A8\u09CD\u099F: "
             }), this.state.adminAccount.name]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u0995\u09CD\u09B0\u09C7\u09A4\u09BE \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0: "
-            }), "01919123451"]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+            }), this.state.buyer.mobile]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F: "
             }), "\u09F3 ", this.props.data.totalPrice]
           })]
         });
       } else {
-        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
           className: "bkash-total-details bg-white p-3",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "col",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
                 className: "font-weight-bold",
                 children: "\u09AE\u09BE\u09B0\u09CD\u099A\u09C7\u09A8\u09CD\u099F \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F:"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   className: "font-weight-bold",
                   children: "\u09A8\u09AE\u09CD\u09AC\u09B0:"
                 }), " ", this.state.adminAccount.mobile]
               })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "col",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h1", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
                 children: ["\u09F3 ", this.props.data.totalPrice]
               })
             })]
@@ -4609,76 +4730,89 @@ var Bkash = /*#__PURE__*/function (_Component) {
         });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "bkash-background",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "bkash-cart",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "bkash-header ",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
               src: "/bkash/bkash_payment_logo.png",
               width: "450px",
               alt: "",
               srcset: ""
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "bkash-body text-center mt-2",
-            children: [showContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+            children: [showContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "bkash-input mt-5",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
                 action: "",
-                children: [this.state.showCount == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                onSubmit: this.handleSubmit,
+                children: [this.state.showCount == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "bkash-first-page",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center font-weight-bold text-light",
                     children: "\u0986\u09AA\u09A8\u09BE\u09B0 \u09AC\u09BF\u0995\u09BE\u09B6 \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center mt-3",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                       type: "text",
                       size: "35",
-                      value: this.props.data.authUser.mobile,
+                      name: "buyercontact",
+                      value: this.state.buyercontact,
+                      onChange: this.handleInputChange,
                       placeholder: "e.g. 01XXXXXX"
                     })
                   })]
-                }) : '', this.state.showCount == 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                }) : '', this.state.showCount == 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "bkash-second-page",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center font-weight-bold text-light",
                     children: "\u0997\u09CB\u09AA\u09A8 \u0995\u09CB\u09A1"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center mt-3",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                       type: "password",
+                      onChange: this.handleInputChange,
+                      name: "code",
+                      max: "6",
                       size: "35"
                     })
                   })]
-                }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "mt-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                     className: "text-center text-light",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       className: "font-weight-bold",
                       children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4"
-                    }), " \u0995\u09CD\u09B2\u09BF\u0995 \u0995\u09B0\u09C7\u0964 \u0986\u09AA\u09A8\u09BF \u09B6\u09B0\u09CD\u09A4\u09BE\u09A6\u09BF \u098F\u09AC\u0982 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+                    }), " \u0995\u09CD\u09B2\u09BF\u0995 \u0995\u09B0\u09C7\u0964 \u0986\u09AA\u09A8\u09BF \u09B6\u09B0\u09CD\u09A4\u09BE\u09A6\u09BF \u098F\u09AC\u0982 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       className: "font-weight-bold",
                       children: "\u09B6\u09B0\u09CD\u09A4\u0997\u09C1\u09B2\u09BF\u09A4\u09C7 \u09B8\u09AE\u09CD\u09AE\u09A4\u09BF \u09A6\u09BF\u099A\u09CD\u099B\u09C7\u09A8\u0964"
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "row bkash-btn mt-4",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  children: [this.state.showCount == 2 ?
+                  /*#__PURE__*/
+                  // <div className="col p-3 btn btn-secondary" >
+                  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                    type: "submit",
+                    className: "col p-3 btn btn-secondary",
+                    children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4 \u0995\u09B0\u09C1\u09A8"
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "col p-3 btn btn-secondary",
                     onClick: this.setCount,
                     children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4 \u0995\u09B0\u09C1\u09A8"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "col p-3 btn btn-secondary",
                     onClick: this.setunCount,
                     children: "\u09AC\u09BE\u09A4\u09BF\u09B2 \u0995\u09B0\u09C1\u09A8"
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "bkash-help p-3",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h3", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
                     children: "16247"
                   })
                 })]
@@ -4775,10 +4909,12 @@ var Cart = /*#__PURE__*/function (_Component) {
   }, {
     key: "showCheck",
     value: function showCheck() {
-      if (this.props.data.authUser.data == "not found") {
+      if (this.props.data.authUser == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
-        if (this.props.data.authUser.data.access_to == 0) {
+        console.log('auth user data :>> ', this.props.data.authUser);
+
+        if (this.props.data.authUser.access_to == 0) {
           $.notify({
             message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
           }, {
@@ -14598,6 +14734,68 @@ ManagePostService.paginate = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/services/PaymentService.js":
+/*!*************************************************!*\
+  !*** ./resources/js/services/PaymentService.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+var PaymentService = {};
+
+PaymentService.save = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(data) {
+    var urlPayement, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            urlPayement = "/payment";
+            _context.next = 3;
+            return axios.post(urlPayement, data).then(function (response) {
+              $.notify({
+                message: 'Payment Done Successfullys'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 3:
+            res = _context.sent;
+            return _context.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee);
+  }));
+
+  return function (_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PaymentService);
+
+/***/ }),
+
 /***/ "./resources/js/services/PostService.js":
 /*!**********************************************!*\
   !*** ./resources/js/services/PostService.js ***!
@@ -14993,7 +15191,7 @@ UserServices.get = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
   }, _callee);
 }));
 
-UserServices.all = /*#__PURE__*/function () {
+UserServices.buyer = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
@@ -15001,9 +15199,7 @@ UserServices.all = /*#__PURE__*/function () {
         switch (_context2.prev = _context2.next) {
           case 0:
             _context2.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
+            return axios.get("/ManageUsers/users/" + data).then(function (response) {
               return response.data.data;
             })["catch"](function (error) {
               return error;
@@ -15026,7 +15222,7 @@ UserServices.all = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.login = /*#__PURE__*/function () {
+UserServices.all = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -15034,24 +15230,12 @@ UserServices.login = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
-              if (response.data.error) {
-                $.notify({
-                  message: response.data.error.error
-                }, {
-                  type: 'danger'
-                });
-              } else {
-                $.notify({
-                  message: 'Login Successfully'
-                }, {
-                  type: 'success'
-                });
-              }
-
-              return response.data;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
             })["catch"](function (error) {
-              return [];
+              return error;
             });
 
           case 2:
@@ -15071,7 +15255,7 @@ UserServices.login = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.updateLoc = /*#__PURE__*/function () {
+UserServices.login = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -15079,7 +15263,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios.post("/ManageUsers/location", data).then(function (response) {
+            return axios.post("/ManageUsers/users", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -15088,7 +15272,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Location Update Successfully'
+                  message: 'Login Successfully'
                 }, {
                   type: 'success'
                 });
@@ -15116,7 +15300,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.logout = /*#__PURE__*/function () {
+UserServices.updateLoc = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -15124,7 +15308,7 @@ UserServices.logout = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
+            return axios.post("/ManageUsers/location", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -15133,7 +15317,7 @@ UserServices.logout = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Logout Successfully'
+                  message: 'Location Update Successfully'
                 }, {
                   type: 'success'
                 });
@@ -15161,7 +15345,7 @@ UserServices.logout = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.permission = /*#__PURE__*/function () {
+UserServices.logout = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
@@ -15169,12 +15353,24 @@ UserServices.permission = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
-              return response.data.data;
+            return axios.post("/ManageUsers/users", data).then(function (response) {
+              if (response.data.error) {
+                $.notify({
+                  message: response.data.error.error
+                }, {
+                  type: 'danger'
+                });
+              } else {
+                $.notify({
+                  message: 'Logout Successfully'
+                }, {
+                  type: 'success'
+                });
+              }
+
+              return response.data;
             })["catch"](function (error) {
-              return error;
+              return [];
             });
 
           case 2:
@@ -15191,6 +15387,39 @@ UserServices.permission = /*#__PURE__*/function () {
 
   return function (_x5) {
     return _ref6.apply(this, arguments);
+  };
+}();
+
+UserServices.permission = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.next = 2;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 2:
+            res = _context7.sent;
+            return _context7.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7);
+  }));
+
+  return function (_x6) {
+    return _ref7.apply(this, arguments);
   };
 }();
 

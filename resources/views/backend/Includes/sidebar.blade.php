@@ -159,7 +159,7 @@
                 <!-- Admin Access -->
 
                 <!-- seller Access -->
-                @if(auth()->user()->role == 'seller')
+                @if(auth()->user()->role == 'seller' or auth()->user()->role == 'farmer')
                 <li class="nav-item">
                   <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
                     <i class="nav-icon fas fa-tachometer-alt"></i>

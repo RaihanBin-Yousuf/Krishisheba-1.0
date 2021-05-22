@@ -574,8 +574,6 @@ class Create extends Component {
             document.getElementById("polic_sta").innerHTML= thanaList;
         }
     render() {
-        console.log('post Data');
-        console.log(this.state.authuser);
         let productDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.productslist) {
                 this.state.productslist.map(product=>(
