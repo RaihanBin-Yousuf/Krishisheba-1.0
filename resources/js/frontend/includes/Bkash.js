@@ -76,7 +76,6 @@ export default class Bkash extends Component {
                         code: this.state.code,
                     }
                     const res =await PaymentService.save(cpost);
-                    console.log('res :>> ', res);
                     if(res.success) {
                         this.setState({ ['showCount']: 0},()=>{this.props.bkashForm(null);});
                         this.props.showPage('map');
@@ -96,7 +95,6 @@ export default class Bkash extends Component {
 
     render() {
         let showContent = '';
-        console.log('this. :>> ', this.state);
         if(this.state.showCount == 0) {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
                             <p><span className="font-weight-bold">মার্চেন্ট: </span>{this.state.adminAccount.name}</p>

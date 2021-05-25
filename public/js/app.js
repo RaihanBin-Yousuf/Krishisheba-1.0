@@ -4656,12 +4656,12 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 };
 
                 if (!(this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact))) {
-                  _context3.next = 20;
+                  _context3.next = 19;
                   break;
                 }
 
                 if (!(this.state.code.length == 6)) {
-                  _context3.next = 17;
+                  _context3.next = 16;
                   break;
                 }
 
@@ -4672,7 +4672,7 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 };
 
                 if (!_digits_only(this.state.code)) {
-                  _context3.next = 14;
+                  _context3.next = 13;
                   break;
                 }
 
@@ -4690,7 +4690,6 @@ var Bkash = /*#__PURE__*/function (_Component) {
 
               case 9:
                 res = _context3.sent;
-                console.log('res :>> ', res);
 
                 if (res.success) {
                   this.setState(_defineProperty({}, 'showCount', 0), function () {
@@ -4699,39 +4698,39 @@ var Bkash = /*#__PURE__*/function (_Component) {
                   this.props.showPage('map'); // this.setunCount();
                 }
 
-                _context3.next = 15;
+                _context3.next = 14;
                 break;
 
-              case 14:
+              case 13:
                 $.notify({
                   message: 'Please Enter only Digit code'
                 }, {
                   type: 'warning'
                 });
 
-              case 15:
-                _context3.next = 18;
+              case 14:
+                _context3.next = 17;
                 break;
 
-              case 17:
+              case 16:
                 $.notify({
                   message: 'Please Enter Six digit Code'
                 }, {
                   type: 'warning'
                 });
 
-              case 18:
-                _context3.next = 21;
+              case 17:
+                _context3.next = 20;
                 break;
 
-              case 20:
+              case 19:
                 $.notify({
                   message: 'Invalid Number'
                 }, {
                   type: 'danger'
                 });
 
-              case 21:
+              case 20:
               case "end":
                 return _context3.stop();
             }
@@ -4749,7 +4748,6 @@ var Bkash = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var showContent = '';
-      console.log('this. :>> ', this.state);
 
       if (this.state.showCount == 0) {
         showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -4972,13 +4970,9 @@ var Cart = /*#__PURE__*/function (_Component) {
   }, {
     key: "showCheck",
     value: function showCheck() {
-      console.log('this.props.data :>> ', this.props.data);
-
       if (this.props.data.authUser.data == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
-        console.log('auth user data :>> ', this.props.data.authUser);
-
         if (this.props.data.authUser.access_to == 0 || this.props.data.authUser.access_to == 99) {
           $.notify({
             message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
@@ -5251,6 +5245,17 @@ var Checkout = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(Checkout, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.data.addCart.length > 1) {
+        $.notify({
+          message: 'প্রতিবারে একের অধিক প্রোডাক্ট কিনা সম্ভম নয়।'
+        }, {
+          type: 'danger'
+        });
+      }
+    }
+  }, {
     key: "bkashForm",
     value: function bkashForm(data) {
       if (this.props.data.authUser.access_to == 0) {
@@ -5268,6 +5273,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log('this.props.data.addCart.length :>> ', this.props.data.addCart.length);
       var pdata = this.props.data;
       var payoutlist = '';
       payoutlist = this.props.data.addCart.map(function (cart) {
@@ -5277,12 +5283,26 @@ var Checkout = /*#__PURE__*/function (_Component) {
           })]
         });
       });
+      var bkash = '';
+
+      if (this.props.data.addCart.length > 1) {
+        $.notify({
+          message: 'প্রতিবারে একের অধিক প্রোডাক্ট কিনা সম্ভম নয়।'
+        }, {
+          type: 'danger'
+        });
+      } else {
+        if (this.state.showBkash == 'show') {
+          bkash = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Bkash__WEBPACK_IMPORTED_MODULE_1__.default, {
+            data: this.props.data,
+            showPage: this.props.showPage,
+            bkashForm: this.bkashForm
+          });
+        }
+      }
+
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-        children: [this.state.showBkash == 'show' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Bkash__WEBPACK_IMPORTED_MODULE_1__.default, {
-          data: this.props.data,
-          showPage: this.props.showPage,
-          bkashForm: this.bkashForm
-        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
+        children: [bkash, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
             className: "page-section section mb-50",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {

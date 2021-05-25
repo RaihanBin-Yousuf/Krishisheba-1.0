@@ -8,6 +8,12 @@ export default class Checkout extends Component {
         };
         this.bkashForm = this.bkashForm.bind(this);
     }
+    
+    componentDidMount() {
+        if(this.props.data.addCart.length>1) {
+            $.notify({message : 'প্রতিবারে একের অধিক প্রোডাক্ট কিনা সম্ভম নয়।'}, {type: 'danger'});
+        }
+    }
 
     bkashForm(data) {
         if(this.props.data.authUser.access_to == 0) {
@@ -18,14 +24,25 @@ export default class Checkout extends Component {
     }
 
     render() {
+        console.log('this.props.data.addCart.length :>> ', this.props.data.addCart.length);
         let pdata = this.props.data;
         let payoutlist = '';
         payoutlist = this.props.data.addCart.map(cart=>(
             payoutlist = <li>{cart.sub_category} - {cart.quantity} {cart.weight_unit}<span>৳ {cart.total_each_price}</span></li>
         ));
+        let bkash = '';
+        if(this.props.data.addCart.length>1) {
+            $.notify({message : 'প্রতিবারে একের অধিক প্রোডাক্ট কিনা সম্ভম নয়।'}, {type: 'danger'});
+        } else {
+            if(this.state.showBkash == 'show') {
+                bkash = <Bkash data={this.props.data} showPage={this.props.showPage} bkashForm={this.bkashForm} />
+            }
+        }
+
         return (
             <div>
-                {this.state.showBkash == 'show'?<Bkash data={this.props.data} showPage={this.props.showPage} bkashForm={this.bkashForm} />: ''}
+                {bkash}
+                {/* {this.state.showBkash == 'show' && this.props.data.addCart.length<2 ? <Bkash data={this.props.data} showPage={this.props.showPage} bkashForm={this.bkashForm} />: ''} */}
                <section>
                     <div className="page-section section mb-50">
                         <div className="container">
