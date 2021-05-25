@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaymentsTable extends Migration
+class CreateTransportsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,24 +13,21 @@ class CreatePaymentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('transports', function (Blueprint $table) {
             $table->id();
-            $table->integer('admin_accept_id');
-            $table->integer('seller_id');
-            $table->integer('buyer_id');
+            $table->string('buyer_name');
+            $table->string('buyer_contact');
+            $table->string('seller_name');
+            $table->string('seller_contact');
+            $table->string('transport_name');
+            $table->string('transport_contact');
             $table->string('product_name');
             $table->bigInteger('total_weight');
-            $table->double('total_amount', 15, 4);
-            $table->string('weight_unit');
-            $table->string('service_fee');
-            $table->integer('price_per_unit');
-            $table->bigInteger('advance_payment')->nullable();
+            $table->bigInteger('advance_payment')->default(0);
             $table->string('category');
             $table->string('sub_category');
             $table->string('production_type')->nullable();
-            $table->string('product_production_year')->nullable();
             $table->string('packaging_method')->nullable();
-            $table->boolean('accept_payment')->default(0);
             $table->timestamps();
         });
     }
@@ -42,6 +39,6 @@ class CreatePaymentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('transports');
     }
 }

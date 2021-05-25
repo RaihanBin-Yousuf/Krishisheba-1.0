@@ -25,7 +25,7 @@ export default class Checkout extends Component {
         ));
         return (
             <div>
-                {this.state.showBkash == 'show'?<Bkash data={this.props.data} bkashForm={this.bkashForm} />: ''}
+                {this.state.showBkash == 'show'?<Bkash data={this.props.data} showPage={this.props.showPage} bkashForm={this.bkashForm} />: ''}
                <section>
                     <div className="page-section section mb-50">
                         <div className="container">

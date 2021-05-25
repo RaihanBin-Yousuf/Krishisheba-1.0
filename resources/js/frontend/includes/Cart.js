@@ -9,10 +9,6 @@ export default class Cart extends Component {
         }
         this.showCheck = this.showCheck.bind(this);
         this.loginFormClose = this.loginFormClose.bind(this);
-        // this.setAuthUser = this.setAuthUser.bind(this);
-    }
-
-    componentDidMount() {
     }
 
     loginFormClose() {
@@ -22,12 +18,12 @@ export default class Cart extends Component {
     }
 
     showCheck() {
-
-        if(this.props.data.authUser == "not found") {
+        console.log('this.props.data :>> ', this.props.data);
+        if(this.props.data.authUser.data == "not found") {
             this.setState({ ['loginForm']: true})
         } else {
             console.log('auth user data :>> ', this.props.data.authUser);
-            if(this.props.data.authUser.access_to == 0) {
+            if(this.props.data.authUser.access_to == 0 || this.props.data.authUser.access_to == 99) {
                 $.notify({message : 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'}, {type: 'danger'});
             } else {
                 this.props.showPage('checkout');

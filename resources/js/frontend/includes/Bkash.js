@@ -59,7 +59,7 @@ export default class Bkash extends Component {
         this.setState({ [name]: value });
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         const digits_only = string => [...string].every(c => '0123456789'.includes(c));
         if(this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact)) {
@@ -75,10 +75,13 @@ export default class Bkash extends Component {
                         product: JSON.stringify(this.state.product),
                         code: this.state.code,
                     }
-                    const res = PaymentService.save(cpost);
+                    const res =await PaymentService.save(cpost);
                     console.log('res :>> ', res);
                     if(res.success) {
-                        this.setunCount();
+                        this.setState({ ['showCount']: 0},()=>{this.props.bkashForm(null);});
+                        this.props.showPage('map');
+
+                        // this.setunCount();
                     }
                 } else {
                     $.notify({message: 'Please Enter only Digit code'}, {type: 'warning'});

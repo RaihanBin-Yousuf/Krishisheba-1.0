@@ -20,6 +20,7 @@ import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
 import UserServices from '../../services/UserServices';
 import Login from '../includes/Login';
+import Map from '../includes/Map';
 export default class Index extends Component {
     constructor(props) {
         super(props);
@@ -62,8 +63,12 @@ export default class Index extends Component {
         if(this.state.authUser.data == "not found") {
             this.setState({ ['loginForm']: true})
         } else {
-            this.showPage('checkout');
-            
+            console.log('auth user data :>> ', this.state.authUser);
+            if(this.state.authUser.access_to == 0 || this.state.authUser.access_to == 99) {
+                $.notify({message : 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'}, {type: 'danger'});
+            } else {
+                this.showPage('checkout');
+            }
         }
     }
 
@@ -227,6 +232,8 @@ export default class Index extends Component {
             showPageName = <Cart data={this.state} showPage={this.showPage} updateQty={this.updateQty} getAuthUser={this.getAuthUser} setAuthUser={this.setAuthUser} totalPrice={this.totalPrice} removeProduct={this.removeProduct}/>
         } else if (this.state.show_page === 'checkout') {
             showPageName = <Checkout data={this.state} showPage={this.showPage}/>
+        } else if (this.state.show_page === 'map') {
+            showPageName = <Map />
         }
         return (
             <>  
@@ -237,7 +244,7 @@ export default class Index extends Component {
                 {/* <Faq/> skipped */}
                 {/* <Team/> skipped*/}
                 {/* <Filter/> */}
-                {this.state.show_page === 'productdetails' ? '' : <Footer/>}
+                {this.state.show_page === 'productdetails' && this.state.show_page === 'map' ? '' : <Footer/>}
                 
             </>
         )

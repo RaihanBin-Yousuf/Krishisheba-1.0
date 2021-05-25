@@ -3866,7 +3866,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_TopCategoryServices__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../services/TopCategoryServices */ "./resources/js/services/TopCategoryServices.js");
 /* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
 /* harmony import */ var _includes_Login__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../includes/Login */ "./resources/js/frontend/includes/Login.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _includes_Map__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../includes/Map */ "./resources/js/frontend/includes/Map.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -3896,6 +3897,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -3977,7 +3979,17 @@ var Index = /*#__PURE__*/function (_Component) {
       if (this.state.authUser.data == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
-        this.showPage('checkout');
+        console.log('auth user data :>> ', this.state.authUser);
+
+        if (this.state.authUser.access_to == 0 || this.state.authUser.access_to == 99) {
+          $.notify({
+            message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
+          }, {
+            type: 'danger'
+          });
+        } else {
+          this.showPage('checkout');
+        }
       }
     }
   }, {
@@ -4233,36 +4245,36 @@ var Index = /*#__PURE__*/function (_Component) {
       var showPageName = '';
 
       if (this.state.show_page === null) {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
             productDetails: this.productDetails,
             data: this.state
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
             addProduct: this.addProduct,
             data: this.state,
             viewDetails: this.viewDetails
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
         });
       } else if (this.state.show_page === 'productdetails') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
           addProduct: this.addProduct,
           data: this.state,
           showPage: this.showPage
         });
       } else if (this.state.show_page === 'findProducts') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
       } else if (this.state.show_page === 'team') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
       } else if (this.state.show_page === 'faq') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
       } else if (this.state.show_page === 'filter') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
           addProduct: this.addProduct,
           data: this.state,
           viewDetails: this.viewDetails
         });
       } else if (this.state.show_page === 'cart') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
           data: this.state,
           showPage: this.showPage,
           updateQty: this.updateQty,
@@ -4272,24 +4284,26 @@ var Index = /*#__PURE__*/function (_Component) {
           removeProduct: this.removeProduct
         });
       } else if (this.state.show_page === 'checkout') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
           data: this.state,
           showPage: this.showPage
         });
+      } else if (this.state.show_page === 'map') {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Map__WEBPACK_IMPORTED_MODULE_23__.default, {});
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
           data: this.state,
           showPage: this.showPage,
           getAuthUser: this.getAuthUser,
           removeProduct: this.removeProduct,
           viewDetails: this.viewDetails,
           showCheck: this.showCheck
-        }), this.state.authUser.data == "not found" && this.state.loginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Login__WEBPACK_IMPORTED_MODULE_22__.default, {
+        }), this.state.authUser.data == "not found" && this.state.loginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Login__WEBPACK_IMPORTED_MODULE_22__.default, {
           loginFormClose: this.loginFormClose,
           setAuthUser: this.setAuthUser
-        }) : '', showPageName, this.state.show_page === 'productdetails' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
+        }) : '', showPageName, this.state.show_page === 'productdetails' && this.state.show_page === 'map' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
       });
     }
   }]);
@@ -4300,7 +4314,7 @@ var Index = /*#__PURE__*/function (_Component) {
 
 
 if (document.getElementById('react_fronend_index')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_23__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
 }
 
 /***/ }),
@@ -4623,61 +4637,114 @@ var Bkash = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      event.preventDefault();
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(event) {
+        var _this3 = this;
 
-      var digits_only = function digits_only(string) {
-        return _toConsumableArray(string).every(function (c) {
-          return '0123456789'.includes(c);
-        });
-      };
+        var digits_only, _digits_only, cpost, res;
 
-      if (this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact)) {
-        if (this.state.code.length == 6) {
-          var _digits_only = function _digits_only(string) {
-            return _toConsumableArray(string).every(function (c) {
-              return '0123456789'.includes(c);
-            });
-          };
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                event.preventDefault();
 
-          if (_digits_only(this.state.code)) {
-            var cpost = {
-              adminAccount: JSON.stringify(this.state.adminAccount),
-              buyer: JSON.stringify(this.state.buyer),
-              seller: JSON.stringify(this.state.seller),
-              productprice: JSON.stringify(this.state.productprice),
-              servicefee: JSON.stringify(this.state.servicefee),
-              product: JSON.stringify(this.state.product),
-              code: this.state.code
-            };
-            var res = _services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.save(cpost);
-            console.log('res :>> ', res);
+                digits_only = function digits_only(string) {
+                  return _toConsumableArray(string).every(function (c) {
+                    return '0123456789'.includes(c);
+                  });
+                };
 
-            if (res.success) {
-              this.setunCount();
+                if (!(this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact))) {
+                  _context3.next = 20;
+                  break;
+                }
+
+                if (!(this.state.code.length == 6)) {
+                  _context3.next = 17;
+                  break;
+                }
+
+                _digits_only = function _digits_only(string) {
+                  return _toConsumableArray(string).every(function (c) {
+                    return '0123456789'.includes(c);
+                  });
+                };
+
+                if (!_digits_only(this.state.code)) {
+                  _context3.next = 14;
+                  break;
+                }
+
+                cpost = {
+                  adminAccount: JSON.stringify(this.state.adminAccount),
+                  buyer: JSON.stringify(this.state.buyer),
+                  seller: JSON.stringify(this.state.seller),
+                  productprice: JSON.stringify(this.state.productprice),
+                  servicefee: JSON.stringify(this.state.servicefee),
+                  product: JSON.stringify(this.state.product),
+                  code: this.state.code
+                };
+                _context3.next = 9;
+                return _services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.save(cpost);
+
+              case 9:
+                res = _context3.sent;
+                console.log('res :>> ', res);
+
+                if (res.success) {
+                  this.setState(_defineProperty({}, 'showCount', 0), function () {
+                    _this3.props.bkashForm(null);
+                  });
+                  this.props.showPage('map'); // this.setunCount();
+                }
+
+                _context3.next = 15;
+                break;
+
+              case 14:
+                $.notify({
+                  message: 'Please Enter only Digit code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 15:
+                _context3.next = 18;
+                break;
+
+              case 17:
+                $.notify({
+                  message: 'Please Enter Six digit Code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 18:
+                _context3.next = 21;
+                break;
+
+              case 20:
+                $.notify({
+                  message: 'Invalid Number'
+                }, {
+                  type: 'danger'
+                });
+
+              case 21:
+              case "end":
+                return _context3.stop();
             }
-          } else {
-            $.notify({
-              message: 'Please Enter only Digit code'
-            }, {
-              type: 'warning'
-            });
           }
-        } else {
-          $.notify({
-            message: 'Please Enter Six digit Code'
-          }, {
-            type: 'warning'
-          });
-        }
-      } else {
-        $.notify({
-          message: 'Invalid Number'
-        }, {
-          type: 'danger'
-        });
+        }, _callee3, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
       }
-    }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
@@ -4891,15 +4958,11 @@ var Cart = /*#__PURE__*/function (_Component) {
       loginForm: false
     };
     _this.showCheck = _this.showCheck.bind(_assertThisInitialized(_this));
-    _this.loginFormClose = _this.loginFormClose.bind(_assertThisInitialized(_this)); // this.setAuthUser = this.setAuthUser.bind(this);
-
+    _this.loginFormClose = _this.loginFormClose.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(Cart, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {}
-  }, {
     key: "loginFormClose",
     value: function loginFormClose() {
       this.setState({
@@ -4909,12 +4972,14 @@ var Cart = /*#__PURE__*/function (_Component) {
   }, {
     key: "showCheck",
     value: function showCheck() {
-      if (this.props.data.authUser == "not found") {
+      console.log('this.props.data :>> ', this.props.data);
+
+      if (this.props.data.authUser.data == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
         console.log('auth user data :>> ', this.props.data.authUser);
 
-        if (this.props.data.authUser.access_to == 0) {
+        if (this.props.data.authUser.access_to == 0 || this.props.data.authUser.access_to == 99) {
           $.notify({
             message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
           }, {
@@ -5215,6 +5280,7 @@ var Checkout = /*#__PURE__*/function (_Component) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
         children: [this.state.showBkash == 'show' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_Bkash__WEBPACK_IMPORTED_MODULE_1__.default, {
           data: this.props.data,
+          showPage: this.props.showPage,
           bkashForm: this.bkashForm
         }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("section", {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -8540,6 +8606,399 @@ var Login = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
+/***/ "./resources/js/frontend/includes/Map.js":
+/*!***********************************************!*\
+  !*** ./resources/js/frontend/includes/Map.js ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ MapGoogle)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-google-maps */ "./node_modules/react-google-maps/lib/index.js");
+/* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var _backend_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../backend/Loading */ "./resources/js/backend/Loading.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+var MapGoogle = /*#__PURE__*/function (_Component) {
+  _inherits(MapGoogle, _Component);
+
+  var _super = _createSuper(MapGoogle);
+
+  function MapGoogle(props) {
+    var _this;
+
+    _classCallCheck(this, MapGoogle);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      selectPosition: null,
+      users: null,
+      authUser: null,
+      form_show: false
+    };
+    _this.setSelectPosition = _this.setSelectPosition.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
+    _this.getAllUsers = _this.getAllUsers.bind(_assertThisInitialized(_this));
+    _this.getLocation = _this.getLocation.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(MapGoogle, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAuthUser();
+      this.getAllUsers();
+      this.getLocation();
+    }
+  }, {
+    key: "getLocation",
+    value: function getLocation() {
+      var _this2 = this;
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          return _this2.showPosition(position);
+        });
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  }, {
+    key: "showPosition",
+    value: function () {
+      var _showPosition = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(position) {
+        var location;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                location = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude
+                };
+                console.log('location :>> ', location); // const updateLocation = await UserServices.updateLoc(location);
+
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      function showPosition(_x) {
+        return _showPosition.apply(this, arguments);
+      }
+
+      return showPosition;
+    }()
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var data;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_3__.default.get();
+
+              case 2:
+                data = _context2.sent;
+                console.log('data :>> ', data);
+                this.setState(_defineProperty({}, 'authUser', data));
+
+              case 5:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "getAllUsers",
+    value: function () {
+      var _getAllUsers = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_3__.default.all({
+                  'all': 'all'
+                });
+
+              case 2:
+                response = _context3.sent;
+                this.setState(_defineProperty({}, 'users', response));
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getAllUsers() {
+        return _getAllUsers.apply(this, arguments);
+      }
+
+      return getAllUsers;
+    }()
+  }, {
+    key: "setSelectPosition",
+    value: function setSelectPosition(data) {
+      this.setState({
+        selectPosition: data,
+        form_show: true
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      if (!this.state.authUser) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_backend_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {});
+      } else if (!this.state.users) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_backend_Loading__WEBPACK_IMPORTED_MODULE_4__.default, {});
+      }
+
+      var auth = {
+        lat: 22.3609389,
+        lng: 91.8568732
+      };
+
+      if (this.state.authUser) {
+        auth = this.state.authUser;
+      }
+
+      console.log('auth :>> ', auth);
+      var userDetails = this.state.selectPosition;
+      console.log('userDetails :>> ', userDetails);
+      var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withGoogleMap)(function (props) {
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.GoogleMap, {
+          defaultZoom: 17,
+          defaultCenter: {
+            lat: Number(_this3.state.authUser.lat),
+            lng: Number(_this3.state.authUser.lng)
+          },
+          children: [_this3.state.users.map(function (position) {
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.Marker, {
+              position: {
+                lat: Number(position.lat),
+                lng: Number(position.lng)
+              },
+              onClick: function onClick() {
+                _this3.setSelectPosition(position);
+              },
+              onMouseEnter: function onMouseEnter() {
+                _this3.setSelectPosition(position);
+              }
+            }, position.id);
+          }), userDetails && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.InfoWindow, {
+            position: {
+              lat: Number(userDetails.lat),
+              lng: Number(userDetails.lng)
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                  className: "col-5 mr-3",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("img", {
+                    src: 'storage/profile/' + userDetails.profile_img,
+                    width: "150px",
+                    alt: ""
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "col mt-3",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Name:"
+                    }), " ", userDetails.name]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Email:"
+                    }), " ", userDetails.email]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Contact:"
+                    }), " ", userDetails.mobile]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("p", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
+                      className: "font-weight-bold",
+                      children: "Address:"
+                    }), " ", userDetails.address]
+                  })]
+                })]
+              })
+            })
+          })]
+        });
+      }));
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+          children: "In react page"
+        }), this.state.users ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(WrappedMap, {
+          isMarkerShown: true,
+          googleMapURL: "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=AIzaSyDIxYaeRD3A-NkHt1EuB_Tv0thH8QB45SU",
+          loadingElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            style: {
+              height: "100%"
+            }
+          }),
+          containerElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            style: {
+              height: "400px"
+            }
+          }),
+          mapElement: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+            style: {
+              height: "100%"
+            }
+          })
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+          className: "trasport-form mt-3",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h2", {
+            children: "Transport Form"
+          }), this.state.form_show ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("form", {
+            "data-no-ajax": true,
+            onSubmit: this.handleSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+              className: "row",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                className: "col-md-6",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "form-group ",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                    htmlfor: "transport_name",
+                    children: "Garir Chalok er nam"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                    type: "text",
+                    value: this.state.selectPosition.name,
+                    className: "form-control",
+                    name: "transport_name",
+                    id: "transport_name",
+                    placeholder: "transport Name"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                className: "col-md-6",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                    htmlfor: "transport_name",
+                    children: "Garir Contact Number"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("input", {
+                    type: "text",
+                    value: this.state.selectPosition.mobile,
+                    className: "form-control",
+                    name: "transport_name",
+                    id: "transport_name",
+                    placeholder: "transport Name"
+                  })]
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+              className: "row",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("div", {
+                className: "col-md-12",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+                  className: "form-group",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("label", {
+                    htmlfor: "transport_address",
+                    children: "Garir chaloker Address"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("textarea", {
+                    className: "form-control",
+                    value: this.state.selectPosition.address,
+                    name: "transport_address",
+                    id: "transport_address",
+                    rows: "3"
+                  })]
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("button", {
+              className: "btn btn-success",
+              type: "submit",
+              children: "Submit"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
+              className: "btn btn-default",
+              onClick: function onClick() {
+                return _this3.props.showForm(null);
+              },
+              children: "Close"
+            })]
+          }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("h3", {
+            children: "Select a Trasport First"
+          })]
+        })]
+      });
+    }
+  }]);
+
+  return MapGoogle;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+/***/ }),
+
 /***/ "./resources/js/frontend/includes/Service.js":
 /*!***************************************************!*\
   !*** ./resources/js/frontend/includes/Service.js ***!
@@ -9826,6 +10285,13 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                         return _this2.pageOnClickScroller('contact');
                       },
                       children: "\u09AF\u09CB\u0997\u09BE\u09AF\u09CB\u0997"
+                    })
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
+                      onClick: function onClick() {
+                        return _this2.pageOnClickScroller('map');
+                      },
+                      children: "Transport Map"
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
                     className: "drop-down",
