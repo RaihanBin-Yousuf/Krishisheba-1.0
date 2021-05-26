@@ -11,7 +11,7 @@ UserServices.get = async () => {
     return res;
 };
 
-UserServices.buyer = async (data) => {
+UserServices.seller = async (data) => {
     const res = await axios
         .get("/ManageUsers/users/"+data)
         .then((response) => {

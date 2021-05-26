@@ -59,7 +59,6 @@ export default class Index extends Component {
     }
 
     showCheck() {
-        console.log('login form');
         if(this.state.authUser.data == "not found") {
             this.setState({ ['loginForm']: true})
         } else {

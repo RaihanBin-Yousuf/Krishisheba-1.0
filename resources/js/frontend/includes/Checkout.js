@@ -5,6 +5,7 @@ export default class Checkout extends Component {
         super(props);
         this.state = {
             showBkash: null,
+            seller: [],
         };
         this.bkashForm = this.bkashForm.bind(this);
     }
@@ -42,7 +43,6 @@ export default class Checkout extends Component {
         return (
             <div>
                 {bkash}
-                {/* {this.state.showBkash == 'show' && this.props.data.addCart.length<2 ? <Bkash data={this.props.data} showPage={this.props.showPage} bkashForm={this.bkashForm} />: ''} */}
                <section>
                     <div className="page-section section mb-50">
                         <div className="container">
@@ -52,11 +52,12 @@ export default class Checkout extends Component {
                                         <div className="row row-40">
                                             <div className="col-lg-7 mb-20">
                                                 <div id="billing-form" className="mb-40">
-                                                    <h4 className="checkout-title">Billing Address</h4>
+                                                    <h4 className="checkout-title">বিবরণ</h4>
                                                     <div className="row">
+
                                                         <div className="col-md-6 col-12 mb-20">
                                                             <label>First Name*</label>
-                                                            <input type="text" placeholder="First Name"/>
+                                                            <h4></h4>
                                                         </div>
                                                         <div className="col-md-6 col-12 mb-20">
                                                             <label>Email Address*</label>

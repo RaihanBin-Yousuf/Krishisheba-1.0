@@ -100,7 +100,7 @@ export default class TopBarAndHeader extends Component {
                                     <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
                                     <li><a onClick={()=>this.props.showPage('findProducts')}>পণ্য</a></li>
                                     <li><a onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
-                                    <li><a onClick={()=>this.pageOnClickScroller('map')}>Transport Map</a></li>
+                                    <li><a onClick={()=>this.props.showPage('map')}>Transport Map</a></li>
                                     <li className="drop-down"><a >আমাদের সম্পর্কে আরও</a>
                                         <ul>
                                         {/* <li><a onClick={()=>this.props.showPage('team')}>আমাদের টিম</a></li> */}

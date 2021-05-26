@@ -12,6 +12,7 @@ use App\Http\Controllers\GoogleMapController;
 use App\Http\Controllers\ManagePostController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\TransportController;
 use App\Models\GoogleMap;
 use Illuminate\Support\Facades\Route;
 
@@ -110,3 +111,4 @@ Route::resource('googlemap', GoogleMapController::class);
 //payment all information
 
 Route::resource('/payment', PaymentController::class);
+Route::resource('/transport', TransportController::class);

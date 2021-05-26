@@ -8,9 +8,9 @@ export default class Bkash extends Component {
         this.state = {
             showCount: 0,
             adminAccount: [],
-            seller: [],
+            buyer: [],
             buyercontact: this.props.data.authUser.mobile,
-            buyer : this.props.data.authUser,
+            seller : this.props.data.authUser,
             productprice: this.props.data.subTotal,
             servicefee: this.props.data.serviceFee,
             product: this.props.data.addCart[0],
@@ -20,21 +20,21 @@ export default class Bkash extends Component {
         this.setCount = this.setCount.bind(this);
         this.setunCount = this.setunCount.bind(this);
         this.permissionUser = this.permissionUser.bind(this);
-        this.sellerDetails = this.sellerDetails.bind(this);
+        this.buyerDetails = this.buyerDetails.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.permissionUser();
-        this.sellerDetails();
+        this.buyerDetails();
     }
 
-    async sellerDetails() {
-        const sellerId = this.props.data.addCart[0];
-        const seller = await UserServices.seller(sellerId.user_id);
-        console.log('seller details:>> ', seller);
-        this.setState({['seller'] : seller});
+    async buyerDetails() {
+        const buyerId = this.props.data.addCart[0];
+        const buyer = await UserServices.buyer(buyerId.user_id);
+        console.log('buyer details:>> ', buyer);
+        this.setState({['buyer'] : buyer});
     }
 
     async permissionUser() {
@@ -98,7 +98,7 @@ export default class Bkash extends Component {
         if(this.state.showCount == 0) {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
                             <p><span className="font-weight-bold">মার্চেন্ট: </span>{this.state.adminAccount.name}</p>
-                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{this.state.seller.mobile}</p>
+                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{this.state.buyer.mobile}</p>
                             <p><span className="font-weight-bold">সর্বমোট: </span>৳ {this.props.data.totalPrice}</p>
                         </div>
         } else {
