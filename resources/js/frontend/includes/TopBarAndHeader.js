@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import UserServices from '../../services/UserServices';
+const { toBengaliNumber} = require('bengali-number');
+
 export default class TopBarAndHeader extends Component {
     constructor(props) {
         super(props);
@@ -64,7 +66,7 @@ export default class TopBarAndHeader extends Component {
                             </div>
                             <div className="cart-float-single-item-desc" onClick={()=>this.props.viewDetails(product)}>
                                 <p className="product-title"> <a >{product.product_name} </a></p>
-                                <p className="price"><span className="count">1x</span> ৳{product.price_per_unit}</p>
+                                <p className="price"><span className="count">{toBengaliNumber(product.quantity)} x </span> ৳{toBengaliNumber(product.price_per_unit)}</p>
                             </div>
                         </div>
                         ));
@@ -75,7 +77,7 @@ export default class TopBarAndHeader extends Component {
                         <div className="container d-flex">
                             <div className="contact-info mr-auto">
                                 <i className="icofont-envelope"></i> <a href="mailto:krishisheva@gmail.com">contact@example.com</a>
-                                <i className="icofont-phone"></i> +8801816555777
+                                <i className="icofont-phone"></i> +{toBengaliNumber(8801816555777)}
                             </div>
                             {authUser == "not found" ?
                             <>
@@ -100,7 +102,7 @@ export default class TopBarAndHeader extends Component {
                                     <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
                                     <li><a onClick={()=>this.props.showPage('findProducts')}>পণ্য</a></li>
                                     <li><a onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
-                                    <li><a onClick={()=>this.props.showPage('map')}>Transport Map</a></li>
+                                    {/* <li><a onClick={()=>this.props.showPage('map')}>Transport Map</a></li> */}
                                     <li className="drop-down"><a >আমাদের সম্পর্কে আরও</a>
                                         <ul>
                                         {/* <li><a onClick={()=>this.props.showPage('team')}>আমাদের টিম</a></li> */}
@@ -118,7 +120,7 @@ export default class TopBarAndHeader extends Component {
                                             <div className="cart-info d-inline-block" >
                                                 <p>বাজারের ব্যাগ {this.state.cartShow?<i className="pl-3 fa fa-times"></i> : ''}
                                                     <span>
-                                                        {this.props.data.addCart.length} টি পণ্য
+                                                        {toBengaliNumber(this.props.data.addCart.length)} টি পণ্য
                                                     </span>
                                                 </p>
                                             </div>
@@ -130,9 +132,9 @@ export default class TopBarAndHeader extends Component {
 
                                             <div className="cart-calculation">
                                                 <div className="calculation-details">
-                                                    <p>পরিসেবা চার্জ <span>৳{this.props.data.serviceFee}.00</span></p>
+                                                    <p>পরিসেবা চার্জ <span>৳{toBengaliNumber(this.props.data.serviceFee+'.00')}</span></p>
                                                     <hr></hr>
-                                                    <p>সর্বমোট <span>৳{this.props.data.totalPrice}.00</span></p>
+                                                    <p>সর্বমোট <span>৳{toBengaliNumber(this.props.data.totalPrice+'.00')}</span></p>
                                                 </div>
                                                 <div className="floating-cart-btn text-center">
                                                     <a onClick={this.props.showCheck}>লেনদেন</a>

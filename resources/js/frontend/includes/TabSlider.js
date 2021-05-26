@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ManagePostService from '../../services/ManagePostService';
 import Slider from "react-slick";
+const { toBengaliNumber} = require('bengali-number');
 
 export default class TabSlider extends Component {
     constructor(props) {
@@ -51,9 +52,9 @@ export default class TabSlider extends Component {
                                     <div className="product-categories">
                                         <a href="shop-left-sidebar.html">পণ্যের প্রকার: {farmer.category}</a>
                                     </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {farmer.total_weight} {farmer.weight_unit}</a></h3>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(farmer.total_weight)} {farmer.weight_unit}</a></h3>
                                     <div className="price-box">
-                                        <span className="discounted-price">১ {farmer.weight_unit} ৳ {farmer.price_per_unit} </span>
+                                        <span className="discounted-price">১ {farmer.weight_unit} ৳ {toBengaliNumber(farmer.price_per_unit)} </span>
                                     </div>
                                 </div>
                             </div>
@@ -78,9 +79,9 @@ export default class TabSlider extends Component {
                                     <div className="product-categories">
                                         <a href="shop-left-sidebar.html">পণ্যের প্রকার: {feature.category}</a>
                                     </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {feature.total_weight} {feature.weight_unit}</a></h3>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(feature.total_weight)} {feature.weight_unit}</a></h3>
                                     <div className="price-box">
-                                        <span className="discounted-price">১ {feature.weight_unit} ৳ {feature.price_per_unit} </span>
+                                        <span className="discounted-price">১ {feature.weight_unit} ৳ {toBengaliNumber(feature.price_per_unit)} </span>
                                     </div>
                                 </div>
                             </div>
@@ -106,9 +107,9 @@ export default class TabSlider extends Component {
                                     <div className="product-categories">
                                         <a href="shop-left-sidebar.html">পণ্যের প্রকার: {arrival.category}</a>
                                     </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {arrival.total_weight} {arrival.weight_unit}</a></h3>
+                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(arrival.total_weight)} {arrival.weight_unit}</a></h3>
                                     <div className="price-box">
-                                        <span className="discounted-price">১ {arrival.weight_unit} ৳ {arrival.price_per_unit} </span>
+                                        <span className="discounted-price">১ {arrival.weight_unit} ৳ {toBengaliNumber(arrival.price_per_unit)} </span>
                                     </div>
                                 </div>
                             </div>
@@ -136,9 +137,9 @@ export default class TabSlider extends Component {
                                         <div className="product-categories">
                                             <a href="shop-left-sidebar.html">পণ্যের প্রকার: {sale.category}</a>
                                         </div>
-                                        <h3 className="product-title"><a href="single-product.html">মোট ওজন: {sale.total_weight} {sale.weight_unit}</a></h3>
+                                        <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(sale.total_weight)} {sale.weight_unit}</a></h3>
                                         <div className="price-box">
-                                            <span className="discounted-price">১ {sale.weight_unit} ৳ {sale.price_per_unit} </span>
+                                            <span className="discounted-price">১ {sale.weight_unit} ৳ {toBengaliNumber(sale.price_per_unit)} </span>
                                         </div>
                                 </div>
                             </div>

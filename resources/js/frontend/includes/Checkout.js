@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Bkash from './Bkash';
+const { toBengaliNumber} = require('bengali-number');
+
 export default class Checkout extends Component {
     constructor(props) {
         super(props);
@@ -29,7 +31,7 @@ export default class Checkout extends Component {
         let pdata = this.props.data;
         let payoutlist = '';
         payoutlist = this.props.data.addCart.map(cart=>(
-            payoutlist = <li>{cart.sub_category} - {cart.quantity} {cart.weight_unit}<span>৳ {cart.total_each_price}</span></li>
+            payoutlist = <li>{cart.sub_category} - {toBengaliNumber(cart.quantity)} {toBengaliNumber(cart.weight_unit)}<span>৳ {toBengaliNumber(cart.total_each_price)}</span></li>
         ));
         let bkash = '';
         if(this.props.data.addCart.length>1) {
@@ -103,12 +105,18 @@ export default class Checkout extends Component {
                                                                 <option>bandorban</option>
                                                             </select>
                                                         </div>
-                                                        <div className="col-12 mb-20">
+                                                        {/* <div className="col-12 mb-20">
                                                             <div className="check-box">
                                                                 <input type="checkbox" id="create_account"/>
                                                                 <label htmlFor="create_account">Create an Acount?</label>
                                                             </div>
-                                                        </div>	
+                                                        </div>	 */}
+                                                        {this.state.showBkash == 'transport' ?
+                                                        <div className="col-12 mb-20">
+                                                            <div className="check-box">
+                                                                <a onClick={()=>this.props.showPage('map')} class="btn btn-primary text-light p-2" role="button">পরিবহন সুবিধা পেতে ক্লিক করুন</a>
+                                                            </div>
+                                                        </div>: '' }
                                                     </div>	
                                                 </div>
                                             </div>
@@ -121,14 +129,14 @@ export default class Checkout extends Component {
                                                             <ul>
                                                                 {payoutlist}
                                                             </ul>
-                                                            <p>মোট <span>৳ {pdata.subTotal}</span></p>
-                                                            <p>পরিসেবা চার্জ <span>৳ {pdata.serviceFee}</span></p>
-                                                            <h4>সর্বমোট <span>৳ {pdata.totalPrice}</span></h4>
+                                                            <p>মোট <span>৳ {toBengaliNumber(pdata.subTotal)}</span></p>
+                                                            <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(pdata.serviceFee)}</span></p>
+                                                            <h4>সর্বমোট <span>৳ {toBengaliNumber(pdata.totalPrice)}</span></h4>
                                                         </div>
                                                     </div>
                                                     <div className="col-12">
                                                         <h4 className="checkout-title">Payment Method</h4>
-                                                        <div className="checkout-payment-method">									
+                                                        {/* <div className="checkout-payment-method">									
                                                             <div className="single-method">
                                                                 <input type="radio" id="payment_bank" name="payment-method" value="bank"/>
                                                                 <label htmlFor="payment_bank">Direct Bank Transfer</label>
@@ -149,7 +157,7 @@ export default class Checkout extends Component {
                                                                 <input type="checkbox" id="accept_terms"/>
                                                                 <label htmlFor="accept_terms">I’ve read and accept the terms & conditions</label>
                                                             </div>										
-                                                        </div>			
+                                                        </div>			 */}
                                                         <div className="row">
                                                             <div className="col">
                                                                 <button className="place-order">Place order</button>			

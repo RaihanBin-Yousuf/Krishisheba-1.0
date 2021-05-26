@@ -20,23 +20,27 @@ import Checkout from '../includes/Checkout';
 import TopCategoryServices from '../../services/TopCategoryServices';
 import UserServices from '../../services/UserServices';
 import Login from '../includes/Login';
+import PaymentService from '../../services/PaymentService';
+
 import Map from '../includes/Map';
+const { toBengaliNumber, toBengaliWord} = require('bengali-number');
 export default class Index extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            show_page: null,
+            addCart: [],
+            authUser: [],
             prev_page: null,
             product: [],
-            addCart: [],
             product_info: [],
             products: [],
-            totalPrice: 0,
+            product_pay: [],
             serviceFee: 0,
             subTotal: 0,
-            authUser: [],
+            show_page: null,
             loginForm: false,
-
+            totalPrice: 0,
+        
         };
         this.showPage = this.showPage.bind(this);
         this.productDetails = this.productDetails.bind(this);
@@ -50,6 +54,7 @@ export default class Index extends Component {
         this.setAuthUser = this.setAuthUser.bind(this);
         this.showCheck = this.showCheck.bind(this);
         this.loginFormClose = this.loginFormClose.bind(this);
+        this.getProductPay = this.getProductPay.bind(this);
     }
 
     loginFormClose() {
@@ -72,7 +77,17 @@ export default class Index extends Component {
     }
 
     showPage(page) {
-        this.setState({ ['show_page']: page, ['prev_page']: this.state.show_page});
+        if(page == 'map') {
+            this.getProductPay();
+        } else {
+            this.setState({ ['show_page']: page, ['prev_page']: this.state.show_page});
+        }
+    }
+
+    async getProductPay() {
+        const res = await PaymentService.getByBuyerId({'buyer_id':this.state.authUser.id});
+        this.setState({['product_pay']: res},()=>{this.setState({['show_page']: 'map'})});
+        console.log('getProductPay res :>> ', res);
     }
 
     componentDidMount() {
@@ -232,7 +247,7 @@ export default class Index extends Component {
         } else if (this.state.show_page === 'checkout') {
             showPageName = <Checkout data={this.state} showPage={this.showPage}/>
         } else if (this.state.show_page === 'map') {
-            showPageName = <Map />
+            showPageName = <Map data={this.state} showPage={this.showPage}/>
         }
         return (
             <>  

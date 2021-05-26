@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Login from './Login';
 import UserServices from '../../services/UserServices';
+const { toBengaliNumber, toBengaliWord} = require('bengali-number');
+
 export default class Cart extends Component {
     constructor(props) {
         super(props);
@@ -37,11 +39,11 @@ export default class Cart extends Component {
         cartList = <tr key={product.id}>
                         <td className="pro-thumbnail"><a href="#"><img src={"/storage/posts/"+product.product_image} className="img-fluid" alt="Product"/></a></td>
                         <td className="pro-title">{product.category}</td>
-                        <td className="pro-price"><span>৳ {product.price_per_unit}</span></td>
-                        <td className="available-quantity"><span>{product.total_unit == 'Nan' ? 'Nan': product.total_unit} {product.total_unit == 'Nan' ? '' : product.weight_unit}</span></td>
+                        <td className="pro-price"><span>৳ {toBengaliNumber(product.price_per_unit)}</span></td>
+                        <td className="available-quantity"><span>{product.total_unit == 'Nan' ? 'Nan': toBengaliNumber(product.total_unit)} {product.total_unit == 'Nan' ? '' : product.weight_unit}</span></td>
                         <td className="pro-quantity"><div className="pro-qty"><input type="number" value={product.quantity} onChange={(e)=>this.props.updateQty(e, product)} /></div></td> 
-                        <td className="pro-each-total"><span>৳ {product.total_each_price}</span></td>
-                        <td className="pro-service">৳ {product.each_total_fee}</td>
+                        <td className="pro-each-total"><span>৳ {toBengaliNumber(product.total_each_price)}</span></td>
+                        <td className="pro-service">৳ {toBengaliNumber(product.each_total_fee)}</td>
                         <td className="pro-remove"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-trash-o"></i></a></td>
                     </tr>
                     ));
@@ -95,9 +97,9 @@ export default class Cart extends Component {
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
                                                     <h4>সারসংক্ষেপ</h4>
-                                                    <p>মোট <span>৳ {this.props.data.subTotal}.00</span></p>
-                                                    <p>পরিসেবা চার্জ <span>৳ {this.props.data.serviceFee}.00</span></p>
-                                                    <h2>সর্বমোট <span>৳ {this.props.data.totalPrice}.00</span></h2>
+                                                    <p>মোট <span>৳ {toBengaliNumber(this.props.data.subTotal+'.00')}</span></p>
+                                                    <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(this.props.data.serviceFee+'.00')}</span></p>
+                                                    <h2>সর্বমোট <span>৳ {toBengaliNumber(this.props.data.totalPrice+'.00')}</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
                                                     <button className="checkout-btn">লেনদেন</button>

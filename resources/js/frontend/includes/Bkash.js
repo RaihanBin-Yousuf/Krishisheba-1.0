@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 // import PaymentService from '../../services/PaymentService';
 import UserServices from '../../services/UserServices';
 import PaymentService from '../../services/PaymentService';
+const { toBengaliNumber} = require('bengali-number');
+
 export default class Bkash extends Component {
     constructor(props) {
         super(props);
@@ -77,9 +79,7 @@ export default class Bkash extends Component {
                     }
                     const res =await PaymentService.save(cpost);
                     if(res.success) {
-                        this.setState({ ['showCount']: 0},()=>{this.props.bkashForm(null);});
-                        this.props.showPage('map');
-
+                        this.setState({ ['showCount']: 0},()=>{this.props.bkashForm('transport');});
                         // this.setunCount();
                     }
                 } else {
@@ -98,18 +98,18 @@ export default class Bkash extends Component {
         if(this.state.showCount == 0) {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
                             <p><span className="font-weight-bold">মার্চেন্ট: </span>{this.state.adminAccount.name}</p>
-                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{this.state.seller.mobile}</p>
-                            <p><span className="font-weight-bold">সর্বমোট: </span>৳ {this.props.data.totalPrice}</p>
+                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{toBengaliNumber(this.state.seller.mobile)}</p>
+                            <p><span className="font-weight-bold">সর্বমোট: </span>৳ {toBengaliNumber(this.props.data.totalPrice)}</p>
                         </div>
         } else {
             showContent = <div className="bkash-total-details bg-white p-3">
                             <div className="row">
                                 <div className="col">
                                     <h4 className="font-weight-bold">মার্চেন্ট অ্যাকাউন্ট:</h4>
-                                    <p><span className="font-weight-bold">নম্বর:</span> {this.state.adminAccount.mobile}</p>
+                                    <p><span className="font-weight-bold">নম্বর:</span> {toBengaliNumber(this.state.adminAccount.mobile)}</p>
                                 </div>
                                 <div className="col">
-                                    <h1>৳ {this.props.data.totalPrice}</h1>
+                                    <h1>৳ {toBengaliNumber(this.props.data.totalPrice)}</h1>
                                 </div>
                             </div>
                         </div>
@@ -155,7 +155,7 @@ export default class Bkash extends Component {
                                     </div>
                                 </div>
                                 <div className="bkash-help p-3">
-                                    <h3>16247</h3>
+                                    <h3>{toBengaliNumber(16247)}</h3>
                                 </div>
                             </form>
                         </div>

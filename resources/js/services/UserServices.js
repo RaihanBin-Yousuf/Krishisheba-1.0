@@ -23,6 +23,18 @@ UserServices.seller = async (data) => {
     return res;
 };
 
+UserServices.transport = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/users/"+data)
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
+
 UserServices.all = async (data) => {
     const res = await axios
         .get("/ManageUsers/users", {params: data})

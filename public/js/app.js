@@ -3866,8 +3866,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _services_TopCategoryServices__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../../services/TopCategoryServices */ "./resources/js/services/TopCategoryServices.js");
 /* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
 /* harmony import */ var _includes_Login__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../includes/Login */ "./resources/js/frontend/includes/Login.js");
-/* harmony import */ var _includes_Map__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../includes/Map */ "./resources/js/frontend/includes/Map.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _services_PaymentService__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../../services/PaymentService */ "./resources/js/services/PaymentService.js");
+/* harmony import */ var _includes_Map__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../includes/Map */ "./resources/js/frontend/includes/Map.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -3925,6 +3926,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
+
 var Index = /*#__PURE__*/function (_Component) {
   _inherits(Index, _Component);
 
@@ -3937,17 +3943,18 @@ var Index = /*#__PURE__*/function (_Component) {
 
     _this = _super.call(this, props);
     _this.state = {
-      show_page: null,
+      addCart: [],
+      authUser: [],
       prev_page: null,
       product: [],
-      addCart: [],
       product_info: [],
       products: [],
-      totalPrice: 0,
+      product_pay: [],
       serviceFee: 0,
       subTotal: 0,
-      authUser: [],
-      loginForm: false
+      show_page: null,
+      loginForm: false,
+      totalPrice: 0
     };
     _this.showPage = _this.showPage.bind(_assertThisInitialized(_this));
     _this.productDetails = _this.productDetails.bind(_assertThisInitialized(_this));
@@ -3961,6 +3968,7 @@ var Index = /*#__PURE__*/function (_Component) {
     _this.setAuthUser = _this.setAuthUser.bind(_assertThisInitialized(_this));
     _this.showCheck = _this.showCheck.bind(_assertThisInitialized(_this));
     _this.loginFormClose = _this.loginFormClose.bind(_assertThisInitialized(_this));
+    _this.getProductPay = _this.getProductPay.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -3993,10 +4001,51 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "showPage",
     value: function showPage(page) {
-      var _this$setState2;
+      if (page == 'map') {
+        this.getProductPay();
+      } else {
+        var _this$setState2;
 
-      this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'show_page', page), _defineProperty(_this$setState2, 'prev_page', this.state.show_page), _this$setState2));
+        this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'show_page', page), _defineProperty(_this$setState2, 'prev_page', this.state.show_page), _this$setState2));
+      }
     }
+  }, {
+    key: "getProductPay",
+    value: function () {
+      var _getProductPay = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var res;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _services_PaymentService__WEBPACK_IMPORTED_MODULE_23__.default.getByBuyerId({
+                  'buyer_id': this.state.authUser.id
+                });
+
+              case 2:
+                res = _context.sent;
+                this.setState(_defineProperty({}, 'product_pay', res), function () {
+                  _this2.setState(_defineProperty({}, 'show_page', 'map'));
+                });
+                console.log('getProductPay res :>> ', res);
+
+              case 5:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getProductPay() {
+        return _getProductPay.apply(this, arguments);
+      }
+
+      return getProductPay;
+    }()
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
@@ -4006,17 +4055,17 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "getAuthUser",
     value: function () {
-      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var user;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _services_UserServices__WEBPACK_IMPORTED_MODULE_21__.default.get();
 
               case 2:
-                user = _context.sent;
+                user = _context2.sent;
                 console.log('user :>> ', user);
 
                 if (user) {
@@ -4031,10 +4080,10 @@ var Index = /*#__PURE__*/function (_Component) {
 
               case 5:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getAuthUser() {
@@ -4046,32 +4095,32 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "setAuthUser",
     value: function () {
-      var _setAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _this2 = this;
+      var _setAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var _this3 = this;
 
         var user;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
-            switch (_context2.prev = _context2.next) {
+            switch (_context3.prev = _context3.next) {
               case 0:
-                _context2.next = 2;
+                _context3.next = 2;
                 return _services_UserServices__WEBPACK_IMPORTED_MODULE_21__.default.get();
 
               case 2:
-                user = _context2.sent;
+                user = _context3.sent;
                 console.log('user :>> ', user);
                 this.setState({
                   authUser: user
                 }, function () {
-                  _this2.showPage('checkout');
+                  _this3.showPage('checkout');
                 });
 
               case 5:
               case "end":
-                return _context2.stop();
+                return _context3.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee3, this);
       }));
 
       function setAuthUser() {
@@ -4083,25 +4132,25 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "topCategorySlider",
     value: function () {
-      var _topCategorySlider = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var _topCategorySlider = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var res;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
+                _context4.next = 2;
                 return _services_TopCategoryServices__WEBPACK_IMPORTED_MODULE_20__.default.list();
 
               case 2:
-                res = _context3.sent;
+                res = _context4.sent;
                 this.setState(_defineProperty({}, 'products', res));
 
               case 4:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function topCategorySlider() {
@@ -4125,7 +4174,7 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "addProduct",
     value: function addProduct(product) {
-      var _this3 = this;
+      var _this4 = this;
 
       var productArray = this.state.addCart;
 
@@ -4161,7 +4210,7 @@ var Index = /*#__PURE__*/function (_Component) {
 
         productArray.push(product);
         this.setState(_defineProperty({}, 'addCart', productArray), function () {
-          _this3.totalPrice();
+          _this4.totalPrice();
         }); //
       } // this.setState({ ['addCart']: product});
 
@@ -4169,7 +4218,7 @@ var Index = /*#__PURE__*/function (_Component) {
   }, {
     key: "updateQty",
     value: function updateQty(e, inputproduct) {
-      var _this4 = this;
+      var _this5 = this;
 
       var filterProducts = [];
 
@@ -4203,14 +4252,14 @@ var Index = /*#__PURE__*/function (_Component) {
           filterProducts.push(product);
         });
         this.setState(_defineProperty({}, 'addCart', filterProducts), function () {
-          _this4.totalPrice();
+          _this5.totalPrice();
         }); //
       }
     }
   }, {
     key: "totalPrice",
     value: function totalPrice() {
-      var _this$setState8;
+      var _this$setState9;
 
       var grandSubTotalPrice = 0;
       var grandTotalServiceFee = 0;
@@ -4221,12 +4270,12 @@ var Index = /*#__PURE__*/function (_Component) {
         }
       });
       var grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
-      this.setState((_this$setState8 = {}, _defineProperty(_this$setState8, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState8, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState8, 'subTotal', grandSubTotalPrice), _this$setState8));
+      this.setState((_this$setState9 = {}, _defineProperty(_this$setState9, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState9, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState9, 'subTotal', grandSubTotalPrice), _this$setState9));
     }
   }, {
     key: "removeProduct",
     value: function removeProduct(product) {
-      var _this5 = this;
+      var _this6 = this;
 
       var productArray = this.state.addCart;
       var newArray = productArray.filter(function (current) {
@@ -4234,7 +4283,7 @@ var Index = /*#__PURE__*/function (_Component) {
       });
       console.log('productArray :>> ', newArray);
       this.setState(_defineProperty({}, 'addCart', newArray), function () {
-        _this5.totalPrice();
+        _this6.totalPrice();
       });
     }
   }, {
@@ -4243,36 +4292,36 @@ var Index = /*#__PURE__*/function (_Component) {
       var showPageName = '';
 
       if (this.state.show_page === null) {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)("div", {
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Hero__WEBPACK_IMPORTED_MODULE_3__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_TopCategorySlider__WEBPACK_IMPORTED_MODULE_4__.default, {
             productDetails: this.productDetails,
             data: this.state
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_TabSlider__WEBPACK_IMPORTED_MODULE_5__.default, {
             addProduct: this.addProduct,
             data: this.state,
             viewDetails: this.viewDetails
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_AboutUs__WEBPACK_IMPORTED_MODULE_6__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_HowItsWorks__WEBPACK_IMPORTED_MODULE_7__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Service__WEBPACK_IMPORTED_MODULE_8__.default, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Contact__WEBPACK_IMPORTED_MODULE_10__.default, {})]
         });
       } else if (this.state.show_page === 'productdetails') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_DetailsPage__WEBPACK_IMPORTED_MODULE_17__.default, {
           addProduct: this.addProduct,
           data: this.state,
           showPage: this.showPage
         });
       } else if (this.state.show_page === 'findProducts') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_FindProducts__WEBPACK_IMPORTED_MODULE_15__.default, {});
       } else if (this.state.show_page === 'team') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Team__WEBPACK_IMPORTED_MODULE_12__.default, {});
       } else if (this.state.show_page === 'faq') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Faq__WEBPACK_IMPORTED_MODULE_14__.default, {});
       } else if (this.state.show_page === 'filter') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Filter__WEBPACK_IMPORTED_MODULE_16__.default, {
           addProduct: this.addProduct,
           data: this.state,
           viewDetails: this.viewDetails
         });
       } else if (this.state.show_page === 'cart') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Cart__WEBPACK_IMPORTED_MODULE_18__.default, {
           data: this.state,
           showPage: this.showPage,
           updateQty: this.updateQty,
@@ -4282,26 +4331,29 @@ var Index = /*#__PURE__*/function (_Component) {
           removeProduct: this.removeProduct
         });
       } else if (this.state.show_page === 'checkout') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Checkout__WEBPACK_IMPORTED_MODULE_19__.default, {
           data: this.state,
           showPage: this.showPage
         });
       } else if (this.state.show_page === 'map') {
-        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Map__WEBPACK_IMPORTED_MODULE_23__.default, {});
+        showPageName = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Map__WEBPACK_IMPORTED_MODULE_24__.default, {
+          data: this.state,
+          showPage: this.showPage
+        });
       }
 
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.Fragment, {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.Fragment, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_TopBarAndHeader__WEBPACK_IMPORTED_MODULE_13__.default, {
           data: this.state,
           showPage: this.showPage,
           getAuthUser: this.getAuthUser,
           removeProduct: this.removeProduct,
           viewDetails: this.viewDetails,
           showCheck: this.showCheck
-        }), this.state.authUser.data == "not found" && this.state.loginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Login__WEBPACK_IMPORTED_MODULE_22__.default, {
+        }), this.state.authUser.data == "not found" && this.state.loginForm ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Login__WEBPACK_IMPORTED_MODULE_22__.default, {
           loginFormClose: this.loginFormClose,
           setAuthUser: this.setAuthUser
-        }) : '', showPageName, this.state.show_page === 'productdetails' && this.state.show_page === 'map' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
+        }) : '', showPageName, this.state.show_page === 'productdetails' && this.state.show_page === 'map' ? '' : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(_includes_Footer__WEBPACK_IMPORTED_MODULE_11__.default, {})]
       });
     }
   }]);
@@ -4312,7 +4364,7 @@ var Index = /*#__PURE__*/function (_Component) {
 
 
 if (document.getElementById('react_fronend_index')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_24__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_25__.jsx)(Index, {}), document.getElementById('react_fronend_index'));
 }
 
 /***/ }),
@@ -4509,6 +4561,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber;
+
 var Bkash = /*#__PURE__*/function (_Component) {
   _inherits(Bkash, _Component);
 
@@ -4691,9 +4746,8 @@ var Bkash = /*#__PURE__*/function (_Component) {
 
                 if (res.success) {
                   this.setState(_defineProperty({}, 'showCount', 0), function () {
-                    _this3.props.bkashForm(null);
-                  });
-                  this.props.showPage('map'); // this.setunCount();
+                    _this3.props.bkashForm('transport');
+                  }); // this.setunCount();
                 }
 
                 _context3.next = 14;
@@ -4759,12 +4813,12 @@ var Bkash = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u09AC\u09BF\u0995\u09CD\u09B0\u09C7\u09A4\u09BE \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0: "
-            }), this.state.seller.mobile]
+            }), toBengaliNumber(this.state.seller.mobile)]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F: "
-            }), "\u09F3 ", this.props.data.totalPrice]
+            }), "\u09F3 ", toBengaliNumber(this.props.data.totalPrice)]
           })]
         });
       } else {
@@ -4781,12 +4835,12 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                   className: "font-weight-bold",
                   children: "\u09A8\u09AE\u09CD\u09AC\u09B0:"
-                }), " ", this.state.adminAccount.mobile]
+                }), " ", toBengaliNumber(this.state.adminAccount.mobile)]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "col",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
-                children: ["\u09F3 ", this.props.data.totalPrice]
+                children: ["\u09F3 ", toBengaliNumber(this.props.data.totalPrice)]
               })
             })]
           })
@@ -4876,7 +4930,7 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "bkash-help p-3",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-                    children: "16247"
+                    children: toBengaliNumber(16247)
                   })
                 })]
               })
@@ -4938,6 +4992,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
 
 var Cart = /*#__PURE__*/function (_Component) {
   _inherits(Cart, _Component);
@@ -5007,12 +5065,12 @@ var Cart = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "pro-price",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-              children: ["\u09F3 ", product.price_per_unit]
+              children: ["\u09F3 ", toBengaliNumber(product.price_per_unit)]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "available-quantity",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-              children: [product.total_unit == 'Nan' ? 'Nan' : product.total_unit, " ", product.total_unit == 'Nan' ? '' : product.weight_unit]
+              children: [product.total_unit == 'Nan' ? 'Nan' : toBengaliNumber(product.total_unit), " ", product.total_unit == 'Nan' ? '' : product.weight_unit]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "pro-quantity",
@@ -5029,11 +5087,11 @@ var Cart = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "pro-each-total",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-              children: ["\u09F3 ", product.total_each_price]
+              children: ["\u09F3 ", toBengaliNumber(product.total_each_price)]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("td", {
             className: "pro-service",
-            children: ["\u09F3 ", product.each_total_fee]
+            children: ["\u09F3 ", toBengaliNumber(product.each_total_fee)]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "pro-remove",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
@@ -5138,15 +5196,15 @@ var Cart = /*#__PURE__*/function (_Component) {
                             children: "\u09B8\u09BE\u09B0\u09B8\u0982\u0995\u09CD\u09B7\u09C7\u09AA"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", this.props.data.subTotal, ".00"]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.subTotal + '.00')]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", this.props.data.serviceFee, ".00"]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.serviceFee + '.00')]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
                             children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", this.props.data.totalPrice, ".00"]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.totalPrice + '.00')]
                             })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -5224,6 +5282,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber;
+
 var Checkout = /*#__PURE__*/function (_Component) {
   _inherits(Checkout, _Component);
 
@@ -5277,8 +5338,8 @@ var Checkout = /*#__PURE__*/function (_Component) {
       var payoutlist = '';
       payoutlist = this.props.data.addCart.map(function (cart) {
         return payoutlist = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("li", {
-          children: [cart.sub_category, " - ", cart.quantity, " ", cart.weight_unit, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-            children: ["\u09F3 ", cart.total_each_price]
+          children: [cart.sub_category, " - ", toBengaliNumber(cart.quantity), " ", toBengaliNumber(cart.weight_unit), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
+            children: ["\u09F3 ", toBengaliNumber(cart.total_each_price)]
           })]
         });
       });
@@ -5421,19 +5482,20 @@ var Checkout = /*#__PURE__*/function (_Component) {
                                   children: "bandorban"
                                 })]
                               })]
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
+                            }), this.state.showBkash == 'transport' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                               className: "col-12 mb-20",
-                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
                                 className: "check-box",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                                  type: "checkbox",
-                                  id: "create_account"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                                  htmlFor: "create_account",
-                                  children: "Create an Acount?"
-                                })]
+                                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("a", {
+                                  onClick: function onClick() {
+                                    return _this2.props.showPage('map');
+                                  },
+                                  "class": "btn btn-primary text-light p-2",
+                                  role: "button",
+                                  children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09B8\u09C1\u09AC\u09BF\u09A7\u09BE \u09AA\u09C7\u09A4\u09C7 \u0995\u09CD\u09B2\u09BF\u0995 \u0995\u09B0\u09C1\u09A8"
+                                })
                               })
-                            })]
+                            }) : '']
                           })]
                         })
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -5455,15 +5517,15 @@ var Checkout = /*#__PURE__*/function (_Component) {
                                 children: payoutlist
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
                                 children: ["\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-                                  children: ["\u09F3 ", pdata.subTotal]
+                                  children: ["\u09F3 ", toBengaliNumber(pdata.subTotal)]
                                 })]
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("p", {
                                 children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-                                  children: ["\u09F3 ", pdata.serviceFee]
+                                  children: ["\u09F3 ", toBengaliNumber(pdata.serviceFee)]
                                 })]
                               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("h4", {
                                 children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("span", {
-                                  children: ["\u09F3 ", pdata.totalPrice]
+                                  children: ["\u09F3 ", toBengaliNumber(pdata.totalPrice)]
                                 })]
                               })]
                             })]
@@ -5472,60 +5534,6 @@ var Checkout = /*#__PURE__*/function (_Component) {
                             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("h4", {
                               className: "checkout-title",
                               children: "Payment Method"
-                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                              className: "checkout-payment-method",
-                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                                className: "single-method",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                                  type: "radio",
-                                  id: "payment_bank",
-                                  name: "payment-method",
-                                  value: "bank"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                                  htmlFor: "payment_bank",
-                                  children: "Direct Bank Transfer"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                                  "data-method": "bank",
-                                  children: "Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country."
-                                })]
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                                className: "single-method",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                                  type: "radio",
-                                  id: "payment_cash",
-                                  name: "payment-method",
-                                  value: "cash"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                                  htmlFor: "payment_cash",
-                                  children: "Cash on Delivery"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                                  "data-method": "cash",
-                                  children: "Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country."
-                                })]
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                                className: "single-method",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                                  type: "radio",
-                                  id: "payment_payoneer",
-                                  name: "payment-method",
-                                  value: "payoneer"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                                  htmlFor: "payment_payoneer",
-                                  children: "Stripe"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("p", {
-                                  "data-method": "payoneer",
-                                  children: "Please send a Check to Store name with Store Street, Store Town, Store State, Store Postcode, Store Country."
-                                })]
-                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
-                                className: "single-method",
-                                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", {
-                                  type: "checkbox",
-                                  id: "accept_terms"
-                                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("label", {
-                                  htmlFor: "accept_terms",
-                                  children: "I\u2019ve read and accept the terms & conditions"
-                                })]
-                              })]
                             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
                               className: "row",
                               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
@@ -8644,17 +8652,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8685,6 +8693,10 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
+
 var MapGoogle = /*#__PURE__*/function (_Component) {
   _inherits(MapGoogle, _Component);
 
@@ -8701,19 +8713,24 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
       users: null,
       authUser: null,
       form_show: false,
+      transport_bkash_show: null,
       transport: {
-        admin_id: 0,
-        seller_id: 0,
-        buyer_id: 0,
-        transport_id: 0,
-        product_name: '',
-        total_weight: '',
-        transport_charge: '',
-        transport_service_fee: '',
+        admin_id: '',
+        payment_id: 0,
+        buyer_id: '',
         category: '',
+        final_transport_charge: 0,
+        seller_id: '',
         sub_category: '',
+        total_weight: '',
+        transport_id: 0,
+        transport_contact: null,
+        transport_charge: 0,
+        transport_service_fee: 0,
+        product_name: '',
         production_type: '',
-        packaging_method: ''
+        packaging_method: '',
+        weight_unit: ''
       }
     };
     _this.setSelectPosition = _this.setSelectPosition.bind(_assertThisInitialized(_this));
@@ -8721,6 +8738,9 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
     _this.getAllUsers = _this.getAllUsers.bind(_assertThisInitialized(_this));
     _this.getLocation = _this.getLocation.bind(_assertThisInitialized(_this));
     _this.getTransportFee = _this.getTransportFee.bind(_assertThisInitialized(_this));
+    _this.getOldTransport = _this.getOldTransport.bind(_assertThisInitialized(_this));
+    _this.showTransPortBkash = _this.showTransPortBkash.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -8730,6 +8750,32 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
       this.getAuthUser();
       this.getAllUsers();
       this.getLocation();
+      this.getOldTransport();
+    }
+  }, {
+    key: "showTransPortBkash",
+    value: function showTransPortBkash(page) {
+      this.setState(_defineProperty({}, 'transport_bkash_show', page));
+    }
+  }, {
+    key: "getOldTransport",
+    value: function getOldTransport() {
+      console.log('object :>> ', this.props.data.product_pay);
+      this.setState({
+        transport: _objectSpread(_objectSpread({}, this.state.transport), {}, {
+          admin_id: this.props.data.product_pay.admin_accept_id,
+          payment_id: this.props.data.product_pay.id,
+          buyer_id: this.props.data.product_pay.buyer_id,
+          category: this.props.data.product_pay.category,
+          seller_id: this.props.data.product_pay.seller_id,
+          sub_category: this.props.data.product_pay.sub_category,
+          total_weight: this.props.data.product_pay.total_weight,
+          product_name: this.props.data.product_pay.product_name,
+          production_type: this.props.data.product_pay.production_type,
+          packaging_method: this.props.data.product_pay.packaging_method,
+          weight_unit: this.props.data.product_pay.weight_unit
+        })
+      });
     }
   }, {
     key: "getLocation",
@@ -8839,24 +8885,41 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
   }, {
     key: "setSelectPosition",
     value: function setSelectPosition(data) {
+      var _objectSpread2;
+
       this.setState({
         selectPosition: data,
-        form_show: true
+        form_show: true,
+        transport: _objectSpread(_objectSpread({}, this.state.transport), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, 'transport_id', data.id), _defineProperty(_objectSpread2, 'transport_contact', data.mobile), _objectSpread2))
       });
     }
   }, {
     key: "getTransportFee",
     value: function getTransportFee(event) {
-      var _objectSpread2;
+      if (event.target.value > 0) {
+        var _objectSpread3;
 
-      var target = event.target;
-      console.log('event :>> ', target);
-      var value = target.value;
-      var transportfee = value * (10 / 100);
-      var intTransportFee = Math.ceil(transportfee);
-      this.setState({
-        transport: _objectSpread(_objectSpread({}, this.state.transport), {}, (_objectSpread2 = {}, _defineProperty(_objectSpread2, event.target.name, event.target.value), _defineProperty(_objectSpread2, 'transport_service_fee', intTransportFee), _objectSpread2))
-      });
+        var target = event.target;
+        console.log('event :>> ', target);
+        var value = target.value;
+        var transportfee = value * (10 / 100);
+        var intTransportFee = Math.ceil(transportfee);
+        var finalTransportCharge = value - intTransportFee;
+        this.setState({
+          transport: _objectSpread(_objectSpread({}, this.state.transport), {}, (_objectSpread3 = {}, _defineProperty(_objectSpread3, event.target.name, event.target.value), _defineProperty(_objectSpread3, 'transport_service_fee', intTransportFee), _defineProperty(_objectSpread3, 'final_transport_charge', finalTransportCharge), _objectSpread3))
+        });
+      } else {
+        $.notify({
+          message: 'গ্রহণযোগ্য নয়'
+        }, {
+          type: 'danger'
+        });
+      }
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(e) {
+      e.preventDefault();
     }
   }, {
     key: "render",
@@ -8878,9 +8941,7 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
         auth = this.state.authUser;
       }
 
-      console.log('auth :>> ', auth);
       var userDetails = this.state.selectPosition;
-      console.log('userDetails :>> ', userDetails);
       var WrappedMap = (0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withScriptjs)((0,react_google_maps__WEBPACK_IMPORTED_MODULE_2__.withGoogleMap)(function (props) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_google_maps__WEBPACK_IMPORTED_MODULE_2__.GoogleMap, {
           defaultZoom: 17,
@@ -8895,9 +8956,6 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                 lng: Number(position.lng)
               },
               onClick: function onClick() {
-                _this3.setSelectPosition(position);
-              },
-              onMouseEnter: function onMouseEnter() {
                 _this3.setSelectPosition(position);
               }
             }, position.id);
@@ -8946,7 +9004,11 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
         });
       }));
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+        children: [this.state.transport_bkash_show == 'show' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_TransportBkash__WEBPACK_IMPORTED_MODULE_6__.default, {
+          data: this.state.transport,
+          pdata: this.props.data,
+          showTransPortBkash: this.showTransPortBkash
+        }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
           children: "In react page"
         }), this.state.users ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(WrappedMap, {
           isMarkerShown: true,
@@ -8969,7 +9031,7 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
         }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "trasport-form mt-5 m-4",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
-            children: "Transport Form"
+            children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09AB\u09B0\u09CD\u09AE"
           }), this.state.form_show ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
             "data-no-ajax": true,
             onSubmit: this.handleSubmit,
@@ -8982,13 +9044,8 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "transport_name",
                     children: "\u0997\u09BE\u09DC\u09BF\u09B0 \u099A\u09BE\u09B2\u0995 \u098F\u09B0 \u09A8\u09BE\u09AE"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: this.state.selectPosition.name,
-                    className: "form-control",
-                    name: "transport_name",
-                    id: "transport_name",
-                    placeholder: "transport Name"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.selectPosition.name
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -8998,31 +9055,22 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "transport_name",
                     children: "\u0997\u09BE\u09DC\u09BF\u09B0 \u09AE\u09CB\u09AC\u09BE\u0987\u09B2 \u09A8\u09AE\u09CD\u09AC\u09B0"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: this.state.selectPosition.mobile,
-                    className: "form-control",
-                    name: "transport_name",
-                    id: "transport_name",
-                    placeholder: "transport Name"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: toBengaliNumber(this.state.selectPosition.mobile)
                   })]
                 })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               className: "row",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "col-md-12",
+                className: "col-md-12 mb-3",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "transport_address",
                     children: "\u0997\u09BE\u09DC\u09BF\u09B0 \u099A\u09BE\u09B2\u0995\u09C7\u09B0 \u09A0\u09BF\u0995\u09BE\u09A8\u09BE"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("textarea", {
-                    className: "form-control",
-                    value: this.state.selectPosition.address,
-                    name: "transport_address",
-                    id: "transport_address",
-                    rows: "3"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.selectPosition.address
                   })]
                 })
               })
@@ -9035,12 +9083,8 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "total_weight",
                     children: "\u09B8\u09AE\u09CD\u09AA\u09C2\u09B0\u09CD\u09A3 \u0993\u099C\u09A8"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: "",
-                    className: "form-control",
-                    name: "total_weight",
-                    id: "total_weight"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [toBengaliNumber(this.state.transport.total_weight), " ", this.state.transport.weight_unit]
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -9049,9 +9093,10 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   className: "form-group",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "transport_charge",
-                    children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09AD\u09BE\u09DC\u09BE"
+                    children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09AD\u09BE\u09DC\u09BE \u09AA\u09B0\u09BF\u09B7\u09C7\u09AC\u09BE \u09AB\u09BF \u09B8\u09B9"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
                     type: "number",
+                    min: "1",
                     className: "form-control",
                     name: "transport_charge",
                     id: "transport_charge",
@@ -9068,29 +9113,30 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "category",
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09A8\u09BE\u09AE"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: "",
-                    className: "form-control",
-                    name: "category",
-                    id: "category",
-                    placeholder: "category"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.transport.category
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                className: "col-md-6",
+                className: "col-md-3",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   className: "form-group ",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "transport_service_fee",
                     children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09AA\u09B0\u09BF\u09B7\u09C7\u09AC\u09BE \u09AB\u09BF"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "number",
-                    disabled: true,
-                    value: this.state.transport.transport_service_fee,
-                    className: "form-control",
-                    name: "transport_service_fee",
-                    id: "transport_service_fee"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: toBengaliNumber(this.state.transport.transport_service_fee) + " টাকা"
+                  })]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "col-md-3",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "form-group ",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
+                    htmlfor: "final_transport_charge",
+                    children: "\u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09AD\u09BE\u09DC\u09BE \u09AA\u09B0\u09BF\u09B7\u09C7\u09AC\u09BE \u09AB\u09BF \u099B\u09BE\u09DC\u09BE"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: toBengaliNumber(this.state.transport.final_transport_charge) + " টাকা"
                   })]
                 })
               })]
@@ -9103,12 +9149,8 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "sub_category",
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u099C\u09BE\u09A4"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: "",
-                    className: "form-control",
-                    name: "sub_category",
-                    id: "sub_category"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.transport.sub_category
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
@@ -9118,13 +9160,8 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "production_type",
                     children: "\u0989\u09CE\u09AA\u09BE\u09A6\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: "",
-                    className: "form-control",
-                    name: "production_type",
-                    id: "production_type",
-                    placeholder: "production_type"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.transport.production_type
                   })]
                 })
               })]
@@ -9137,31 +9174,29 @@ var MapGoogle = /*#__PURE__*/function (_Component) {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("label", {
                     htmlfor: "packaging_method",
                     children: "\u09AA\u09CD\u09AF\u09BE\u0995\u09C7\u099C\u09BF\u0982 \u09AA\u09A6\u09CD\u09A7\u09A4\u09BF"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                    type: "text",
-                    value: "",
-                    className: "form-control",
-                    name: "packaging_method",
-                    id: "packaging_method"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: this.state.transport.packaging_method
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "col-md-6 mt-4",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
+                  onClick: function onClick() {
+                    return _this3.showTransPortBkash('show');
+                  },
                   className: "btn btn-success",
-                  type: "submit",
                   children: "Confirm"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
                   className: "btn btn-default",
                   onClick: function onClick() {
-                    return _this3.props.showForm(null);
+                    return _this3.props.showPage(null);
                   },
                   children: "Close"
                 })]
               })]
             })]
           }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
-            children: "Select a Trasport First"
+            children: "\u09AA\u09CD\u09B0\u09A5\u09AE\u09C7 \u098F\u0995\u099F\u09BF \u09AA\u09B0\u09BF\u09AC\u09B9\u09A8 \u09A8\u09BF\u09B0\u09CD\u09AC\u09BE\u099A\u09A8 \u0995\u09B0\u09C1\u09A8"
           })]
         })]
       });
@@ -9445,6 +9480,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber;
+
 var TabSlider = /*#__PURE__*/function (_Component) {
   _inherits(TabSlider, _Component);
 
@@ -9571,13 +9609,13 @@ var TabSlider = /*#__PURE__*/function (_Component) {
               className: "product-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 href: "single-product.html",
-                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", farmer.total_weight, " ", farmer.weight_unit]
+                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", toBengaliNumber(farmer.total_weight), " ", farmer.weight_unit]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "price-box",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
                 className: "discounted-price",
-                children: ["\u09E7 ", farmer.weight_unit, " \u09F3 ", farmer.price_per_unit, " "]
+                children: ["\u09E7 ", farmer.weight_unit, " \u09F3 ", toBengaliNumber(farmer.price_per_unit), " "]
               })
             })]
           })]
@@ -9643,13 +9681,13 @@ var TabSlider = /*#__PURE__*/function (_Component) {
               className: "product-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 href: "single-product.html",
-                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", feature.total_weight, " ", feature.weight_unit]
+                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", toBengaliNumber(feature.total_weight), " ", feature.weight_unit]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "price-box",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
                 className: "discounted-price",
-                children: ["\u09E7 ", feature.weight_unit, " \u09F3 ", feature.price_per_unit, " "]
+                children: ["\u09E7 ", feature.weight_unit, " \u09F3 ", toBengaliNumber(feature.price_per_unit), " "]
               })
             })]
           })]
@@ -9721,13 +9759,13 @@ var TabSlider = /*#__PURE__*/function (_Component) {
               className: "product-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 href: "single-product.html",
-                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", arrival.total_weight, " ", arrival.weight_unit]
+                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", toBengaliNumber(arrival.total_weight), " ", arrival.weight_unit]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "price-box",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
                 className: "discounted-price",
-                children: ["\u09E7 ", arrival.weight_unit, " \u09F3 ", arrival.price_per_unit, " "]
+                children: ["\u09E7 ", arrival.weight_unit, " \u09F3 ", toBengaliNumber(arrival.price_per_unit), " "]
               })
             })]
           })]
@@ -9802,13 +9840,13 @@ var TabSlider = /*#__PURE__*/function (_Component) {
               className: "product-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
                 href: "single-product.html",
-                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", sale.total_weight, " ", sale.weight_unit]
+                children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", toBengaliNumber(sale.total_weight), " ", sale.weight_unit]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "price-box",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
                 className: "discounted-price",
-                children: ["\u09E7 ", sale.weight_unit, " \u09F3 ", sale.price_per_unit, " "]
+                children: ["\u09E7 ", sale.weight_unit, " \u09F3 ", toBengaliNumber(sale.price_per_unit), " "]
               })
             })]
           })]
@@ -10207,6 +10245,9 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber;
+
 var TopBarAndHeader = /*#__PURE__*/function (_Component) {
   _inherits(TopBarAndHeader, _Component);
 
@@ -10346,10 +10387,10 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
               className: "price",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                 className: "count",
-                children: "1x"
-              }), " \u09F3", product.price_per_unit]
+                children: [toBengaliNumber(product.quantity), " x "]
+              }), " \u09F3", toBengaliNumber(product.price_per_unit)]
             })]
           })]
         }, product.id);
@@ -10370,7 +10411,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                   children: "contact@example.com"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
                   className: "icofont-phone"
-                }), " +8801816555777"]
+                }), " +", toBengaliNumber(8801816555777)]
               }), authUser == "not found" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                   className: "login-btn",
@@ -10462,13 +10503,6 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                       },
                       children: "\u09AF\u09CB\u0997\u09BE\u09AF\u09CB\u0997"
                     })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("li", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-                      onClick: function onClick() {
-                        return _this2.props.showPage('map');
-                      },
-                      children: "Transport Map"
-                    })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("li", {
                     className: "drop-down",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
@@ -10503,7 +10537,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                           children: ["\u09AC\u09BE\u099C\u09BE\u09B0\u09C7\u09B0 \u09AC\u09CD\u09AF\u09BE\u0997 ", this.state.cartShow ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
                             className: "pl-3 fa fa-times"
                           }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                            children: [this.props.data.addCart.length, " \u099F\u09BF \u09AA\u09A3\u09CD\u09AF"]
+                            children: [toBengaliNumber(this.props.data.addCart.length), " \u099F\u09BF \u09AA\u09A3\u09CD\u09AF"]
                           })]
                         })
                       })]
@@ -10519,11 +10553,11 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                           className: "calculation-details",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3", this.props.data.serviceFee, ".00"]
+                              children: ["\u09F3", toBengaliNumber(this.props.data.serviceFee + '.00')]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3", this.props.data.totalPrice, ".00"]
+                              children: ["\u09F3", toBengaliNumber(this.props.data.totalPrice + '.00')]
                             })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -10739,9 +10773,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ TransportBkash)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/TransportServices */ "./resources/js/services/TransportServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -10767,6 +10825,11 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber;
+
 var TransportBkash = /*#__PURE__*/function (_Component) {
   _inherits(TransportBkash, _Component);
 
@@ -10780,70 +10843,267 @@ var TransportBkash = /*#__PURE__*/function (_Component) {
     _this = _super.call(this, props);
     _this.state = {
       showCount: 0,
+      transport: _this.props.data,
+      buyercontact: _this.props.pdata.authUser.mobile,
+      buyer: _this.props.pdata.authUser,
+      productprice: _this.props.data.transport_charge,
       adminAccount: [],
-      seller: [],
-      buyercontact: _this.props.data.authUser.mobile,
-      buyer: _this.props.data.authUser,
-      productprice: _this.props.data.subTotal,
-      servicefee: _this.props.data.serviceFee,
-      product: _this.props.data.addCart[0],
       code: ''
     };
     _this.setCount = _this.setCount.bind(_assertThisInitialized(_this));
     _this.setunCount = _this.setunCount.bind(_assertThisInitialized(_this));
     _this.permissionUser = _this.permissionUser.bind(_assertThisInitialized(_this));
-    _this.sellerDetails = _this.sellerDetails.bind(_assertThisInitialized(_this));
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TransportBkash, [{
+    key: "setunCount",
+    value: function setunCount() {
+      var _this2 = this;
+
+      this.setState(_defineProperty({}, 'showCount', 0), function () {
+        _this2.props.showTransPortBkash(null);
+      });
+    }
+  }, {
+    key: "permissionUser",
+    value: function () {
+      var _permissionUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_2__.default.permission({
+                  'access_to': this.props.data.authUser.access_to
+                });
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'adminAccount', user[0]));
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function permissionUser() {
+        return _permissionUser.apply(this, arguments);
+      }
+
+      return permissionUser;
+    }()
+  }, {
+    key: "setCount",
+    value: function setCount() {
+      var count = this.state.showCount + 1;
+      this.setState(_defineProperty({}, 'showCount', count));
+    }
+  }, {
+    key: "handleInputChange",
+    value: function handleInputChange(event) {
+      var target = event.target;
+      var name = target.name;
+      var value = target.value;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(event) {
+        var _this3 = this;
+
+        var digits_only, _digits_only, res;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                event.preventDefault();
+                console.log('this.state.transport :>> ', this.state.transport); // const data = await TransportServices.save(this.state.transport);
+                // console.log('data :>> ', data);
+
+                digits_only = function digits_only(string) {
+                  return _toConsumableArray(string).every(function (c) {
+                    return '0123456789'.includes(c);
+                  });
+                };
+
+                if (!(this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact))) {
+                  _context2.next = 19;
+                  break;
+                }
+
+                if (!(this.state.code.length == 6)) {
+                  _context2.next = 16;
+                  break;
+                }
+
+                _digits_only = function _digits_only(string) {
+                  return _toConsumableArray(string).every(function (c) {
+                    return '0123456789'.includes(c);
+                  });
+                };
+
+                if (!_digits_only(this.state.code)) {
+                  _context2.next = 13;
+                  break;
+                }
+
+                _context2.next = 9;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.save(this.state.transport);
+
+              case 9:
+                res = _context2.sent;
+                this.setState(_defineProperty({}, 'showCount', 0), function () {
+                  _this3.props.showTransPortBkash(null);
+                });
+                _context2.next = 14;
+                break;
+
+              case 13:
+                $.notify({
+                  message: 'Please Enter only Digit code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 14:
+                _context2.next = 17;
+                break;
+
+              case 16:
+                $.notify({
+                  message: 'Please Enter Six digit Code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 17:
+                _context2.next = 20;
+                break;
+
+              case 19:
+                $.notify({
+                  message: 'Invalid Number'
+                }, {
+                  type: 'danger'
+                });
+
+              case 20:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
+  }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+      var showContent = '';
+
+      if (this.state.showCount == 0) {
+        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "bkash-full-details w-75 p-2 ml-5 text-light mt-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "font-weight-bold",
+              children: "\u09AE\u09BE\u09B0\u09CD\u099A\u09C7\u09A8\u09CD\u099F: "
+            }), this.state.adminAccount.name]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "font-weight-bold",
+              children: "\u09AC\u09BF\u0995\u09CD\u09B0\u09C7\u09A4\u09BE \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0: "
+            }), toBengaliNumber(this.state.transport.mobile)]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "font-weight-bold",
+              children: "\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F: "
+            }), "\u09F3 ", toBengaliNumber(this.state.transport.transport_charge)]
+          })]
+        });
+      } else {
+        showContent = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "bkash-total-details bg-white p-3",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "row",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "col",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                className: "font-weight-bold",
+                children: "\u09AE\u09BE\u09B0\u09CD\u099A\u09C7\u09A8\u09CD\u099F \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F:"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                  className: "font-weight-bold",
+                  children: "\u09A8\u09AE\u09CD\u09AC\u09B0:"
+                }), " ", toBengaliNumber(this.state.adminAccount.mobile)]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "col",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h1", {
+                children: ["\u09F3 ", toBengaliNumber(this.state.transport.transport_charge)]
+              })
+            })]
+          })
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "bkash-background",
-        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
           className: "bkash-cart",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
             className: "bkash-header ",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("img", {
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
               src: "/bkash/bkash_payment_logo.png",
               width: "450px",
               alt: "",
               srcset: ""
             })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "bkash-body text-center mt-2",
-            children: [showContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+            children: [showContent, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               className: "bkash-input mt-5",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("form", {
                 action: "",
                 onSubmit: this.handleSubmit,
-                children: [this.state.showCount == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                children: [this.state.showCount == 1 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "bkash-first-page",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center font-weight-bold text-light",
                     children: "\u0986\u09AA\u09A8\u09BE\u09B0 \u09AC\u09BF\u0995\u09BE\u09B6 \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center mt-3",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                       type: "text",
                       size: "35",
                       name: "buyercontact",
-                      value: this.state.contact,
+                      value: this.state.buyercontact,
                       onChange: this.handleInputChange,
                       placeholder: "e.g. 01XXXXXX"
                     })
                   })]
-                }) : '', this.state.showCount == 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                }) : '', this.state.showCount == 2 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "bkash-second-page",
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center font-weight-bold text-light",
                     children: "\u0997\u09CB\u09AA\u09A8 \u0995\u09CB\u09A1"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "text-center mt-3",
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("input", {
                       type: "password",
                       onChange: this.handleInputChange,
                       name: "code",
@@ -10851,40 +11111,40 @@ var TransportBkash = /*#__PURE__*/function (_Component) {
                       size: "35"
                     })
                   })]
-                }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "mt-4",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                     className: "text-center text-light",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       className: "font-weight-bold",
                       children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4"
-                    }), " \u0995\u09CD\u09B2\u09BF\u0995 \u0995\u09B0\u09C7\u0964 \u0986\u09AA\u09A8\u09BF \u09B6\u09B0\u09CD\u09A4\u09BE\u09A6\u09BF \u098F\u09AC\u0982 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
+                    }), " \u0995\u09CD\u09B2\u09BF\u0995 \u0995\u09B0\u09C7\u0964 \u0986\u09AA\u09A8\u09BF \u09B6\u09B0\u09CD\u09A4\u09BE\u09A6\u09BF \u098F\u09AC\u0982 ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
                       className: "font-weight-bold",
                       children: "\u09B6\u09B0\u09CD\u09A4\u0997\u09C1\u09B2\u09BF\u09A4\u09C7 \u09B8\u09AE\u09CD\u09AE\u09A4\u09BF \u09A6\u09BF\u099A\u09CD\u099B\u09C7\u09A8\u0964"
                     })]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
                   className: "row bkash-btn mt-4",
                   children: [this.state.showCount == 2 ?
                   /*#__PURE__*/
                   // <div className="col p-3 btn btn-secondary" >
-                  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                     type: "submit",
                     className: "col p-3 btn btn-secondary",
                     children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4 \u0995\u09B0\u09C1\u09A8"
-                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "col p-3 btn btn-secondary",
                     onClick: this.setCount,
                     children: "\u09A8\u09BF\u09B6\u09CD\u099A\u09BF\u09A4 \u0995\u09B0\u09C1\u09A8"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                     className: "col p-3 btn btn-secondary",
                     onClick: this.setunCount,
                     children: "\u09AC\u09BE\u09A4\u09BF\u09B2 \u0995\u09B0\u09C1\u09A8"
                   })]
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
                   className: "bkash-help p-3",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
-                    children: "16247"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+                    children: toBengaliNumber(16247)
                   })
                 })]
               })
@@ -10896,7 +11156,7 @@ var TransportBkash = /*#__PURE__*/function (_Component) {
   }]);
 
   return TransportBkash;
-}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
 
@@ -15608,6 +15868,40 @@ PaymentService.save = /*#__PURE__*/function () {
   };
 }();
 
+PaymentService.getByBuyerId = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
+    var urldata, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            urldata = "/payment";
+            _context2.next = 3;
+            return axios.get(urldata, {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context2.sent;
+            return _context2.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
+  }));
+
+  return function (_x2) {
+    return _ref2.apply(this, arguments);
+  };
+}();
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PaymentService);
 
 /***/ }),
@@ -16100,7 +16394,7 @@ UserServices.seller = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.all = /*#__PURE__*/function () {
+UserServices.transport = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -16108,9 +16402,7 @@ UserServices.all = /*#__PURE__*/function () {
         switch (_context3.prev = _context3.next) {
           case 0:
             _context3.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
+            return axios.get("/ManageUsers/users/" + data).then(function (response) {
               return response.data.data;
             })["catch"](function (error) {
               return error;
@@ -16133,7 +16425,7 @@ UserServices.all = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.login = /*#__PURE__*/function () {
+UserServices.all = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -16141,24 +16433,12 @@ UserServices.login = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
-              if (response.data.error) {
-                $.notify({
-                  message: response.data.error.error
-                }, {
-                  type: 'danger'
-                });
-              } else {
-                $.notify({
-                  message: 'Login Successfully'
-                }, {
-                  type: 'success'
-                });
-              }
-
-              return response.data;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
             })["catch"](function (error) {
-              return [];
+              return error;
             });
 
           case 2:
@@ -16178,7 +16458,7 @@ UserServices.login = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.updateLoc = /*#__PURE__*/function () {
+UserServices.login = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -16186,7 +16466,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.next = 2;
-            return axios.post("/ManageUsers/location", data).then(function (response) {
+            return axios.post("/ManageUsers/users", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -16195,7 +16475,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Location Update Successfully'
+                  message: 'Login Successfully'
                 }, {
                   type: 'success'
                 });
@@ -16223,7 +16503,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.logout = /*#__PURE__*/function () {
+UserServices.updateLoc = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
@@ -16231,7 +16511,7 @@ UserServices.logout = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
+            return axios.post("/ManageUsers/location", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -16240,7 +16520,7 @@ UserServices.logout = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Logout Successfully'
+                  message: 'Location Update Successfully'
                 }, {
                   type: 'success'
                 });
@@ -16268,7 +16548,7 @@ UserServices.logout = /*#__PURE__*/function () {
   };
 }();
 
-UserServices.permission = /*#__PURE__*/function () {
+UserServices.logout = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
@@ -16276,12 +16556,24 @@ UserServices.permission = /*#__PURE__*/function () {
         switch (_context7.prev = _context7.next) {
           case 0:
             _context7.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
-              return response.data.data;
+            return axios.post("/ManageUsers/users", data).then(function (response) {
+              if (response.data.error) {
+                $.notify({
+                  message: response.data.error.error
+                }, {
+                  type: 'danger'
+                });
+              } else {
+                $.notify({
+                  message: 'Logout Successfully'
+                }, {
+                  type: 'success'
+                });
+              }
+
+              return response.data;
             })["catch"](function (error) {
-              return error;
+              return [];
             });
 
           case 2:
@@ -16298,6 +16590,39 @@ UserServices.permission = /*#__PURE__*/function () {
 
   return function (_x6) {
     return _ref7.apply(this, arguments);
+  };
+}();
+
+UserServices.permission = /*#__PURE__*/function () {
+  var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.next = 2;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 2:
+            res = _context8.sent;
+            return _context8.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8);
+  }));
+
+  return function (_x7) {
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -16662,6 +16987,295 @@ exports.default = typeof _symbol2.default === "function" && _typeof(_iterator2.d
 } : function (obj) {
   return obj && typeof _symbol2.default === "function" && obj.constructor === _symbol2.default && obj !== _symbol2.default.prototype ? "symbol" : typeof obj === "undefined" ? "undefined" : _typeof(obj);
 };
+
+/***/ }),
+
+/***/ "./node_modules/bengali-number/lib/index.js":
+/*!**************************************************!*\
+  !*** ./node_modules/bengali-number/lib/index.js ***!
+  \**************************************************/
+/***/ ((module) => {
+
+/*
+** This script helps you to convert your Number to  the Bengali word representation.
+** Developed By: Rahul Baruri<rahulbaruri1@gmail.com>
+** Created At: 26th August 2017
+ */
+
+/**
+ * This method receives a number as parameter and returns it's bengali word representation
+ * @param {Number} number 
+ * @return {String}
+ */
+var convertToWord = (function (number) {
+    'use strict';
+    var gonona = {
+        amount: null,
+        numberFragements: {
+            integerPart: null,
+            fractionPart: null,
+            isFloatValue: false,
+        },
+        unit: {
+            koti: 'কোটি',
+            lokkho: 'লক্ষ',
+            hazar: 'হাজার',
+            sotok: 'শত',
+            ekok: '',
+        },
+
+        numericWord: {
+            '.': 'দশমিক',
+            '00': '',
+            '1': 'এক',
+            '01': 'এক',
+            '2': 'দুই',
+            '02': 'দুই',
+            '3': 'তিন',
+            '03': 'তিন',
+            '4': 'চার',
+            '04': 'চার',
+            '5': 'পাঁচ',
+            '05': 'পাঁচ',
+            '6': 'ছয়',
+            '06': 'ছয়',
+            '7': 'সাত',
+            '07': 'সাত',
+            '8': 'আট',
+            '08': 'আট',
+            '9': 'নয়',
+            '09': 'নয়',
+            '10': 'দশ',
+            '11': 'এগারো',
+            '12': 'বার',
+            '13': 'তেড়',
+            '14': 'চৌদ্দ',
+            '15': 'পনের',
+            '16': 'ষোল',
+            '17': 'সতের',
+            '18': 'আঠার',
+            '19': 'উনিশ',
+            '20': 'বিশ',
+            '21': 'একুশ',
+            '22': 'বাইশ',
+            '23': 'তেইশ',
+            '24': 'চব্বিশ',
+            '25': 'পঁচিশ',
+            '26': 'ছাব্বিশ',
+            '27': 'সাতাশ',
+            '28': 'আঠাশ',
+            '29': 'ঊনত্রিশ',
+            '30': 'ত্রিশ',
+            '31': 'একত্রিশ',
+            '32': 'বত্রিশ',
+            '33': 'তেত্রিশ',
+            '34': 'চৌত্রিশ',
+            '35': 'পঁয়ত্রিশ',
+            '36': 'ছত্রিশ',
+            '37': 'সাঁইত্রিশ',
+            '38': 'আটত্রিশ',
+            '39': 'ঊনচল্লিশ',
+            '40': 'চল্লিশ',
+            '41': 'একচল্লিশ',
+            '42': 'বিয়াল্লিশ',
+            '43': 'তেতাল্লিশ',
+            '44': 'চুয়াল্লিশ',
+            '45': 'পঁয়তাল্লিশ',
+            '46': 'ছেচল্লিশ',
+            '47': 'সাতচল্লিশ',
+            '48': 'আটচল্লিশ',
+            '49': 'ঊনপঞ্চাশ',
+            '50': 'পঞ্চাশ',
+            '51': 'একান্ন',
+            '52': 'বায়ান্ন',
+            '53': 'তিপ্পান্ন',
+            '54': 'চুয়ান্ন',
+            '55': 'পঞ্চান্ন',
+            '56': 'ছাপ্পান্ন',
+            '57': 'সাতান্ন',
+            '58': 'আটান্ন',
+            '59': 'ঊনষাট',
+            '60': 'ষাট',
+            '61': 'একষট্টি',
+            '62': 'বাষট্টি',
+            '63': 'তেষট্টি',
+            '64': 'চৌষট্টি',
+            '65': 'পঁয়ষট্টি',
+            '66': 'ছেষট্টি',
+            '67': 'সাতষট্টি',
+            '68': 'আটষট্টি',
+            '69': 'ঊনসত্তর',
+            '70': 'সত্তর',
+            '71': 'একাত্তর',
+            '72': 'বাহাত্তর',
+            '73': 'তিয়াত্তর',
+            '74': 'চুয়াত্তর',
+            '75': 'পঁচাত্তর',
+            '76': 'ছিয়াত্তর',
+            '77': 'সাতাত্তর',
+            '78': 'আটাত্তর',
+            '79': 'ঊনআশি',
+            '80': 'আশি',
+            '81': 'একাশি',
+            '82': 'বিরাশি',
+            '83': 'তিরাশি',
+            '84': 'চুরাশি',
+            '85': 'পঁচাশি',
+            '86': 'ছিয়াশি',
+            '87': 'সাতাশি',
+            '88': 'আটাশি',
+            '89': 'ঊননব্বই',
+            '90': 'নব্বই',
+            '91': 'একানব্বই',
+            '92': 'বিরানব্বই',
+            '93': 'তিরানব্বই',
+            '94': 'চুরানব্বই',
+            '95': 'পঁচানব্বই',
+            '96': 'ছিয়ানব্বই',
+            '97': 'সাতানব্বই',
+            '98': 'আটানব্বই',
+            '99': 'নিরানব্বই',
+            '100': 'একশো',
+        },
+        isFloat: function (value) {
+            return (value).toString().indexOf('.') > -1
+        },
+        isZero: function (num) {
+            return /^0+$/.test(num);
+        },
+        createSegment: function (num) {
+            var segments = {
+                koti: null,
+                lokkho: null,
+                hazar: null,
+                sotok: null,
+                ekok: null
+            };
+
+            segments.koti = Math.floor(num / 10000000);
+            num = num % 10000000;
+
+            segments.lokkho = Math.floor(num / 100000);
+            num = num % 100000;
+
+            segments.hazar = Math.floor(num / 1000);
+            num = num % 1000;
+
+            segments.sotok = Math.floor(num / 100);
+            num = num % 100;
+
+            segments.ekok = num;
+
+            return segments;
+        },
+
+        setAmount: function (amount) {
+            if (!isNaN(amount) && Number(amount) > -1) {
+                this.amount = Number(amount);
+                if (this.isFloat(this.amount)) {
+                    var numberStr = (this.amount).toString();
+                    var positionOfDecimalPoint = numberStr.indexOf('.');
+                    this.numberFragements.integerPart = numberStr.substring(0, positionOfDecimalPoint);
+                    this.numberFragements.fractionPart = numberStr.substring(positionOfDecimalPoint + 1);
+                    this.numberFragements.isFloatValue = true;
+                } else {
+                    this.numberFragements.integerPart = Number(amount);
+                    this.numberFragements.isFloatValue = false;
+                }
+            } else {
+                throw new Error('Invalid parameter given, expected positive numeric value');
+            }
+        },
+        getFractionSentece: function (fractionValue) {
+            var fractionSentence = ''
+            var fractionPartArray = fractionValue.toString().split('');
+            fractionPartArray.forEach(function (character, index) {
+                if (character === '0' && index < fractionPartArray.length - 1) {
+                    fractionSentence += 'শুন্য '
+                } else {
+                    fractionSentence += this.numericWord[character] + ' '
+                }
+            }, this);
+            return fractionSentence.trim();
+        },
+        generateSentence: function (segments) {
+            var numberString = '';
+            for (var i = segments.length - 1; i >= 0; i--) {
+                for (let key in segments[i]) {
+                    if (segments[i][key]) {
+                        var amountWord = this.numericWord[segments[i][key]] ? this.numericWord[segments[i][key]] + ' ' : '';
+                        if (key === 'koti' && segments[i]['koti'] && segments[i + 1] && segments[i + 1]['ekok']) {
+                            numberString = numberString.trim();
+                            amountWord = ' ';
+                        }
+                        numberString += amountWord + this.unit[key] + " ";
+                    }
+                }
+            }
+            return numberString;
+        },
+
+        getAmountInWord: function (value) {
+            var amount = value;
+            var segmentArray = [];
+            var koti = amount / 10000000;
+            if (koti > 99) {
+                while (koti > 99) {
+                    var result = this.createSegment(amount);
+                    koti = result.koti;
+                    segmentArray.push(result);
+                    amount = Math.floor(amount / 10000000);
+                }
+            } else {
+                var result = this.createSegment(amount);
+                segmentArray.push(result);
+            }
+            return this.generateSentence(segmentArray).trim();
+        },
+        init: function (amount) {
+            if (this.isZero(amount)) return 'শুন্য';
+            this.setAmount(amount);
+            var integerNumberInWord = this.getAmountInWord(this.numberFragements.integerPart);
+            if (!this.numberFragements.isFloatValue) {
+                return integerNumberInWord;
+            }
+            var fractionNumberInWord = this.getFractionSentece(this.numberFragements.fractionPart);
+            return integerNumberInWord + ' ' + this.numericWord['.'] + ' ' + fractionNumberInWord
+        },
+    }
+    return gonona.init(number);
+});
+
+
+/**
+ * This method receives a number as parameter and returns it's bengali word representation
+ * @param {String | Number} numericText 
+ * @return {String}
+ */
+function convertToBengaliNumber(numericText) {
+    const digitMap = {
+        '1': '১',
+        '2': '২',
+        '3': '৩',
+        '4': '৪',
+        '5': '৫',
+        '6': '৬',
+        '7': '৭',
+        '8': '৮',
+        '9': '৯',
+        '0': '০',
+    };
+    
+   return String(numericText).replace(/\d/g, function(key) {
+        return digitMap[key];
+    });
+}
+
+module.exports = {
+    toBengaliWord: convertToWord,
+    toBengaliNumber: convertToBengaliNumber 
+};
+
 
 /***/ }),
 

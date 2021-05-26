@@ -19,7 +19,14 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        if(request()->ajax()) {
+            if(request()->buyer_id) {
+                $data = $this->payment->transportByBuyerId(request()->buyer_id);
+            }
+            return $this->sendResponse($data);
+        } else {
+            dd('not found');
+        }
     }
 
     /**

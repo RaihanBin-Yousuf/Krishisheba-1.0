@@ -11,4 +11,17 @@ PaymentService.save = async (data) => {
                   return res;
   }
 
+PaymentService.getByBuyerId = async(data) =>{
+  let urldata = "/payment";
+  const res = await axios
+        .get(urldata, {params: data})
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+}
+
 export default PaymentService;

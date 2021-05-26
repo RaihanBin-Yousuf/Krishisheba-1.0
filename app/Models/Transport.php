@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Transport extends Model
 {
     use HasFactory;
-    protected $fillable = ['buyer_name','buyer_contact', 'seller_name', 'seller_contact', 'transport_name', 'transport_contact', 'product_name', 'total_weight', 'advance_payment', 'category', 'sub_category', 'production_type', 'packaging_method'];
+    protected $fillable = ['admin_id', 'payment_id', 'seller_id', 'buyer_id', 'transport_id', 'transport_charge', 'final_transport_charge', 'transport_service_fee' , 'product_name', 'total_weight', 'category', 'sub_category', 'production_type', 'packaging_method', 'is_delivered'];
+
+    public function saveTransport($input)
+    {
+        $this->create($input);
+    }
 }

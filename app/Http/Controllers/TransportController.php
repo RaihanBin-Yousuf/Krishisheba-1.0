@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 class TransportController extends Controller
 {
+    public function __construct(Transport $transport) {
+        $this->transport = $transport;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,7 +38,8 @@ class TransportController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input= $request->all();
+        $this->transport->saveTransport($input);
     }
 
     /**

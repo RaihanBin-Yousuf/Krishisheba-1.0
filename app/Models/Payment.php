@@ -16,4 +16,11 @@ class Payment extends Model
         $createPayment = $this->create($input);
         return $createPayment;
     }
+
+    public function transportByBuyerId($buyerId)
+    {
+        $data = $this->where('buyer_id', $buyerId)->orderBy('id', 'desc')->first();
+        // dd($data);
+        return $data;
+    }
 }

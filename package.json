@@ -25,6 +25,7 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
+        "bengali-number": "^1.1.0",
         "google-map-react": "^2.1.9",
         "react-google-maps": "^9.4.5",
         "react-router-dom": "^5.2.0",
