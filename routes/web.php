@@ -111,5 +111,5 @@ Route::resource('googlemap', GoogleMapController::class);
 
 //payment all information
 
-Route::resource('/payment', PaymentController::class);
-Route::resource('/transport', TransportController::class);
+Route::resource('payment', PaymentController::class);
+Route::resource('transport', TransportController::class);

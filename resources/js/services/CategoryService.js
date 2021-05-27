@@ -18,7 +18,7 @@ CategoryService.dropdown = async (data) => {
 
 CategoryService.details = async (id) => {
     const res = await axios
-        .get("/googlemap/" + id)
+        .get("/categories/" + id)
         .then((response) => {
             return response.data.data.data;
         })

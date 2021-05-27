@@ -25,8 +25,8 @@ class CreatePaymentsTable extends Migration
             $table->string('service_fee');
             $table->integer('price_per_unit');
             $table->bigInteger('advance_payment')->nullable();
-            $table->string('category');
-            $table->string('sub_category');
+            $table->string('category')->nullable();
+            $table->string('sub_category')->nullable();
             $table->string('production_type')->nullable();
             $table->string('product_production_year')->nullable();
             $table->string('packaging_method')->nullable();

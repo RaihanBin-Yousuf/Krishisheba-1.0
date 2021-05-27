@@ -32,6 +32,8 @@ class CreateUsersTable extends Migration
             $table->integer('access_to')->default('0');
             $table->decimal('lat', 10, 8)->default('0.00');
             $table->decimal('lng', 11, 8)->default('0.00');
+            $table->bigInteger('amount')->default(0);
+            // $table->bigInteger('ref_code')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();

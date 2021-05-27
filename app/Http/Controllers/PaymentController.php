@@ -25,7 +25,8 @@ class PaymentController extends Controller
             }
             return $this->sendResponse($data);
         } else {
-            dd('not found');
+            return view('backend.payment.index');
+            
         }
     }
 

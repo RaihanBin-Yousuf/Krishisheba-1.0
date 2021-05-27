@@ -87,13 +87,13 @@ export default class Filter extends Component {
     }
 
     async getSubCategories(categoryId) {
+        console.log('categoryId :>> ', categoryId);
         const res = await SubcateoryService.dropdown({"category_id": categoryId});
         let category = await CategoryService.details(categoryId);
         if(categoryId=='নির্বাচন করুন'){
             category.name='';
-        } else {
-            category = await CategoryService.details(categoryId);
         }
+        console.log('category.name :>> ', category);
         this.setState({
             ['subCategorieslist']: res,
             query : {

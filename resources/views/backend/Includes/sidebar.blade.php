@@ -144,6 +144,22 @@
                     </p>
                   </a>
                 </li>
+                <li class="nav-item">
+                  <a href="{{route('payment.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-inbox"></i>
+                    <p>
+                      Product Payment
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{route('transport.index')}}" class="nav-link">
+                  <i class="nav-icon fas fa-inbox"></i>
+                    <p>
+                      Transport Payment
+                    </p>
+                  </a>
+                </li>
 
                 <li class="nav-item">
                       <a class="nav-link" href="{{ route('logout') }}"

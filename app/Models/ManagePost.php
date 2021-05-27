@@ -25,6 +25,8 @@ class ManagePost extends Model
             $objData = json_decode($data['query']);// convert string into object
             $arrData = (array)$objData; //convert object into array
             $result = array_filter($arrData); //remove empty value in array
+            // dd($result);
+
             if($arrData['start_price'] && empty($arrData['end_price'])) {
                 // echo "start price";
                 // print_r($result['start_price']);

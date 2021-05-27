@@ -33,4 +33,6 @@ require('./backend/managePostCreate');
 
 require('./frontend/home/Index');
 require('./backend/MapGoogle');
+require('./backend/PaymentConfirm');
+require('./backend/TransportPayment');
 // require('./frontend/includes/TopCategorySlider');

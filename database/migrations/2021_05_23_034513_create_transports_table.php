@@ -25,8 +25,8 @@ class CreateTransportsTable extends Migration
             $table->bigInteger('transport_charge')->default(0);
             $table->bigInteger('final_transport_charge')->default(0);
             $table->bigInteger('transport_service_fee')->default(0); 
-            $table->string('category');
-            $table->string('sub_category');
+            $table->string('category')->nullable();
+            $table->string('sub_category')->nullable();
             $table->string('production_type')->nullable();
             $table->string('packaging_method')->nullable();
             $table->tinyInteger('is_delivered')->default(0);

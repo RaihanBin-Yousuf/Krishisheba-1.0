@@ -17,7 +17,7 @@ class TransportController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.transport.index');
     }
 
     /**
