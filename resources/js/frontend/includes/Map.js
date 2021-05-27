@@ -12,6 +12,7 @@ export default class MapGoogle extends Component {
             selectPosition: null,
             users: null,
             authUser: null,
+            sellerUser: null,
             form_show: false,
             transport_bkash_show: null,
             transport: {
@@ -40,11 +41,13 @@ export default class MapGoogle extends Component {
         this.getTransportFee = this.getTransportFee.bind(this);
         this.getOldTransport = this.getOldTransport.bind(this);
         this.showTransPortBkash = this.showTransPortBkash.bind(this);
+        this.getSellerUser = this.getSellerUser.bind(this);
         this.handleSubmit =this.handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.getAuthUser();
+        this.getSellerUser();
         this.getAllUsers();
         this.getLocation();
         this.getOldTransport();
@@ -95,12 +98,17 @@ export default class MapGoogle extends Component {
 
     async getAuthUser() {
         const data = await UserServices.get();
-        console.log('data :>> ', data);
         this.setState({ ['authUser']: data});
     }
 
+    async getSellerUser() {
+        const data = await UserServices.seller(this.props.data.product_pay.seller_id);
+        console.log('seller data :>> ', data);
+        this.setState({ ['sellerUser']: data});
+    }
+
     async getAllUsers() {
-        const response = await UserServices.all({'all':'all'});
+        const response = await UserServices.tranportall({'all':'all'});
         this.setState({ ['users']: response});
     }
 
@@ -119,7 +127,6 @@ export default class MapGoogle extends Component {
     getTransportFee(event) {
         if(event.target.value> 0) {
             const target = event.target;
-            console.log('event :>> ', target);
             const value = target.value;
 
             const transportfee = value * (10/100);
@@ -157,7 +164,7 @@ export default class MapGoogle extends Component {
         let WrappedMap = withScriptjs(withGoogleMap(props =>
             <GoogleMap
               defaultZoom={17}
-              defaultCenter={{ lat: Number(this.state.authUser.lat), lng: Number(this.state.authUser.lng) }}
+              defaultCenter={{ lat: Number(this.state.sellerUser.lat), lng: Number(this.state.sellerUser.lng) }}
             >
                 {this.state.users.map(position=> (
                 <Marker

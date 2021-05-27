@@ -89,6 +89,7 @@ Route::get('/deletesubcategory/{id}',[SubCategoryController::class,'deleteSubCat
 Route::prefix('ManageUsers')->group(function () 
 {
 Route::resource('users', UsersController::class);
+Route::get('/tranportall', [UsersController::class, 'alltransport']);
 Route::post('location', [UsersController::class, 'location'])->name('location');
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
 Route::get('/buyer',[UsersController::class,'buyer'])->name('buyer');

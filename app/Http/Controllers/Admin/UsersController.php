@@ -44,6 +44,12 @@ class UsersController extends Controller
         return view('backend.manage_users.index',compact('allusers'));
     }
 
+    public function alltransport()
+    {
+        $users = $this->user->getAllTransports();
+        return $this->sendResponse($users);
+    }
+
 
     public function AllAdmin()
     {

@@ -70,4 +70,11 @@ class User extends Authenticatable
    {
        return $this->where('id',request()->access_to)->get();
    }
+
+   public function getAllTransports()
+   {
+       $data =$this->where('access_to', '!=', '99')->where('role','transport');
+       $second = $data->where('access_to','!=','0' )->get();
+       return $second;
+   }
 }

@@ -47,6 +47,18 @@ UserServices.all = async (data) => {
     return res;
 };
 
+UserServices.tranportall = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/tranportall", {params: data})
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
+
 
 UserServices.login = async (data)=> {
     const res = await axios.post("/ManageUsers/users", data)
