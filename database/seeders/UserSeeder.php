@@ -42,6 +42,7 @@ class UserSeeder extends Seeder
             $user->profile_img = $users['profile_img'];
             $user->lat = $users['lat'];
             $user->lng = $users['lng'];
+            $user->amount = 0;
             // $user->timestamps = $users['timestamps'];
             $user->save();
         }

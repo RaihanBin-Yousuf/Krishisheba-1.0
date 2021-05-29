@@ -30,6 +30,7 @@ class CreateTransportsTable extends Migration
             $table->string('production_type')->nullable();
             $table->string('packaging_method')->nullable();
             $table->tinyInteger('is_delivered')->default(0);
+            $table->tinyInteger('is_paid')->default(0);
             $table->timestamps();
         });
     }

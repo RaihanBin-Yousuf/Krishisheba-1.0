@@ -32,6 +32,7 @@ export default class MapGoogle extends Component {
                 production_type: '',
                 packaging_method: '',
                 weight_unit: '',
+                // is_paid: 0,
             }
         };
         this.setSelectPosition = this.setSelectPosition.bind(this);
@@ -58,7 +59,7 @@ export default class MapGoogle extends Component {
     }
 
     getOldTransport() {
-        console.log('object :>> ', this.props.data.product_pay);
+        // console.log('object :>> ', this.props.data.product_pay);
         this.setState({
             transport: {
                 ...this.state.transport,
@@ -151,6 +152,9 @@ export default class MapGoogle extends Component {
         e.preventDefault();
     }
     render() {
+        if(this.state.sellerUser ==null) {
+            return <Loading />;
+        }
         if (!this.state.authUser) {
             return <Loading />;
         } else if(!this.state.users) {
@@ -160,6 +164,7 @@ export default class MapGoogle extends Component {
         if(this.state.authUser) {
             auth = this.state.authUser;
         }
+        console.log('this.state.sellerUser :>> ', this.state.sellerUser);
         let userDetails = this.state.selectPosition;
         let WrappedMap = withScriptjs(withGoogleMap(props =>
             <GoogleMap
@@ -197,10 +202,13 @@ export default class MapGoogle extends Component {
                         </InfoWindow>
                     )}
             </GoogleMap>));
+
+        
+
         return (
             <div>
                 {this.state.transport_bkash_show == 'show' ?
-                <TransportBkash data={this.state.transport} pdata={this.props.data} showTransPortBkash={this.showTransPortBkash}/> : ''}
+                <TransportBkash data={this.state} pdata={this.props.data} showTransPortBkash={this.showTransPortBkash}/> : ''}
                 <h3>In react page</h3>
                 { this.state.users ?
                 <WrappedMap 

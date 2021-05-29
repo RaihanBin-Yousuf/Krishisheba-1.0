@@ -11,4 +11,29 @@ TransportServices.save = async (data) => {
     
   }
 
+
+  
+TransportServices.getListByAdmin = async(data) =>{
+  let urldata = "/transport";
+  const res = await axios
+        .get(urldata, {params: data})
+        .then((response) => {
+            return response.data.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+}
+
+TransportServices.acceptPayment = async (data) => {
+    let urlPayement = "/accept/transport";
+      const res = await axios.post(urlPayement, data)
+                             .then(response => {
+                            $.notify({message : 'Payment Done Successfully'}, {type: 'success'});
+                            return response.data;
+                            }).catch(error=>{ return []; });
+                  return res;
+  }
+  
 export default TransportServices;

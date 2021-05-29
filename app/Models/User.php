@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -29,7 +30,8 @@ class User extends Authenticatable
         'nid_front_img',
         'access_to',
         'latitude ',
-        'longitude '
+        'longitude ',
+        'amount'
     ];
 
     /**
@@ -73,8 +75,26 @@ class User extends Authenticatable
 
    public function getAllTransports()
    {
-       $data =$this->where('access_to', '!=', '99')->where('role','transport');
-       $second = $data->where('access_to','!=','0' )->get();
+       $data =$this->whereNotIn('access_to', [0,99]);
+       $second = $data->where('role','transport')->get();
        return $second;
    }
+
+   public function sendPayment($input)
+   {    
+        $user = $this->find($input['u_id']);
+        $previous = $user->amount;
+        $user->amount = $previous + $input['amount'];
+        $data = $user->save();
+        return $data;
+   }
+
+   public function cutPayment($input)
+    {
+        $authuser = $this->find(Auth::user()->id);
+        $authprevious = $authuser->amount;
+        $authuser->amount = $authprevious - $input['amount'];
+        $data = $authuser->save();
+        return $data;
+    }
 }

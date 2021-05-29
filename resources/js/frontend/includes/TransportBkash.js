@@ -8,10 +8,10 @@ export default class TransportBkash extends Component {
         super(props);
         this.state = {
             showCount: 0,
-            transport: this.props.data,
+            transport: this.props.data.selectPosition,
             buyercontact: this.props.pdata.authUser.mobile,
             buyer : this.props.pdata.authUser,
-            productprice: this.props.data.transport_charge,
+            transportprice: this.props.data.transport,
             adminAccount: [],
             code: '',
         }
@@ -20,6 +20,10 @@ export default class TransportBkash extends Component {
         this.permissionUser = this.permissionUser.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.permissionUser();
     }
 
     setunCount() {
@@ -46,6 +50,7 @@ export default class TransportBkash extends Component {
     }
 
     async handleSubmit(event) {
+
         event.preventDefault();
         console.log('this.state.transport :>> ', this.state.transport);
         // const data = await TransportServices.save(this.state.transport);
@@ -55,8 +60,8 @@ export default class TransportBkash extends Component {
             if(this.state.code.length == 6) {
                 const digits_only = string => [...string].every(c => '0123456789'.includes(c));
                 if(digits_only(this.state.code)) {
-                    const res = await TransportServices.save(this.state.transport);
-                    this.setState({ ['showCount']: 0},()=>{this.props.showTransPortBkash(null);});
+                    const res = await TransportServices.save(this.state.transportprice);
+                    // this.setState({ ['showCount']: 0},()=>{this.props.showTransPortBkash(null);});
                     
                 } else {
                     $.notify({message: 'Please Enter only Digit code'}, {type: 'warning'});
@@ -70,12 +75,13 @@ export default class TransportBkash extends Component {
     }
 
     render() {
+        console.log('this.state transportBkash :>> ', this.state);
         let showContent = '';
         if(this.state.showCount == 0) {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
                             <p><span className="font-weight-bold">মার্চেন্ট: </span>{this.state.adminAccount.name}</p>
-                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{toBengaliNumber(this.state.transport.mobile)}</p>
-                            <p><span className="font-weight-bold">সর্বমোট: </span>৳ {toBengaliNumber(this.state.transport.transport_charge)}</p>
+                            <p><span className="font-weight-bold">গাড়ীর চালকের  অ্যাকাউন্ট নম্বর: </span>{toBengaliNumber(this.state.transport.mobile)}</p>
+                            <p><span className="font-weight-bold">সর্বমোট: </span>৳ {toBengaliNumber(this.state.transportprice.transport_charge)}</p>
                         </div>
         } else {
             showContent = <div className="bkash-total-details bg-white p-3">
@@ -85,7 +91,7 @@ export default class TransportBkash extends Component {
                                     <p><span className="font-weight-bold">নম্বর:</span> {toBengaliNumber(this.state.adminAccount.mobile)}</p>
                                 </div>
                                 <div className="col">
-                                    <h1>৳ {toBengaliNumber(this.state.transport.transport_charge)}</h1>
+                                    <h1>৳ {toBengaliNumber(this.state.transportprice.transport_charge)}</h1>
                                 </div>
                             </div>
                         </div>

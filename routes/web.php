@@ -112,4 +112,6 @@ Route::resource('googlemap', GoogleMapController::class);
 //payment all information
 
 Route::resource('payment', PaymentController::class);
+Route::post('/accept/payment', [PaymentController::class, 'acceptpayment']);
 Route::resource('transport', TransportController::class);
+Route::post('/accept/transport', [TransportController::class, 'acceptpayment']);

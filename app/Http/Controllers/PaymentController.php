@@ -4,13 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\ManagePost;
 use App\Models\Payment;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function __construct(Payment $payment, ManagePost $manage_post) {
+    public function __construct(Payment $payment, ManagePost $manage_post, User $user, Transaction $transaction) {
         $this->payment = $payment;
         $this->manage_post = $manage_post;
+        $this->user = $user;
+        $this->transaction = $transaction;
     }
     /**
      * Display a listing of the resource.
@@ -22,12 +27,39 @@ class PaymentController extends Controller
         if(request()->ajax()) {
             if(request()->buyer_id) {
                 $data = $this->payment->transportByBuyerId(request()->buyer_id);
+            }else if(request()->query) {
+                $userId =Auth::user()->id;
+                // dd($userId);
+                $data = $this->payment->paymentListbyAdminId($userId);
+                // dd($data);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
+            } else {
+                echo "not not";
+                exit;
             }
             return $this->sendResponse($data);
         } else {
             return view('backend.payment.index');
             
         }
+    }
+
+    public function acceptpayment(Request $request)
+    {
+        $input= $request->all();
+        $sendToBuyer['u_id'] = $request->buyer_id;
+        $sendToBuyer['amount'] = $request->amount;
+        $cut = $this->user->cutPayment($sendToBuyer);
+        $data = $this->user->sendPayment($sendToBuyer);
+        $trans = $this->transaction->saveServiceFee($input); 
+        $acces = $this->payment->acceptInPayment($input);
+        return $this->sendResponse($acces);
     }
 
     /**
@@ -79,6 +111,9 @@ class PaymentController extends Controller
         $data['packaging_method'] = $input["product"]->packaging_method;
         $data['accept_payment'] = 0;
         $data = $this->payment->savePayment($data);
+        $sendToAdmin['u_id'] = $input['adminAccount']->id;
+        $sendToAdmin['amount'] = $data['total_amount'] + $data['service_fee'];
+        $payment = $this->user->sendPayment($sendToAdmin);
         return $data;
     }
 
@@ -86,6 +121,7 @@ class PaymentController extends Controller
     {
         $data['id'] = $input['product']->id;
         $data['total_weight'] = $input['product']->total_unit;
+        
         // dd($data);
         return $this->manage_post->updatePost($data);
     }
