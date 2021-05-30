@@ -49,4 +49,30 @@ PaymentService.getListByAdmin = async(data) =>{
                   return res;
   }
 
+  PaymentService.getListBySellerFarmer = async(data) =>{
+    let urldata = "/payment/history";
+    const res = await axios
+          .get(urldata, {params: data})
+          .then((response) => {
+              return response.data.data.data;
+          })
+          .catch((error) => {
+              return error;
+          });
+      return res;
+  }
+
+  PaymentService.buyerPaymentList = async(data) =>{
+    let urldata = "/payment/buyer/history";
+    const res = await axios
+          .get(urldata, {params: data})
+          .then((response) => {
+              return response.data.data.data;
+          })
+          .catch((error) => {
+              return error;
+          });
+      return res;
+  }
+
 export default PaymentService;

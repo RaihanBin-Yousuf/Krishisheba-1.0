@@ -67,12 +67,12 @@ class ManagePost extends Model
     public function homePage()
     {  
         if(request()->type == "feature") {
-           $feature = $this->skip(0)->take(10)->get();
+           $feature = $this->latest()->take(10)->get();
             $onSale = $this->skip(10)->take(10)->get();
-            $newArrival = $this->skip(20)->take(10)->get();
+            $discount = $this->where('discount_price','>','0')->take(10)->get();
             $farmerlist = $this->where('user_role', 'farmer')->get();
         }
-        $data = ['feature'=>$feature, 'sale'=>$onSale, 'new'=>$newArrival, 'farmer'=> $farmerlist];
+        $data = ['feature'=>$feature, 'sale'=>$onSale, 'new'=>$discount, 'farmer'=> $farmerlist];
         return $data;
     }
 

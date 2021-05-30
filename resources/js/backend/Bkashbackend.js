@@ -8,13 +8,13 @@ export default class Bkashbackend extends Component {
         this.state = {
             showCount: 0,
             code: "123456",
-            buyer_contact: this.props.data.buyer.mobile,
+            seller_contact: this.props.data.seller.mobile,
             payment_id: this.props.data.id,
             accept_payment: 1,
-            buyer_id: this.props.data.buyer.id,
+            seller_id: this.props.data.seller.id,
             marchent_contact: this.props.data.admin.mobile,
             amount: parseInt(this.props.data.total_amount),
-            buyer_name: this.props.data.buyer.name,
+            seller_name: this.props.data.seller.name,
             service_fee: parseInt(this.props.data.service_fee),
             total_amount: parseInt(this.props.data.total_amount) + parseInt(this.props.data.service_fee),
             
@@ -45,7 +45,7 @@ export default class Bkashbackend extends Component {
         console.log('this.state.code :>> ', this.state.code.length);
         event.preventDefault();
         const digits_only = string => [...string].every(c => '0123456789'.includes(c));
-        if(this.state.buyer_contact.length == 11 && digits_only(this.state.buyer_contact)) {
+        if(this.state.seller_contact.length == 11 && digits_only(this.state.seller_contact)) {
             if(this.state.code.length == 6) {
                 const digits_only = string => [...string].every(c => '0123456789'.includes(c));
                 if(digits_only(this.state.code)) {
@@ -70,8 +70,8 @@ export default class Bkashbackend extends Component {
         let showContent = '';
         if(this.state.showCount == 0) {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
-                            <p><span className="font-weight-bold">Send To: </span>{this.state.buyer_name}</p>
-                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{this.state.buyer_contact}</p>
+                            <p><span className="font-weight-bold">Send To: </span>{this.state.seller_name}</p>
+                            <p><span className="font-weight-bold">বিক্রেতা অ্যাকাউন্ট নম্বর: </span>{this.state.seller_contact}</p>
                             <p><span className="font-weight-bold">Amount: </span>৳ {this.state.amount}</p>
                             <p><span className="font-weight-bold">Service Fee: </span>৳ {this.state.service_fee}</p>
                         </div>
@@ -79,7 +79,7 @@ export default class Bkashbackend extends Component {
             showContent = <div className="bkash-total-details bg-white p-3">
                             <div className="row">
                                 <div className="col">
-                                    <h2>Send to:</h2><h4><span className="font-weight-bold"> {this.state.buyer_contact}</span> </h4>
+                                    <h2>Send to:</h2><h4><span className="font-weight-bold"> {this.state.seller_contact}</span> </h4>
                                 </div>
                                 <div className="col">
                                     Total Amount<h1>৳ {this.state.total_amount}</h1>

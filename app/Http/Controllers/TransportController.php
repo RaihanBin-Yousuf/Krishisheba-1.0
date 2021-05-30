@@ -127,4 +127,61 @@ class TransportController extends Controller
     {
         //
     }
+
+    public function paymenthistory()
+    {
+        if(request()->ajax()) {
+            if(request()->query) {
+                $userId =Auth::user()->id;
+                // dd($userId);
+                $data = $this->transport->transporthistory($userId);
+                // dd($data);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
+            } else {
+                echo "not not";
+                exit;
+            }
+            return $this->sendResponse($data);
+        } 
+        return view('backend.transport.transport');
+    }
+
+    public function buytranpayhis()
+    {
+        if(request()->ajax()) {
+            if(request()->query) {
+                $userId =Auth::user()->id;
+                // dd($userId);
+                $data = $this->transport->buyerTrasportHistory($userId);
+                // dd($data);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
+            } else {
+                echo "not not";
+                exit;
+            }
+            return $this->sendResponse($data);
+        } 
+        return view('backend.transport.buyertransport');
+    }
+
+    public function deliveredtransport(Request $request)
+    {
+        $input = $request->all();
+        $input["is_delivered"] = 1;
+        $data = $this->transport->deliveredsuccess($input);
+        // dd($input);
+        return $this->sendResponse($data);
+    }
 }

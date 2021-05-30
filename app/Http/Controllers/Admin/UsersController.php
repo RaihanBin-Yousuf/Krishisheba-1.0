@@ -44,6 +44,13 @@ class UsersController extends Controller
         return view('backend.manage_users.index',compact('allusers'));
     }
 
+    public function authuser()
+    {
+        $user = Auth::user();
+        // dd($user);
+        return $this->sendResponse($user);
+    }
+
     public function alltransport()
     {
         $users = $this->user->getAllTransports();

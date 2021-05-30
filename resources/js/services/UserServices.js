@@ -1,4 +1,18 @@
 const UserServices = {};
+
+
+UserServices.authUser = async () => {
+    const res = await axios
+        .get("/ManageUsers/authUser")
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+};
+
 UserServices.get = async () => {
     const res = await axios
         .get("/ManageUsers/users")

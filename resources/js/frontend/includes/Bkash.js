@@ -77,10 +77,18 @@ export default class Bkash extends Component {
                         product: JSON.stringify(this.state.product),
                         code: this.state.code,
                     }
-                    const res =await PaymentService.save(cpost);
-                    if(res.success) {
-                        this.setState({ ['showCount']: 0},()=>{this.props.bkashForm('transport');});
-                        // this.setunCount();
+                    console.log('this.state.buyer :>> ', this.state.buyer);
+                    if(this.state.buyer.role == 'buyer') {
+                        if(this.state.buyer.access_to == '0') {
+                            $.notify({message: 'You do not have permission by admin.'}, {type: 'danger'});
+                        } else {
+                                const res =await PaymentService.save(cpost);
+                                if(res.success) {
+                                    this.setState({ ['showCount']: 0},()=>{this.props.bkashForm('transport');});
+                                } 
+                            }
+                    } else {
+                        $.notify({message: 'Only Buyer can buyer buy product'}, {type: 'danger'});
                     }
                 } else {
                     $.notify({message: 'Please Enter only Digit code'}, {type: 'warning'});

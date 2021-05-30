@@ -241,7 +241,15 @@
                       </p>
                     </a>
                   </li>
-
+                  <li class="nav-item">
+                    <a href="{{ route('selfarmer') }}" class="nav-link">
+                    <i class="nav-icon fas fa-bullhorn"></i>
+                    <p>
+                      অর্থ গ্রহণ ইতিহাস
+                      </p>
+                    </a>
+                  </li>
+                  
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
@@ -290,7 +298,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('buyerpaymentlist')}}" class="nav-link">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         লেনদেনের অবস্থা
@@ -363,7 +371,7 @@
                     </a>
                   </li> -->
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('transporter')}}" class="nav-link">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         লেনদেনের অবস্থা

@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
-import TransportServices from '../../js/services/TransportServices';
-import Pagination from '../../js/components/Paginations';
-import TransportBkashBackend from './TransportBkashBackend';
-import UserServices from '../../js/services/UserServices';
+import TransportServices from '../services/TransportServices';
+import Pagination from '../components/Paginations';
+import UserServices from '../services/UserServices';
+const { toBengaliNumber, toBengaliWord} = require('bengali-number');
 
-export default class TransportPayment extends Component {
+export default class TrnsprtPayList extends Component {
     constructor(props) {
         super(props);
         this.state={
             transports: [],
-            show_bkash: 'nope',
             single_payment: [],
             auth_user: [],
 
@@ -23,9 +22,7 @@ export default class TransportPayment extends Component {
         this.query = '';
         this.handlePageChange = this.handlePageChange.bind(this);
         this.getTransportList = this.getTransportList.bind(this);
-        this.showBkash = this.showBkash.bind(this);
-        this.closeBkash = this.closeBkash.bind(this);
-        this.getAuthUser = this.getAuthUser.bind(this);
+        this.isDelivered = this.isDelivered.bind(this);
 
     }
 
@@ -41,20 +38,9 @@ export default class TransportPayment extends Component {
 
     }
 
-    showBkash(data) {
-        this.setState({
-            ['single_payment'] : data,
-            ['show_bkash'] : 'bkash' })
-    }
-
-    closeBkash(data) {
-        
-        this.setState({
-            ['show_bkash']: data,
-        })
-        if(data == 'transport') {
-            this.getAuthUser();
-        }
+    async isDelivered(data) {
+        const getTransport = await TransportServices.paymentHistory(data);
+        this.getTransportList();
     }
 
     handlePageChange(event) {
@@ -68,7 +54,7 @@ export default class TransportPayment extends Component {
     }
 
     async getTransportList() {
-        const getTransport = await TransportServices.getListByAdmin({
+        const getTransport = await TransportServices.paymentHistory({
             query : this.state.query,
             sort : this.sort,
             direction : this.sortdirection,
@@ -85,20 +71,37 @@ export default class TransportPayment extends Component {
     }
     render() {
         let transportsList = '';
-        console.log('this.state.transports :>> ', this.state.transports);
+        console.log('this.state.transports in buyer:>> ', this.state.transports);
         if(this.state.transports) {
             transportsList = this.state.transports.map(transport=>(
                 transportsList = <div className="card">
-                                    <div className="card-header">
+                                    {transport.is_delivered == '0' ?
+                                    <div className="card-header bg-danger text-light">
                                         <div className="row">
                                             <div className="col">
                                                 <h3>Payment : {transport.created_at}</h3>
                                             </div>
                                             <div className="col text-right">
-                                                <div onClick={()=>this.showBkash(transport)} className="btn btn-danger font-light">Bkash Payment</div>
+                                                <h4>Buyer Didn't get the product.</h4>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> :
+                                    transport.is_paid == '1' ?
+                                    <div className="card-header  bg-success text-light">
+                                            <div className="col">
+                                                <h3>Payment : {transport.created_at}</h3>
+                                            </div>
+                                    </div> : 
+                                    <div className="card-header  bg-warning">
+                                            <div className="row">
+                                            <div className="col">
+                                                <h3>Payment : {transport.created_at}</h3>
+                                            </div>
+                                            <div className="col text-right">
+                                                <h4>Please Wait Transaction...</h4>
+                                            </div>
+                                        </div>
+                                    </div>}
                                     <div className="card-body">
                                         <div className="row">
                                             <div className="col">
@@ -162,27 +165,24 @@ export default class TransportPayment extends Component {
         }
         return (
             <div className="mt-3">
-                <div className="row mb-4">
+                 <div className="row mb-4">
                     <div className="col">
                     </div>
                     <div className="col-4 text-right">
                         <h3>
-                            <span className="font-weight-bold"> Your Balance:</span>
+                            <span className="font-weight-bold"> আপনার একাউন্টে জমা হয়েছে:</span>
                         </h3>
                     </div>
-                        <h3> {this.state.auth_user.amount} Taka</h3>
+                        <h3> {toBengaliNumber(this.state.auth_user.amount)} টাকা</h3>
                 </div>
-                {this.state.show_bkash=='bkash' ? <TransportBkashBackend data= {this.state.single_payment} closeBkash={this.closeBkash}/>: ''}
                 {transportsList}
-
                 <Pagination page={this.page} pageChange={this.handlePageChange} count={this.count} limit={this.limit} />
-
             </div>
         )
     }
 }
 
 
-if (document.getElementById('react_transport')) {
-    ReactDOM.render(<TransportPayment />, document.getElementById('react_transport'));
+if (document.getElementById('react_transport_pay_list')) {
+    ReactDOM.render(<TrnsprtPayList />, document.getElementById('react_transport_pay_list'));
 }

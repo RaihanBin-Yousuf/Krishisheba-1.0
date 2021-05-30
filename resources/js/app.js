@@ -35,4 +35,8 @@ require('./frontend/home/Index');
 require('./backend/MapGoogle');
 require('./backend/PaymentConfirm');
 require('./backend/TransportPayment');
+require('./backend/SellerFarmer');
+require('./backend/TrnsprtPayList');
+require('./backend/BuyerPaymentList');
+require('./backend/BuyerTransportPayList');
 // require('./frontend/includes/TopCategorySlider');

@@ -143,6 +143,7 @@ export default class Index extends Component {
             $.notify({message: 'Already Added'}, {type: 'danger'});
         } else {
             product.quantity = 1;
+            product.price_per_unit = product.price_per_unit-(product.price_per_unit*(product.discount_price/100));
             product.total_each_price = product.price_per_unit;
             product.total_unit = product.total_weight - product.quantity;
             if(product.weight_unit == 'কেজি') {
@@ -155,6 +156,7 @@ export default class Index extends Component {
                 product.each_service_fee = 1000;
             } 
             product.each_total_fee = product.quantity * product.each_service_fee;
+            
             //  else if(product.weight_unit == 'মেট্রিক টন') {
             //     product.each_service_fee = 1;
             // } 

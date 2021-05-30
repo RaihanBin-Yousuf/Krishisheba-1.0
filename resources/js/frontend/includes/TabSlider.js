@@ -91,6 +91,7 @@ export default class TabSlider extends Component {
             newArrivalList = <div className="gf-product tab-slider-sub-product" key={arrival.id}>
                                 <div className="image">
                                     <a onClick={()=>this.props.viewDetails(feature)}>
+                                    <span className="onsale bg-success"><h4>{toBengaliNumber(arrival.discount_price)}%</h4></span>
                                         <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
                                     </a>
                                     <div className="product-hover-icons">
@@ -108,8 +109,10 @@ export default class TabSlider extends Component {
                                         <a href="shop-left-sidebar.html">পণ্যের প্রকার: {arrival.category}</a>
                                     </div>
                                     <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(arrival.total_weight)} {arrival.weight_unit}</a></h3>
-                                    <div className="price-box">
-                                        <span className="discounted-price">১ {arrival.weight_unit} ৳ {toBengaliNumber(arrival.price_per_unit)} </span>
+                                    <div className="price-box ">
+                                        {/* <span className="discounted-price"> </span> */}
+                                        <h4>১ {arrival.weight_unit} </h4><span class="main-price">৳ {toBengaliNumber(arrival.price_per_unit)}</span>
+                                                <span class="discounted-price">৳ {toBengaliNumber(arrival.price_per_unit-(arrival.price_per_unit*(arrival.discount_price/100)))}</span>
                                     </div>
                                 </div>
                             </div>

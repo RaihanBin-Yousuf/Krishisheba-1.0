@@ -53,15 +53,63 @@ class PaymentController extends Controller
     public function acceptpayment(Request $request)
     {
         $input= $request->all();
-        $sendToBuyer['u_id'] = $request->buyer_id;
-        $sendToBuyer['amount'] = $request->amount;
-        $cut = $this->user->cutPayment($sendToBuyer);
-        $data = $this->user->sendPayment($sendToBuyer);
+        $sendToseller['u_id'] = $request->seller_id;
+        $sendToseller['amount'] = $request->amount;
+        $cut = $this->user->cutPayment($sendToseller);
+        $data = $this->user->sendPayment($sendToseller);
         $trans = $this->transaction->saveServiceFee($input); 
         $acces = $this->payment->acceptInPayment($input);
         return $this->sendResponse($acces);
     }
 
+    public function paymenthistory()
+    {
+        if(request()->ajax()) {
+            if(request()->query) {
+                $userId =Auth::user()->id;
+                // dd($userId);
+                $data = $this->payment->paymentListbySFarmId($userId);
+                // dd($data);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
+            } else {
+                echo "not not";
+                exit;
+            }
+            return $this->sendResponse($data);
+        } 
+        return view('backend.payment.selfarmer');
+    }
+
+    
+    public function buyerpayment()
+    {
+        if(request()->ajax()) {
+            if(request()->query) {
+                $userId =Auth::user()->id;
+                // dd($userId);
+                $data = $this->payment->buyerpayment($userId);
+                // dd($data);
+                return $this->sendResponse(['data'=>$data, 'pages' => [
+                    'total'=> $data->total(),
+                    'next_page_url' => $data->nextPageUrl(),
+                    'prev_page_url' => $data->previousPageUrl(),
+                    'last_page' 	=> $data->lastPage(),
+                    'current_page' 	=> $data->currentPage(),
+                ]]);
+            } else {
+                echo "not not";
+                exit;
+            }
+            return $this->sendResponse($data);
+        } 
+        return view('backend.payment.buyer');
+    }
     /**
      * Show the form for creating a new resource.
      *

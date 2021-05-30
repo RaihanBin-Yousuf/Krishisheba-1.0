@@ -32,6 +32,11 @@ class Payment extends Model
         return $this->where([['admin_accept_id' , $adminId], ['accept_payment' ,'=', '0']])->with('admin','seller','buyer')->paginate(3);
     }
 
+    public function paymentListbySFarmId($id)
+    {
+        return $this->where('seller_id' , $id)->with('admin','seller','buyer')->paginate(3);
+    }
+
     public function getDates()
     {
         return ['created_at'];
@@ -62,5 +67,10 @@ class Payment extends Model
     {
        $data = $this->updateOrCreate(['id'=>$input['payment_id']], ['accept_payment'=> $input['accept_payment']]);
        return $data;
+    }
+
+    public function buyerpayment($id)
+    {
+        return $this->where('buyer_id' , $id)->with('admin','seller','buyer')->paginate(3);
     }
 }

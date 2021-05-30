@@ -97,9 +97,9 @@ export default class Cart extends Component {
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
                                                     <h4>সারসংক্ষেপ</h4>
-                                                    <p>মোট <span>৳ {toBengaliNumber(this.props.data.subTotal+'.00')}</span></p>
-                                                    <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(this.props.data.serviceFee+'.00')}</span></p>
-                                                    <h2>সর্বমোট <span>৳ {toBengaliNumber(this.props.data.totalPrice+'.00')}</span></h2>
+                                                    <p>মোট <span>৳ {toBengaliNumber(this.props.data.subTotal)}</span></p>
+                                                    <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(this.props.data.serviceFee)}</span></p>
+                                                    <h2>সর্বমোট <span>৳ {toBengaliNumber(this.props.data.totalPrice)}</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
                                                     <button className="checkout-btn">লেনদেন</button>

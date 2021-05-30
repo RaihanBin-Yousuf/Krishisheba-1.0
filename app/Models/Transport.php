@@ -63,4 +63,20 @@ class Transport extends Model
        $data = $this->updateOrCreate(['id'=>$input['id']], ['is_paid'=> '1']);
        return $data;
     }
+
+    public function buyerTrasportHistory($adminid)
+    {
+        return $this->where('buyer_id', $adminid)->with('seller','buyer','transport','payment', 'admin')->paginate(3);
+    }
+
+    public function deliveredsuccess($input)
+    {
+        $data = $this->updateOrCreate(['id'=>$input['id']], ['is_delivered'=> '1']);
+       return $data;
+    }
+
+    public function transporthistory($id)
+    {
+        return $this->where('transport_id', $id)->with('seller','buyer','transport','payment', 'admin')->paginate(3);
+    }
 }

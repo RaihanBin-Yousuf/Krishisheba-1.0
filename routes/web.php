@@ -89,6 +89,8 @@ Route::get('/deletesubcategory/{id}',[SubCategoryController::class,'deleteSubCat
 Route::prefix('ManageUsers')->group(function () 
 {
 Route::resource('users', UsersController::class);
+Route::get('/authUser', [UsersController::class, 'authuser']);
+
 Route::get('/tranportall', [UsersController::class, 'alltransport']);
 Route::post('location', [UsersController::class, 'location'])->name('location');
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');
@@ -110,8 +112,19 @@ Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepas
 Route::resource('googlemap', GoogleMapController::class);
 
 //payment all information
+Route::get('/payment/history', [PaymentController::class, 'paymenthistory'])->name('selfarmer');
+Route::get('/payment/buyer/history', [PaymentController::class, 'buyerpayment'])->name('buyerpaymentlist');
 
 Route::resource('payment', PaymentController::class);
+
+// Route::get('/payment/sellerfarmer', [PaymentController::class, 'sellerfarmer']);
+
 Route::post('/accept/payment', [PaymentController::class, 'acceptpayment']);
+Route::get('/transport/payment', [TransportController::class, 'paymenthistory'])->name('transporter');
+Route::get('/transport/buyer/payment', [TransportController::class, 'buytranpayhis'])->name('buyertransportlist');
+
+
 Route::resource('transport', TransportController::class);
+
 Route::post('/accept/transport', [TransportController::class, 'acceptpayment']);
+Route::post('/delivered/buyer/transport', [TransportController::class, 'deliveredtransport']);

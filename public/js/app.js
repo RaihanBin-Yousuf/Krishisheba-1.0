@@ -1901,7 +1901,15 @@ __webpack_require__(/*! ./backend/MapGoogle */ "./resources/js/backend/MapGoogle
 
 __webpack_require__(/*! ./backend/PaymentConfirm */ "./resources/js/backend/PaymentConfirm.js");
 
-__webpack_require__(/*! ./backend/TransportPayment */ "./resources/js/backend/TransportPayment.js"); // require('./frontend/includes/TopCategorySlider');
+__webpack_require__(/*! ./backend/TransportPayment */ "./resources/js/backend/TransportPayment.js");
+
+__webpack_require__(/*! ./backend/SellerFarmer */ "./resources/js/backend/SellerFarmer.js");
+
+__webpack_require__(/*! ./backend/TrnsprtPayList */ "./resources/js/backend/TrnsprtPayList.js");
+
+__webpack_require__(/*! ./backend/BuyerPaymentList */ "./resources/js/backend/BuyerPaymentList.js");
+
+__webpack_require__(/*! ./backend/BuyerTransportPayList */ "./resources/js/backend/BuyerTransportPayList.js"); // require('./frontend/includes/TopCategorySlider');
 
 /***/ }),
 
@@ -1983,13 +1991,13 @@ var Bkashbackend = /*#__PURE__*/function (_Component) {
     _this.state = {
       showCount: 0,
       code: "123456",
-      buyer_contact: _this.props.data.buyer.mobile,
+      seller_contact: _this.props.data.seller.mobile,
       payment_id: _this.props.data.id,
       accept_payment: 1,
-      buyer_id: _this.props.data.buyer.id,
+      seller_id: _this.props.data.seller.id,
       marchent_contact: _this.props.data.admin.mobile,
       amount: parseInt(_this.props.data.total_amount),
-      buyer_name: _this.props.data.buyer.name,
+      seller_name: _this.props.data.seller.name,
       service_fee: parseInt(_this.props.data.service_fee),
       total_amount: parseInt(_this.props.data.total_amount) + parseInt(_this.props.data.service_fee)
     };
@@ -2044,7 +2052,7 @@ var Bkashbackend = /*#__PURE__*/function (_Component) {
                   });
                 };
 
-                if (!(this.state.buyer_contact.length == 11 && digits_only(this.state.buyer_contact))) {
+                if (!(this.state.seller_contact.length == 11 && digits_only(this.state.seller_contact))) {
                   _context.next = 19;
                   break;
                 }
@@ -2136,12 +2144,12 @@ var Bkashbackend = /*#__PURE__*/function (_Component) {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               className: "font-weight-bold",
               children: "Send To: "
-            }), this.state.buyer_name]
+            }), this.state.seller_name]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               className: "font-weight-bold",
               children: "\u09AC\u09BF\u0995\u09CD\u09B0\u09C7\u09A4\u09BE \u0985\u09CD\u09AF\u09BE\u0995\u09BE\u0989\u09A8\u09CD\u099F \u09A8\u09AE\u09CD\u09AC\u09B0: "
-            }), this.state.buyer_contact]
+            }), this.state.seller_contact]
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
               className: "font-weight-bold",
@@ -2166,7 +2174,7 @@ var Bkashbackend = /*#__PURE__*/function (_Component) {
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h4", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                   className: "font-weight-bold",
-                  children: [" ", this.state.buyer_contact]
+                  children: [" ", this.state.seller_contact]
                 }), " "]
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -2278,6 +2286,751 @@ var Bkashbackend = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
+
+/***/ }),
+
+/***/ "./resources/js/backend/BuyerPaymentList.js":
+/*!**************************************************!*\
+  !*** ./resources/js/backend/BuyerPaymentList.js ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BuyerPaymentList)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../js/services/PaymentService */ "./resources/js/services/PaymentService.js");
+/* harmony import */ var _js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../js/components/Paginations */ "./resources/js/components/Paginations.js");
+/* harmony import */ var _Bkashbackend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Bkashbackend */ "./resources/js/backend/Bkashbackend.js");
+/* harmony import */ var _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../js/services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
+
+
+
+
+
+var BuyerPaymentList = /*#__PURE__*/function (_Component) {
+  _inherits(BuyerPaymentList, _Component);
+
+  var _super = _createSuper(BuyerPaymentList);
+
+  function BuyerPaymentList(props) {
+    var _this;
+
+    _classCallCheck(this, BuyerPaymentList);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      payments: [],
+      single_payment: [],
+      auth_user: []
+    };
+    _this.page = 1;
+    _this.limit = 10;
+    _this.count = 0;
+    _this.sort = 'id';
+    _this.sortdirection = 'desc';
+    _this.query = '';
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
+    _this.getPaymentList = _this.getPaymentList.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BuyerPaymentList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAuthUser();
+    }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getPaymentList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(event) {
+      var target = event.target;
+      var page = target.getAttribute('data-page');
+      var lastPage = Math.ceil(this.count / this.limit);
+
+      if (1 <= page && page <= lastPage && page != this.page) {
+        this.page = page;
+        this.getPaymentList();
+      }
+    }
+  }, {
+    key: "getPaymentList",
+    value: function () {
+      var _getPaymentList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var getpayments;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.buyerPaymentList({
+                  query: this.state.query,
+                  sort: this.sort,
+                  direction: this.sortdirection,
+                  page: this.page,
+                  limit: this.limit
+                });
+
+              case 2:
+                getpayments = _context2.sent;
+                console.log('getpayments :>> ', getpayments);
+                this.page = getpayments.current_page;
+                this.limit = getpayments.per_page;
+                this.count = getpayments.total;
+                this.setState(_defineProperty({}, 'payments', getpayments.data));
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getPaymentList() {
+        return _getPaymentList.apply(this, arguments);
+      }
+
+      return getPaymentList;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var paymentsList = '';
+      console.log('this.state.payments :>> ', this.state);
+
+      if (this.state.payments) {
+        paymentsList = this.state.payments.map(function (payment) {
+          return paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "card",
+            children: [payment.accept_payment == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "card-header text-light bg-danger",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+                    children: ["\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3: ", payment.created_at]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: "\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3 \u09B8\u09AE\u09CD\u09AA\u09C2\u09B0\u09CD\u09A8 \u09B9\u09DF\u09A8\u09BF"
+                  })
+                })]
+              })
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "card-header text-light bg-success",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+                    children: ["\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3: ", payment.created_at]
+                  })
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "card-body",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                    children: "\u0995\u09CD\u09B0\u09C7\u09A4\u09BE\u09B0 \u09AC\u09BF\u09AC\u09B0\u09A3"
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u0995\u09CD\u09B0\u09C7\u09A4\u09BE\u09B0 \u09A8\u09BE\u09AE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.buyer.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AE\u09CB\u09AC\u09BE\u0987\u09B2 \u09A8\u09AE\u09CD\u09AC\u09B0:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: toBengaliNumber(payment.buyer.mobile)
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09A0\u09BF\u0995\u09BE\u09A8\u09BE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.buyer.address
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09B8\u09AE\u09CD\u09AA\u09C2\u09B0\u09CD\u09A3 \u0993\u099C\u09A8:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: toBengaliNumber(payment.total_weight)
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u0993\u099C\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.weight_unit
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                    children: ["\u09AE\u09C2\u09B2\u09CD\u09AF \u09AA\u09CD\u09B0\u09A4\u09BF ", payment.weight_unit, ":"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [toBengaliNumber(payment.price_per_unit), " \u099F\u09BE\u0995\u09BE"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AE\u09CB\u099F \u09A6\u09BE\u09AE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [toBengaliWord(Number(payment.price_per_unit) + Number(payment.service_fee)), " \u099F\u09BE\u0995\u09BE"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [toBengaliNumber(payment.service_fee), " \u099F\u09BE\u0995\u09BE"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09A8\u09BE\u09AE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.product_name
+                })]
+              })]
+            })]
+          });
+        });
+      } else {
+        paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+          children: "No Transaction Found"
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "mt-3",
+        children: [paymentsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+          page: this.page,
+          pageChange: this.handlePageChange,
+          count: this.count,
+          limit: this.limit
+        })]
+      });
+    }
+  }]);
+
+  return BuyerPaymentList;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+if (document.getElementById('react_buyer_payment')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BuyerPaymentList, {}), document.getElementById('react_buyer_payment'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/backend/BuyerTransportPayList.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/backend/BuyerTransportPayList.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ BuyerTransportPayList)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/TransportServices */ "./resources/js/services/TransportServices.js");
+/* harmony import */ var _components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Paginations */ "./resources/js/components/Paginations.js");
+/* harmony import */ var _TransportBkashBackend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TransportBkashBackend */ "./resources/js/backend/TransportBkashBackend.js");
+/* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+
+var BuyerTransportPayList = /*#__PURE__*/function (_Component) {
+  _inherits(BuyerTransportPayList, _Component);
+
+  var _super = _createSuper(BuyerTransportPayList);
+
+  function BuyerTransportPayList(props) {
+    var _this;
+
+    _classCallCheck(this, BuyerTransportPayList);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      transports: [],
+      single_payment: [],
+      auth_user: []
+    };
+    _this.page = 1;
+    _this.limit = 10;
+    _this.count = 0;
+    _this.sort = 'id';
+    _this.sortdirection = 'desc';
+    _this.query = '';
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
+    _this.getTransportList = _this.getTransportList.bind(_assertThisInitialized(_this));
+    _this.isDelivered = _this.isDelivered.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(BuyerTransportPayList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAuthUser();
+    }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_6__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getTransportList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "isDelivered",
+    value: function () {
+      var _isDelivered = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
+        var getTransport;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.getDelivered(data);
+
+              case 2:
+                getTransport = _context2.sent;
+                this.getTransportList();
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function isDelivered(_x) {
+        return _isDelivered.apply(this, arguments);
+      }
+
+      return isDelivered;
+    }()
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(event) {
+      var target = event.target;
+      var page = target.getAttribute('data-page');
+      var lastPage = Math.ceil(this.count / this.limit);
+
+      if (1 <= page && page <= lastPage && page != this.page) {
+        this.page = page;
+        this.getTransportList();
+      }
+    }
+  }, {
+    key: "getTransportList",
+    value: function () {
+      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var getTransport;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.getListByTransportBuyer({
+                  query: this.state.query,
+                  sort: this.sort,
+                  direction: this.sortdirection,
+                  page: this.page,
+                  limit: this.limit
+                });
+
+              case 2:
+                getTransport = _context3.sent;
+                console.log('getTransport :>> ', getTransport);
+                this.page = getTransport.current_page;
+                this.limit = getTransport.per_page;
+                this.count = getTransport.total;
+                this.setState(_defineProperty({}, 'transports', getTransport.data));
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getTransportList() {
+        return _getTransportList.apply(this, arguments);
+      }
+
+      return getTransportList;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var _this3 = this;
+
+      var transportsList = '';
+      console.log('this.state.transports in buyer:>> ', this.state.transports);
+
+      if (this.state.transports) {
+        transportsList = this.state.transports.map(function (transport) {
+          return transportsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "card",
+            children: [transport.is_delivered == '0' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "card-header",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+                    children: ["Payment : ", transport.created_at]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                    onClick: function onClick() {
+                      return _this3.isDelivered(transport);
+                    },
+                    className: "btn btn-danger font-light",
+                    children: "If you get  the delivered product please Click"
+                  })
+                })]
+              })
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "card-header",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "col",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+                  children: ["Payment : ", transport.created_at]
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "card-body",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                    children: "TransPort"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                    children: "Buyer"
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "transport Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.transport.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Buyer Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: transport.transport.mobile
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.mobile
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: transport.transport.address
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.address
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Transport Charge:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [transport.transport_charge, "  Taka"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Service Fee:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [transport.transport_service_fee, "  Taka"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Total Amount:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [transport.transport_charge + transport.transport_service_fee, " Taka"]
+                })]
+              })]
+            })]
+          });
+        });
+      } else {
+        transportsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+          children: "No Transaction Found"
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "mt-3",
+        children: [transportsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+          page: this.page,
+          pageChange: this.handlePageChange,
+          count: this.count,
+          limit: this.limit
+        })]
+      });
+    }
+  }]);
+
+  return BuyerTransportPayList;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+if (document.getElementById('react_buyer_transport_pay_list')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(BuyerTransportPayList, {}), document.getElementById('react_buyer_transport_pay_list'));
+}
 
 /***/ }),
 
@@ -2687,16 +3440,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../js/services/PaymentService */ "./resources/js/services/PaymentService.js");
 /* harmony import */ var _js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../js/components/Paginations */ "./resources/js/components/Paginations.js");
 /* harmony import */ var _Bkashbackend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Bkashbackend */ "./resources/js/backend/Bkashbackend.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../js/services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -2727,6 +3481,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var PaymentConfirm = /*#__PURE__*/function (_Component) {
   _inherits(PaymentConfirm, _Component);
 
@@ -2741,7 +3496,8 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
     _this.state = {
       payments: [],
       show_bkash: 'nope',
-      single_payment: []
+      single_payment: [],
+      auth_user: []
     };
     _this.page = 1;
     _this.limit = 10;
@@ -2753,20 +3509,56 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
     _this.getPaymentList = _this.getPaymentList.bind(_assertThisInitialized(_this));
     _this.showBkash = _this.showBkash.bind(_assertThisInitialized(_this));
     _this.closeBkash = _this.closeBkash.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(PaymentConfirm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getPaymentList();
+      // this.getPaymentList();
+      this.getAuthUser();
     }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getPaymentList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
   }, {
     key: "showBkash",
     value: function showBkash(data) {
-      var _this$setState;
+      var _this$setState2;
 
-      this.setState((_this$setState = {}, _defineProperty(_this$setState, 'single_payment', data), _defineProperty(_this$setState, 'show_bkash', 'bkash'), _this$setState));
+      this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'single_payment', data), _defineProperty(_this$setState2, 'show_bkash', 'bkash'), _this$setState2));
     }
   }, {
     key: "closeBkash",
@@ -2774,7 +3566,7 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
       this.setState(_defineProperty({}, 'show_bkash', data));
 
       if (data == 'payment') {
-        this.getPaymentList();
+        this.getAuthUser();
       }
     }
   }, {
@@ -2792,13 +3584,13 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
   }, {
     key: "getPaymentList",
     value: function () {
-      var _getPaymentList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _getPaymentList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var getpayments;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.getListByAdmin({
                   query: this.state.query,
                   sort: this.sort,
@@ -2808,7 +3600,7 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
                 });
 
               case 2:
-                getpayments = _context.sent;
+                getpayments = _context2.sent;
                 console.log('getpayments :>> ', getpayments);
                 this.page = getpayments.current_page;
                 this.limit = getpayments.per_page;
@@ -2817,10 +3609,10 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
 
               case 8:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getPaymentList() {
@@ -2832,106 +3624,479 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var paymentsList = '';
-      console.log('this.state.payments :>> ', this.state.payments);
+      console.log('this.state.payments :>> ', this.state);
 
       if (this.state.payments) {
         paymentsList = this.state.payments.map(function (payment) {
-          return paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          return paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
               className: "card-header",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
                     children: ["Payment: ", payment.created_at]
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col text-right",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                     onClick: function onClick() {
-                      return _this2.showBkash(payment);
+                      return _this3.showBkash(payment);
                     },
                     className: "btn btn-danger font-light",
                     children: "Bkash Payment"
                   })
                 })]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
               className: "card-body",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "row",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
                     children: "Seller"
                   })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
                     children: "Buyer"
                   })
                 })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Seller Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.seller.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Buyer Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.buyer.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: payment.seller.mobile
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.buyer.mobile
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: payment.seller.address
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.buyer.address
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Total Weight:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: payment.total_weight
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Weight Unit:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.weight_unit
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Price Per Unit:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [payment.price_per_unit, " Taka"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Total Amount:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [payment.total_amount, " Taka"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Service Fee:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [payment.service_fee, " Taka"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Product Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.product_name
+                })]
+              })]
+            })]
+          });
+        });
+      } else {
+        paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+          children: "No Transaction Found"
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "mt-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "row mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "col"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "col-4 text-right",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "font-weight-bold",
+                children: " Your Balance:"
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+            children: [" ", this.state.auth_user.amount, " Taka"]
+          })]
+        }), this.state.show_bkash == 'bkash' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Bkashbackend__WEBPACK_IMPORTED_MODULE_5__.default, {
+          data: this.state.single_payment,
+          closeBkash: this.closeBkash
+        }) : '', paymentsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+          page: this.page,
+          pageChange: this.handlePageChange,
+          count: this.count,
+          limit: this.limit
+        })]
+      });
+    }
+  }]);
+
+  return PaymentConfirm;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+if (document.getElementById('react_payment')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(PaymentConfirm, {}), document.getElementById('react_payment'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/backend/SellerFarmer.js":
+/*!**********************************************!*\
+  !*** ./resources/js/backend/SellerFarmer.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ SellerFarmer)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../js/services/PaymentService */ "./resources/js/services/PaymentService.js");
+/* harmony import */ var _js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../js/components/Paginations */ "./resources/js/components/Paginations.js");
+/* harmony import */ var _js_services_UserServices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../js/services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
+
+
+
+
+
+var SellerFarmer = /*#__PURE__*/function (_Component) {
+  _inherits(SellerFarmer, _Component);
+
+  var _super = _createSuper(SellerFarmer);
+
+  function SellerFarmer(props) {
+    var _this;
+
+    _classCallCheck(this, SellerFarmer);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      payments: [],
+      single_payment: [],
+      auth_user: []
+    };
+    _this.page = 1;
+    _this.limit = 10;
+    _this.count = 0;
+    _this.sort = 'id';
+    _this.sortdirection = 'desc';
+    _this.query = '';
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
+    _this.getPaymentList = _this.getPaymentList.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(SellerFarmer, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      // this.getPaymentList();
+      this.getAuthUser();
+    }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_5__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getPaymentList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(event) {
+      var target = event.target;
+      var page = target.getAttribute('data-page');
+      var lastPage = Math.ceil(this.count / this.limit);
+
+      if (1 <= page && page <= lastPage && page != this.page) {
+        this.page = page;
+        this.getPaymentList();
+      }
+    }
+  }, {
+    key: "getPaymentList",
+    value: function () {
+      var _getPaymentList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var getpayments;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _js_services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.getListBySellerFarmer({
+                  query: this.state.query,
+                  sort: this.sort,
+                  direction: this.sortdirection,
+                  page: this.page,
+                  limit: this.limit
+                });
+
+              case 2:
+                getpayments = _context2.sent;
+                console.log('getpayments :>> ', getpayments);
+                this.page = getpayments.current_page;
+                this.limit = getpayments.per_page;
+                this.count = getpayments.total;
+                this.setState(_defineProperty({}, 'payments', getpayments.data));
+
+              case 8:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function getPaymentList() {
+        return _getPaymentList.apply(this, arguments);
+      }
+
+      return getPaymentList;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var paymentsList = '';
+      console.log('this.state.payments :>> ', this.state);
+
+      if (this.state.payments) {
+        paymentsList = this.state.payments.map(function (payment) {
+          return paymentsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "card",
+            children: [payment.accept_payment == 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "card-header text-light bg-danger",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+                    children: ["\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3: ", payment.created_at]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                    children: "\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3 \u09B8\u09AE\u09CD\u09AA\u09C2\u09B0\u09CD\u09A8 \u09B9\u09DF\u09A8\u09BF"
+                  })
+                })]
+              })
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "card-header text-light bg-success",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+                    children: ["\u0985\u09B0\u09CD\u09A5 \u0997\u09CD\u09B0\u09B9\u09A3: ", payment.created_at]
+                  })
+                })
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "card-body",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                className: "row",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+                    children: "\u0995\u09CD\u09B0\u09C7\u09A4\u09BE\u09B0 \u09AC\u09BF\u09AC\u09B0\u09A3"
+                  })
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "row mt-2",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Seller Name:"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col",
-                  children: payment.seller.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Buyer Name:"
+                    children: "\u0995\u09CD\u09B0\u09C7\u09A4\u09BE\u09B0 \u09A8\u09BE\u09AE:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col",
                   children: payment.buyer.name
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                className: "row mt-3",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Contact No:"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col font-weight-bold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                    children: payment.seller.mobile
-                  })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Contact No:"
+                    children: "\u09AE\u09CB\u09AC\u09BE\u0987\u09B2 \u09A8\u09AE\u09CD\u09AC\u09B0:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col",
-                  children: payment.buyer.mobile
+                  children: toBengaliNumber(payment.buyer.mobile)
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "row mt-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Address:"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col font-weight-bold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                    children: payment.seller.address
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                  className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Address:"
+                    children: "\u09A0\u09BF\u0995\u09BE\u09A8\u09BE:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col",
@@ -2942,17 +4107,17 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Total Weight:"
+                    children: "\u09B8\u09AE\u09CD\u09AA\u09C2\u09B0\u09CD\u09A3 \u0993\u099C\u09A8:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col font-weight-bold",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
-                    children: payment.total_weight
+                    children: toBengaliNumber(payment.total_weight)
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Weight Unit:"
+                    children: "\u0993\u099C\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col",
@@ -2962,39 +4127,39 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
                 className: "row mt-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Price Per Unit:"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("span", {
+                    children: ["\u09AE\u09C2\u09B2\u09CD\u09AF \u09AA\u09CD\u09B0\u09A4\u09BF ", payment.weight_unit, ":"]
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col font-weight-bold",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h4", {
-                    children: [payment.price_per_unit, " Taka"]
+                    children: [toBengaliNumber(payment.price_per_unit), " \u099F\u09BE\u0995\u09BE"]
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Total Amount:"
+                    children: "\u09AE\u09CB\u099F \u09A6\u09BE\u09AE:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                   className: "col",
-                  children: [payment.total_amount, " Taka"]
+                  children: [toBengaliWord(Number(payment.price_per_unit) + Number(payment.service_fee)), " \u099F\u09BE\u0995\u09BE"]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "row mt-3",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Service Fee:"
+                    children: "\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col font-weight-bold",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h4", {
-                    children: [payment.service_fee, " Taka"]
+                    children: [toBengaliNumber(payment.service_fee), " \u099F\u09BE\u0995\u09BE"]
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
-                    children: "Product Name:"
+                    children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09A8\u09BE\u09AE:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col",
@@ -3012,10 +4177,22 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "mt-3",
-        children: [this.state.show_bkash == 'bkash' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Bkashbackend__WEBPACK_IMPORTED_MODULE_5__.default, {
-          data: this.state.single_payment,
-          closeBkash: this.closeBkash
-        }) : '', paymentsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "row mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "col"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "col-4 text-right",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                className: "font-weight-bold",
+                children: " \u0986\u09AA\u09A8\u09BE\u09B0 \u098F\u0995\u09BE\u0989\u09A8\u09CD\u099F\u09C7 \u099C\u09AE\u09BE \u09B9\u09DF\u09C7\u099B\u09C7:"
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+            children: [" ", toBengaliNumber(this.state.auth_user.amount), " \u099F\u09BE\u0995\u09BE"]
+          })]
+        }), paymentsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
           page: this.page,
           pageChange: this.handlePageChange,
           count: this.count,
@@ -3025,13 +4202,13 @@ var PaymentConfirm = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return PaymentConfirm;
+  return SellerFarmer;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
 
-if (document.getElementById('react_payment')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(PaymentConfirm, {}), document.getElementById('react_payment'));
+if (document.getElementById('react_selfarmer')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(SellerFarmer, {}), document.getElementById('react_selfarmer'));
 }
 
 /***/ }),
@@ -3429,16 +4606,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _js_services_TransportServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../js/services/TransportServices */ "./resources/js/services/TransportServices.js");
 /* harmony import */ var _js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../js/components/Paginations */ "./resources/js/components/Paginations.js");
 /* harmony import */ var _TransportBkashBackend__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./TransportBkashBackend */ "./resources/js/backend/TransportBkashBackend.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../js/services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -3468,6 +4646,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var TransportPayment = /*#__PURE__*/function (_Component) {
   _inherits(TransportPayment, _Component);
 
@@ -3482,7 +4661,8 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
     _this.state = {
       transports: [],
       show_bkash: 'nope',
-      single_payment: []
+      single_payment: [],
+      auth_user: []
     };
     _this.page = 1;
     _this.limit = 10;
@@ -3494,20 +4674,55 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
     _this.getTransportList = _this.getTransportList.bind(_assertThisInitialized(_this));
     _this.showBkash = _this.showBkash.bind(_assertThisInitialized(_this));
     _this.closeBkash = _this.closeBkash.bind(_assertThisInitialized(_this));
+    _this.getAuthUser = _this.getAuthUser.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(TransportPayment, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      this.getTransportList();
+      this.getAuthUser();
     }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _js_services_UserServices__WEBPACK_IMPORTED_MODULE_6__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getTransportList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
   }, {
     key: "showBkash",
     value: function showBkash(data) {
-      var _this$setState;
+      var _this$setState2;
 
-      this.setState((_this$setState = {}, _defineProperty(_this$setState, 'single_payment', data), _defineProperty(_this$setState, 'show_bkash', 'bkash'), _this$setState));
+      this.setState((_this$setState2 = {}, _defineProperty(_this$setState2, 'single_payment', data), _defineProperty(_this$setState2, 'show_bkash', 'bkash'), _this$setState2));
     }
   }, {
     key: "closeBkash",
@@ -3515,7 +4730,7 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
       this.setState(_defineProperty({}, 'show_bkash', data));
 
       if (data == 'transport') {
-        this.getTransportList();
+        this.getAuthUser();
       }
     }
   }, {
@@ -3533,13 +4748,13 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
   }, {
     key: "getTransportList",
     value: function () {
-      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
         var getTransport;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _js_services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.getListByAdmin({
                   query: this.state.query,
                   sort: this.sort,
@@ -3549,7 +4764,7 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
                 });
 
               case 2:
-                getTransport = _context.sent;
+                getTransport = _context2.sent;
                 console.log('getTransport :>> ', getTransport);
                 this.page = getTransport.current_page;
                 this.limit = getTransport.per_page;
@@ -3558,10 +4773,10 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
 
               case 8:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee, this);
+        }, _callee2, this);
       }));
 
       function getTransportList() {
@@ -3573,17 +4788,416 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
       var transportsList = '';
       console.log('this.state.transports :>> ', this.state.transports);
 
       if (this.state.transports) {
         transportsList = this.state.transports.map(function (transport) {
+          return transportsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "card",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+              className: "card-header",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+                    children: ["Payment : ", transport.created_at]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                    onClick: function onClick() {
+                      return _this3.showBkash(transport);
+                    },
+                    className: "btn btn-danger font-light",
+                    children: "Bkash Payment"
+                  })
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "card-body",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                    children: "TransPort"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+                    children: "Buyer"
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-2",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "transport Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.transport.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Buyer Name:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: transport.transport.mobile
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Contact No:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.mobile
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
+                    children: transport.transport.address
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Address:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: transport.buyer.address
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Transport Charge:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col font-weight-bold",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
+                    children: [transport.transport_charge, "  Taka"]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Service Fee:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [transport.transport_service_fee, "  Taka"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "Total Amount:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [transport.transport_charge + transport.transport_service_fee, " Taka"]
+                })]
+              })]
+            })]
+          });
+        });
+      } else {
+        transportsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+          children: "No Transaction Found"
+        });
+      }
+
+      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "mt-3",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+          className: "row mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "col"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "col-4 text-right",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h3", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "font-weight-bold",
+                children: " Your Balance:"
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h3", {
+            children: [" ", this.state.auth_user.amount, " Taka"]
+          })]
+        }), this.state.show_bkash == 'bkash' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_TransportBkashBackend__WEBPACK_IMPORTED_MODULE_5__.default, {
+          data: this.state.single_payment,
+          closeBkash: this.closeBkash
+        }) : '', transportsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+          page: this.page,
+          pageChange: this.handlePageChange,
+          count: this.count,
+          limit: this.limit
+        })]
+      });
+    }
+  }]);
+
+  return TransportPayment;
+}(react__WEBPACK_IMPORTED_MODULE_1__.Component);
+
+
+
+if (document.getElementById('react_transport')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(TransportPayment, {}), document.getElementById('react_transport'));
+}
+
+/***/ }),
+
+/***/ "./resources/js/backend/TrnsprtPayList.js":
+/*!************************************************!*\
+  !*** ./resources/js/backend/TrnsprtPayList.js ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ TrnsprtPayList)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../services/TransportServices */ "./resources/js/services/TransportServices.js");
+/* harmony import */ var _components_Paginations__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Paginations */ "./resources/js/components/Paginations.js");
+/* harmony import */ var _services_UserServices__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../services/UserServices */ "./resources/js/services/UserServices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+
+
+
+
+var _require = __webpack_require__(/*! bengali-number */ "./node_modules/bengali-number/lib/index.js"),
+    toBengaliNumber = _require.toBengaliNumber,
+    toBengaliWord = _require.toBengaliWord;
+
+var TrnsprtPayList = /*#__PURE__*/function (_Component) {
+  _inherits(TrnsprtPayList, _Component);
+
+  var _super = _createSuper(TrnsprtPayList);
+
+  function TrnsprtPayList(props) {
+    var _this;
+
+    _classCallCheck(this, TrnsprtPayList);
+
+    _this = _super.call(this, props);
+    _this.state = {
+      transports: [],
+      single_payment: [],
+      auth_user: []
+    };
+    _this.page = 1;
+    _this.limit = 10;
+    _this.count = 0;
+    _this.sort = 'id';
+    _this.sortdirection = 'desc';
+    _this.query = '';
+    _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
+    _this.getTransportList = _this.getTransportList.bind(_assertThisInitialized(_this));
+    _this.isDelivered = _this.isDelivered.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(TrnsprtPayList, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getAuthUser();
+    }
+  }, {
+    key: "getAuthUser",
+    value: function () {
+      var _getAuthUser = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var _this2 = this;
+
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _services_UserServices__WEBPACK_IMPORTED_MODULE_5__.default.authUser();
+
+              case 2:
+                user = _context.sent;
+                this.setState(_defineProperty({}, 'auth_user', user), function () {
+                  _this2.getTransportList();
+                });
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function getAuthUser() {
+        return _getAuthUser.apply(this, arguments);
+      }
+
+      return getAuthUser;
+    }()
+  }, {
+    key: "isDelivered",
+    value: function () {
+      var _isDelivered = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
+        var getTransport;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.paymentHistory(data);
+
+              case 2:
+                getTransport = _context2.sent;
+                this.getTransportList();
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function isDelivered(_x) {
+        return _isDelivered.apply(this, arguments);
+      }
+
+      return isDelivered;
+    }()
+  }, {
+    key: "handlePageChange",
+    value: function handlePageChange(event) {
+      var target = event.target;
+      var page = target.getAttribute('data-page');
+      var lastPage = Math.ceil(this.count / this.limit);
+
+      if (1 <= page && page <= lastPage && page != this.page) {
+        this.page = page;
+        this.getTransportList();
+      }
+    }
+  }, {
+    key: "getTransportList",
+    value: function () {
+      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        var getTransport;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.paymentHistory({
+                  query: this.state.query,
+                  sort: this.sort,
+                  direction: this.sortdirection,
+                  page: this.page,
+                  limit: this.limit
+                });
+
+              case 2:
+                getTransport = _context3.sent;
+                console.log('getTransport :>> ', getTransport);
+                this.page = getTransport.current_page;
+                this.limit = getTransport.per_page;
+                this.count = getTransport.total;
+                this.setState(_defineProperty({}, 'transports', getTransport.data));
+
+              case 8:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function getTransportList() {
+        return _getTransportList.apply(this, arguments);
+      }
+
+      return getTransportList;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var transportsList = '';
+      console.log('this.state.transports in buyer:>> ', this.state.transports);
+
+      if (this.state.transports) {
+        transportsList = this.state.transports.map(function (transport) {
           return transportsList = /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
             className: "card",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-              className: "card-header",
+            children: [transport.is_delivered == '0' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "card-header bg-danger text-light",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
                 className: "row",
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
@@ -3593,12 +5207,32 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                   className: "col text-right",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
-                    onClick: function onClick() {
-                      return _this2.showBkash(transport);
-                    },
-                    className: "btn btn-danger font-light",
-                    children: "Bkash Payment"
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                    children: "Buyer Didn't get the product."
+                  })
+                })]
+              })
+            }) : transport.is_paid == '1' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "card-header  bg-success text-light",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                className: "col",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+                  children: ["Payment : ", transport.created_at]
+                })
+              })
+            }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+              className: "card-header  bg-warning",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                className: "row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+                    children: ["Payment : ", transport.created_at]
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col text-right",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                    children: "Please Wait Transaction..."
                   })
                 })]
               })
@@ -3722,10 +5356,22 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
 
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
         className: "mt-3",
-        children: [this.state.show_bkash == 'bkash' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_TransportBkashBackend__WEBPACK_IMPORTED_MODULE_5__.default, {
-          data: this.state.single_payment,
-          closeBkash: this.closeBkash
-        }) : '', transportsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_js_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+          className: "row mb-4",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "col"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            className: "col-4 text-right",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h3", {
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+                className: "font-weight-bold",
+                children: " \u0986\u09AA\u09A8\u09BE\u09B0 \u098F\u0995\u09BE\u0989\u09A8\u09CD\u099F\u09C7 \u099C\u09AE\u09BE \u09B9\u09DF\u09C7\u099B\u09C7:"
+              })
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("h3", {
+            children: [" ", toBengaliNumber(this.state.auth_user.amount), " \u099F\u09BE\u0995\u09BE"]
+          })]
+        }), transportsList, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_Paginations__WEBPACK_IMPORTED_MODULE_4__.default, {
           page: this.page,
           pageChange: this.handlePageChange,
           count: this.count,
@@ -3735,13 +5381,13 @@ var TransportPayment = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return TransportPayment;
+  return TrnsprtPayList;
 }(react__WEBPACK_IMPORTED_MODULE_1__.Component);
 
 
 
-if (document.getElementById('react_transport')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TransportPayment, {}), document.getElementById('react_transport'));
+if (document.getElementById('react_transport_pay_list')) {
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(TrnsprtPayList, {}), document.getElementById('react_transport_pay_list'));
 }
 
 /***/ }),
@@ -5648,6 +7294,7 @@ var Index = /*#__PURE__*/function (_Component) {
         });
       } else {
         product.quantity = 1;
+        product.price_per_unit = product.price_per_unit - product.price_per_unit * (product.discount_price / 100);
         product.total_each_price = product.price_per_unit;
         product.total_unit = product.total_weight - product.quantity;
 
@@ -6166,12 +7813,12 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 };
 
                 if (!(this.state.buyercontact.length == 11 && digits_only(this.state.buyercontact))) {
-                  _context3.next = 19;
+                  _context3.next = 28;
                   break;
                 }
 
                 if (!(this.state.code.length == 6)) {
-                  _context3.next = 16;
+                  _context3.next = 25;
                   break;
                 }
 
@@ -6182,7 +7829,7 @@ var Bkash = /*#__PURE__*/function (_Component) {
                 };
 
                 if (!_digits_only(this.state.code)) {
-                  _context3.next = 13;
+                  _context3.next = 22;
                   break;
                 }
 
@@ -6195,38 +7842,38 @@ var Bkash = /*#__PURE__*/function (_Component) {
                   product: JSON.stringify(this.state.product),
                   code: this.state.code
                 };
-                _context3.next = 9;
+                console.log('this.state.buyer :>> ', this.state.buyer);
+
+                if (!(this.state.buyer.role == 'buyer')) {
+                  _context3.next = 19;
+                  break;
+                }
+
+                if (!(this.state.buyer.access_to == '0')) {
+                  _context3.next = 13;
+                  break;
+                }
+
+                $.notify({
+                  message: 'You do not have permission by admin.'
+                }, {
+                  type: 'danger'
+                });
+                _context3.next = 17;
+                break;
+
+              case 13:
+                _context3.next = 15;
                 return _services_PaymentService__WEBPACK_IMPORTED_MODULE_3__.default.save(cpost);
 
-              case 9:
+              case 15:
                 res = _context3.sent;
 
                 if (res.success) {
                   this.setState(_defineProperty({}, 'showCount', 0), function () {
                     _this3.props.bkashForm('transport');
-                  }); // this.setunCount();
+                  });
                 }
-
-                _context3.next = 14;
-                break;
-
-              case 13:
-                $.notify({
-                  message: 'Please Enter only Digit code'
-                }, {
-                  type: 'warning'
-                });
-
-              case 14:
-                _context3.next = 17;
-                break;
-
-              case 16:
-                $.notify({
-                  message: 'Please Enter Six digit Code'
-                }, {
-                  type: 'warning'
-                });
 
               case 17:
                 _context3.next = 20;
@@ -6234,12 +7881,45 @@ var Bkash = /*#__PURE__*/function (_Component) {
 
               case 19:
                 $.notify({
-                  message: 'Invalid Number'
+                  message: 'Only Buyer can buyer buy product'
                 }, {
                   type: 'danger'
                 });
 
               case 20:
+                _context3.next = 23;
+                break;
+
+              case 22:
+                $.notify({
+                  message: 'Please Enter only Digit code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 23:
+                _context3.next = 26;
+                break;
+
+              case 25:
+                $.notify({
+                  message: 'Please Enter Six digit Code'
+                }, {
+                  type: 'warning'
+                });
+
+              case 26:
+                _context3.next = 29;
+                break;
+
+              case 28:
+                $.notify({
+                  message: 'Invalid Number'
+                }, {
+                  type: 'danger'
+                });
+
+              case 29:
               case "end":
                 return _context3.stop();
             }
@@ -6653,15 +8333,15 @@ var Cart = /*#__PURE__*/function (_Component) {
                             children: "\u09B8\u09BE\u09B0\u09B8\u0982\u0995\u09CD\u09B7\u09C7\u09AA"
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", toBengaliNumber(this.props.data.subTotal + '.00')]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.subTotal)]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", toBengaliNumber(this.props.data.serviceFee + '.00')]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.serviceFee)]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("h2", {
                             children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3 ", toBengaliNumber(this.props.data.totalPrice + '.00')]
+                              children: ["\u09F3 ", toBengaliNumber(this.props.data.totalPrice)]
                             })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -11183,14 +12863,19 @@ var TabSlider = /*#__PURE__*/function (_Component) {
           className: "gf-product tab-slider-sub-product",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "image",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("a", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
               onClick: function onClick() {
                 return _this2.props.viewDetails(feature);
               },
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                className: "onsale bg-success",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h4", {
+                  children: [toBengaliNumber(arrival.discount_price), "%"]
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
                 src: '/storage/posts/' + arrival.product_image,
                 className: "postsimage"
-              })
+              })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "product-hover-icons",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
@@ -11245,12 +12930,17 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                 href: "single-product.html",
                 children: ["\u09AE\u09CB\u099F \u0993\u099C\u09A8: ", toBengaliNumber(arrival.total_weight), " ", arrival.weight_unit]
               })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              className: "price-box",
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
-                className: "discounted-price",
-                children: ["\u09E7 ", arrival.weight_unit, " \u09F3 ", toBengaliNumber(arrival.price_per_unit), " "]
-              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "price-box ",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h4", {
+                children: ["\u09E7 ", arrival.weight_unit, " "]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                "class": "main-price",
+                children: ["\u09F3 ", toBengaliNumber(arrival.price_per_unit)]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("span", {
+                "class": "discounted-price",
+                children: ["\u09F3 ", toBengaliNumber(arrival.price_per_unit - arrival.price_per_unit * (arrival.discount_price / 100))]
+              })]
             })]
           })]
         }, arrival.id);
@@ -17465,6 +19155,74 @@ PaymentService.acceptPayment = /*#__PURE__*/function () {
   };
 }();
 
+PaymentService.getListBySellerFarmer = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
+    var urldata, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            urldata = "/payment/history";
+            _context5.next = 3;
+            return axios.get(urldata, {
+              params: data
+            }).then(function (response) {
+              return response.data.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x5) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+PaymentService.buyerPaymentList = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
+    var urldata, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            urldata = "/payment/buyer/history";
+            _context6.next = 3;
+            return axios.get(urldata, {
+              params: data
+            }).then(function (response) {
+              return response.data.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context6.sent;
+            return _context6.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function (_x6) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PaymentService);
 
 /***/ }),
@@ -17948,6 +19706,111 @@ TransportServices.acceptPayment = /*#__PURE__*/function () {
   };
 }();
 
+TransportServices.getDelivered = /*#__PURE__*/function () {
+  var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
+    var urlPayement, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            urlPayement = "/delivered/buyer/transport";
+            _context4.next = 3;
+            return axios.post(urlPayement, data).then(function (response) {
+              $.notify({
+                message: 'Delivered Done Successfully'
+              }, {
+                type: 'success'
+              });
+              return response.data;
+            })["catch"](function (error) {
+              return [];
+            });
+
+          case 3:
+            res = _context4.sent;
+            return _context4.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function (_x4) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+TransportServices.getListByTransportBuyer = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
+    var urlPayement, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            urlPayement = "/transport/buyer/payment";
+            _context5.next = 3;
+            return axios.get(urlPayement, {
+              params: data
+            }).then(function (response) {
+              return response.data.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context5.sent;
+            return _context5.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function (_x5) {
+    return _ref5.apply(this, arguments);
+  };
+}();
+
+TransportServices.paymentHistory = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
+    var urlPayement, res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            urlPayement = "/transport/payment";
+            _context6.next = 3;
+            return axios.get(urlPayement, {
+              params: data
+            }).then(function (response) {
+              return response.data.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 3:
+            res = _context6.sent;
+            return _context6.abrupt("return", res);
+
+          case 5:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6);
+  }));
+
+  return function (_x6) {
+    return _ref6.apply(this, arguments);
+  };
+}();
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (TransportServices);
 
 /***/ }),
@@ -17972,14 +19835,14 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 var UserServices = {};
-UserServices.get = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+UserServices.authUser = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
   var res;
   return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return axios.get("/ManageUsers/users").then(function (response) {
+          return axios.get("/ManageUsers/authUser").then(function (response) {
             return response.data.data;
           })["catch"](function (error) {
             return error;
@@ -17996,39 +19859,32 @@ UserServices.get = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_r
     }
   }, _callee);
 }));
+UserServices.get = /*#__PURE__*/_asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+  var res;
+  return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          _context2.next = 2;
+          return axios.get("/ManageUsers/users").then(function (response) {
+            return response.data.data;
+          })["catch"](function (error) {
+            return error;
+          });
+
+        case 2:
+          res = _context2.sent;
+          return _context2.abrupt("return", res);
+
+        case 4:
+        case "end":
+          return _context2.stop();
+      }
+    }
+  }, _callee2);
+}));
 
 UserServices.seller = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
-    var res;
-    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
-      while (1) {
-        switch (_context2.prev = _context2.next) {
-          case 0:
-            _context2.next = 2;
-            return axios.get("/ManageUsers/users/" + data).then(function (response) {
-              return response.data.data;
-            })["catch"](function (error) {
-              return error;
-            });
-
-          case 2:
-            res = _context2.sent;
-            return _context2.abrupt("return", res);
-
-          case 4:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2);
-  }));
-
-  return function (_x) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-UserServices.transport = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
@@ -18054,12 +19910,12 @@ UserServices.transport = /*#__PURE__*/function () {
     }, _callee3);
   }));
 
-  return function (_x2) {
+  return function (_x) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-UserServices.all = /*#__PURE__*/function () {
+UserServices.transport = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
@@ -18067,9 +19923,7 @@ UserServices.all = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
+            return axios.get("/ManageUsers/users/" + data).then(function (response) {
               return response.data.data;
             })["catch"](function (error) {
               return error;
@@ -18087,12 +19941,12 @@ UserServices.all = /*#__PURE__*/function () {
     }, _callee4);
   }));
 
-  return function (_x3) {
+  return function (_x2) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-UserServices.tranportall = /*#__PURE__*/function () {
+UserServices.all = /*#__PURE__*/function () {
   var _ref5 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
@@ -18100,7 +19954,7 @@ UserServices.tranportall = /*#__PURE__*/function () {
         switch (_context5.prev = _context5.next) {
           case 0:
             _context5.next = 2;
-            return axios.get("/ManageUsers/tranportall", {
+            return axios.get("/ManageUsers/users", {
               params: data
             }).then(function (response) {
               return response.data.data;
@@ -18120,12 +19974,12 @@ UserServices.tranportall = /*#__PURE__*/function () {
     }, _callee5);
   }));
 
-  return function (_x4) {
+  return function (_x3) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-UserServices.login = /*#__PURE__*/function () {
+UserServices.tranportall = /*#__PURE__*/function () {
   var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
@@ -18133,24 +19987,12 @@ UserServices.login = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             _context6.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
-              if (response.data.error) {
-                $.notify({
-                  message: response.data.error.error
-                }, {
-                  type: 'danger'
-                });
-              } else {
-                $.notify({
-                  message: 'Login Successfully'
-                }, {
-                  type: 'success'
-                });
-              }
-
-              return response.data;
+            return axios.get("/ManageUsers/tranportall", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
             })["catch"](function (error) {
-              return [];
+              return error;
             });
 
           case 2:
@@ -18165,12 +20007,12 @@ UserServices.login = /*#__PURE__*/function () {
     }, _callee6);
   }));
 
-  return function (_x5) {
+  return function (_x4) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-UserServices.updateLoc = /*#__PURE__*/function () {
+UserServices.login = /*#__PURE__*/function () {
   var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
@@ -18178,7 +20020,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
         switch (_context7.prev = _context7.next) {
           case 0:
             _context7.next = 2;
-            return axios.post("/ManageUsers/location", data).then(function (response) {
+            return axios.post("/ManageUsers/users", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -18187,7 +20029,7 @@ UserServices.updateLoc = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Location Update Successfully'
+                  message: 'Login Successfully'
                 }, {
                   type: 'success'
                 });
@@ -18210,12 +20052,12 @@ UserServices.updateLoc = /*#__PURE__*/function () {
     }, _callee7);
   }));
 
-  return function (_x6) {
+  return function (_x5) {
     return _ref7.apply(this, arguments);
   };
 }();
 
-UserServices.logout = /*#__PURE__*/function () {
+UserServices.updateLoc = /*#__PURE__*/function () {
   var _ref8 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee8(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee8$(_context8) {
@@ -18223,7 +20065,7 @@ UserServices.logout = /*#__PURE__*/function () {
         switch (_context8.prev = _context8.next) {
           case 0:
             _context8.next = 2;
-            return axios.post("/ManageUsers/users", data).then(function (response) {
+            return axios.post("/ManageUsers/location", data).then(function (response) {
               if (response.data.error) {
                 $.notify({
                   message: response.data.error.error
@@ -18232,7 +20074,7 @@ UserServices.logout = /*#__PURE__*/function () {
                 });
               } else {
                 $.notify({
-                  message: 'Logout Successfully'
+                  message: 'Location Update Successfully'
                 }, {
                   type: 'success'
                 });
@@ -18255,12 +20097,12 @@ UserServices.logout = /*#__PURE__*/function () {
     }, _callee8);
   }));
 
-  return function (_x7) {
+  return function (_x6) {
     return _ref8.apply(this, arguments);
   };
 }();
 
-UserServices.permission = /*#__PURE__*/function () {
+UserServices.logout = /*#__PURE__*/function () {
   var _ref9 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee9(data) {
     var res;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee9$(_context9) {
@@ -18268,12 +20110,24 @@ UserServices.permission = /*#__PURE__*/function () {
         switch (_context9.prev = _context9.next) {
           case 0:
             _context9.next = 2;
-            return axios.get("/ManageUsers/users", {
-              params: data
-            }).then(function (response) {
-              return response.data.data;
+            return axios.post("/ManageUsers/users", data).then(function (response) {
+              if (response.data.error) {
+                $.notify({
+                  message: response.data.error.error
+                }, {
+                  type: 'danger'
+                });
+              } else {
+                $.notify({
+                  message: 'Logout Successfully'
+                }, {
+                  type: 'success'
+                });
+              }
+
+              return response.data;
             })["catch"](function (error) {
-              return error;
+              return [];
             });
 
           case 2:
@@ -18288,8 +20142,41 @@ UserServices.permission = /*#__PURE__*/function () {
     }, _callee9);
   }));
 
-  return function (_x8) {
+  return function (_x7) {
     return _ref9.apply(this, arguments);
+  };
+}();
+
+UserServices.permission = /*#__PURE__*/function () {
+  var _ref10 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee10(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee10$(_context10) {
+      while (1) {
+        switch (_context10.prev = _context10.next) {
+          case 0:
+            _context10.next = 2;
+            return axios.get("/ManageUsers/users", {
+              params: data
+            }).then(function (response) {
+              return response.data.data;
+            })["catch"](function (error) {
+              return error;
+            });
+
+          case 2:
+            res = _context10.sent;
+            return _context10.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context10.stop();
+        }
+      }
+    }, _callee10);
+  }));
+
+  return function (_x8) {
+    return _ref10.apply(this, arguments);
   };
 }();
 

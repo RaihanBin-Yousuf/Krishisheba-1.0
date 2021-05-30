@@ -21,8 +21,8 @@ class CreateManagePostsTable extends Migration
             $table->integer('total_weight')->nullable();
             $table->string('weight_unit')->nullable();
             $table->integer('price_per_unit')->nullable();
-            $table->integer('discount_price')->nullable();
-            $table->string('advance_payment')->nullable();
+            $table->integer('discount_price')->default(0);
+            $table->string('advance_payment')->default(0);
             $table->string('category')->nullable();
             $table->string('sub_category')->nullable();
             $table->string('production_type')->nullable();
