@@ -21,6 +21,7 @@ import TopCategoryServices from '../../services/TopCategoryServices';
 import UserServices from '../../services/UserServices';
 import Login from '../includes/Login';
 import PaymentService from '../../services/PaymentService';
+import { GoogleMap, withScriptjs, withGoogleMap, Marker, InfoWindow ,DirectionsRenderer } from 'react-google-maps';
 
 import Map from '../includes/Map';
 const { toBengaliNumber, toBengaliWord} = require('bengali-number');
@@ -55,7 +56,26 @@ export default class Index extends Component {
         this.showCheck = this.showCheck.bind(this);
         this.loginFormClose = this.loginFormClose.bind(this);
         this.getProductPay = this.getProductPay.bind(this);
+        this.showPosition = this.showPosition.bind(this);
+        this.getLocation = this.getLocation.bind(this);
     }
+
+    getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position=>this.showPosition(position));
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+    }
+
+    async showPosition(position) {
+        const location = {
+            lat: position.coords.latitude,
+            lng:  position.coords.longitude
+        }
+        console.log('location :>> ', location);
+        // const updateLocation = await UserServices.updateLoc(location);
+      }
 
     loginFormClose() {
         this.setState({
@@ -93,6 +113,7 @@ export default class Index extends Component {
     componentDidMount() {
         this.topCategorySlider();
         this.getAuthUser();
+        this.getLocation();
     }
 
     async getAuthUser() {

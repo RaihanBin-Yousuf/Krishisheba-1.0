@@ -46,6 +46,7 @@ class Create extends Component {
                 villege : '',
                 comments : '',
                 product_image : '',
+                discount_price: 0,
                 }
             };
             this.handleSubmit = this.handleSubmit.bind(this);
@@ -124,60 +125,83 @@ class Create extends Component {
             if (name == 'product_image') {
                 value = target.files[0];
             };
-
+            if(name == 'discount_price') {
+                if(value>100) {
+                    $.notify({message: 'ছাড় মূল্য সম্ভব নয়'}, {type: 'danger'});
+                } else if(value<0) {
+                    $.notify({message: 'ছাড় মূল্য সম্ভব নয়'}, {type: 'danger'});
+                }
+            }else if(name == 'total_weight') {
+                if(value<0) {
+                    $.notify({message: 'সম্ভব নয়'}, {type: 'danger'});
+                }
+            } else if(name == 'price_per_unit') {
+                if(value<0) {
+                    $.notify({message: 'সম্ভব নয়'}, {type: 'danger'});
+                }
+            }
             this.setState({
-                  post :{
+                post :{
                     ...this.state.post,
-                  [name]: value
-                  }
+                [name]: value
+                }
             });
+            
         }
     
         async handleSubmit(event) {
             event.preventDefault();
-            if(this.state.authuser.role == 'farmer') {
-                const cpost = this.state.post;
-                let formdata = new FormData();
-                Object.keys(cpost).map(key => {
-                    formdata.append(key, cpost[key]);
-                });
-                const res = await PostService.save(formdata);
+            if(this.state.authuser.access_to == 99) {
+                $.notify({message: 'আপনার মোবাইল নম্বরটি আমাদের ওয়েবসাইটে বৈধ নয়'}, {type: 'danger'});
+            } else if(this.state.authuser.access_to == 0) {
+                $.notify({message: 'অনুগ্রহপূর্বক আপনার অ্যাকাউন্ট অ্যাক্সেস জন্য অপেক্ষা করুন।'}, {type: 'danger'});
             } else {
-                if(this.state.post.weight_unit == 'কেজি') {
-                    if(this.state.post.total_weight > 800) {
-                        $.notify({message: '৮০০ কেজির উপরে নেয়া যাবে না.'}, {type: 'danger'});
-                    } else {
-                            const cpost = this.state.post;
-                            let formdata = new FormData();
-                            Object.keys(cpost).map(key => {
-                                formdata.append(key, cpost[key]);
-                            });
-                            const res = await PostService.save(formdata);
+                if(this.state.authuser.role == 'farmer') {
+                    const cpost = this.state.post;
+                    let formdata = new FormData();
+                    Object.keys(cpost).map(key => {
+                        formdata.append(key, cpost[key]);
+                    });
+                    const res = await PostService.save(formdata);
+                } else if(this.state.authuser.role == 'seller'){
+                    if(this.state.post.weight_unit == 'কেজি') {
+                        if(this.state.post.total_weight > 800) {
+                            $.notify({message: '৮০০ কেজির উপরে নেয়া যাবে না.'}, {type: 'danger'});
+                        } else {
+                                const cpost = this.state.post;
+                                let formdata = new FormData();
+                                Object.keys(cpost).map(key => {
+                                    formdata.append(key, cpost[key]);
+                                });
+                                const res = await PostService.save(formdata);
+                        }
+                    } else if(this.state.post.weight_unit == 'মণ') {
+                        if(this.state.post.total_weight > 20) {
+                            $.notify({message: '২০ মনের উপরে নেয়া যাবে না'}, {type: 'danger'});
+                        } else {
+                                const cpost = this.state.post;
+                                let formdata = new FormData();
+                                Object.keys(cpost).map(key => {
+                                    formdata.append(key, cpost[key]);
+                                });
+                                const res = await PostService.save(formdata);
+                        }
+                    } else if(this.state.post.weight_unit == 'পিস') {
+                        if(this.state.post.total_weight > 80) {
+                            $.notify({message: '৮০ পিস এর উপরে নেয়া যাবে না'}, {type: 'danger'});
+                        } else {
+                                const cpost = this.state.post;
+                                let formdata = new FormData();
+                                Object.keys(cpost).map(key => {
+                                    formdata.append(key, cpost[key]);
+                                });
+                                const res = await PostService.save(formdata);
                     }
-                } else if(this.state.post.weight_unit == 'মণ') {
-                    if(this.state.post.total_weight > 20) {
-                        $.notify({message: '২০ মনের উপরে নেয়া যাবে না'}, {type: 'danger'});
-                    } else {
-                            const cpost = this.state.post;
-                            let formdata = new FormData();
-                            Object.keys(cpost).map(key => {
-                                formdata.append(key, cpost[key]);
-                            });
-                            const res = await PostService.save(formdata);
                     }
-                } else if(this.state.post.weight_unit == 'পিস') {
-                    if(this.state.post.total_weight > 80) {
-                        $.notify({message: '৮০ পিস এর উপরে নেয়া যাবে না'}, {type: 'danger'});
-                    } else {
-                            const cpost = this.state.post;
-                            let formdata = new FormData();
-                            Object.keys(cpost).map(key => {
-                                formdata.append(key, cpost[key]);
-                            });
-                            const res = await PostService.save(formdata);
-                }
-                }
 
+                } else {
+                    $.notify({message: 'You can not sell product'}, {type: 'danger'});
+                }
             }
             // if (res.success) {
             //     this.props.showForm(null);
@@ -574,6 +598,7 @@ class Create extends Component {
             document.getElementById("polic_sta").innerHTML= thanaList;
         }
     render() {
+        console.log('this.state :>> ', this.state);
         let productDropdown = [<option>নির্বাচন করুন</option>];
         if (this.state.productslist) {
                 this.state.productslist.map(product=>(
@@ -620,7 +645,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">মোট ওজন* </h5>
-                                <input className="form-control values-input" step="any" id="total-weight" type="number" value={this.state.post.total_weight} name="total_weight" onChange={this.handleInputChange}/>
+                                <input className="form-control values-input" step="any" id="total-weight" min="0" type="number" name="total_weight" onChange={this.handleInputChange}/>
                                 {/* <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" /> */}
                             </div>
                         </div>
@@ -648,7 +673,7 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
-                                <input className="form-control values-input" type="number" name="price_per_unit" value={this.state.post.price_per_unit}  onChange={this.handleInputChange}/>
+                                <input className="form-control values-input" type="number" min="0" name="price_per_unit" onChange={this.handleInputChange}/>
                                 {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
                             </div>
                         </div>
@@ -724,7 +749,15 @@ class Create extends Component {
                                 </select>
                             </div>
                         </div>
+                        <div className="col-md-3">
+                            <div className="form-group">
+                                <h5 htmlFor="">ছাড় মূল্য (শতকরা হার)*</h5>
+                                <input className="form-control values-input" type="number" name="discount_price" min="0" max="100" onChange={this.handleInputChange}/>
+                                {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
+                            </div>
+                        </div>
                     </div>
+                    
                     {/* done  */}
                     <h4 className="h4post">অফার সম্পর্কে*</h4>
                     <div className="row">

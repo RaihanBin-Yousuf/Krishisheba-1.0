@@ -77,6 +77,7 @@ class ManagePostController extends Controller
         $imageName =time().'.'.$request->product_image->extension();
         $request->product_image->storeAs('public/posts', $imageName);
         $input['product_image'] =$imageName;
+        // dd($input);
         $savePost = $this->manage_post->savePost($input);
         return $this->sendResponse(['data'=>$savePost]);
 
