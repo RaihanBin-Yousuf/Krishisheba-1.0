@@ -96,23 +96,17 @@ export default class BuyerPaymentList extends Component {
                                             <div className="col-1">
                                                 <span>ক্রেতার নাম:</span>
                                             </div>
-                                            <div className="col">{payment.buyer.name}</div>
+                                            <div className="col">{payment.seller.name}</div>
                                             <div className="col-1">
                                                 <span>মোবাইল নম্বর:</span>  
                                             </div>
-                                            <div className="col">{toBengaliNumber(payment.buyer.mobile)}</div>
+                                            <div className="col">{toBengaliNumber(payment.seller.mobile)}</div>
                                         </div>
                                         <div className="row mt-3">
                                             <div className="col-1">
                                                 <span>ঠিকানা:</span>  
                                             </div>
-                                            <div className="col">{payment.buyer.address}</div>
-                                        </div>
-                                        <div className="row mt-3">
-                                            <div className="col-1">
-                                                <span>সম্পূর্ণ ওজন:</span>  
-                                            </div>
-                                            <div className="col font-weight-bold"><h4>{toBengaliNumber(payment.total_weight)}</h4></div>
+                                            <div className="col">{payment.seller.address}</div>
                                             <div className="col-1">
                                                 <span>ওজনের ধরন:</span>  
                                             </div>
@@ -120,13 +114,13 @@ export default class BuyerPaymentList extends Component {
                                         </div>
                                         <div className="row mt-3">
                                             <div className="col-1">
-                                                <span>মূল্য প্রতি {payment.weight_unit}:</span>  
+                                                <span>সম্পূর্ণ ওজন:</span>  
                                             </div>
-                                            <div className="col font-weight-bold"><h4>{toBengaliNumber(payment.price_per_unit)} টাকা</h4></div>
+                                            <div className="col font-weight-bold"><h4>{toBengaliNumber(payment.total_weight)}</h4></div>
                                             <div className="col-1">
-                                                <span>মোট দাম:</span>  
+                                                <span>মূল্য:</span>  
                                             </div>
-                                            <div className="col">{toBengaliWord(Number(payment.price_per_unit)+Number(payment.service_fee))} টাকা</div>
+                                            <div className="col font-weight-bold">{toBengaliNumber(payment.price_per_unit)} টাকা({payment.weight_unit} প্রতি)</div>
                                         </div>
                                         <div className="row mt-3">
                                             <div className="col-1">
@@ -134,9 +128,24 @@ export default class BuyerPaymentList extends Component {
                                             </div>
                                             <div className="col font-weight-bold"><h4>{toBengaliNumber(payment.service_fee)} টাকা</h4></div>
                                             <div className="col-1">
+                                                <span>মোট দাম:</span>  
+                                            </div>
+                                            <div className="col">{toBengaliWord(Number(payment.total_amount))} টাকা (পরিসেবা চার্জ ছাড়া)</div>
+                                            
+                                            
+                                        </div>
+                                        <div className="row mt-3">
+                                            
+                                        <div className="col-1">
                                                 <span>পণ্যের নাম:</span>  
                                             </div>
                                             <div className="col">{payment.product_name}</div>
+                                        <div className="col-1">
+                                            
+                                                <span>মোট দাম:</span>  
+                                            </div>
+                                            <div className="col">{toBengaliWord(Number(payment.total_amount)+Number(payment.service_fee))} টাকা (পরিসেবা চার্জ সহ)</div>
+                                            
                                         </div>
                                     </div>
                                 </div>

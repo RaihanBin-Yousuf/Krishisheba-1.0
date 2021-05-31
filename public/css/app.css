@@ -101,52 +101,8 @@
   font-style: normal;
 }
 /* Arrows */
-.category-slider-container .slick-prev,
-.category-slider-container .slick-next {
-  position: absolute;
-  display: block;
-  height: 20px;
-  width: 20px;
-  line-height: 0px;
-  font-size: 0px;
-  cursor: pointer;
-  background: transparent;
-  color: black;
-  top: -29%;
-  transform: translate(0, -50%);
-  padding: 0;
-  border: none;
-  outline: none;
-}
-.category-slider-container .slick-prev:hover, .category-slider-container .slick-prev:focus,
-.category-slider-container .slick-next:hover,
-.category-slider-container .slick-next:focus {
-  outline: none;
-  background: transparent;
-  color: transparent;
-}
-.category-slider-container .slick-prev:hover:before, .category-slider-container .slick-prev:focus:before,
-.category-slider-container .slick-next:hover:before,
-.category-slider-container .slick-next:focus:before {
-  opacity: 1;
-}
-.category-slider-container .slick-prev.slick-disabled:before,
-.category-slider-container .slick-next.slick-disabled:before {
-  opacity: 0.25;
-}
-.category-slider-container .slick-prev:before,
-.category-slider-container .slick-next:before {
-  font-family: "slick";
-  font-size: 20px;
-  line-height: 1;
-  color: black;
-  opacity: 0.75;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.tab-slider-container .slick-prev,
-.tab-slider-container .slick-next {
+.slick-prev,
+.slick-next {
   position: absolute;
   display: block;
   height: 20px;
@@ -156,34 +112,34 @@
   cursor: pointer;
   background: transparent;
   color: transparent;
-  top: -6%;
+  top: 50%;
   transform: translate(0, -50%);
   padding: 0;
   border: none;
   outline: none;
 }
-.tab-slider-container .slick-prev:hover, .tab-slider-container .slick-prev:focus,
-.tab-slider-container .slick-next:hover,
-.tab-slider-container .slick-next:focus {
+.slick-prev:hover, .slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
   outline: none;
   background: transparent;
   color: transparent;
 }
-.tab-slider-container .slick-prev:hover:before, .tab-slider-container .slick-prev:focus:before,
-.tab-slider-container .slick-next:hover:before,
-.tab-slider-container .slick-next:focus:before {
+.slick-prev:hover:before, .slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
   opacity: 1;
 }
-.tab-slider-container .slick-prev.slick-disabled:before,
-.tab-slider-container .slick-next.slick-disabled:before {
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
   opacity: 0.25;
 }
-.tab-slider-container .slick-prev:before,
-.tab-slider-container .slick-next:before {
+.slick-prev:before,
+.slick-next:before {
   font-family: "slick";
   font-size: 20px;
   line-height: 1;
-  color: black;
+  color: white;
   opacity: 0.75;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

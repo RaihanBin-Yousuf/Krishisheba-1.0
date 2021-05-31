@@ -2528,7 +2528,7 @@ var BuyerPaymentList = /*#__PURE__*/function (_Component) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: payment.buyer.name
+                  children: payment.seller.name
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
@@ -2536,7 +2536,7 @@ var BuyerPaymentList = /*#__PURE__*/function (_Component) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: toBengaliNumber(payment.buyer.mobile)
+                  children: toBengaliNumber(payment.seller.mobile)
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "row mt-3",
@@ -2547,7 +2547,15 @@ var BuyerPaymentList = /*#__PURE__*/function (_Component) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
-                  children: payment.buyer.address
+                  children: payment.seller.address
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u0993\u099C\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col",
+                  children: payment.weight_unit
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "row mt-3",
@@ -2564,32 +2572,11 @@ var BuyerPaymentList = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-                    children: "\u0993\u099C\u09A8\u09C7\u09B0 \u09A7\u09B0\u09A8:"
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "col",
-                  children: payment.weight_unit
-                })]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                className: "row mt-3",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
-                    children: ["\u09AE\u09C2\u09B2\u09CD\u09AF \u09AA\u09CD\u09B0\u09A4\u09BF ", payment.weight_unit, ":"]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "col font-weight-bold",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("h4", {
-                    children: [toBengaliNumber(payment.price_per_unit), " \u099F\u09BE\u0995\u09BE"]
-                  })
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-                  className: "col-1",
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-                    children: "\u09AE\u09CB\u099F \u09A6\u09BE\u09AE:"
+                    children: "\u09AE\u09C2\u09B2\u09CD\u09AF:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-                  className: "col",
-                  children: [toBengaliWord(Number(payment.price_per_unit) + Number(payment.service_fee)), " \u099F\u09BE\u0995\u09BE"]
+                  className: "col font-weight-bold",
+                  children: [toBengaliNumber(payment.price_per_unit), " \u099F\u09BE\u0995\u09BE(", payment.weight_unit, " \u09AA\u09CD\u09B0\u09A4\u09BF)"]
                 })]
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                 className: "row mt-3",
@@ -2606,11 +2593,30 @@ var BuyerPaymentList = /*#__PURE__*/function (_Component) {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col-1",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AE\u09CB\u099F \u09A6\u09BE\u09AE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [toBengaliWord(Number(payment.total_amount)), " \u099F\u09BE\u0995\u09BE (\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C \u099B\u09BE\u09A1\u09BC\u09BE)"]
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                className: "row mt-3",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
                     children: "\u09AA\u09A3\u09CD\u09AF\u09C7\u09B0 \u09A8\u09BE\u09AE:"
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
                   className: "col",
                   children: payment.product_name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                  className: "col-1",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                    children: "\u09AE\u09CB\u099F \u09A6\u09BE\u09AE:"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                  className: "col",
+                  children: [toBengaliWord(Number(payment.total_amount) + Number(payment.service_fee)), " \u099F\u09BE\u0995\u09BE (\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C \u09B8\u09B9)"]
                 })]
               })]
             })]
