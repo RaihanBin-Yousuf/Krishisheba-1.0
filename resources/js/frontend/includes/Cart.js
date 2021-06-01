@@ -39,7 +39,7 @@ export default class Cart extends Component {
         cartList = <tr key={product.id}>
                         <td className="pro-thumbnail"><a href="#"><img src={"/storage/posts/"+product.product_image} className="img-fluid" alt="Product"/></a></td>
                         <td className="pro-title">{product.category}</td>
-                        <td className="pro-price"><span>৳ {toBengaliNumber(product.price_per_unit)}</span></td>
+                        <td className="pro-price"><span>৳ {toBengaliNumber(product.price_per_unit_with_discount)}</span></td>
                         <td className="available-quantity"><span>{product.total_unit == 'Nan' ? 'Nan': toBengaliNumber(product.total_unit)} {product.total_unit == 'Nan' ? '' : product.weight_unit}</span></td>
                         <td className="pro-quantity"><div className="pro-qty"><input type="number" value={product.quantity} onChange={(e)=>this.props.updateQty(e, product)} /></div></td> 
                         <td className="pro-each-total"><span>৳ {toBengaliNumber(product.total_each_price)}</span></td>

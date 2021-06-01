@@ -7442,8 +7442,8 @@ var Index = /*#__PURE__*/function (_Component) {
         });
       } else {
         product.quantity = 1;
-        product.price_per_unit = product.price_per_unit - product.price_per_unit * (product.discount_price / 100);
-        product.total_each_price = product.price_per_unit;
+        product.price_per_unit_with_discount = product.price_per_unit - product.price_per_unit * (product.discount_price / 100);
+        product.total_each_price = product.price_per_unit_with_discount;
         product.total_unit = product.total_weight - product.quantity;
 
         if (product.weight_unit == 'কেজি') {
@@ -7497,7 +7497,7 @@ var Index = /*#__PURE__*/function (_Component) {
               product.total_unit = total_quantity_weight;
             }
 
-            product.total_each_price = product.quantity * product.price_per_unit;
+            product.total_each_price = product.quantity * product.price_per_unit_with_discount;
             product.each_total_fee = product.quantity * product.each_service_fee;
           }
 
@@ -8350,7 +8350,7 @@ var Cart = /*#__PURE__*/function (_Component) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "pro-price",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-              children: ["\u09F3 ", toBengaliNumber(product.price_per_unit)]
+              children: ["\u09F3 ", toBengaliNumber(product.price_per_unit_with_discount)]
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", {
             className: "available-quantity",
@@ -13712,7 +13712,7 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
                 className: "count",
                 children: [toBengaliNumber(product.quantity), " x "]
-              }), " \u09F3", toBengaliNumber(product.price_per_unit)]
+              }), " \u09F3", toBengaliNumber(product.price_per_unit_with_discount)]
             })]
           })]
         }, product.id);

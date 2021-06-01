@@ -66,7 +66,7 @@ export default class TopBarAndHeader extends Component {
                             </div>
                             <div className="cart-float-single-item-desc" onClick={()=>this.props.viewDetails(product)}>
                                 <p className="product-title"> <a >{product.product_name} </a></p>
-                                <p className="price"><span className="count">{toBengaliNumber(product.quantity)} x </span> ৳{toBengaliNumber(product.price_per_unit)}</p>
+                                <p className="price"><span className="count">{toBengaliNumber(product.quantity)} x </span> ৳{toBengaliNumber(product.price_per_unit_with_discount)}</p>
                             </div>
                         </div>
                         ));

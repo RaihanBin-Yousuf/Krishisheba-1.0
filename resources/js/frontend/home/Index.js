@@ -164,8 +164,8 @@ export default class Index extends Component {
             $.notify({message: 'Already Added'}, {type: 'danger'});
         } else {
             product.quantity = 1;
-            product.price_per_unit = product.price_per_unit-(product.price_per_unit*(product.discount_price/100));
-            product.total_each_price = product.price_per_unit;
+            product.price_per_unit_with_discount = product.price_per_unit-(product.price_per_unit*(product.discount_price/100));
+            product.total_each_price = product.price_per_unit_with_discount;
             product.total_unit = product.total_weight - product.quantity;
             if(product.weight_unit == 'কেজি') {
                 product.each_service_fee = 5;
@@ -205,7 +205,7 @@ export default class Index extends Component {
                 } else {
                     product.total_unit = total_quantity_weight;
                 }
-                product.total_each_price = product.quantity * product.price_per_unit;
+                product.total_each_price = product.quantity * product.price_per_unit_with_discount;
                 product.each_total_fee = product.quantity * product.each_service_fee;
             }
             filterProducts.push(product);
