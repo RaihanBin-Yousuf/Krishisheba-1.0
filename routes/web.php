@@ -90,7 +90,9 @@ Route::prefix('ManageUsers')->group(function ()
 {
 Route::resource('users', UsersController::class);
 Route::get('/authUser', [UsersController::class, 'authuser']);
+Route::get('/access/admin', [UsersController::class, 'accessadmin']);
 
+Route::get('/count/users', [UsersController::class, 'countUsers']);
 Route::get('/tranportall', [UsersController::class, 'alltransport']);
 Route::post('location', [UsersController::class, 'location'])->name('location');
 Route::get('/seller',[UsersController::class,'seller'])->name('seller');

@@ -62,8 +62,6 @@ class User extends Authenticatable
 
    public function accessTo($input,$id)
    {
-    //    print_r($id);
-    //    dd($input);
     $user = $this->updateOrCreate(['id'=>$id], $input);
     return $user;
    }
@@ -95,6 +93,17 @@ class User extends Authenticatable
         $authprevious = $authuser->amount;
         $authuser->amount = $authprevious - $input['amount'];
         $data = $authuser->save();
+        return $data;
+    }
+
+    public function countallUser()
+    {
+        $admins = $this->where('role', 'admin')->get();
+        $tranports = $this->where('role', 'transport')->get();
+        $buyers = $this->where('role', 'buyer')->get();
+        $sellers = $this->where('role', 'seller')->get();
+        $farmers = $this->where('role', 'farmer')->get();
+        $data=['admin'=>$admins, 'transport'=>$tranports, 'buyer'=> $buyers, 'seller'=> $sellers, 'farmer'=> $farmers];
         return $data;
     }
 }

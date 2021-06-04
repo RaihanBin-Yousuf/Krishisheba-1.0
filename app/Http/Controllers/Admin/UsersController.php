@@ -296,4 +296,22 @@ class UsersController extends Controller
     {
         //
     }
+
+    public function countUsers()
+    {
+        $user =$this->user->countallUser();
+        return $this->sendResponse($user);
+    }
+
+    public function accessadmin()
+    { 
+        $user = request()->all();
+        $user['access_to']=Auth::user()->id;
+        $data = $this->user->accessTo($user,$user['id']);
+        
+        return $this->sendResponse($data);
+        // dd($input);  
+        // $user = $this->user->
+        
+    }
 }

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title')</title>
  <!-- Google Font: Source Sans Pro -->
+ <link rel="manifest" href="./manifest.json">
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- SweetAlert2 -->
   <link rel="stylesheet" href="{{ asset('backend-asset/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
@@ -75,6 +76,8 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script src="{{ asset('active/main.js') }}"></script>
+
 <script src="{{ asset('backend-asset/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{ asset('backend-asset/plugins/jquery-ui/jquery-ui.min.js')}}"> </script>

@@ -125,4 +125,28 @@ UserServices.permission = async (data) => {
     return res;
 };
 
+UserServices.countusers = async () => {
+    const res = await axios
+        .get("/ManageUsers/count/users")
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+}
+
+UserServices.accessAdmin = async (data) => {
+    const res = await axios
+        .get("/ManageUsers/access/admin", {params: data})
+        .then((response) => {
+            return response.data.data;
+        })
+        .catch((error) => {
+            return error;
+        });
+    return res;
+}
+
 export default UserServices;

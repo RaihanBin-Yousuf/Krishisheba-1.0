@@ -14,6 +14,8 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
+ <link rel="manifest" href="./manifest.json">
+
   <link href="{{ asset('frontend-asset/home_page/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend-asset/home_page/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet">
   <link href="{{ asset('frontend-asset/home_page/vendor/icofont/icofont.min.css') }}" rel="stylesheet">
@@ -70,7 +72,7 @@
 
 <!-- Vendor JS Files -->
 <script src="{{ mix('js/app.js') }}" defer></script>
-
+<script src="{{ asset('active/main.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('frontend-asset/home_page/vendor/jquery.easing/jquery.easing.min.js') }}"></script>

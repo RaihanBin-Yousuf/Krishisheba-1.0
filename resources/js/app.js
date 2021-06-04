@@ -39,4 +39,5 @@ require('./backend/SellerFarmer');
 require('./backend/TrnsprtPayList');
 require('./backend/BuyerPaymentList');
 require('./backend/BuyerTransportPayList');
+require('./backend/Dashboard');
 // require('./frontend/includes/TopCategorySlider');
