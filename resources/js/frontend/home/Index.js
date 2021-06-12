@@ -87,7 +87,6 @@ export default class Index extends Component {
         if(this.state.authUser.data == "not found") {
             this.setState({ ['loginForm']: true})
         } else {
-            console.log('auth user data :>> ', this.state.authUser);
             if(this.state.authUser.access_to == 0 || this.state.authUser.access_to == 99) {
                 $.notify({message : 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'}, {type: 'danger'});
             } else {
@@ -168,14 +167,16 @@ export default class Index extends Component {
             product.total_each_price = product.price_per_unit_with_discount;
             product.total_unit = product.total_weight - product.quantity;
             if(product.weight_unit == 'কেজি') {
-                product.each_service_fee = 5;
+                product.each_service_fee = 9/100;
             } else if(product.weight_unit == 'মণ') {
-                product.each_service_fee = 200;
+                product.each_service_fee = 10/100;
             } else if(product.weight_unit == 'পিস') {
-                product.each_service_fee = 1;
+                product.each_service_fee = 15/100;
             } else if(product.weight_unit == 'টন') {
-                product.each_service_fee = 1000;
+                product.each_service_fee = 30/100;
             } 
+
+
             product.each_total_fee = product.quantity * product.each_service_fee;
             
             //  else if(product.weight_unit == 'মেট্রিক টন') {
@@ -206,29 +207,32 @@ export default class Index extends Component {
                     product.total_unit = total_quantity_weight;
                 }
                 product.total_each_price = product.quantity * product.price_per_unit_with_discount;
-                product.each_total_fee = product.quantity * product.each_service_fee;
+                // product.each_total_fee = product.each_service_fee;
             }
             filterProducts.push(product);
         }) 
         this.setState({
             ['addCart'] : filterProducts,
-        },()=>{this.totalPrice()});//
+        },()=>{this.totalPrice()});
         }
     }
 
     totalPrice() {
         let grandSubTotalPrice = 0;
-        let grandTotalServiceFee = 0;
+        let percentageServiceFee = 0;
+       
+        // product.each_total_fee = product.each_service_fee;
         this.state.addCart.map(product => {
             if(product.total_unit != 'Nan') {
                 grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
-                grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+                percentageServiceFee = percentageServiceFee + product.each_service_fee;
             }
         });
-        let grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
+        let grandTotalPrice = grandSubTotalPrice + Math.ceil(grandSubTotalPrice * percentageServiceFee);
+        let totalServiceFee = grandTotalPrice-grandSubTotalPrice;
         this.setState({ 
             ['totalPrice'] : grandTotalPrice, 
-            ['serviceFee']: grandTotalServiceFee,
+            ['serviceFee']: totalServiceFee,
             ['subTotal']: grandSubTotalPrice,
         });
     }

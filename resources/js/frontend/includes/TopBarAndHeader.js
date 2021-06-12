@@ -132,9 +132,9 @@ export default class TopBarAndHeader extends Component {
 
                                             <div className="cart-calculation">
                                                 <div className="calculation-details">
-                                                    <p>পরিসেবা চার্জ <span>৳{toBengaliNumber(this.props.data.serviceFee+'.00')}</span></p>
+                                                    <p>পরিসেবা চার্জ <span>৳{toBengaliNumber(this.props.data.serviceFee)}</span></p>
                                                     <hr></hr>
-                                                    <p>সর্বমোট <span>৳{toBengaliNumber(this.props.data.totalPrice+'.00')}</span></p>
+                                                    <p>সর্বমোট <span>৳{toBengaliNumber(this.props.data.totalPrice)}</span></p>
                                                 </div>
                                                 <div className="floating-cart-btn text-center">
                                                     <a onClick={this.props.showCheck}>লেনদেন</a>

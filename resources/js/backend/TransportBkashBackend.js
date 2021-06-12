@@ -39,8 +39,8 @@ export default class TransportBkashBackend extends Component {
         this.setState({ [name]: value });
     }
 
-    async handleSubmit(event) {
-        console.log('this.state.code :>> ', this.state.code.length);
+    async handleSubmit(event) {         
+        console.log('this.state.code :>> ', this.state.code.length);    
         event.preventDefault();
         const digits_only = string => [...string].every(c => '0123456789'.includes(c));
         if(this.state.transport_contact.length == 11 && digits_only(this.state.transport_contact)) {

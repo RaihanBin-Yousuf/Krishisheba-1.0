@@ -38,6 +38,7 @@ class CreateManagePostsTable extends Migration
             $table->string('villege')->nullable();
             $table->text('comments')->nullable();
             $table->string('product_image')->nullable();
+            $table->bigInteger('count_buy_product')->default(0);
             $table->timestamps();
         });
     }

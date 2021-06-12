@@ -27,6 +27,7 @@ export default class TabSlider extends Component {
             ['on_sale']: res.sale,
             ['farmer_sale']: res.farmer,
         })
+        console.log(`manage post res`, res)
 
     }
 
@@ -66,6 +67,7 @@ export default class TabSlider extends Component {
                                     <a onClick={()=>this.props.viewDetails(feature)}>
                                         <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
                                     </a>
+                                    
                                     <div className="product-hover-icons ">
                                         <a onClick={()=>this.props.addProduct(feature)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
@@ -126,6 +128,7 @@ export default class TabSlider extends Component {
                                     <span className="onsale">Sale!</span>
                                     <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
                                     </a>
+                                    <span className="onsale bg-success"><h4>{sale.count_buy_product}</h4></span>
                                     <div className="product-hover-icons">
                                         <a onClick={()=>this.props.addProduct(sale)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
                                         <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>

@@ -150,7 +150,7 @@ class PaymentController extends Controller
         $data['total_weight'] = $input["product"]->quantity;
         $data['total_amount'] = $input["product"]->total_each_price;
         $data['weight_unit'] = $input["product"]->weight_unit;
-        $data['service_fee'] = $input["product"]->each_total_fee;
+        $data['service_fee'] = $input["servicefee"];
         $data['price_per_unit'] = $input["product"]->price_per_unit;
         $data['category'] = $input["product"]->category;
         $data['sub_category'] = $input["product"]->sub_category;
@@ -158,6 +158,7 @@ class PaymentController extends Controller
         $data['product_production_year'] = $input["product"]->product_production_year;
         $data['packaging_method'] = $input["product"]->packaging_method;
         $data['accept_payment'] = 0;
+        // dd($data);
         $data = $this->payment->savePayment($data);
         $sendToAdmin['u_id'] = $input['adminAccount']->id;
         $sendToAdmin['amount'] = $data['total_amount'] + $data['service_fee'];
@@ -169,6 +170,9 @@ class PaymentController extends Controller
     {
         $data['id'] = $input['product']->id;
         $data['total_weight'] = $input['product']->total_unit;
+        $managepost = $this->manage_post->where('id', $data['id'])->get()->first();
+        // dd($managepost->count_buy_product);
+        $data['count_buy_product'] = $managepost->count_buy_product + 1;
         
         // dd($data);
         return $this->manage_post->updatePost($data);

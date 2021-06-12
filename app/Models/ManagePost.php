@@ -15,7 +15,7 @@ class ManagePost extends Model
         'price_per_unit','advance_payment','category','sub_category',
         'production_type','product_production_year','packaging_method','initial_delivery_date',
         'final_delivery_date','offer_end_date','own_vehicle','divisions',
-        'district','thana','villege','comments' ,'product_image','discount_price',
+        'district','thana','villege','comments' ,'product_image','discount_price', 'count_buy_product'
     ];
     public function filterPage()
     {
@@ -68,7 +68,8 @@ class ManagePost extends Model
     {  
         if(request()->type == "feature") {
            $feature = $this->latest()->take(10)->get();
-            $onSale = $this->skip(10)->take(10)->get();
+        //    dd($feature);
+            $onSale = $this->orderBy('count_buy_product', 'desc')->take(10)->get();
             $discount = $this->where('discount_price','>','0')->take(10)->get();
             $farmerlist = $this->where('user_role', 'farmer')->get();
         }

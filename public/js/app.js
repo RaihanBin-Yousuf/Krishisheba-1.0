@@ -7842,8 +7842,6 @@ var Index = /*#__PURE__*/function (_Component) {
       if (this.state.authUser.data == "not found") {
         this.setState(_defineProperty({}, 'loginForm', true));
       } else {
-        console.log('auth user data :>> ', this.state.authUser);
-
         if (this.state.authUser.access_to == 0 || this.state.authUser.access_to == 99) {
           $.notify({
             message: 'লেনদেনের জন্য অনুমতি প্রদান করা হইনি। অনুগ্রহ করে অপেক্ষা করুন'
@@ -8054,13 +8052,13 @@ var Index = /*#__PURE__*/function (_Component) {
         product.total_unit = product.total_weight - product.quantity;
 
         if (product.weight_unit == 'কেজি') {
-          product.each_service_fee = 5;
+          product.each_service_fee = 9 / 100;
         } else if (product.weight_unit == 'মণ') {
-          product.each_service_fee = 200;
+          product.each_service_fee = 10 / 100;
         } else if (product.weight_unit == 'পিস') {
-          product.each_service_fee = 1;
+          product.each_service_fee = 15 / 100;
         } else if (product.weight_unit == 'টন') {
-          product.each_service_fee = 1000;
+          product.each_service_fee = 30 / 100;
         }
 
         product.each_total_fee = product.quantity * product.each_service_fee; //  else if(product.weight_unit == 'মেট্রিক টন') {
@@ -8104,15 +8102,14 @@ var Index = /*#__PURE__*/function (_Component) {
               product.total_unit = total_quantity_weight;
             }
 
-            product.total_each_price = product.quantity * product.price_per_unit_with_discount;
-            product.each_total_fee = product.quantity * product.each_service_fee;
+            product.total_each_price = product.quantity * product.price_per_unit_with_discount; // product.each_total_fee = product.each_service_fee;
           }
 
           filterProducts.push(product);
         });
         this.setState(_defineProperty({}, 'addCart', filterProducts), function () {
           _this6.totalPrice();
-        }); //
+        });
       }
     }
   }, {
@@ -8121,15 +8118,17 @@ var Index = /*#__PURE__*/function (_Component) {
       var _this$setState9;
 
       var grandSubTotalPrice = 0;
-      var grandTotalServiceFee = 0;
+      var percentageServiceFee = 0; // product.each_total_fee = product.each_service_fee;
+
       this.state.addCart.map(function (product) {
         if (product.total_unit != 'Nan') {
           grandSubTotalPrice = grandSubTotalPrice + product.total_each_price;
-          grandTotalServiceFee = grandTotalServiceFee + product.each_total_fee;
+          percentageServiceFee = percentageServiceFee + product.each_service_fee;
         }
       });
-      var grandTotalPrice = grandSubTotalPrice + grandTotalServiceFee;
-      this.setState((_this$setState9 = {}, _defineProperty(_this$setState9, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState9, 'serviceFee', grandTotalServiceFee), _defineProperty(_this$setState9, 'subTotal', grandSubTotalPrice), _this$setState9));
+      var grandTotalPrice = grandSubTotalPrice + Math.ceil(grandSubTotalPrice * percentageServiceFee);
+      var totalServiceFee = grandTotalPrice - grandSubTotalPrice;
+      this.setState((_this$setState9 = {}, _defineProperty(_this$setState9, 'totalPrice', grandTotalPrice), _defineProperty(_this$setState9, 'serviceFee', totalServiceFee), _defineProperty(_this$setState9, 'subTotal', grandSubTotalPrice), _this$setState9));
     }
   }, {
     key: "removeProduct",
@@ -13447,8 +13446,9 @@ var TabSlider = /*#__PURE__*/function (_Component) {
               case 2:
                 res = _context.sent;
                 this.setState((_this$setState = {}, _defineProperty(_this$setState, 'feature', res.feature), _defineProperty(_this$setState, 'new_arrival', res["new"]), _defineProperty(_this$setState, 'on_sale', res.sale), _defineProperty(_this$setState, 'farmer_sale', res.farmer), _this$setState));
+                console.log("manage post res", res);
 
-              case 4:
+              case 5:
               case "end":
                 return _context.stop();
             }
@@ -13717,6 +13717,11 @@ var TabSlider = /*#__PURE__*/function (_Component) {
                 src: '/storage/posts/' + sale.product_image,
                 className: "postsimage"
               })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+              className: "onsale bg-success",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                children: sale.count_buy_product
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
               className: "product-hover-icons",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("a", {
@@ -14489,11 +14494,11 @@ var TopBarAndHeader = /*#__PURE__*/function (_Component) {
                           className: "calculation-details",
                           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09AA\u09B0\u09BF\u09B8\u09C7\u09AC\u09BE \u099A\u09BE\u09B0\u09CD\u099C ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3", toBengaliNumber(this.props.data.serviceFee + '.00')]
+                              children: ["\u09F3", toBengaliNumber(this.props.data.serviceFee)]
                             })]
                           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("p", {
                             children: ["\u09B8\u09B0\u09CD\u09AC\u09AE\u09CB\u099F ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("span", {
-                              children: ["\u09F3", toBengaliNumber(this.props.data.totalPrice + '.00')]
+                              children: ["\u09F3", toBengaliNumber(this.props.data.totalPrice)]
                             })]
                           })]
                         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
