@@ -89,7 +89,7 @@ class ManagePostController extends Controller
      * @param  \App\Models\ManagePost  $managePost
      * @return \Illuminate\Http\Response
      */
-    public function show(ManagePost $managePost)
+    public function show(Request $request, ManagePost $managePost)
     {
         //
     }
@@ -102,7 +102,8 @@ class ManagePostController extends Controller
      */
     public function edit(ManagePost $managePost)
     {
-        //
+        return view('backend.manage_posts.update', compact('managePost'));
+        // dd($managePost);
     }
 
     /**
@@ -114,7 +115,9 @@ class ManagePostController extends Controller
      */
     public function update(Request $request, ManagePost $managePost)
     {
-        //
+        $input = $request->all();
+        $managePost = (new ManagePost)->updatePost($input, $managePost->id);
+        return view('backend.manage_posts.update', compact('managePost'));
     }
 
     /**

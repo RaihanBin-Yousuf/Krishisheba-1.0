@@ -88,10 +88,10 @@ class ManagePost extends Model
         return $managePost;
     }
 
-    public function updatePost($input)
+    public function updatePost($input, $id)
     {
         
-        $managePost = $this->updateOrCreate(['id'=>$input['id']], $input);
+        $managePost = $this->updateOrCreate(['id'=>$id], $input);
         $managePost->save();
         return $managePost;
     }
