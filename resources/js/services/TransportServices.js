@@ -106,7 +106,7 @@ TransportServices.acceptPayment = async (data) => {
          const date = new Date();
          const now = date.getTime();
          link.href = url;
-         link.setAttribute('download', 'Accounts.pdf'); //or any other extension
+         link.setAttribute('download', 'payment_slip.pdf'); //or any other extension
          document.body.appendChild(link);
          link.click();
       });
