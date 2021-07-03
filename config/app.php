@@ -230,6 +230,14 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'providers' => [
+            Barryvdh\DomPDF\ServiceProvider::class,
+          ],
+          
+          'aliases' => [
+            'PDF' => Barryvdh\DomPDF\Facade::class,
+          ]
+
     ],
 
 ];

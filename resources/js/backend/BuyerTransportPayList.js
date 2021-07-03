@@ -91,6 +91,8 @@ export default class BuyerTransportPayList extends Component {
                                             <div className="col">
                                                 <h3>Payment : {transport.created_at}</h3>
                                             </div>
+                                            
+                                        
                                         {/* </div> */}
                                     </div>}
                                     <div className="card-body">

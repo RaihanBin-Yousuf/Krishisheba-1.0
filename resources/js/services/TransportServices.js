@@ -72,5 +72,45 @@ TransportServices.acceptPayment = async (data) => {
     return res;
   }
   
+//   TransportServices.downloadScript = async (data) => {
+//     let urlPayement = "/download-script";
+//     const res = await axios
+//         .get(urlPayement, {params: data}, responseType: 'blob',)
+//         .then((response) => {
+//             const url = window.URL.createObjectURL(new Blob([response.data]));
+//             const link = document.createElement('a');
+//             const date = new Date();
+//             const now = date.getTime();
+//             link.href = url;
+//             link.setAttribute('download', 'Accounts-'+now+'.xlsx'); //or any other extension
+//             document.body.appendChild(link);
+//             link.click();
+//          })
+//         .catch((error) => {
+//             return error;
+//         });
+//     return res;
+//   }
+
+
+  
+  TransportServices.downloadScript = async (data) => {
+    const res = await axios({
+        url: "/download-script",
+        method: 'GET',
+        params:data,
+        responseType: 'blob', // important
+      }).then((response) => {
+         const url = window.URL.createObjectURL(new Blob([response.data]));
+         const link = document.createElement('a');
+         const date = new Date();
+         const now = date.getTime();
+         link.href = url;
+         link.setAttribute('download', 'Accounts.pdf'); //or any other extension
+         document.body.appendChild(link);
+         link.click();
+      });
+    return res;
+  }
   
 export default TransportServices;

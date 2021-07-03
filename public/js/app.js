@@ -5675,6 +5675,7 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
     _this.handlePageChange = _this.handlePageChange.bind(_assertThisInitialized(_this));
     _this.getTransportList = _this.getTransportList.bind(_assertThisInitialized(_this));
     _this.isDelivered = _this.isDelivered.bind(_assertThisInitialized(_this));
+    _this.downloadPaymentScript = _this.downloadPaymentScript.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -5718,30 +5719,59 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
       return getAuthUser;
     }()
   }, {
-    key: "isDelivered",
+    key: "downloadPaymentScript",
     value: function () {
-      var _isDelivered = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(data) {
-        var getTransport;
+      var _downloadPaymentScript = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(transport) {
+        var res;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
                 _context2.next = 2;
-                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.paymentHistory(data);
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.downloadScript(transport);
 
               case 2:
-                getTransport = _context2.sent;
-                this.getTransportList();
+                res = _context2.sent;
 
-              case 4:
+              case 3:
               case "end":
                 return _context2.stop();
             }
           }
-        }, _callee2, this);
+        }, _callee2);
       }));
 
-      function isDelivered(_x) {
+      function downloadPaymentScript(_x) {
+        return _downloadPaymentScript.apply(this, arguments);
+      }
+
+      return downloadPaymentScript;
+    }()
+  }, {
+    key: "isDelivered",
+    value: function () {
+      var _isDelivered = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(data) {
+        var getTransport;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.paymentHistory(data);
+
+              case 2:
+                getTransport = _context3.sent;
+                this.getTransportList();
+
+              case 4:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function isDelivered(_x2) {
         return _isDelivered.apply(this, arguments);
       }
 
@@ -5762,13 +5792,13 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
   }, {
     key: "getTransportList",
     value: function () {
-      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      var _getTransportList = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
         var getTransport;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context3.prev = _context3.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                _context3.next = 2;
+                _context4.next = 2;
                 return _services_TransportServices__WEBPACK_IMPORTED_MODULE_3__.default.paymentHistory({
                   query: this.state.query,
                   sort: this.sort,
@@ -5778,7 +5808,7 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
                 });
 
               case 2:
-                getTransport = _context3.sent;
+                getTransport = _context4.sent;
                 console.log('getTransport :>> ', getTransport);
                 this.page = getTransport.current_page;
                 this.limit = getTransport.per_page;
@@ -5787,10 +5817,10 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
 
               case 8:
               case "end":
-                return _context3.stop();
+                return _context4.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee4, this);
       }));
 
       function getTransportList() {
@@ -5802,6 +5832,8 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var transportsList = '';
       console.log('this.state.transports in buyer:>> ', this.state.transports);
 
@@ -5822,6 +5854,14 @@ var TrnsprtPayList = /*#__PURE__*/function (_Component) {
                   className: "col text-right",
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                     children: "Buyer Didn't get the product."
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                  className: "col-1 mt-1",
+                  onClick: function onClick() {
+                    return _this3.downloadPaymentScript(transport);
+                  },
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("i", {
+                    "class": "fas fa-download"
                   })
                 })]
               })
@@ -20568,6 +20608,69 @@ TransportServices.paymentHistory = /*#__PURE__*/function () {
 
   return function (_x6) {
     return _ref6.apply(this, arguments);
+  };
+}(); //   TransportServices.downloadScript = async (data) => {
+//     let urlPayement = "/download-script";
+//     const res = await axios
+//         .get(urlPayement, {params: data}, responseType: 'blob',)
+//         .then((response) => {
+//             const url = window.URL.createObjectURL(new Blob([response.data]));
+//             const link = document.createElement('a');
+//             const date = new Date();
+//             const now = date.getTime();
+//             link.href = url;
+//             link.setAttribute('download', 'Accounts-'+now+'.xlsx'); //or any other extension
+//             document.body.appendChild(link);
+//             link.click();
+//          })
+//         .catch((error) => {
+//             return error;
+//         });
+//     return res;
+//   }
+
+
+TransportServices.downloadScript = /*#__PURE__*/function () {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7(data) {
+    var res;
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+      while (1) {
+        switch (_context7.prev = _context7.next) {
+          case 0:
+            _context7.next = 2;
+            return axios({
+              url: "/download-script",
+              method: 'GET',
+              params: data,
+              responseType: 'blob' // important
+
+            }).then(function (response) {
+              var url = window.URL.createObjectURL(new Blob([response.data]));
+              var link = document.createElement('a');
+              var date = new Date();
+              var now = date.getTime();
+              link.href = url;
+              link.setAttribute('download', 'Accounts.pdf'); //or any other extension
+
+              //or any other extension
+              document.body.appendChild(link);
+              link.click();
+            });
+
+          case 2:
+            res = _context7.sent;
+            return _context7.abrupt("return", res);
+
+          case 4:
+          case "end":
+            return _context7.stop();
+        }
+      }
+    }, _callee7);
+  }));
+
+  return function (_x7) {
+    return _ref7.apply(this, arguments);
   };
 }();
 

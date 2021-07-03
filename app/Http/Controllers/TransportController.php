@@ -8,7 +8,9 @@ use App\Models\Transport;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
+use Dompdf\Dompdf;
 class TransportController extends Controller
 {
     public function __construct(Transport $transport, User $user, Payment $payment, Transaction $transaction) {
@@ -183,5 +185,26 @@ class TransportController extends Controller
         $data = $this->transport->deliveredsuccess($input);
         // dd($input);
         return $this->sendResponse($data);
+    }
+
+    public function downloadScript()
+    {
+        $data = request()->all();
+        // dd($data);
+        $data['seller'] = json_decode($data['seller']);
+        $data['buyer'] = json_decode($data['buyer']);
+        $data['transport'] = json_decode($data['transport']);
+        $data['total_amount'] = (int) $data['transport_charge'] + (int) $data['transport_service_fee'];
+         // share data to view
+        //  $view = view('paymentslip', compact('data'))->render();
+        // $html = mb_convert_encoding($view, 'HTML-ENTITIES');
+        view()->share('paymentslip',$data);
+        
+        $pdf = PDF::loadView('paymentslip', compact('data'));
+
+    //   // download PDF file with download method
+        return $pdf->download('pdf_file.pdf');
+        // dd($data);
+        // return view('paymentslip', compact('data'));
     }
 }

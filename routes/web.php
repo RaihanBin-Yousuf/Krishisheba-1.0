@@ -130,3 +130,5 @@ Route::resource('transport', TransportController::class);
 
 Route::post('/accept/transport', [TransportController::class, 'acceptpayment']);
 Route::post('/delivered/buyer/transport', [TransportController::class, 'deliveredtransport']);
+
+Route::get('/download-script', [TransportController::class, 'downloadScript']);

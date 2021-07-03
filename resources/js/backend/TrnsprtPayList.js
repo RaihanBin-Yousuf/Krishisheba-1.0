@@ -23,6 +23,7 @@ export default class TrnsprtPayList extends Component {
         this.handlePageChange = this.handlePageChange.bind(this);
         this.getTransportList = this.getTransportList.bind(this);
         this.isDelivered = this.isDelivered.bind(this);
+        this.downloadPaymentScript = this.downloadPaymentScript.bind(this);
 
     }
 
@@ -36,6 +37,11 @@ export default class TrnsprtPayList extends Component {
             ['auth_user']: user,
         },()=>{this.getTransportList();})
 
+    }
+
+    async downloadPaymentScript(transport) {
+        
+        const res = await TransportServices.downloadScript(transport);
     }
 
     async isDelivered(data) {
@@ -81,8 +87,12 @@ export default class TrnsprtPayList extends Component {
                                             <div className="col">
                                                 <h3>Payment : {transport.created_at}</h3>
                                             </div>
+                                            
                                             <div className="col text-right">
                                                 <h4>Buyer Didn't get the product.</h4>
+                                            </div>
+                                            <div className="col-1 mt-1" onClick={()=>this.downloadPaymentScript(transport)}>
+                                                <i class="fas fa-download"></i>
                                             </div>
                                         </div>
                                     </div> :
