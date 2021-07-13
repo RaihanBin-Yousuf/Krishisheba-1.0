@@ -175,7 +175,7 @@ class PaymentController extends Controller
         $data['count_buy_product'] = $managepost->count_buy_product + 1;
         
         // dd($data);
-        return $this->manage_post->updatePost($data);
+        return (new ManagePost())->updatePost($data);
     }
 
     /**
