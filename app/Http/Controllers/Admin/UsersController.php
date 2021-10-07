@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Payment;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Twilio\Rest\Client;
@@ -64,6 +67,14 @@ class UsersController extends Controller
         $alladmin = User::where(['role'=>'admin'])->get();
         return view('backend.superadmin.accessadmin',compact('alladmin'));
     }
+
+    public function AddAdmin()
+    {
+        // $alladmin = User::where(['role'=>'admin','access_to'=>'0'])->get();
+        // $alladmin = User::where(['role'=>'admin'])->get();
+        return view('backend.superadmin.addnewadmin');
+    }
+    
 
     public function viewadmin($id)
     {
@@ -129,6 +140,8 @@ class UsersController extends Controller
                 return $this->sendResponse($user);
             }
             $input = request()->all();
+            // $input['password']=md5 ($input['password']);
+            // dd($input);
             // $input["password"] = Hash::make($input['password']);
             $user = Auth::attempt($input);
             // dd($user);
@@ -173,7 +186,34 @@ class UsersController extends Controller
         return $this->sendResponse($buyer);
     }
 
-    
+    public function myprofile()
+    {
+        $userId = Auth::user()->id;
+        $userinfo = User::where('user_id', $userId)->get();
+        return view('backend.dashboard',compact('userinfo'));
+    }
+    public function myorder()
+    {
+        if (Auth::user()->access_to == "99") {
+            $notification=array(
+                'messege'=>'you have wait for Admin access',
+                'alert-type'=>'warning'
+                 );
+                 return Redirect()->back()->with($notification);     
+        } 
+        else
+        {
+        $userId = Auth::user()->id;
+        $order = Payment::where('seller_id', $userId)->get();
+        return view('backend.manage_posts.mysells',compact('order'));
+        }
+    }
+    public function buyerorderlist()
+    {   
+        $userId = Auth::user()->id;
+        $buyerorder = Payment::where('buyer_id', $userId)->get();
+        return view('backend.manage_posts.buyerorder',compact('buyerorder')); 
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -191,9 +231,9 @@ class UsersController extends Controller
         $input = $request->all();
         // dd($input);
         //first create twillow account
-        $account_sid = "ACfbe5df71eebfa889982ce06258186e8c"; //set your Twillow SID
-        $auth_token = "03a327a3e028d01f85fad7e0a2fd4dc0"; //set your Twillow Auth token
-        $twilio_number = "+17472325099"; // set your twillo number
+        $account_sid = "ACafa4ae42d3b869067506ad0299c9d4bf"; //set your Twillow SID
+        $auth_token = "9b2f02f73409807efa2bb323ac0ac568"; //set your Twillow Auth token
+        $twilio_number = "+17027494790"; // set your twillo number
         $client = new Client($account_sid, $auth_token);
         $client->messages->create('+880'.$input['mobile'], ['from' => $twilio_number, 'body' => $input['comments']]);
     }
@@ -201,15 +241,67 @@ class UsersController extends Controller
     public function newuser(Request $request)
     {
         $input= $request->all();
-        $this->validate($request, [
-            'name' => ['required', 'string'],
-            'password' => ['required', 'string', new Password, 'confirmed'],
-            'role' => ['required', 'string', 'max:10'],
-            'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
-            'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
-            'profile_img' => ['nullable', 'image', 'max:2048'],
-            'nid_front_img' => ['required', 'image', 'max:2048'],
-            ]);
+        if($input['role'] == 'farmer'){
+
+            $this->validate($request, [
+                'fid_front_img' => ['required', 'image', 'max:2048'],
+                'farmer_id_no' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+                'name' => ['required', 'string', 'max:20'],
+                'email' => ['nullable','email','max:255',Rule::unique(User::class),],
+                'address' => ['required', 'string'],
+                'password' => ['required', 'string', new Password, 'confirmed'],
+                'role' => ['required', 'string', 'max:10'],
+                'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+                'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+                'profile_img' => ['image', 'max:2048'],
+                'nid_front_img' => ['required', 'image', 'max:2048'],
+                ]);
+        }
+
+        elseif($input['role'] == 'seller'){
+            $this->validate($request, [
+                'trade_lisence_no' => ['required', 'string', 'min:7', 'max:7', 'unique:users'],
+                'name' => ['required', 'string', 'max:20'],
+                'email' => ['nullable','email','max:255',Rule::unique(User::class),],
+                'address' => ['required', 'string'],
+                'password' => ['required', 'string', new Password, 'confirmed'],
+                'role' => ['required', 'string', 'max:10'],
+                'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+                'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+                'profile_img' => ['nullable', 'image', 'max:2048'],
+                'nid_front_img' => ['required', 'image', 'max:2048'],
+                ]);
+        }
+
+        elseif($input['role'] == 'transport'){
+            $this->validate($request, [
+                'vehicle_license_no' => ['required', 'string', 'min:15', 'max:15', 'unique:users'],
+                'name' => ['required', 'string', 'max:20'],
+                'email' => ['nullable','email','max:255',Rule::unique(User::class),],
+                'address' => ['required', 'string'],
+                'password' => ['required', 'string', new Password, 'confirmed'],
+                'role' => ['required', 'string', 'max:10'],
+                'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+                'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+                'profile_img' => ['nullable', 'image', 'max:2048'],
+                'nid_front_img' => ['required', 'image', 'max:2048'],
+                ]);
+        }
+        elseif($input['role'] == 'buyer')
+        {
+            $this->validate($request, [
+                'name' => ['required', 'string', 'max:20'],
+                'email' => ['nullable','email','max:255',Rule::unique(User::class),],
+                'address' => ['required', 'string'],
+                'password' => ['required', 'string', new Password, 'confirmed'],
+                'role' => ['required', 'string', 'max:10'],
+                'mobile' => ['required', 'string', 'min:11', 'max:11', 'unique:users'],
+                'nid' => ['required', 'string', 'min:10', 'max:17', 'unique:users'],
+                'profile_img' => ['nullable', 'image', 'max:2048'],
+                'nid_front_img' => ['required', 'image', 'max:2048'],
+                ]);
+        }
+        
             // dd($input);
             if(empty($input['profile_img']))
             {
@@ -222,19 +314,48 @@ class UsersController extends Controller
                 $input['profile_img'] =$imageName;
             }
 
+            //only for farmers
+            
+            if(empty($input['fid_front_img']))
+            {
+                $input['fid_front_img']='';
+            }
+            else
+            {
+                $imageName =time().'.'.$input['fid_front_img']->extension();
+                $input['fid_front_img']->storeAs('public/fidcard', $imageName);
+                $input['fid_front_img'] =$imageName;
+            }
+
+             //only for farmers
+            
+            if(empty($input['farmer_id_no']))
+            {
+                $input['farmer_id_no']='';
+            }
+
+            if(empty($input['vehicle_license_no']))
+            {
+                $input['vehicle_license_no']='';
+            }
+            if(empty($input['trade_lisence_no']))
+            {
+                $input['trade_lisence_no']='';
+            }
             $imageName =time().'.'.$input['nid_front_img']->extension();
             $input['nid_front_img']->storeAs('public/nidcard', $imageName);
             $input['nid_front_img'] =$imageName;
             // dd($input);
-            $token = "03a327a3e028d01f85fad7e0a2fd4dc0";
-            $twilio_sid = "ACfbe5df71eebfa889982ce06258186e8c";
-            $twilio_verify_sid = "VAf85b8c91235b361f166646e1e19e52d2";
+            $token = "9b2f02f73409807efa2bb323ac0ac568";
+            $twilio_sid = "ACafa4ae42d3b869067506ad0299c9d4bf";
+            $twilio_verify_sid = "VA349a8a97c4a95d3562a227fbd07c6dd4";
             $twilio = new Client($twilio_sid, $token);
             $twilio->verify->v2->services($twilio_verify_sid)
                 ->verifications
                 ->create('+880'.$input['mobile'], "sms");
 
-            
+                $input['password']=md5 ($input['password']);
+                $input['password_confirmation']=md5 ($input['password_confirmation']);
             User::create([
                 'name' => $input['name'],
                 'role' => $input['role'],
@@ -243,11 +364,19 @@ class UsersController extends Controller
                 'email' => $input['email'],
                 'birth_date' => $input['birth_date'],
                 'address' => $input['address'],
-                'password' => Hash::make($input['password']),           
+                'password' => ($input['password']),           
                 'profile_img' => $input['profile_img'],
                 'nid_front_img' => $input['nid_front_img'],
-                
+                //Only For Sellers
+                'trade_lisence_no' => $input['trade_lisence_no'],
+                //Only For Farmesr
+                'fid_front_img' => $input['fid_front_img'],
+                'farmer_id_no' => $input['farmer_id_no'],
+                //Only For Transport Owners
+                'vehicle_license_no' => $input['vehicle_license_no'],
+
             ]);
+            // dd($input);
         return redirect()->route('verify')->with(['mobile' => $input['mobile']]);
     }
 
@@ -258,9 +387,9 @@ class UsersController extends Controller
             'mobile' => ['required', 'string'],
         ]);
         /* Get credentials from .env */
-        $token = "03a327a3e028d01f85fad7e0a2fd4dc0";
-        $twilio_sid = "ACfbe5df71eebfa889982ce06258186e8c";
-        $twilio_verify_sid = "VAf85b8c91235b361f166646e1e19e52d2";
+        $token = "9b2f02f73409807efa2bb323ac0ac568";
+        $twilio_sid = "ACafa4ae42d3b869067506ad0299c9d4bf";
+        $twilio_verify_sid = "VA349a8a97c4a95d3562a227fbd07c6dd4";
         $twilio = new Client($twilio_sid, $token);
         $verification = $twilio->verify->v2->services($twilio_verify_sid)
             ->verificationChecks
