@@ -1,5 +1,59 @@
 @charset "UTF-8";
+.imgcart {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+}
+.green {
+  color: #5cb874;
+}
+.topcategoryimg{
+  width: 121px;
+  height: 121px;
 
+}
+a {
+  color: #5cb874;
+  text-decoration: none;
+  background-color: transparent;
+}
+a:hover {
+  color: #80bb01;
+  text-decoration: none;
+}
+.logotext a {
+  color: #5cb874;
+  text-decoration: none;
+  background-color: transparent;
+}
+/* .logotext a:hover {
+  color: #80bb01;
+  text-decoration: none;
+} */
+/* logo */
+.logotext{
+color: #5cb874;
+text-decoration: none;
+font-size: 35px;
+margin: 0;
+padding-top: 25px;
+line-height: 1;
+font-weight: 700;
+letter-spacing: 1px;
+text-transform: uppercase;}
+/* Slider */
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
 .postsimage{
   width:200px; 
   height:186px;
@@ -39,7 +93,7 @@ button, input[type="submit"] {
 ul {
   list-style: outside none none;
   margin: 0;
-  padding: 0; }
+  padding: 3; }
 
 /*-- Tab Content & Pane Fix --*/
 .tab-content {
@@ -67,7 +121,7 @@ ul {
   font-size: 10px;
   font-weight: 500;
   height: 24px;
-  left: 20px;
+  left: 10px;
   line-height: 24px;
   min-height: auto;
   min-width: 44px;
@@ -77,7 +131,7 @@ ul {
   text-align: center;
   text-shadow: none;
   text-transform: uppercase;
-  top: 20px;
+  top: 10px;
   z-index: 42;
   -webkit-font-smoothing: subpixel-antialiased;
   -webkit-backface-visibility: hidden;
@@ -87,6 +141,34 @@ ul {
   -moz-border-radius: 0;
   border-radius: 0; }
 
+  .countproduct {
+    background: #38c172;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #fff;
+    font-family: Rubik, Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    height: 24px;
+    left: 190px;
+    line-height: 24px;
+    min-height: auto;
+    min-width: 44px;
+    padding: 0 9px;
+    position: absolute;
+    right: auto;
+    text-align: center;
+    text-shadow: none;
+    text-transform: uppercase;
+    top: 10px;
+    z-index: 42;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0; }
 /*----------  product hover icons  ----------*/
 .product-hover-icons {
   position: absolute;
@@ -412,9 +494,6 @@ header {
     -ms-flex-pack: center;
     justify-content: center; } }
 
-.header-contact .phone-icon {
-  margin-right: 20px; }
-
 .header-contact .phone-number {
   line-height: 14px; }
   .header-contact .phone-number span.number {
@@ -575,14 +654,14 @@ header {
       flex-wrap: wrap; } }
   @media only screen and (max-width: 479px) {
     .menubar-top {
-      height: 180px;
+      /* height: 180px; */
       -ms-flex-wrap: wrap;
       flex-wrap: wrap; } }
 
 .main-menu nav > ul > li {
   display: block;
   float: left;
-  margin-right: 40px;
+  margin-right: 20px;
   position: relative; }
   .main-menu nav > ul > li:last-child {
     margin-right: 0; }
@@ -2337,6 +2416,11 @@ button.slick-arrow.slick-next {
   .tab-slider-sub-product .product-content .price-box .discounted-price {
     color: #80bb01;
     font-size: 21px; }
+    .main-price-filterpage {
+      color: #999;
+      font-size: 17px;
+      text-decoration: line-through;
+      margin-right: 8px; }
 
 /*----------  07.3 Category product  ----------*/
 .single-category {
@@ -2411,6 +2495,9 @@ button.slick-arrow.slick-next {
       margin-bottom: 15px; }
       .sale-single-product .sale-single-product-content h2.price span.main-price {
         color: #999;
+        text-decoration: line-through; }
+      .main-price-shoopingbag {
+        color: rgb(2, 2, 2);
         text-decoration: line-through; }
   .sale-single-product .sale-single-product-content p {
     font-size: 16px;
@@ -4492,7 +4579,6 @@ p.result-show-message {
 .discount-coupon h4 {
   font-size: 20px;
   line-height: 23px;
-  text-decoration: underline;
   text-transform: capitalize;
   font-weight: 700;
   margin-bottom: 30px; }
@@ -4538,7 +4624,6 @@ p.result-show-message {
     .cart-summary .cart-summary-wrap h4 {
       font-size: 20px;
       line-height: 23px;
-      text-decoration: underline;
       text-transform: capitalize;
       font-weight: 700;
       margin-bottom: 30px; }
@@ -4628,7 +4713,6 @@ p.result-show-message {
 .checkout-title {
   font-size: 20px;
   line-height: 23px;
-  text-decoration: underline;
   text-transform: capitalize;
   font-weight: 700;
   margin-bottom: 30px; }
@@ -4744,7 +4828,7 @@ p.result-show-message {
     font-weight: 700; }
     .checkout-cart-total h4:first-child {
       margin-top: 0;
-      margin-bottom: 25px; }
+      margin-bottom: 5px; }
     .checkout-cart-total h4:last-child {
       margin-top: 15px;
       margin-bottom: 0; }

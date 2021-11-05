@@ -1,4 +1,4 @@
-var cacheName = 'agriculture';
+var cacheName = 'krishisheba';
 var filesToCache = [
   '/',
   '/active/main.js'
