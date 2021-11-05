@@ -24,6 +24,7 @@ class CreatePaymentsTable extends Migration
             $table->string('weight_unit');
             $table->string('service_fee');
             $table->integer('price_per_unit');
+            $table->integer('discount_price');
             $table->bigInteger('advance_payment')->nullable();
             $table->string('category')->nullable();
             $table->string('sub_category')->nullable();

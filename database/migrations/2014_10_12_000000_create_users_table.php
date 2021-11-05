@@ -29,7 +29,10 @@ class CreateUsersTable extends Migration
             $table->string('trade_lisence_no')->nullable();
             //for separate farmer
             $table->string('farmer_id_no')->nullable();
-            $table->integer('access_to')->default('0');
+            $table->string('fid_front_img')->nullable();
+            //for separate transport owner
+            $table->string('vehicle_license_no')->nullable();
+            $table->integer('access_to')->default('2');
             $table->decimal('lat', 10, 8)->default('0.00');
             $table->decimal('lng', 11, 8)->default('0.00');
             $table->bigInteger('amount')->default(0);

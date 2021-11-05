@@ -16,7 +16,7 @@ class ProductSeeder extends Seeder
         $products=[  
             [ "name" => "ধান","product_img"=>"paddy-1.jpg"],
             [ "name" => "চাউল","product_img"=>"rice.jpg"],
-            [ "name" => "শীতকালীন সবজি","product_img"=>"winter vegitables.jpg"],
+            [ "name" => "বারোমাসি সবজি","product_img"=>"winter vegitables.jpg"],
             [ "name" => "গ্রীষ্মকালীন সবজি","product_img"=>"summer vegitable.jpg"],
             [ "name" => "গ্রীষ্মকালীন ফলমূল","product_img"=>"summer food.jpg"],
             [ "name" => "শীতকালীন ফলমূল ","product_img"=>"winter food.jpg"],

@@ -39,6 +39,7 @@ class CreateManagePostsTable extends Migration
             $table->text('comments')->nullable();
             $table->string('product_image')->nullable();
             $table->bigInteger('count_buy_product')->default(0);
+            $table->bigInteger('weight_count')->default(0);
             $table->timestamps();
         });
     }
