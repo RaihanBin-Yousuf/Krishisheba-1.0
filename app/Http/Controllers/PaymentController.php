@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\ManagePost;
 use App\Models\Payment;
 use App\Models\Transaction;
@@ -36,8 +37,8 @@ class PaymentController extends Controller
                     'total'=> $data->total(),
                     'next_page_url' => $data->nextPageUrl(),
                     'prev_page_url' => $data->previousPageUrl(),
-                    'last_page' 	=> $data->lastPage(),
-                    'current_page' 	=> $data->currentPage(),
+                    'last_page'     => $data->lastPage(),
+                    'current_page'  => $data->currentPage(),
                 ]]);
             } else {
                 echo "not not";
@@ -74,8 +75,8 @@ class PaymentController extends Controller
                     'total'=> $data->total(),
                     'next_page_url' => $data->nextPageUrl(),
                     'prev_page_url' => $data->previousPageUrl(),
-                    'last_page' 	=> $data->lastPage(),
-                    'current_page' 	=> $data->currentPage(),
+                    'last_page'     => $data->lastPage(),
+                    'current_page'  => $data->currentPage(),
                 ]]);
             } else {
                 echo "not not";
@@ -99,8 +100,8 @@ class PaymentController extends Controller
                     'total'=> $data->total(),
                     'next_page_url' => $data->nextPageUrl(),
                     'prev_page_url' => $data->previousPageUrl(),
-                    'last_page' 	=> $data->lastPage(),
-                    'current_page' 	=> $data->currentPage(),
+                    'last_page'     => $data->lastPage(),
+                    'current_page'  => $data->currentPage(),
                 ]]);
             } else {
                 echo "not not";
@@ -152,6 +153,7 @@ class PaymentController extends Controller
         $data['weight_unit'] = $input["product"]->weight_unit;
         $data['service_fee'] = $input["servicefee"];
         $data['price_per_unit'] = $input["product"]->price_per_unit;
+        $data['discount_price'] = $input["product"]->discount_price;
         $data['category'] = $input["product"]->category;
         $data['sub_category'] = $input["product"]->sub_category;
         $data['production_type'] = $input["product"]->production_type;
@@ -161,7 +163,7 @@ class PaymentController extends Controller
         // dd($data);
         $data = $this->payment->savePayment($data);
         $sendToAdmin['u_id'] = $input['adminAccount']->id;
-        $sendToAdmin['amount'] = $data['total_amount'] + $data['service_fee'];
+        $sendToAdmin['amount'] = $data['total_amount'];
         $payment = $this->user->sendPayment($sendToAdmin);
         return $data;
     }
@@ -173,11 +175,17 @@ class PaymentController extends Controller
         $managepost = $this->manage_post->where('id', $data['id'])->get()->first();
         // dd($managepost->count_buy_product);
         $data['count_buy_product'] = $managepost->count_buy_product + 1;
-        
-        // dd($data);
-        return (new ManagePost())->updatePost($data);
+        $weight_count = $managepost->total_weight - $data['total_weight'];
+        $data['weight_count'] = $managepost->weight_count + $weight_count;
+                // dd($data);
+        return (new ManagePost)->updatePost($data, $managepost->id);
     }
 
+    public function revenue(Payment $payment)
+    {
+        $revenue = Transaction::orderBy('id','ASC')->get();
+        return view('backend.revenue',compact('revenue'));
+    }
     /**
      * Display the specified resource.
      *

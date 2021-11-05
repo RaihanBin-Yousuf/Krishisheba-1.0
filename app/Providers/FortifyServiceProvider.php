@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
@@ -34,10 +35,11 @@ class FortifyServiceProvider extends ServiceProvider
         // Fortify::loginView(function(){
         //     return view('auth.login');
         // });
-
+        // if condition have off when use it
         // Fortify::authenticateUsing(function(Request $request){
-        //     $user = User::where('email',$request->email)->first();
-        //     if($user && Hash::check($request->password,$user->password)){
+        //     $user = User::where('mobile',$request->mobile)
+        //     ->where('password',md5($request->password))->first();
+        //     if($user && md5($request->password,$user->password)){
         //         return $user;
         //     }
         // });

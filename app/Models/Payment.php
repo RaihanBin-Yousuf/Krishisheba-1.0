@@ -10,7 +10,7 @@ class Payment extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['admin_accept_id', 'buyer_id', 'seller_id', 'product_name', 'total_weight', 'total_amount', 'weight_unit', 'service_fee', 'price_per_unit', 'advance_payment', 'category', 'sub_category', 'production_type', 'product_production_year', 'packaging_method', 'accept_payment'];
+    protected $fillable = ['admin_accept_id', 'buyer_id', 'seller_id', 'product_name', 'total_weight', 'total_amount', 'weight_unit', 'service_fee', 'price_per_unit','discount_price', 'advance_payment', 'category', 'sub_category', 'production_type', 'product_production_year', 'packaging_method', 'accept_payment'];
 
     public function savePayment($input)
     {
@@ -29,12 +29,12 @@ class Payment extends Model
     {
         // $accept_payment = 1;
         
-        return $this->where([['admin_accept_id' , $adminId], ['accept_payment' ,'=', '0']])->with('admin','seller','buyer')->paginate(3);
+        return $this->where([['admin_accept_id' , $adminId], ['accept_payment' ,'=', '0']])->with('admin','seller','buyer')->paginate(2);
     }
 
     public function paymentListbySFarmId($id)
     {
-        return $this->where('seller_id' , $id)->with('admin','seller','buyer')->paginate(3);
+        return $this->where('seller_id' , $id)->with('admin','seller','buyer')->paginate(2);
     }
 
     public function getDates()
@@ -71,6 +71,6 @@ class Payment extends Model
 
     public function buyerpayment($id)
     {
-        return $this->where('buyer_id' , $id)->with('admin','seller','buyer')->paginate(3);
+        return $this->where('buyer_id' , $id)->with('admin','seller','buyer')->paginate(2);
     }
 }

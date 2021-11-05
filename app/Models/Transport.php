@@ -66,7 +66,7 @@ class Transport extends Model
 
     public function buyerTrasportHistory($adminid)
     {
-        return $this->where('buyer_id', $adminid)->with('seller','buyer','transport','payment', 'admin')->paginate(3);
+        return $this->where('buyer_id', $adminid)->with('seller','buyer','transport','payment', 'admin')->paginate(2);
     }
 
     public function deliveredsuccess($input)

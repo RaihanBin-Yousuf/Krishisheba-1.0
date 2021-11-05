@@ -196,7 +196,9 @@ class TransportController extends Controller
         $data['seller'] = json_decode($data['seller']);
         $data['buyer'] = json_decode($data['buyer']);
         $data['transport'] = json_decode($data['transport']);
-        $data['total_amount'] = (int) $data['transport_charge'] + (int) $data['transport_service_fee'];
+        $data['payment'] = json_decode($data['payment']);
+        $data['total_amount'] = (int) $data['transport_charge'] - (int) $data['transport_service_fee'];
+        // dd($data);
         // share data to view
         //  $view = view('paymentslip', compact('data'))->render();
         // $html = mb_convert_encoding($view, 'HTML-ENTITIES');

@@ -37,17 +37,27 @@ class ManagePostController extends Controller
                     'total'=> $data->total(),
                     'next_page_url' => $data->nextPageUrl(),
                     'prev_page_url' => $data->previousPageUrl(),
-                    'last_page' 	=> $data->lastPage(),
-                    'current_page' 	=> $data->currentPage(),
+                    'last_page'     => $data->lastPage(),
+                    'current_page'  => $data->currentPage(),
                 ]]);
             }
         }
+
+        if (Auth::user()->access_to == "99") {
+            $notification=array(
+                'messege'=>'you have wait for Admin access',
+                'alert-type'=>'warning'
+                 );
+                 return Redirect()->back()->with($notification);     
+        } 
+        else
+        {
         $userId = Auth::user()->id;
 
         $data = ManagePost::where('user_id', $userId)->get();
         return view('backend.manage_posts.index',compact('data'));
         // return $this->sendResponse(['data'=>$data]);
-        
+        }
     }
     /**
      * Show the form for creating a new resource.
@@ -56,7 +66,24 @@ class ManagePostController extends Controller
      */
     public function create()
     {
-        return view('backend.manage_posts.create');
+        if (Auth::user()->access_to == "0") {
+            $notification=array(
+                'messege'=>'You do not have access right now',
+                'alert-type'=>'warning'
+                 );
+                 return Redirect()->back()->with($notification);     
+        } 
+        if (Auth::user()->access_to == "99") {
+            $notification=array(
+                'messege'=>'you have wait for Admin access',
+                'alert-type'=>'warning'
+                 );
+                 return Redirect()->back()->with($notification);     
+        } 
+        else
+        {
+            return view('backend.manage_posts.create');
+        }
     }
     public function store(Request $request)
     {
@@ -82,6 +109,13 @@ class ManagePostController extends Controller
         return $this->sendResponse(['data'=>$savePost]);
 
     }
+    public function viewmypost($id)
+    {
+        $viewmypost = ManagePost::find($id);
+        // dd($viewadmin);
+        return view('backend.manage_posts.mypostview',compact('viewmypost'));
+    }
+
 
     /**
      * Display the specified resource.
@@ -89,7 +123,7 @@ class ManagePostController extends Controller
      * @param  \App\Models\ManagePost  $managePost
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, ManagePost $managePost)
+    public function show(ManagePost $managePost)
     {
         //
     }
@@ -117,7 +151,12 @@ class ManagePostController extends Controller
     {
         $input = $request->all();
         $managePost = (new ManagePost)->updatePost($input, $managePost->id);
-        return view('backend.manage_posts.update', compact('managePost'));
+        // return view('backend.manage_posts.update', compact('managePost'));
+        $notification=array(
+            'messege'=>'Post Data Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
     }
 
     /**
@@ -126,8 +165,15 @@ class ManagePostController extends Controller
      * @param  \App\Models\ManagePost  $managePost
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ManagePost $managePost)
+    public function destroy($id)
     {
-        //
+        $data=ManagePost::find($id);
+        $data->delete();
+
+        $notification=array(
+            'messege'=>'Post Data Successfully Deleted',
+            'alert-type'=>'success'
+             );
+             return Redirect()->back()->with($notification);
     }
 }

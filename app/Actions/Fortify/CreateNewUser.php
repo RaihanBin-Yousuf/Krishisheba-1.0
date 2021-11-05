@@ -54,9 +54,9 @@ class CreateNewUser implements CreatesNewUsers
             $input['nid_front_img']->storeAs('public/nidcard', $imageName);
             $input['nid_front_img'] =$imageName;
 
-            $token = "03a327a3e028d01f85fad7e0a2fd4dc0";
-            $twilio_sid = "ACfbe5df71eebfa889982ce06258186e8c";
-            $twilio_verify_sid = "VAf85b8c91235b361f166646e1e19e52d2";
+            $token = "9b2f02f73409807efa2bb323ac0ac568";
+            $twilio_sid = "ACafa4ae42d3b869067506ad0299c9d4bf";
+            $twilio_verify_sid = "VA349a8a97c4a95d3562a227fbd07c6dd4";
             $twilio = new Client($twilio_sid, $token);
             $twilio->verify->v2->services($twilio_verify_sid)
                 ->verifications

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Payment;
 use Illuminate\Http\Request;
 
 class SuperAdminController extends Controller
@@ -21,7 +22,11 @@ class SuperAdminController extends Controller
         $alladmin = User::where(['role'=>'admin','access_to'=>'0'])->get();
         return view('backend.superadmin.accessadmin',compact('alladmin'));
     }
-
+    public function allsells()
+    {
+        $sells = Payment::orderBy('id','ASC')->get();
+        return view('backend.product.totalsells',compact('sells'));
+    }
     /**
      * Show the form for creating a new resource.
      *
