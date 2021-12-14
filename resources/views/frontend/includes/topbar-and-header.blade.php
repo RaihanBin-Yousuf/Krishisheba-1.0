@@ -3,15 +3,16 @@
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
      <div class="container d-flex">
        <div class="contact-info mr-auto">
+       <i class="icofont-phone"></i><a style="padding-right: 15px;" href="tel:+8801*********">+8801*********</a> 
          <i class="icofont-envelope"></i> <a href="mailto:krishisheva@gmail.com">krishisheva@gmail.com</a>
-         <i class="icofont-phone"></i> +1 5589 55488 55
+         
        </div>
          <!-- <div class="social-links">   
            <a href="login.html" class="User"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a>
          </div> -->
-         <button style="outline: none; background: none; border: none; cursor: pointer;color:#5cb874;font-size:15px"><a href="{{route('login') }}"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a></button>
+         <button style="outline: none; background: none; border: none;font-size:15px;"><a style="text-decoration: none; color: #5cb874;" href="{{route('login') }}"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a></button>
          
-         <a href="{{ route('register') }}" class="get-started-btn scrollto">নিবন্ধন</a> 
+         <a style="text-decoration: none;" href="{{ route('register') }}" class="get-started-btn scrollto">নিবন্ধন</a> 
        </div>
      </div>
    </div>
@@ -19,7 +20,7 @@
    <!-- ======= Header ======= -->
    <header id="header" class="fixed-top">
      <div class="container d-flex align-items-center">
-       <h1 class="logo mr-auto"><a href="{{ route('home-page-index') }}"href="index.html">কৃষিসেবা</a></h1>
+       <h1 class="logo mr-auto"><a href="{{ route('home-page-index') }}">কৃষিসেবা</a></h1>
        <!-- Uncomment below if you prefer to use an image logo -->
        <!-- <a href="index.html" class="logo mr-auto"><img src="frontend-asset/home_page/img/logo.png') }}" alt="" class="img-fluid"></a>-->
    

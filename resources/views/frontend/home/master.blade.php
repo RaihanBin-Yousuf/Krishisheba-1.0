@@ -82,7 +82,7 @@
 <script src="{{ asset('frontend-asset/home_page/vendor/venobox/venobox.min.js') }}"></script>
 
 <!-- Template Main JS File -->
-{{-- <script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script> --}}
+<script src="{{ asset('frontend-asset/home_page/js/main.js') }}"></script>
 <!-- JS
 ============================================ -->
 <!-- jQuery JS -->
@@ -97,6 +97,28 @@
 
 <!-- Main JS -->
 {{-- <script src="{{ asset('frontend-asset/assets_2/js/main.js') }}"></script> --}}
+<script>
+    $(document).ready(function(){
+        $('input[type="radio"]').click(function(){
+            var inputValue = $(this).attr("value");
+            var targetBox = $("." + inputValue);
+            $(".section").not(targetBox).hide();
+            $(targetBox).show();
+        });
+    });
+
+    $(".toggle-password").click(function() {
+
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
+    });
+  </script>
+
 
 </body>
 

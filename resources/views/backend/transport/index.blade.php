@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <div class="p-4">
-        <h1>TransPort Payment Confirmation</h1>
+    <h3 class="green">পরিবহনের প্রদান নিশ্চিত করুন</h3>
         <div class="transportpaymentconfirm" id="react_transport"></div>
     </div>
 @endsection

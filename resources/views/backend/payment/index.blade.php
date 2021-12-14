@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <div class="p-4">
-        <h1>Product Payment Confirmation</h1>
+        <h2 class="green">পণ্যের অর্থ প্রদান নিশ্চিত করুন</h2>
         <div class="paymentconfirm" id="react_payment"></div>
     </div>
 @endsection

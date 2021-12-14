@@ -26,7 +26,7 @@
             <div class="card">
               <div class="card-header">
                 <h3>All Admin Table
-                <a class="btn btn-info float-right" href=""><i class="fa fa-plus"> </i> Add New Admin </a>
+                <a class="btn btn-info float-right" href="{{route('addnewadmin')}}"><i class="fa fa-plus"> </i> Add New Admin </a>
                 </h3>
               </div>
               <!-- /.card-header -->

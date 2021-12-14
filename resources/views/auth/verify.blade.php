@@ -4,7 +4,7 @@
 @section('home')
  <!-- ======= Top Bar and header ======= -->
 
-@include('frontend.includes.topbar-and-header')
+<section>@include('frontend.includes.topbar-and-header')</section>
 <section>
     <div class="container">
         <div class="row justify-content-center">
@@ -17,12 +17,12 @@
                             {{session('error')}}
                         </div>
                         @endif
-                        Please enter the OTP sent to your number: {{session('mobile')}}
+                       <div class="center">Please enter the OTP sent to your number: {{session('mobile')}}</div> 
                         <form action="{{route('verify')}}" method="post">
                             @csrf
                             <div class="form-group row">
                                 <label for="verification_code"
-                                    class="col-md-4 col-form-label text-md-right">{{ __('mobile Number') }}</label>
+                                    class="col-md-3 col-form-label text-md-right">{{ __('verification code') }}</label>
                                 <div class="col-md-6">
                                     <input type="hidden" name="mobile" value="{{session('mobile')}}">
                                     <input id="verification_code" type="tel"

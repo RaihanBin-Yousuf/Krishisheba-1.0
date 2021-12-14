@@ -10,8 +10,8 @@
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Useres</a></li>
-              <li class="breadcrumb-item active">Users Table</li>
+              <li class="breadcrumb-item"><a href="#">Admin</a></li>
+              <li class="breadcrumb-item active">Users List</li>
             </ol>
           </div>
         </div>
@@ -26,7 +26,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3>Users Table
+                <h3>All Users
                 <a class="btn btn-info float-right" href="{{route('users.create')}}"><i class="fa fa-plus"> </i> Add New User </a>
                 </h3>
               </div>
@@ -50,7 +50,7 @@
                       @foreach($allusers as $users)
                         <tr>
                             <td>
-                                  @if($users->access_to>0)
+                                  @if($users->access_to>0 & $users->access_to<99)
                                     <input type="checkbox" checked>
                                   @else
                                     <input type="checkbox">
@@ -61,7 +61,7 @@
                             <td>{{ $users->email }}</td>
                             <td>{{ $users->mobile }}</td>
                             <td>{{ $users->nid }}</td>
-                            <td>{{ $users->role }}</td>
+                            <td style="color: #5cb2b8;font-weight:bold">{{ $users->role }}</td>
                             <td class="text-center py-0 align-middle">
                                 <div class=" btn-group-sm">
                                   <a href="viewuser/{{$users['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>

@@ -5,6 +5,16 @@
  */
 
 require('./bootstrap');
+
+
+// import 'jquery/dist/jquery.min.js';
+//Datatable Modules
+// import 'bootstrap/dist/css/bootstrap.min.css';
+import 'jquery/dist/jquery.min.js';
+//Datatable Modules
+import "datatables.net-dt/js/dataTables.dataTables"
+import "datatables.net-dt/css/jquery.dataTables.min.css"
+import $ from 'jquery'; 
 //jquery components
 require('jquery');
 require('./jquery/bootstrap-notify/bootstrap-notify');
@@ -40,4 +50,4 @@ require('./backend/TrnsprtPayList');
 require('./backend/BuyerPaymentList');
 require('./backend/BuyerTransportPayList');
 require('./backend/Dashboard');
-// require('./frontend/includes/TopCategorySlider');
+require('./frontend/includes/TopCategorySlider');

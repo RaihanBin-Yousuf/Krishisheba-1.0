@@ -27,129 +27,209 @@ export default class TabSlider extends Component {
             ['on_sale']: res.sale,
             ['farmer_sale']: res.farmer,
         })
-        console.log(`manage post res`, res)
 
     }
 
     render() {
         let pdata = this.props.data ? this.props.data.count : '0';
-        let farmerlist = '';
-        farmerlist = this.state.farmer_sale.map(farmer=> (
-            farmerlist = <div className="gf-product tab-slider-sub-product" key={farmer.id}>
-                                <div className="image">
-                                    <a onClick={()=>this.props.viewDetails(farmer)}>
-                                        <img src={'/storage/posts/'+farmer.product_image} className="postsimage"/>
-                                    </a>
-                                    <div className="product-hover-icons ">
-                                        <a onClick={()=>this.props.addProduct(farmer)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
-                                        <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
-                                        <a onClick={()=>this.props.viewDetails(farmer)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
-                                    </div>
-                                </div>
-                                <div className="product-content">
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্য: {farmer.product_name}</a>
-                                    </div>
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {farmer.category}</a>
-                                    </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(farmer.total_weight)} {farmer.weight_unit}</a></h3>
-                                    <div className="price-box">
-                                        <span className="discounted-price">১ {farmer.weight_unit} ৳ {toBengaliNumber(farmer.price_per_unit)} </span>
-                                    </div>
-                                </div>
+        let farmerlist = [];
+        let onlyfarmer= this.state.farmer_sale;
+
+        for (let i = 0; i< onlyfarmer.length; i++) {
+            
+            farmerlist.push(
+                <div className="slider related-product-slider mb-35">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12">                                            
+                                <div className="related-product-slider-wrapper">                                               
+                                    <div className="gf-product related-slider-product" key={onlyfarmer[i].id}>
+                                        <div className="image">
+                                            <a onClick={()=>this.props.viewDetails(onlyfarmer[i])}>
+                                                <img src={'/storage/posts/'+onlyfarmer[i].product_image} className="postsimage"/>
+                                            </a>
+                                            <div className="product-hover-icons ">
+                                                <a onClick={()=>this.props.addProduct(onlyfarmer[i])} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                            <a onClick={()=>this.props.viewDetails(onlyfarmer[i])} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                            </div>
+                                        </div>
+                                        <div className="product-content">
+                                            <div className="product-categories">
+                                                <a href="#">পণ্য: {onlyfarmer[i].product_name}</a>
+                                            </div>
+                                            <div className="product-categories">
+                                                <label href="#">পণ্যের প্রকার: {onlyfarmer[i].category}</label>
+                                            </div>
+                                            <h3 className="product-title"><a href="#">মোট ওজন: {toBengaliNumber(onlyfarmer[i].total_weight)} {onlyfarmer[i].weight_unit}</a></h3>
+                                            <div className="price-box">
+                                                <span className="discounted-price">১ {onlyfarmer[i].weight_unit} ৳ {toBengaliNumber(onlyfarmer[i].price_per_unit)} </span>
+                                            </div>
+                                        </div>                        
+                                    </div>                        
+                                </div><br></br>
                             </div>
-                            ));
-        let featureList = '';
-        featureList = this.state.feature.map(feature=> (
-            featureList = <div className="gf-product tab-slider-sub-product" key={feature.id}>
-                                <div className="image">
-                                    <a onClick={()=>this.props.viewDetails(feature)}>
-                                        <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
-                                    </a>
-                                    
-                                    <div className="product-hover-icons ">
-                                        <a onClick={()=>this.props.addProduct(feature)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
-                                        <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
-                                        <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
-                                    </div>
+                            {/* blade template theke copy kore 2nd row jonne evabe korbi */}
+                             
+                            <div className="d-none">{i=i+1}</div>  
+                            {i< this.state.farmer_sale.length ?
+                             <div className="col-lg-12">  
+                                                                        
+                                <div className="related-product-slider-wrapper">                                               
+                                    <div className="gf-product related-slider-product">
+                                        <div className="image">
+                                            <a onClick={()=>this.props.viewDetails(onlyfarmer[i])}>
+                                                <img src={'/storage/posts/'+onlyfarmer[i].product_image} className="postsimage"/>
+                                            </a>
+                                            <div className="product-hover-icons ">
+                                                <a onClick={()=>this.props.addProduct(onlyfarmer[i])} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                            <a onClick={()=>this.props.viewDetails(onlyfarmer[i])} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                            </div>
+                                        </div>
+                                        <div className="product-content">
+                                            <div className="product-categories">
+                                                <a href="#">পণ্য: {onlyfarmer[i].product_name}</a>
+                                            </div>
+                                            <div className="product-categories">
+                                                <label href="#">পণ্যের প্রকার: {onlyfarmer[i].category}</label>
+                                            </div>
+                                            <h3 className="product-title"><a href="#">মোট ওজন: {toBengaliNumber(onlyfarmer[i].total_weight)} {onlyfarmer[i].weight_unit}</a></h3>
+                                            <div className="price-box">
+                                                <span className="discounted-price">১ {onlyfarmer[i].weight_unit} ৳ {toBengaliNumber(onlyfarmer[i].price_per_unit)} </span>
+                                            </div>
+                                        </div>                        
+                                    </div>                        
                                 </div>
-                                <div className="product-content">
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্য: {feature.product_name}</a>
-                                    </div>
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {feature.category}</a>
-                                    </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(feature.total_weight)} {feature.weight_unit}</a></h3>
-                                    <div className="price-box">
-                                        <span className="discounted-price">১ {feature.weight_unit} ৳ {toBengaliNumber(feature.price_per_unit)} </span>
+                            </div> : '' }
+                        </div>
+                    </div>
+                </div>
+                
+            )
+            // done
+        }
+        let featureList = ''; // first single cotision to array
+        // let onlyfeature= this.state.feature; // 2nd make let variable with state data
+
+        featureList = this.state.feature.map(feature=> (
+            featureList = <div className="slider related-product-slider mb-35">
+                                <div className="container">  
+                                    <div className="row">
+                                        <div className="col-lg-12">                                            
+                                            <div className="related-product-slider-wrapper">                                          
+                                                <div className="gf-product related-slider-product" key={feature.id}>
+                                                    <div className="image">
+                                                        <a onClick={()=>this.props.viewDetails(feature)}>
+                                                            <img src={'/storage/posts/'+feature.product_image} className="postsimage"/>
+                                                        </a>
+                                                        <div className="product-hover-icons ">
+                                                            <a onClick={()=>this.props.addProduct(feature)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                            <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                                        <a onClick={()=>this.props.viewDetails(feature)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div className="product-content">
+                                                        <div className="product-categories">
+                                                            <a href="#">পণ্য: {feature.product_name}</a>
+                                                        </div>
+                                                        <div className="product-categories">
+                                                            <label href="#">পণ্যের প্রকার: {feature.category}</label>
+                                                        </div>
+                                                        <h3 className="product-title"><a href="#">মোট ওজন: {toBengaliNumber(feature.total_weight)} {feature.weight_unit}</a></h3>
+                                                        <div className="price-box">
+                                                            <span className="discounted-price">১ {feature.weight_unit} ৳ {toBengaliNumber(feature.price_per_unit)} </span>
+                                                        </div>
+                                                    </div>                        
+                                                </div>                        
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             ));
         let newArrivalList = '';
         newArrivalList = this.state.new_arrival.map(arrival=> (
-            newArrivalList = <div className="gf-product tab-slider-sub-product" key={arrival.id}>
-                                <div className="image">
-                                    <a onClick={()=>this.props.viewDetails(feature)}>
-                                    <span className="onsale bg-success"><h4>{toBengaliNumber(arrival.discount_price)}%</h4></span>
-                                        <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
-                                    </a>
-                                    <div className="product-hover-icons">
-                                        <a onClick={()=>this.props.addProduct(arrival)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                        <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                        <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                        <a onClick={()=>this.props.viewDetails(arrival)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
-                                    </div>
-                                </div>
-                                <div className="product-content">
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্য: {arrival.product_name}</a>
-                                    </div>
-                                    <div className="product-categories">
-                                        <a href="shop-left-sidebar.html">পণ্যের প্রকার: {arrival.category}</a>
-                                    </div>
-                                    <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(arrival.total_weight)} {arrival.weight_unit}</a></h3>
-                                    <div className="price-box ">
-                                        {/* <span className="discounted-price"> </span> */}
-                                        <h4>১ {arrival.weight_unit} </h4><span className="main-price">৳ {toBengaliNumber(arrival.price_per_unit)}</span>
-                                                <span className="discounted-price">৳ {toBengaliNumber(arrival.price_per_unit-(arrival.price_per_unit*(arrival.discount_price/100)))}</span>
+            newArrivalList = <div className="slider related-product-slider mb-35">
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="col-lg-12">                                            
+                                            <div className="related-product-slider-wrapper">                                               
+                                                <div className="gf-product related-slider-product">
+                                                    <div className="image">
+                                                        <a onClick={()=>this.props.viewDetails(arrival)}>
+                                                            <span className="onsale bg-success"><h4>{toBengaliNumber(arrival.discount_price)}% ছাড়</h4></span>
+                                                            <img src={'/storage/posts/'+arrival.product_image} className="postsimage"/>
+                                                        </a>
+                                                        <div className="product-hover-icons ">
+                                                            <a onClick={()=>this.props.addProduct(arrival)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                            <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                                        <a onClick={()=>this.props.viewDetails(arrival)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                                        </div>
+                                                    </div>
+                                                    <div className="product-content">
+                                                        <div className="product-categories">
+                                                            <a href="#">পণ্য: {arrival.product_name}</a>
+                                                        </div>
+                                                        <div className="product-categories">
+                                                            <label href="#">পণ্যের প্রকার: {arrival.category}</label>
+                                                        </div>
+                                                        <h3 className="product-title"><a href="#">মোট ওজন: {toBengaliNumber(arrival.total_weight)} {arrival.weight_unit}</a></h3>
+                                                        {/* <div className="price-box">
+                                                            <span className="discounted-price">১ {arrival.weight_unit} ৳ {toBengaliNumber(arrival.price_per_unit)} </span>
+                                                        </div> */}
+                                                        <div className="price-box ">
+                                                            {/* <span className="discounted-price"> </span> */}
+                                                            <span className="discounted-price">১ {arrival.weight_unit} </span><span className="main-price">৳ {toBengaliNumber(arrival.price_per_unit)}</span>
+                                                            <span className="discounted-price">৳ {toBengaliNumber(arrival.price_per_unit-(arrival.price_per_unit*(arrival.discount_price/100)))}</span>
+                                                        </div>
+                                                    </div>                        
+                                                </div>                        
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                                 ));
         let onSaleList = '';
         onSaleList = this.state.on_sale.map(sale=> (
-            onSaleList = 
-                            <div className="gf-product tab-slider-sub-product" key={sale.id}>
-                                <div className="image">
-                                    <a onClick={()=>this.props.viewDetails(feature)}>
-                                    <span className="onsale">Sale!</span>
-                                    <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
-                                    </a>
-                                    <span className="onsale bg-success"><h4>{sale.count_buy_product}</h4></span>
-                                    <div className="product-hover-icons">
-                                        <a onClick={()=>this.props.addProduct(sale)} data-tooltip="Add to cart"> <span className="icon_cart_alt"></span></a>
-                                        <a href="#" data-tooltip="Add to wishlist"> <span className="icon_heart_alt"></span> </a>
-                                        <a href="#" data-tooltip="Compare"> <span className="arrow_left-right_alt"></span> </a>
-                                        <a onClick={()=>this.props.viewDetails(sale)} data-tooltip="Quick view" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+            onSaleList = <div className="slider related-product-slider mb-35">
+                            <div className="container">
+                                <div className="row">
+                                    <div className="col-lg-12">                                            
+                                        <div className="related-product-slider-wrapper">                                               
+                                            <div className="gf-product related-slider-product">
+                                                <div className="image">
+                                                    <a onClick={()=>this.props.viewDetails(sale)}>
+                                                        <span className="onsale">Sale!</span>
+                                                        <img src={'/storage/posts/'+sale.product_image} className="postsimage"/>
+                                                        <span className="countproduct"><h4>{sale.count_buy_product}</h4></span>
+                                                        </a>
+                                                    <div className="product-hover-icons ">
+                                                        <a onClick={()=>this.props.addProduct(sale)} data-tooltip="ব্যাগে যুক্ত করুন"> <span className="icon_cart_alt"></span></a>
+                                                        <a href="#" data-tooltip="পছন্দের তালিকায় রাখুন"> <span className="icon_heart_alt"></span> </a>
+                                                    <a onClick={()=>this.props.viewDetails(sale)} data-tooltip="বিস্তারিত দেখুন" data-toggle = "modal" data-target="#quick-view-modal-container"> <span className="icon_search"></span> </a>
+                                                    </div>
+                                                </div>
+                                                <div className="product-content">
+                                                    <div className="product-categories">
+                                                        <a href="#">পণ্য: {sale.product_name}</a>
+                                                    </div>
+                                                    <div className="product-categories">
+                                                        <label href="#">পণ্যের প্রকার: {sale.category}</label>
+                                                    </div>
+                                                    <h3 className="product-title"><a href="#">মোট ওজন: {toBengaliNumber(sale.total_weight)} {sale.weight_unit}</a></h3>
+                                                    <div className="price-box">
+                                                        <span className="discounted-price">১ {sale.weight_unit} ৳ {toBengaliNumber(sale.price_per_unit)} </span>
+                                                    </div>
+                                                </div>                        
+                                            </div>                        
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="product-content">
-                                        <div className="product-categories">
-                                            <a href="shop-left-sidebar.html">পণ্য: {sale.product_name}</a>
-                                        </div>
-                                        <div className="product-categories">
-                                            <a href="shop-left-sidebar.html">পণ্যের প্রকার: {sale.category}</a>
-                                        </div>
-                                        <h3 className="product-title"><a href="single-product.html">মোট ওজন: {toBengaliNumber(sale.total_weight)} {sale.weight_unit}</a></h3>
-                                        <div className="price-box">
-                                            <span className="discounted-price">১ {sale.weight_unit} ৳ {toBengaliNumber(sale.price_per_unit)} </span>
-                                        </div>
-                                </div>
                             </div>
-                                ));
+                        </div>
+                        ));
 
         const settings = {
             dots: false,
@@ -198,7 +278,7 @@ export default class TabSlider extends Component {
                                             <a className="nav-item nav-link active" id="featured-tab" data-toggle="tab" href="#featured" role="tab"
                                                 aria-selected="true">নতুন সংযোজন</a>
                                             <a className="nav-item nav-link" id="new-arrival-tab" data-toggle="tab" href="#new-arrivals" role="tab"
-                                                aria-selected="false">ছাড় % পণ্য</a>
+                                                aria-selected="false">ছাড় পণ্য</a>
                                             <a className="nav-item nav-link" id="nav-onsale-tab" data-toggle="tab" href="#on-sale" role="tab"
                                                 aria-selected="false">বিক্রিত পণ্য</a>
                                             <a className="nav-item nav-link" id="farmer-tab" data-toggle="tab" href="#farmer" role="tab"

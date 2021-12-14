@@ -62,92 +62,127 @@ export default class TopBarAndHeader extends Component {
         addCartList = <div className="cart-float-single-item d-flex" key={product.id}>
                             <span className="remove-item"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-times"></i></a></span>
                             <div className="cart-float-single-item-image">
-                                <a onClick={()=>this.props.viewDetails(product)}><img src={'/storage/posts/'+product.product_image} className="img-fluid" alt=""/></a>
+                                <a onClick={()=>this.props.viewDetails(product)}><img src={'/storage/posts/'+product.product_image} className="imgcart" alt=""/></a>
                             </div>
                             <div className="cart-float-single-item-desc" onClick={()=>this.props.viewDetails(product)}>
-                                <p className="product-title"> <a >{product.product_name} </a></p>
-                                <p className="price"><span className="count">{toBengaliNumber(product.quantity)} x </span> ৳{toBengaliNumber(product.price_per_unit_with_discount)}</p>
+                                <p className="product-title"> <a >{product.product_name} </a> {product.discount_price > 0 ?
+                                <span className="main-price-shoopingbag">৳ {toBengaliNumber(product.price_per_unit)}</span>: ''}</p>
+                                <p className="price"><span className="count">{toBengaliNumber(product.quantity)} x </span> ৳{toBengaliNumber(product.price_per_unit_with_discount)}
+                               
+                                </p>
                             </div>
                         </div>
                         ));
         return (
             <div>
-                <section>
-                    <div id="topbar" className="d-none d-lg-flex align-items-center fixed-top">
-                        <div className="container d-flex">
-                            <div className="contact-info mr-auto">
-                                <i className="icofont-envelope"></i> <a href="mailto:krishisheva@gmail.com">contact@example.com</a>
-                                <i className="icofont-phone"></i> +{toBengaliNumber(8801816555777)}
+                <div className="fixed-top" className="header-top pt-10 pb-10 pt-lg-10 pb-lg-10 pt-md-10 pb-md-10">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center text-sm-left">
+                                <div className="lang-currency-dropdown">
+                                    <div className="header-contact d-flex">
+                                            <div className="phone-icon">
+                                                <img src="frontend-asset/assets_2/images/icon-phone.png" className="img-fluid" alt=""/>
+                                            </div>
+                                            <div className="phone-number">
+                                                Phone: <span className="number"><a href="tel:8801*********">+8801*********</a></span>
+                                            </div>
+                                            <div style={{paddingRight: "15px"}}>
+                                            </div>
+                                            <div className="phone-icon">
+                                                <img src="frontend-asset/assets_2/images/email.png" className="img-fluid" alt=""/>
+                                            </div>
+                                            <div className="phone-number">
+                                                Email: <span className="number"><a href="mailto:krishisheva@gmail.com">krishisheva@gmail.com</a></span>
+                                            </div>
+                                    </div>
+                                </div>
                             </div>
-                            {authUser == "not found" ?
-                            <>
-                                <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
-                                {/* বাহির */}
-                                <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
-                            </> : 
-                            <>
-                                <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>আমার অ্যাকাউন্ট</b></i></a></button>
-                                {/* বাহির */}
-                                <a onClick={this.onlogout} className="get-started-btn scrollto">বাহির</a> 
-                            </> }
+                            <div className="col-lg-6 col-md-6 col-sm-6 col-xs-12  text-center text-sm-right">
+                                <div className="header-top-menu">
+                                    <ul>
+                                    {authUser == "not found" ?
+                                    <>
+                                        <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>প্রবেশ</b></i></a></button>
+                                        {/* বাহির */}
+                                        <a onClick={()=>this.onClickPage('register')} className="get-started-btn scrollto">নিবন্ধন</a> 
+                                    </> : 
+                                    <>
+                                        <button className="login-btn"><a onClick={()=>this.onClickPage('login')}><i className="icofont-user-suited"> <b>আমার অ্যাকাউন্ট</b></i></a></button>
+                                        {/* বাহির */}
+                                        <a onClick={this.onlogout} className="get-started-btn scrollto">বাহির</a> 
+                                    </> }
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <header id="header" className="fixed-top">
-                        <div className="container d-flex align-items-center">
-                            <h1 className="logo mr-auto"><a href="">কৃষিসেবা</a></h1>
-                            <nav className="nav-menu d-none d-lg-block">
-                                <ul>
-                                    <li><a onClick={()=>this.props.showPage(null)}>হোম</a></li>
-                                    <li><a onClick={()=>this.pageOnClickScroller('whyus')}>আমাদের সমাধান</a></li>
-                                    <li><a onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
-                                    <li><a onClick={()=>this.props.showPage('findProducts')}>পণ্য</a></li>
-                                    <li><a onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
-                                    <li><a onClick={()=>this.props.showPage('map')}>Transport Map</a></li>
-                                    <li className="drop-down"><a >আমাদের সম্পর্কে আরও</a>
+                </div>
+                <div className="header-bottom header-bottom-one header-sticky">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-md-2 col-sm-12 col-xs-12 text-lg-left">
+                                <div className="logo">
+                                      {/* <img src="frontend-asset/assets_2/images/circle-2.png" className="img-fluid" alt=""/> */}
+                                         <h1 className="logotext"><a onClick={()=>this.props.showPage(null)}>কৃষিসেবা</a></h1>
+                                </div>
+                            </div>
+                            <div className="fixed-top" className="col-md-10 col-sm-12 col-xs-12">                        
+                                <div className="main-menu">
+                                    <div className="mean-push"></div>
+                                    <nav>
                                         <ul>
-                                        {/* <li><a onClick={()=>this.props.showPage('team')}>আমাদের টিম</a></li> */}
-                                        <li><a>আমাদের ওয়েবসাইট</a></li>
-                                        <li><a onClick={()=>this.props.showPage('faq')}>জিজ্ঞাসা</a></li>
+                                            <li className="menu-item"><a onClick={()=>this.props.showPage(null)}>হোম</a></li>
+                                            <li className="menu-item"><a href="*" onClick={()=>this.pageOnClickScroller('whyus')}>আমাদের সমাধান</a></li>
+                                            <li className="menu-item"><a href="*" onClick={()=>this.pageOnClickScroller('services')}>সেবাসমূহ</a></li>
+                                            <li className="menu-item"><a href="*" onClick={()=>this.pageOnClickScroller('contact')}>যোগাযোগ</a></li>
+                                            {/* <li><a onClick={()=>this.props.showPage('findProducts')}>পণ্য</a></li> */}
+                                            <li className="menu-item-has-children"><a href="#">আমাদের সম্পর্কে আরও</a>
+                                                <ul className="sub-menu">
+                                                    <li><a href="*" onClick={()=>this.props.showPage('team')}>আমাদের টিম</a></li>
+                                                    <li><a href="*" onClick={()=>this.props.showPage('faq')}>জিজ্ঞাসা</a></li>
+                                                </ul>
+                                            </li>
+                                             <li><a onClick={()=>this.props.showPage('map')}>পরিবহন ভাড়া করুন</a></li>         
                                         </ul>
-                                    </li>
-                                    <li></li>
-                                    {cartCount >0 ?
-                                    <div className="shopping-cart" id="shopping-cart"  >
-                                        <a onClick={this.onCartShow}>
-                                            <div className="cart-icon d-inline-block">
-                                                <span className="icon_bag_alt"></span>
-                                            </div>
-                                            <div className="cart-info d-inline-block" >
-                                                <p>বাজারের ব্যাগ {this.state.cartShow?<i className="pl-3 fa fa-times"></i> : ''}
-                                                    <span>
-                                                        {toBengaliNumber(this.props.data.addCart.length)} টি পণ্য
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </a>
-                                        <div className="cart-floating-box bg-white" id="cart-floating-box">
-                                            <div className="cart-items ">
-                                                {addCartList}
-                                            </div>
+                                        {cartCount >0 ?
+                                        <div className="shopping-cart" id="shopping-cart"  >
+                                            <a onClick={this.onCartShow}>
+                                                <div style={{paddingLeft: "15px"}} className="cart-icon d-inline-block">
+                                                    <span className="icon_bag_alt"></span>
+                                                </div>
+                                                <div className="cart-info d-inline-block" >
+                                                    <p>বাজারের ব্যাগ {this.state.cartShow?<i className="pl-3 fa fa-times"></i> : ''}
+                                                        <span>
+                                                            {toBengaliNumber(this.props.data.addCart.length)} টি পণ্য
+                                                        </span>
+                                                    </p>
+                                                </div>
+                                            </a>
+                                            <div className="cart-floating-box bg-white" id="cart-floating-box">
+                                                <div className="cart-items ">
+                                                    {addCartList}
+                                                </div>
 
-                                            <div className="cart-calculation">
+                                                <div className="cart-calculation">
                                                 <div className="calculation-details">
-                                                    <p>পরিসেবা চার্জ <span>৳{toBengaliNumber(this.props.data.serviceFee)}</span></p>
-                                                    <hr></hr>
+                                                    {/* <p>পরিসেবা চার্জ <span>৳{toBengaliNumber(this.props.data.serviceFee)}</span></p>
+                                                    <hr></hr> */}
                                                     <p>সর্বমোট <span>৳{toBengaliNumber(this.props.data.totalPrice)}</span></p>
                                                 </div>
-                                                <div className="floating-cart-btn text-center">
-                                                    <a onClick={this.props.showCheck}>লেনদেন</a>
-                                                    <a className="float-right" onClick={this.viewCart}>ব্যাগে দেখুন </a>
+                                                    <div className="floating-cart-btn text-center">
+                                                        <a onClick={this.props.showCheck}>লেনদেন</a>
+                                                        <a className="float-right" onClick={this.viewCart}>ব্যাগে দেখুন </a>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>: ''}
-                                </ul>
-                            </nav>
+                                        </div>: ''}
+                                    </nav>
+                                </div>
+                            </div>
                         </div>
-                    </header>
-                </section>
+                    </div>
+                </div>
             </div>
         )
     }

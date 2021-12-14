@@ -209,7 +209,7 @@ export default class MapGoogle extends Component {
             <div>
                 {this.state.transport_bkash_show == 'show' ?
                 <TransportBkash data={this.state} pdata={this.props.data} showTransPortBkash={this.showTransPortBkash}/> : ''}
-                <h3>In react page</h3>
+                {/* <h3>Transport Service Page</h3> */}
                 { this.state.users ?
                 <WrappedMap 
                     isMarkerShown
@@ -226,27 +226,25 @@ export default class MapGoogle extends Component {
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="form-group ">
-                                    <label htmlfor="transport_name">গাড়ির চালক এর নাম</label>
+                                    <label htmlfor="transport_name">গাড়ির চালকের নাম</label>
                                     {/* <input type="text" value={this.state.selectPosition.name} className="form-control" name="transport_name" id="transport_name" placeholder="transport Name"/> */}
                                     <h4>{this.state.selectPosition.name}</h4>
                                 </div>
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label htmlfor="transport_name">গাড়ির মোবাইল নম্বর</label>
+                                    <label htmlfor="transport_name">গাড়ির চালকের মোবাইল নাম্বার</label>
                                     {/* <input type="text" value={toBengaliNumber(this.state.selectPosition.mobile)} className="form-control" name="transport_name" id="transport_name" placeholder="transport Name"/> */}
                                     <h4>{toBengaliNumber(this.state.selectPosition.mobile)}</h4>
-
                                 </div>
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-md-12 mb-3">
+                            <div className="col-md-12">
                                 <div className="form-group">
                                     <label htmlfor="transport_address">গাড়ির চালকের ঠিকানা</label>
                                     {/* <textarea className="form-control" value={this.state.selectPosition.address} name="transport_address" id="transport_address" rows="3"></textarea> */}
                                     <h4>{this.state.selectPosition.address}</h4>
-
                                 </div>
                             </div>
                         </div>
@@ -260,7 +258,7 @@ export default class MapGoogle extends Component {
                             </div>
                             <div className="col-md-6">
                                 <div className="form-group">
-                                    <label htmlfor="transport_charge">পরিবহন ভাড়া পরিষেবা ফি সহ</label>
+                                    <label htmlfor="transport_charge">পরিবহন ভাড়া</label>
                                     <input type="number" min="1" className="form-control" name="transport_charge" id="transport_charge" onChange={this.getTransportFee}/>
                                 </div>
                             </div>
@@ -274,17 +272,11 @@ export default class MapGoogle extends Component {
 
                                 </div>
                             </div>
+                            
                             <div className="col-md-3">
                                 <div className="form-group ">
-                                    <label htmlfor="transport_service_fee">পরিবহন পরিষেবা ফি</label>
-                                    <h4>{toBengaliNumber(this.state.transport.transport_service_fee)+" টাকা"}</h4>
-                                    {/* <input type="text" disabled value={this.state.transport.transport_service_fee+" টাকা"} className="form-control" name="transport_service_fee" id="transport_service_fee"/> */}
-                                </div>
-                            </div>
-                            <div className="col-md-3">
-                                <div className="form-group ">
-                                    <label htmlfor="final_transport_charge">পরিবহন ভাড়া পরিষেবা ফি ছাড়া</label>
-                                    <h4>{toBengaliNumber(this.state.transport.final_transport_charge)+" টাকা"}</h4>
+                                    <label htmlfor="final_transport_charge">পরিবহন ভাড়া</label>
+                                    <h4>{toBengaliNumber(this.state.transport. transport_charge)+" টাকা"}</h4>
                                     {/* <input type="text" disabled value={this.state.transport.final_transport_charge+" টাকা"} className="form-control" name="final_transport_charge" id="final_transport_charge"/> */}
                                 </div>
                             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom';
 import PaymentService from '../../js/services/PaymentService';
 import Pagination from '../../js/components/Paginations';
+const { toBengaliNumber, toBengaliWord} = require('bengali-number');
 import Bkashbackend from './Bkashbackend';
 // const { toBengaliNumber, toBengaliWord} = require('bengali-number');
 import UserServices from '../../js/services/UserServices';
@@ -99,9 +100,111 @@ export default class PaymentConfirm extends Component {
                                                 <div onClick={()=>this.showBkash(payment)} className="btn btn-danger font-light">Bkash Payment</div>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <div className="card-body">
+                                        <div className="col-md-12 offer-show__col">
+                                            <div className="row offer-form-table">
+                                                <div className="col-md-6">
+                                                    <h4 className="color1">ক্রেতার বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <h4 className="color1">বিক্রেতার বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>ক্রেতার নাম:</strong></div>
+                                                        <div className="col-md-6">{payment.buyer.name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>বিক্রেতার নাম:</strong></div>
+                                                        <div className="col-md-6">{payment.seller.name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>মোবাইল নাম্বর:</strong></div>
+                                                        <div className="col-md-6">{payment.buyer.mobile}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>মোবাইল নাম্বর:</strong></div>
+                                                        <div className="col-md-6">{payment.seller.mobile}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>ঠিকানা:</strong></div>
+                                                        <div className="col-md-6">{payment.buyer.address}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>ঠিকানা:</strong></div>
+                                                        <div className="col-md-6">{payment.seller.address}</div>
+                                                    </div>
+                                                </div>
+                                    
+                                                <div className="col-md-12">
+                                                <br></br>
+                                                    <h4 className="color1">পণ্যের বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের নাম:</strong></div>
+                                                        <div className="col-md-6">{payment.product_name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের প্রকার:</strong></div>
+                                                        <div className="col-md-6">{payment.category}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের জাত:</strong></div>
+                                                        <div className="col-md-6">{payment.sub_category}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>মোট ওজন:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(payment.total_weight)} {payment.weight_unit}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>মূল্য:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(payment.price_per_unit)} টাকা (প্রতি {payment.weight_unit})</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>মোট টাকা:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(payment.total_amount)} টাকা</div>
+                                                    </div>
+                                                </div>
+                                                    <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>পরিসেবা চার্জ:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(payment.service_fee)} টাকা</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>অর্থ প্রদান:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(payment.total_amount-payment.service_fee)} টাকা(পরিসেবা চার্জ ছাড়া)</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    {/* <div className="card-body">
                                         <div className="row">
                                             <div className="col">
                                                 <h3>Seller</h3>
@@ -170,7 +273,7 @@ export default class PaymentConfirm extends Component {
                                             </div>
                                             <div className="col">{payment.product_name}</div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                         ));
         } else {

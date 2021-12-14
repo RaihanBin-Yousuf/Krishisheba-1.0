@@ -1,3 +1,4 @@
+
 <section>
     <!-- ======= Top Bar ======= -->
     <div id="topbar" class="d-none d-lg-flex align-items-center fixed-top">
@@ -9,7 +10,7 @@
          <!-- <div class="social-links">   
            <a href="login.html" class="User"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a>
          </div> -->
-         <button style="outline: none; background: none; border: none; cursor: pointer;color:#5cb874;font-size:15px"><a href="{{route('login') }}"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a></button>
+         <button><a href="{{route('login') }}"><i class="icofont-user-suited"></i> <b>প্রবেশ</b></i></a></button>
          
          <a href="{{ route('register') }}" class="get-started-btn scrollto">প্রবেশ / নিবন্ধন</a> 
        </div>

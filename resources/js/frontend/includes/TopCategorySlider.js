@@ -9,9 +9,6 @@ export default class TopCategorySlider extends Component {
 
     componentDidMount() {
     }
-
-    
-
     
     render() {
         const settings = {
@@ -54,7 +51,7 @@ export default class TopCategorySlider extends Component {
         productList = <div className="single-category" onClick ={()=>this.props.productDetails(product)} key={product.id}>
                             <div className="category-image">
                                 <a title={product.name}>
-                                    <img src={"/storage/product/"+product.product_img} className="img-fluid" alt=""/>
+                                    <img src={"/storage/product/"+product.product_img} className="topcategoryimg" alt=""/>
                                 </a>
                             </div>
                             <div className="category-title">
@@ -77,8 +74,7 @@ export default class TopCategorySlider extends Component {
                             </div>
                             <div className="row ">
                                 <div className="col-lg-12 ">
-                                    <div className="category-slider-container bg-white shadow">
-
+                                    <div className="category-slider-container">
                                         <Slider {...settings}>
                                             {productList}
                                         </Slider>

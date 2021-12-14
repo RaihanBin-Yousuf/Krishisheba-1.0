@@ -12,7 +12,7 @@
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Names Table</li>
+              <li class="breadcrumb-item active">Product</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,9 +38,9 @@
                 <tbody>
                 @foreach($names as $products)
                 <tr>
-                  <td><img src="{{asset('storage/product/'.$products->product_img)}}" style="width:100px; height:100px; border-radius:50%;"></td>
-                  <td>{{ $products->name }}</td>
-                  <td>
+                  <td class="text-center"><img src="{{asset('storage/product/'.$products->product_img)}}" style="width:100px; height:100px; border-radius:50%;"></td>
+                  <td class="text-center">{{ $products->name }}</td>
+                  <td class="text-center">
                   	  <a href="" class="btn btn-info"> <i class="fa fa-edit"></i> </a>
                   	  <a href={{"deleteproduct/".$products->id }} class="btn btn-danger"> <i class="fa fa-trash"></i> </a>
                   </td>
@@ -57,7 +57,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Insert new Product</h4>
+              <h4 class="modal-title">Product Name Create</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>

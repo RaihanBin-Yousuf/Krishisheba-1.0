@@ -43,7 +43,7 @@ export default class Cart extends Component {
                         <td className="available-quantity"><span>{product.total_unit == 'Nan' ? 'Nan': toBengaliNumber(product.total_unit)} {product.total_unit == 'Nan' ? '' : product.weight_unit}</span></td>
                         <td className="pro-quantity"><div className="pro-qty"><input type="number" value={product.quantity} onChange={(e)=>this.props.updateQty(e, product)} /></div></td> 
                         <td className="pro-each-total"><span>৳ {toBengaliNumber(product.total_each_price)}</span></td>
-                        <td className="pro-service">৳ {toBengaliNumber(product.each_total_fee)}</td>
+                        {/* <td className="pro-service">৳ {toBengaliNumber(product.each_total_fee)}</td> */}
                         <td className="pro-remove"><a onClick={()=>this.props.removeProduct(product)}><i className="fa fa-trash-o"></i></a></td>
                     </tr>
                     ));
@@ -67,7 +67,7 @@ export default class Cart extends Component {
                                                         <th className="available-quantity">বাকি পরিমাণ</th>
                                                         <th className="pro-quantity">পরিমাণ</th>
                                                         <th className="pro-each-total">মোট </th>
-                                                        <th className="pro-service">পরিসেবা চার্জ</th>
+                                                        {/* <th className="pro-service">পরিসেবা চার্জ</th> */}
                                                         <th className="pro-remove">সরান</th>
                                                     </tr>
                                                 </thead>
@@ -79,7 +79,7 @@ export default class Cart extends Component {
                                     </form>
                                     <div className="row">
                                         <div className="col-lg-6 col-12">
-                                           <div className="discount-coupon">
+                                           {/* <div className="discount-coupon">
                                                 <h4>ছাড়ের কুপন কোড</h4>
                                                 <form action="#">
                                                     <div className="row">
@@ -91,20 +91,18 @@ export default class Cart extends Component {
                                                         </div>
                                                     </div>
                                                 </form>
-                                            </div>
+                                            </div> */}
                                         </div>
                                         <div className="col-lg-6 col-12 d-flex">
                                             <div className="cart-summary">
                                                 <div className="cart-summary-wrap">
                                                     <h4>সারসংক্ষেপ</h4>
                                                     <p>মোট <span>৳ {toBengaliNumber(this.props.data.subTotal)}</span></p>
-                                                    <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(this.props.data.serviceFee)}</span></p>
+                                                    {/* <p>পরিসেবা চার্জ <span>৳ {toBengaliNumber(this.props.data.serviceFee)}</span></p> */}
                                                     <h2>সর্বমোট <span>৳ {toBengaliNumber(this.props.data.totalPrice)}</span></h2>
                                                 </div>
                                                 <div className="cart-summary-button">
-                                                    <button className="checkout-btn">লেনদেন</button>
-                                                    <button onClick={this.showCheck}>বিল পরিশোধ</button>
-                                                    <button className="update-btn">Update Cart</button>
+                                                    <button className="checkout-btn" onClick={this.showCheck}>বিল পরিশোধ</button>
                                                 </div>
                                             </div>
                                         </div>

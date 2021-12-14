@@ -6,12 +6,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Posts</a></li>
-              <li class="breadcrumb-item active">Post Table</li>
+              <li class="breadcrumb-item"><a href="#">হোম</a></li>
+              <li class="breadcrumb-item active">আমার পণ্যের তালিকা</li>
             </ol>
           </div>
         </div>
@@ -26,7 +25,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3>My Post Table
+                <h3>আমার পণ্যের তালিকা
                 <a class="btn btn-info float-right btn-sm"  href="{{route('manage_posts.create')}}"><i class="fa fa-plus"></i> পণ্য যুক্ত করুন </a>
                 </h3>
               </div>
@@ -39,10 +38,8 @@
                     <th>পণ্যের ছবি</th>
                     <th>পণ্যের নাম</th>
                     <th>পণ্যের প্রকার</th>
-                    <!-- <th>পণ্যের জাত</th> -->
-                    <th>বিভাগ</th>
-                    <th>জেলা</th>
-                    <!-- <th>থানা</th> -->
+                    <th>অবশিষ্ট ওজন</th>
+                    <th>বিক্রয়ের পরিমাণ</th>
                     <th>অ্যাকশন </th>
                   </tr>
                   </thead>
@@ -51,17 +48,17 @@
                   @foreach($data as $posts)
                       <tr>
                         <!-- <td class="align-middle">{{ $posts->user_id }}</td> -->
-                        <td class="text-center py-0 align-middle"><img src="{{asset('storage/posts/'.$posts->product_image)}}" style="width:100px; height:100px; border-radius:50%;"></td>
+                        <td class="text-center py-0 align-middle"><img src="{{asset('storage/posts/'.$posts->product_image)}}" style="width:50px; height:50px; border-radius:50%;"></td>
                         <td class="align-middle">{{ $posts->product_name }}</td>
                         <td class="align-middle">{{ $posts->category }}</td>
-                        <!-- <td class="align-middle">{{ $posts->sub_category }}</td> -->
-                        <td class="align-middle">{{ $posts->divisions }}</td>
-                        <td class="align-middle">{{ $posts->district }}</td>
+                        <td class="align-middle">{{ $posts->total_weight }} {{ $posts->weight_unit }}</td>
+                        <td class="align-middle">{{ $posts->weight_count }} {{ $posts->weight_unit }}</td>
                         <td class="align-middle">
                             <div class=" btn-group-sm">
-                              <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                              <a href="{{'deletePost/'.$posts->id }}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <!-- <a href="#" class="btn btn-info" data-toggle="modal" data-target="#modal-default"><i class="fas fa-eye"></i></a> -->
+                              <a href="viewmypost/{{$posts['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
                               <a href="{{route('manage_posts.edit',$posts->id)}}" class="btn btn-primary"><i class="fas fa-pen-alt"></i></a>
+                              <a href={{'deleteUserPost/'.$posts->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -79,5 +76,6 @@
       </div>
       <!-- /.container-fluid -->
     </section>
+    <!-- /.content -->
     <!-- /.content -->
     @endsection

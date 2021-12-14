@@ -5,11 +5,11 @@
         
         <div class="row">
             <div class="col">
-                <h1>Buyer TransPort Payment Confirmation</h1>
+                <h3 class="green">পরিবহনের অর্থ প্রদান ইতিহাস</h3>
             </div>
             <div class="col text-right">
-                <a href="{{route('buyerpaymentlist')}}" class="btn btn-primary"><h3>Payment</h3></a>
-                <a href="{{route('buyertransportlist')}}" class="btn btn-secondary"><h3>Transport</h3></a>
+                <a href="{{route('buyerpaymentlist')}}" class="btn btn-primary"><h3>পণ্য</h3></a>
+                <a href="{{route('buyertransportlist')}}" class="btn btn-secondary"><h3>পরিবহন</h3></a>
             </div>
         </div>
         <div class="transportpaymentconfirm" id="react_buyer_transport_pay_list"></div>

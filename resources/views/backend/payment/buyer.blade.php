@@ -4,11 +4,11 @@
     <div class="p-4">
         <div class="row">
             <div class="col">
-                <h1>Product Payment Confirmation</h1>
+                <h2 class="green">পণ্যের অর্থ প্রদান ইতিহাস</h2>
             </div>
             <div class="col text-right">
-                <a href="{{route('buyerpaymentlist')}}" class="btn btn-primary"><h3>Payment</h3></a>
-                <a href="{{route('buyertransportlist')}}" class="btn btn-secondary"><h3>Transport</h3></a>
+                <a href="{{route('buyerpaymentlist')}}" class="btn btn-primary"><h3>পণ্য</h3></a>
+                <a href="{{route('buyertransportlist')}}" class="btn btn-secondary"><h3>পরিবহন</h3></a>
             </div>
         </div>
         <div class="paymentconfirm" id="react_buyer_payment"></div>

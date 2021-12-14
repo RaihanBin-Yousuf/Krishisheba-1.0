@@ -52,6 +52,7 @@ Route::get('/rice_detailspage/{id}',[RiceController::class,'rice_detailspage']);
 
 //Super Admin Route
 // Route::resource('superadmin', SuperAdminController::class);
+Route::get('/addadmin', [UsersController::class,'AddAdmin'])->name('addnewadmin');
 Route::get('/alladmin',[UsersController::class,'AllAdmin'])->name('alladmin');
 Route::get('/viewadmin/{id}',[UsersController::class,'viewadmin'])->name('viewadmin');
 
@@ -85,7 +86,7 @@ Route::resource('subcategories', SubCategoryController::class);
 // Route::get('/subcategory',[SubCategoryController::class,'subcategory'])->name('subcategory');
 Route::get('/deletesubcategory/{id}',[SubCategoryController::class,'deleteSubCategoryById'])->name('deleteSubCategoryById');
 
-// manage Users Route
+// manage Users Routes
 Route::prefix('ManageUsers')->group(function () 
 {
 Route::resource('users', UsersController::class);
@@ -105,10 +106,14 @@ Route::get('/viewuser/{id}',[UsersController::class,'viewuser'])->name('viewuser
 
 //Seller and buyer route
 Route::resource('manage_posts', ManagePostController::class);
-// Route::get('/deleteUserPost/{id}',[ManagePostController::class,'deleteUserPost'])->name('deleteUserPost');
+Route::get('/deleteUserPost/{id}',[ManagePostController::class,'destroy'])->name('deleteUserPost');
+Route::get('/viewmypost/{id}',[ManagePostController::class,'viewmypost'])->name('viewmypost');
 
+Route::view('/myprofile', [UsersController::class,'myprofile'])->name('myprofile')->middleware('auth');
 Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updateprofile')->middleware('auth');
 Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
+Route::get('/myorder', [UsersController::class, 'myorder'])->name('myorder');
+Route::get('/buyerorderlist', [UsersController::class, 'buyerorderlist'])->name('buyerorderlist');
 // project task list
 // https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit
 Route::resource('googlemap', GoogleMapController::class);
@@ -119,16 +124,14 @@ Route::get('/payment/buyer/history', [PaymentController::class, 'buyerpayment'])
 
 Route::resource('payment', PaymentController::class);
 
-// Route::get('/payment/sellerfarmer', [PaymentController::class, 'sellerfarmer']);
-
+Route::get('/allsells', [SuperAdminController::class, 'allsells'])->name('allsells');
+Route::get('/revenue', [PaymentController::class, 'revenue'])->name('revenue');
 Route::post('/accept/payment', [PaymentController::class, 'acceptpayment']);
 Route::get('/transport/payment', [TransportController::class, 'paymenthistory'])->name('transporter');
 Route::get('/transport/buyer/payment', [TransportController::class, 'buytranpayhis'])->name('buyertransportlist');
-
 
 Route::resource('transport', TransportController::class);
 
 Route::post('/accept/transport', [TransportController::class, 'acceptpayment']);
 Route::post('/delivered/buyer/transport', [TransportController::class, 'deliveredtransport']);
-
 Route::get('/download-script', [TransportController::class, 'downloadScript']);

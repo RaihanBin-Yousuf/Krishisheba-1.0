@@ -90,7 +90,6 @@
                               </div>
                         </div>
                     </div>
-              
                 </div>
                 <form action="{{ route('users.store') }}" method="Post">
                     @csrf

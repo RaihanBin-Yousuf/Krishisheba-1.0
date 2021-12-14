@@ -9,8 +9,8 @@
           </div> 
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Add Product</a></li>
-              <li class="breadcrumb-item active">page</li>
+            <li class="breadcrumb-item active">হোম</li>
+              <li class="breadcrumb-item"><a href="#">পণ্য যোগ করুন</a></li>
             </ol>
           </div>
         </div>

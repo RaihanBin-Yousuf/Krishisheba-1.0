@@ -10,7 +10,8 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 ">
         <div class="text-center">
-          <h4 class="text-white"> {{ Auth::user()->name }}</h4>
+          <h5 class="text-white"> {{ Str::upper(Auth::user()->name) }}</h5>
+          <h5 class="text-white"> Login As A {{Str::ucfirst (Auth::user()->role) }}</h5>
         </div>
       </div>
 
@@ -69,7 +70,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('subcategories.index')}}"  class="nav-link {{($route=='subcategory') ?'active':''}}">
+                  <a href="{{route('subcategories.index')}}" class="nav-link {{($route=='subcategories.index') ?'active':''}}">
                     <i class="fas fa-th nav-icon"></i>
                     <p>Sub Cayegory</p>
                   </a>
@@ -78,7 +79,7 @@
                   <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-users-cog"></i>
                   <p>
-                    User Management
+                    Manage User
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
@@ -115,37 +116,49 @@
                   </a>
                   <ul class="nav nav-treeview">
                     <li class="nav-item">
-                      <a href="{{route('allposts.index')}}" class="nav-link">
+                      <a href="{{route('allposts.index')}}" class="nav-link {{($route=='allposts.index') ?'active':''}}">
                         <i class="fas fa-users nav-icon"></i>
                         <p>All Post</p>
                       </a>
                     </li>
                     <li class="nav-item">
-                      <a href="{{route('allposts.create')}}" class="nav-link">
+                      <a href="{{route('allposts.create')}}" class="nav-link {{($route=='allposts.create') ?'active':''}}">
                           <i class="fas fa-users nav-icon"></i>
                           <p>Create Post</p>
                         </a>
                     </li>
                   </ul>
                 </li>
+                @if(auth()->user()->role == 'sadmin')
                 <li class="nav-item">
-                  <a href="" class="nav-link">
+                  <a href="{{route('revenue')}}" class="nav-link {{($route=='revenue') ?'active':''}}">
                   <i class="nav-icon fas fa-inbox"></i>
                   <p>
-                      Orders
+                      Revenue
                     </p>
                   </a>
                 </li>
+                @endif
                 <li class="nav-item">
-                  <a href="{{route('googlemap.index')}}" class="nav-link">
+                  <a href="{{route('allsells')}}" class="nav-link {{($route=='allsells') ?'active':''}}">
+                  <i class="nav-icon fas fa-inbox"></i>
+                  <p>
+                      Total Sells
+                    </p>
+                  </a>
+                </li>
+                 @if(auth()->user()->role == 'sadmin')
+                <li class="nav-item">
+                  <a href="{{route('googlemap.index')}}" class="nav-link {{($route=='googlemap.index') ?'active':''}}">
                   <i class="nav-icon fas fa-inbox"></i>
                   <p>
                       Google Map
                     </p>
                   </a>
                 </li>
+                @endif
                 <li class="nav-item">
-                  <a href="{{route('payment.index')}}" class="nav-link">
+                  <a href="{{route('payment.index')}}" class="nav-link {{($route=='payment.index') ?'active':''}}">
                   <i class="nav-icon fas fa-inbox"></i>
                     <p>
                       Product Payment
@@ -153,7 +166,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{route('transport.index')}}" class="nav-link">
+                  <a href="{{route('transport.index')}}" class="nav-link {{($route=='transport.index') ?'active':''}}">
                   <i class="nav-icon fas fa-inbox"></i>
                     <p>
                       Transport Payment
@@ -188,7 +201,7 @@
                     <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                     <i class="nav-icon fas fa-user-secret"></i>
                     <p>
-                    আমার প্রোফাইল
+                    প্রোফাইল আপডেট করুন
                       </p>
                     </a>
                   </li>
@@ -218,14 +231,30 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{route('myorder')}}" class="nav-link {{($route=='myorder') ?'active':''}}">
+                    <i class="nav-icon fas fa-shopping-cart"></i>
+                    <p>
+                    বিক্রিত পণ্য সমূহ 
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('selfarmer')}}" class="nav-link {{($route=='selfarmer') ?'active':''}}">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         লেনদেনের অবস্থা
                       </p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
+                    <a href="{{route('selfarmer')}}" class="nav-link {{($route=='selfarmer') ?'active':''}}">
+                    <i class="nav-icon fas fa-bullhorn"></i>
+                    <p>
+                      অর্থ গ্রহণ ইতিহাস
+                      </p>
+                    </a>
+                  </li> -->
+                  <!-- <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-save"></i>
                     <p>
@@ -240,15 +269,7 @@
                         নোটিফিকেশন
                       </p>
                     </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="{{ route('selfarmer') }}" class="nav-link">
-                    <i class="nav-icon fas fa-bullhorn"></i>
-                    <p>
-                      অর্থ গ্রহণ ইতিহাস
-                      </p>
-                    </a>
-                  </li>
+                  </li> -->
                   
                   <li class="nav-item">
                       <a class="nav-link" href="{{ route('logout') }}"
@@ -277,7 +298,7 @@
                     <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                       <i class="nav-icon fas fa-user-secret"></i>
                       <p>
-                      আমার প্রোফাইল
+                      প্রোফাইল আপডেট করুন
                         </p>
                     </a>
                   </li>
@@ -290,29 +311,29 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('manage_posts.index')}}" class="nav-link {{($route=='manage_posts.index') ?'active':''}}">
+                    <a href="{{route('buyerorderlist')}}" class="nav-link {{($route=='buyerorderlist') ?'active':''}}">
                     <i class="nav-icon  fab fa-product-hunt"></i>
                     <p>
-                        আমার পণ্য
+                    আমার অর্ডার সমূহ
                       </p>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{route('buyerpaymentlist')}}" class="nav-link">
+                    <a href="{{route('buyerpaymentlist')}}" class="nav-link {{($route=='buyerpaymentlist') ?'active':''}}">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         লেনদেনের অবস্থা
                       </p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-save"></i>
                     <p>
                         সংরক্ষিত তালিকা
                       </p>
                     </a>
-                  </li>
+                  </li> -->
                   <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-bullhorn"></i>
@@ -337,11 +358,19 @@
 
                 <!-- transport Access -->
                 @if(auth()->user()->role == 'transport')
+                <li class="nav-item">
+                  <a href="{{route('dashboard')}}" class="nav-link {{($route=='dashboard') ?'active':''}}">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                    ড্যাশবোর্ড
+                    </p>
+                  </a>
+                </li>
                   <li class="nav-item">
                     <a href="{{route('updateprofile')}}" class="nav-link {{($route=='updateprofile') ?'active':''}}">
                       <i class="nav-icon fas fa-user-secret"></i>
                       <p>
-                      আমার প্রোফাইল
+                      প্রোফাইল আপডেট করুন
                         </p>
                     </a>
                   </li>
@@ -354,14 +383,14 @@
                     </a>
                   </li>
 
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon fas fa-registered"></i>
                     <p>
                     যানবাহন নিবন্ধন করুন
                       </p>
                     </a>
-                  </li>
+                  </li> -->
                   <!-- <li class="nav-item">
                     <a href="" class="nav-link">
                     <i class="nav-icon  fab fa-product-hunt"></i>
@@ -371,7 +400,7 @@
                     </a>
                   </li> -->
                   <li class="nav-item">
-                    <a href="{{route('transporter')}}" class="nav-link">
+                    <a href="{{route('transporter')}}" class="nav-link {{($route=='transporter') ?'active':''}}">
                     <i class="nav-icon fas fa-dollar-sign"></i>
                     <p>
                         লেনদেনের অবস্থা

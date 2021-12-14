@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'আপনার ভুল হয়েছে.',
+    'failed' => 'আপনার মোবাইল নাম্বার অথবা পাসওয়ার্ড ভুল হয়েছে',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 

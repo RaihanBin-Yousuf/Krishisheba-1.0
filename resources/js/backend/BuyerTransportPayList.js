@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TransportServices from '../services/TransportServices';
 import Pagination from '../components/Paginations';
 import TransportBkashBackend from './TransportBkashBackend';
+const { toBengaliNumber, toBengaliWord} = require('bengali-number');
 import UserServices from '../services/UserServices';
 
 export default class BuyerTransportPayList extends Component {
@@ -82,7 +83,7 @@ export default class BuyerTransportPayList extends Component {
                                                 <h3>Payment : {transport.created_at}</h3>
                                             </div>
                                             <div className="col text-right">
-                                                <div onClick={()=>this.isDelivered(transport)} className="btn btn-danger font-light">If you get  the delivered product please Click</div>
+                                                <div onClick={()=>this.isDelivered(transport)} className="btn btn-danger font-light">আপনার পন্য বুঝে পেয়েছেন তা নিশ্চিত করুন</div>
                                             </div>
                                         </div>
                                     </div> :
@@ -95,7 +96,104 @@ export default class BuyerTransportPayList extends Component {
                                         
                                         {/* </div> */}
                                     </div>}
+
                                     <div className="card-body">
+                                        <div className="col-md-12 offer-show__col">
+                                            <div className="row offer-form-table">
+                                                <div className="col-md-6">
+                                                    <h4 className="color1">বিক্রেতার বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <h4 className="color1">পরিবহন মালিকের বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>বিক্রেতার নাম:</strong></div>
+                                                        <div className="col-md-6">{transport.seller.name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>মালিকের নাম:</strong></div>
+                                                        <div className="col-md-6">{transport.transport.name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>বিক্রেতার মোবাইল নাম্বর:</strong></div>
+                                                        <div className="col-md-6">{transport.seller.mobile}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>মালিকের মোবাইল নাম্বর:</strong></div>
+                                                        <div className="col-md-6">{transport.transport.mobile}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>বিক্রেতার ঠিকানা:</strong></div>
+                                                        <div className="col-md-6">{transport.seller.address}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>মালিকের ঠিকানা:</strong></div>
+                                                        <div className="col-md-6">{transport.transport.address}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6"></div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>গাড়ির নম্বর:</strong></div>
+                                                        <div className="col-md-6">{transport.transport.vehicle_license_no}</div>
+                                                    </div>
+                                                </div>
+                                    
+                                                <div className="col-md-6">
+                                                <br></br>
+                                                    <h4 className="color1">পণ্যের বিবরণ</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                <br></br>
+                                                    <h4 className="color1">পরিবহন ফি</h4>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের নাম:</strong></div>
+                                                        <div className="col-md-6">{transport.payment.product_name} </div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পরিবহন ফি:</strong></div>
+                                                        <div className="col-md-6">{transport.transport_charge} টাকা</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের প্রকার:</strong></div>
+                                                        <div className="col-md-6">{transport.payment.category}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6"></div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                        <div className="col-md-6"><strong>পণ্যের জাত:</strong></div>
+                                                        <div className="col-md-6">{transport.payment.sub_category}</div>
+                                                    </div>
+                                                </div>
+                                                <div className="col-md-6"></div>
+                                                <div className="col-md-6">
+                                                    <div className="row">
+                                                    <div className="col-md-6"><strong>মোট ওজন:</strong></div>
+                                                    <div className="col-md-6">{toBengaliNumber(transport.payment.total_weight)} {transport.payment.weight_unit}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {/* <div className="card-body">
                                         <div className="row">
                                             <div className="col">
                                                 <h3>TransPort</h3>
@@ -108,7 +206,7 @@ export default class BuyerTransportPayList extends Component {
                                             <div className="col-1">
                                                 <span>transport Name:</span>
                                             </div>
-                                            <div className="col">{transport.transport.name}</div>
+                                            <div className="col">{transport.transport.total_weight}</div>
                                             <div className="col-1">
                                                 <span>Buyer Name:</span>
                                             </div>
@@ -150,7 +248,7 @@ export default class BuyerTransportPayList extends Component {
                                             </div>
                                             <div className="col">{transport.transport_charge+transport.transport_service_fee} Taka</div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                         ));
         } else {

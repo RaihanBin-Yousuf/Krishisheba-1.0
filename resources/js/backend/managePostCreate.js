@@ -34,11 +34,11 @@ class Create extends Component {
                 category_id : 0,
                 sub_category_id : 0,
                 production_type : '',
-                product_production_year : dateNow,
+                product_production_year : '',
                 packaging_method : '',
                 initial_delivery_date : dateNow,
-                final_delivery_date : dateNow,
-                offer_end_date : datethen,
+                final_delivery_date : '',
+                offer_end_date : '',
                 own_vehicle : '',
                 divisions : '',
                 district : '',
@@ -152,9 +152,9 @@ class Create extends Component {
         async handleSubmit(event) {
             event.preventDefault();
             if(this.state.authuser.access_to == 99) {
-                $.notify({message: 'আপনার মোবাইল নম্বরটি আমাদের ওয়েবসাইটে বৈধ নয়'}, {type: 'danger'});
+                $.notify({message: 'অনুগ্রহপূর্বক আপনার অ্যাকাউন্ট অ্যাক্সেস জন্য অপেক্ষা করুন।' }, {type: 'danger'});
             } else if(this.state.authuser.access_to == 0) {
-                $.notify({message: 'অনুগ্রহপূর্বক আপনার অ্যাকাউন্ট অ্যাক্সেস জন্য অপেক্ষা করুন।'}, {type: 'danger'});
+                $.notify({message: 'আপনার মোবাইল নম্বরটি আমাদের ওয়েবসাইটে বৈধ নয়'}, {type: 'danger'});
             } else {
                 if(this.state.authuser.role == 'farmer') {
                     const cpost = this.state.post;
@@ -163,7 +163,16 @@ class Create extends Component {
                         formdata.append(key, cpost[key]);
                     });
                     const res = await PostService.save(formdata);
-                } else if(this.state.authuser.role == 'seller'){
+                } 
+               else if(this.state.authuser.role == 'admin') {
+                    const cpost = this.state.post;
+                    let formdata = new FormData();
+                    Object.keys(cpost).map(key => {
+                        formdata.append(key, cpost[key]);
+                    });
+                    const res = await PostService.save(formdata);
+                } 
+                else if(this.state.authuser.role == 'seller'){
                     if(this.state.post.weight_unit == 'কেজি') {
                         if(this.state.post.total_weight > 800) {
                             $.notify({message: '৮০০ কেজির উপরে নেয়া যাবে না.'}, {type: 'danger'});
@@ -599,27 +608,27 @@ class Create extends Component {
         }
     render() {
         console.log('this.state :>> ', this.state);
-        let productDropdown = [<option>নির্বাচন করুন</option>];
+        let productDropdown = [];
         if (this.state.productslist) {
                 this.state.productslist.map(product=>(
                     productDropdown.push(<option key={product.id} value={product.id}>{product.name}</option>)
             ));
         }
 
-        let categoryDropdown = [<option>নির্বাচন করুন</option>];
+        let categoryDropdown = [];
         if (this.state.categorieslist) {
                 this.state.categorieslist.map(category=>(
                     categoryDropdown.push(<option key={category.id} value={category.id}>{category.name}</option>)
             ));
         }
 
-        let subcategoryDropdown = [<option>নির্বাচন করুন</option>];
+        let subcategoryDropdown = [];
         if (this.state.subCategorieslist) {
                 this.state.subCategorieslist.map(subcategory=>(
                     subcategoryDropdown.push(<option key={subcategory.id} value={subcategory.id}>{subcategory.name}</option>)
             ));
         };
-        let divisionListDropdown = [<option>নির্বাচন করুন</option>];
+        let divisionListDropdown = [];
         if (this.state.divisionList) {
                 this.state.divisionList.map(division=>(
                     divisionListDropdown.push(<option key={division.name} value={division.name}>{division.value}</option>)
@@ -634,7 +643,8 @@ class Create extends Component {
                             <div className="form-group">
                             <h5 htmlFor="commidities">পণ্য</h5>
                             {/* <select className="form-control select2bs4" onChange={this.categorySelect} required="required"> */}
-                            <select className="form-control select2bs4" onChange={this.categorySelect} >
+                            <select className="form-control" required="required" onChange={this.categorySelect} >
+                            <option disabled selected value="">নির্বাচন করুন</option>
                                 {productDropdown}
                             </select>
                             </div>
@@ -645,23 +655,23 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">মোট ওজন* </h5>
-                                <input className="form-control values-input" step="any" id="total-weight" min="0" type="number" name="total_weight" onChange={this.handleInputChange}/>
-                                {/* <input className="form-control values-input" step="any" required="required" id="total-weight" type="number" name="total_weight" /> */}
+                                <input className="form-control " step="any" id="total-weight" min="0" type="number" name="total_weight" required="required" onChange={this.handleInputChange}/>
+                                {/* <input className="form-control " step="any" required="required" id="total-weight" type="number" name="total_weight" /> */}
                             </div>
                         </div>
                         <div className="col-md-3">
                             <div className="form-group" >
                                 <h5 htmlFor="weight_unit">ওজন ইউনিট*</h5>
                                 {this.state.authuser.role == 'farmer'?
-                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option> 
+                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" required="required" onChange={this.handleInputChange}>
+                                     <option disabled selected value="">নির্বাচন করুন</option>
                                     <option value="কেজি">কেজি</option>
                                     <option value="মণ">মণ</option>
                                     <option value="পিস">পিস</option>  
                                     <option value="টন">টন</option>
                                     <option value="মেট্রিক টন">মেট্রিক টন</option>                                 
                                 </select> :
-                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" onChange={this.handleInputChange}>
+                                <select className="form-control" value={this.state.post.weight_unit} name="weight_unit" required="required" onChange={this.handleInputChange}>
                                     <option value="">নির্বাচন করুন</option> 
                                     <option value="কেজি">কেজি</option>
                                     <option value="মণ">মণ</option>
@@ -673,12 +683,12 @@ class Create extends Component {
                         <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">ইউনিট প্রতি মূল্য (৳)*</h5>
-                                <input className="form-control values-input" type="number" min="0" name="price_per_unit" onChange={this.handleInputChange}/>
-                                {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
+                                <input className="form-control " type="number" min="0" name="price_per_unit" required="required" onChange={this.handleInputChange}/>
+                                {/* <input className="form-control " value="0" required="required"  type="number" name="price_per_unit" /> */}
                             </div>
                         </div>
         
-                        <div className="col-md-3">
+                        {/* <div className="col-md-3">
                             <div className="form-group" >
                                 <h5 htmlFor="advance_paid">অগ্রিম পরিশোধ (%)*</h5>
                                 <select className="form-control"  name="advance_payment"  onChange={this.handleInputChange}>
@@ -691,35 +701,44 @@ class Create extends Component {
                                     <option value="30">30 (%)</option>
                                 </select>
                             </div>
+                        </div> */}
+                         <div className="col-md-3">
+                            <div className="form-group">
+                                <h5 htmlFor=""> ফসল উৎপাদন সাল</h5>
+                                <input className="form-control" onChange={this.handleInputChange} type="date"  value = {this.state.post.product_production_year}name="product_production_year"/>
+                                {/* <input className="form-control" value="" type="date" name="product_production_year"required="required"/> */}
+                            </div>
                         </div>
                     </div>
                     {/* done  */}
                     <h4 className="h4post">পণ্যের বিবরণ</h4>
                     <div className="row">
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="category"> পণ্যের প্রকার*</h5>
-                                <select className="form-control" onChange={this.subcategorySelect}>
+                                <select className="form-control" required="required" onChange={this.subcategorySelect}>
+                                <option disabled selected value="">নির্বাচন করুন</option>
                                 {/* <select className="form-control" onChange={this.subcategorySelect} required="required"> */}
                                     {categoryDropdown}
                                 </select>
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="sub_category">পণ্যের জাত সমূহ*</h5>
                                 <select className="form-control" name="sub_category_id" onChange={this.handleInputChange}>
+                                <option disabled selected value="">নির্বাচন করুন</option>
                                     {subcategoryDropdown}
                                 </select>
                             </div>
                         </div>
 
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="form-group">
                                 <h5>উৎপাদনের ধরন*</h5>
                                 <select className="form-control" name="production_type" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>
+                                    <option disabled selected value="">নির্বাচন করুন</option>
                                     <option value="প্রচলিত উৎপাদন">প্রচলিত উৎপাদন </option>
                                     <option value="জৈব উৎপাদন">জৈব উৎপাদন</option>
                                     <option value="রাসায়নিক উৎপাদন">রাসায়নিক উৎপাদন</option>
@@ -727,19 +746,11 @@ class Create extends Component {
                             </div>
                         </div>
 
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <h5 htmlFor=""> ফসল উৎপাদন সাল</h5>
-                                <input className="form-control" onChange={this.handleInputChange} type="date"  value = {this.state.post.product_production_year}name="product_production_year"/>
-                                {/* <input className="form-control" value="" type="date" name="product_production_year"required="required"/> */}
-                            </div>
-                        </div>
-
-                        <div className="col-md-4">
+                        <div className="col-md-3">
                             <div className="form-group">
                                 <h5 htmlFor="">প্যাকেজিং পদ্ধতি*</h5>
                                 <select className="form-control" name="packaging_method" onChange={this.handleInputChange}>
-                                    <option value="">নির্বাচন করুন</option>
+                                    <option disabled selected value="">নির্বাচন করুন</option>
                                     <option value="কেজি">1 কেজি</option>                          
                                     <option value="40 কেজি ব্যাগ">40 কেজি ব্যাগ</option>
                                     <option value="50 কেজি ব্যাগ">50 কেজি ব্যাগ</option>
@@ -749,35 +760,33 @@ class Create extends Component {
                                 </select>
                             </div>
                         </div>
-                        <div className="col-md-3">
-                            <div className="form-group">
-                                <h5 htmlFor="">ছাড় মূল্য (শতকরা হার)*</h5>
-                                <input className="form-control values-input" type="number" name="discount_price" min="0" max="100" onChange={this.handleInputChange}/>
-                                {/* <input className="form-control values-input" value="0" required="required"  type="number" name="price_per_unit" /> */}
-                            </div>
-                        </div>
                     </div>
                     
                     {/* done  */}
                     <h4 className="h4post">অফার সম্পর্কে*</h4>
                     <div className="row">
-                        <div className="col-md-4">
+                        {/* <div className="col-md-4">
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7">প্রাথমিক বিতরণ তারিখ*</h5> 
                                     <input type="date" className="form-control" onChange={this.handleInputChange} value={this.state.post.initial_delivery_date} name="initial_delivery_date"/> 
-                                    {/* <input type="date" className="form-control" value="" required name="initial_delivery_date"/>  */}
                                 </div> 
                             </div>
-                        </div>
+                        </div> */}
 
-                        <div className="col-md-4">
+                        {/* <div className="col-md-4">
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="finaldeliverydate" className="control-h7"> চূড়ান্ত বিতরণ তারিখ*</h5> 
                                     <input type="date" className="form-control" onChange={this.handleInputChange} value={this.state.post.final_delivery_date} name="final_delivery_date"/> 
-                                    {/* <input type="date" className="form-control" value="" required name="final_delivery_date"/>  */}
                                 </div> 
+                            </div>
+                        </div> */}
+                        <div className="col-md-4">
+                            <div className="form-group">
+                                <h5 htmlFor="">ছাড় মূল্য (শতকরা হার)*</h5>
+                                <input className="form-control " type="number" name="discount_price" min="0" max="100" onChange={this.handleInputChange}/>
+                                {/* <input className="form-control " value="0" required="required"  type="number" name="price_per_unit" /> */}
                             </div>
                         </div>
 
@@ -785,14 +794,14 @@ class Create extends Component {
                             <div className="form-group">
                                 <div className="form-group"> 
                                     <h5 htmlFor="" className="control-h7"> অফার শেষ হওয়ার তারিখ*</h5> 
-                                    <input type="date" onChange={this.handleInputChange} className="form-control" value={this.state.post.offer_end_date} id="date" name="offer_end_date"/> 
+                                    <input type="date" onChange={this.handleInputChange} className="form-control" id="date" name="offer_end_date"/> 
                                     {/* <input type="date" className="form-control" id="date" value="" name="offer_end_date"required="required"/>  */}
                                 </div> 
                             </div>
                         </div>
                     </div>
                     {/* done  */}
-                    <h4 className="h4post">নিজস্ব যানবাহন আছে?*</h4>
+                    {/* <h4 className="h4post">নিজস্ব যানবাহন আছে?*</h4>
                     <div className="row">
                         <div className="col-md-12">
                             <div className="form-group">
@@ -803,14 +812,15 @@ class Create extends Component {
                                 <span className="translation_missing" >  না</span> 
                             </div>
                         </div>
-                    </div>
+                    </div> */}
                     {/* done  */}
-                    <h4 className="h4post">আরো কিছু তথ্য দিন</h4>
+                    <h4 className="h4post">ফসল উৎপাদনের স্থান</h4>
                     <div className="row">
                         <div className="col-md-4">
                             <div className="form-group">
                                 <h5 className="control-h7">বিভাগ*</h5> 
-                                <select name="divisions" id="divisions" className="form-control input-lg" onChange={this.divisionsList}>
+                                <select name="divisions" id="divisions" className="form-control input-lg" required="required" onChange={this.divisionsList}>
+                                <option disabled selected value="">নির্বাচন করুন</option>
                                 {/* <select name="divisions" id="divisions" required="required" className="form-control input-lg" onChange={this.divisionsList}> */}
                                     {divisionListDropdown}
                                 </select>
@@ -821,9 +831,9 @@ class Create extends Component {
                         <div className="col-md-4"> 
                             <div className="form-group">
                                 <h5 className="control-h7">জেলা*</h5>
-                                <select className="form-control input-lg" name="district" id="distr" onChange={this.thanaList}>
+                                <select className="form-control input-lg" name="district" id="distr" required="required" onChange={this.thanaList}>
                                 {/* <select className="form-control input-lg" name="district" id="distr" required="required" onChange={this.thanaList}> */}
-                                    <option disabled>নির্বাচন করুন</option>
+                                <option disabled selected value="">নির্বাচন করুন</option>
                                 </select>
                             </div>
                         </div>
@@ -831,9 +841,9 @@ class Create extends Component {
                         <div className="col-md-4">
                             <div className="form-group"> 
                                 <h5 htmlFor="field-5" className="control-h7">থানা*</h5> 
-                                <select className="form-control input-lg" onChange={this.handleInputChange} name="thana" id="polic_sta">
+                                <select className="form-control input-lg" required="required" onChange={this.handleInputChange} name="thana" id="polic_sta">
                                 {/* <select className="form-control input-lg" defaultValue={'DEFAULT'} name="thana" id="polic_sta" required="required"> */}
-                                    <option value="">নির্বাচন করুন</option>
+                                <option disabled selected value="">নির্বাচন করুন</option>
                                 </select>
                             </div>
                         </div>

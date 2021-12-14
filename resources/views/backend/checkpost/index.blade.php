@@ -58,8 +58,8 @@
                         <td class="text-center py-0 align-middle">{{ $allpost->district }}</td>
                          <td class="text-center py-0 align-middle">
                             <div class=" btn-group-sm">
-                              <a href="#" class="btn btn-info"><i class="fas fa-eye"></i></a>
-                              <a href="#" class="btn btn-success"><i class="fas fa-edit"></i></a>
+                            <a href="viewmypost/{{$allpost['id']}}" class="btn btn-info"><i class="fas fa-eye"></i></a>
+                            <a href="{{route('manage_posts.edit',$allpost->id)}}" class="btn btn-primary"><i class="fas fa-pen-alt"></i></a>
                               <a href={{"deletePost/".$allpost->id }} class="btn btn-danger"><i class="fas fa-trash"></i></a>
                             </div>
                         </td>

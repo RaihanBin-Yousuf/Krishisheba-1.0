@@ -3,6 +3,7 @@ import CategoryService from '../../services/CategoryService';
 import SubcateoryService from '../../services/SubcateoryService';
 import ManagePostService from '../../services/ManagePostService';
 import Pagination from '../../components/Paginations';
+const { toBengaliNumber} = require('bengali-number');
 export default class Filter extends Component {
     constructor(props) {
         super(props);
@@ -560,8 +561,8 @@ export default class Filter extends Component {
             managePostProductList = <div className="col-xl-4 col-lg-4 col-md-6 col-sm-6 col-12">
                                         <div className="gf-product shop-grid-view-product">
                                             <div className="image">
-                                                <a href="paddy_detailspage/{{$paddy['id']}}">
-                                                    <span className="onsale">Sale!</span>
+                                                <a onClick={()=>this.props.viewDetails(product)}>
+                                                    <span className="onsale">{product.user_role}</span>
                                                     <img src={"/storage/posts/"+product.product_image} width="200px" height="186px"/>
                                                 </a>
                                                 <div className="product-hover-icons">
@@ -577,9 +578,12 @@ export default class Filter extends Component {
                                                 <div className="product-categories">
                                                     <a>পণ্যের প্রকার: {product.category} </a>
                                                 </div>
-                                                <h3 className="product-title"><a href="">মোট ওজন: {product.total_weight} {product.weight_unit} </a></h3>
+                                                <h3 className="product-title"><a href="">মোট ওজন: {toBengaliNumber(product.total_weight)} {product.weight_unit} </a></h3>
                                                 <div className="price-box">
-                                                    <span className="discounted-price">১ {product.weight_unit} ৳ {product.price_per_unit} </span>
+                                                    <span className="discounted-price">১ {product.weight_unit} </span>
+                                                    {product.discount_price > 0 ? <span className="main-price-filterpage">৳ {toBengaliNumber(product.price_per_unit)}</span>: ''}
+                                                    <h5 className="discounted-price">৳ {toBengaliNumber(product.price_per_unit-(product.price_per_unit*(product.discount_price/100)))}</h5>
+                                                    {/* <h5 className="discounted-price">১ {product.weight_unit}</h5> <span className="main-price">৳ {toBengaliNumber(product.price_per_unit)} </span> */}
                                                 </div>
                                                 <div className="product-place">
                                                     <span className="division">{product.divisions} {product.district} </span>
@@ -618,8 +622,7 @@ export default class Filter extends Component {
                             ));
         }
         return (
-            <div>
-               
+            <div>              
                 <section>
                     <div className="shop-page-container mb-50">
                         <div className="container">
@@ -628,6 +631,12 @@ export default class Filter extends Component {
                                     <div className="sidebar-area">
                                         <div className="sidebar">
                                             <div className="row form-filter_product">
+                                                <div className="col-md-12">
+                                                    <a href="">
+                                                    <img className="icn-arrow--left" src="/frontend-asset/market/icons/grey_arrow_down-d595d8db881c98fbae6ad8cec7f0727191deefa0327a7adebda0e52d64e7fd85.png" alt="Grey arrow down" />
+                                                    পূর্বের পেজে ফিরে যান
+                                                    </a>
+                                                </div>
                                                 <div className="col-sm-2 col-md-3 col-lg-2">
                                                     <img className="form-filter-image" src={"/storage/product/"+pdata.product_img} />
                                                 </div>
@@ -692,10 +701,10 @@ export default class Filter extends Component {
                                                     <input type="text" id="price-amount" readOnly/>
                                                 </div>
                                             </div> */}
-                                            <div className="compare-btns">
+                                            {/* <div className="compare-btns">
                                                 <a href="#" className="clear-all">Clear all</a>
                                                 <a href="#" className="compare">Search</a>
-                                            </div>
+                                            </div> */}
                                         </div> 
                                     </div>
                                 </div>

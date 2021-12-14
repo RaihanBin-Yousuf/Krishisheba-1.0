@@ -11,10 +11,10 @@ export default class TransportBkashBackend extends Component {
             accept_payment: 1,
             transporter_id: this.props.data.transport.id,
             marchent_contact: this.props.data.admin.mobile,
-            amount: this.props.data.transport_charge,
+            amount: this.props.data.final_transport_charge,
             transport_name: this.props.data.transport.name,
             service_fee: this.props.data.transport_service_fee,
-            total_amount: parseInt(this.props.data.transport_charge) + parseInt(this.props.data.transport_service_fee),
+            total_amount: parseInt(this.props.data.final_transport_charge) + parseInt(this.props.data.transport_service_fee),
             
         }
         this.setCount = this.setCount.bind(this);
@@ -39,8 +39,8 @@ export default class TransportBkashBackend extends Component {
         this.setState({ [name]: value });
     }
 
-    async handleSubmit(event) {         
-        console.log('this.state.code :>> ', this.state.code.length);    
+    async handleSubmit(event) {
+        console.log('this.state.code :>> ', this.state.code.length);
         event.preventDefault();
         const digits_only = string => [...string].every(c => '0123456789'.includes(c));
         if(this.state.transport_contact.length == 11 && digits_only(this.state.transport_contact)) {
@@ -70,7 +70,7 @@ export default class TransportBkashBackend extends Component {
             showContent = <div className="bkash-full-details w-75 p-2 ml-5 text-light mt-4">
                             <p><span className="font-weight-bold">Send To: </span>{this.state.transport_name}</p>
                             <p><span className="font-weight-bold">গাড়ীর চালকের অ্যাকাউন্ট নম্বর: </span>{this.state.transport_contact}</p>
-                            <p><span className="font-weight-bold">Amount: </span>৳ {this.state.amount}</p>
+                            <p><span className="font-weight-bold">Amount: </span>৳ {this.state.total_amount}</p>
                             <p><span className="font-weight-bold">Service Fee: </span>৳ {this.state.service_fee}</p>
                         </div>
         } else {
@@ -80,7 +80,7 @@ export default class TransportBkashBackend extends Component {
                                     <h2>Send to:</h2><h4><span className="font-weight-bold"> {this.state.transport_contact}</span> </h4>
                                 </div>
                                 <div className="col">
-                                    Total Amount<h1>৳ {this.state.total_amount}</h1>
+                                    Total Amount<h1>৳ {this.state.amount}</h1>
                                 </div>
                             </div>
                         </div>

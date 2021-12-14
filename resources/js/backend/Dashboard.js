@@ -106,6 +106,7 @@ class Dashboard extends Component {
                    return userList = <tr className="bg-danger" key={user.id}>
                                 <th><img src={'/storage/profile/'+user.profile_img} width="50px" height="50px"></img></th>
                                 <th>{user.name}</th>
+                                <th>{user.role}</th>
                                 <th>{user.email}</th>
                                 <th>{user.mobile}</th>
                                 <th>{commonservices.formatDate(user.created_at)}</th>
@@ -116,6 +117,7 @@ class Dashboard extends Component {
                    return userList = <tr className="bg-warning" key={user.id}>
                                 <th><img src={'/storage/profile/'+user.profile_img} width="50px" height="50px"></img></th>
                                 <th>{user.name}</th>
+                                <th>{user.role}</th>
                                 <th>{user.email}</th>
                                 <th>{user.mobile}</th>
                                 <th>{commonservices.formatDate(user.created_at)}</th>
@@ -126,6 +128,7 @@ class Dashboard extends Component {
                     return userList = <tr key={user.id}>
                                 <th><img src={'/storage/profile/'+user.profile_img} width="50px" height="50px"></img></th>
                                 <th>{user.name}</th>
+                                <th>{user.role}</th>
                                 <th>{user.email}</th>
                                 <th>{user.mobile}</th>
                                 <th>{commonservices.formatDate(user.created_at)}</th>
@@ -137,18 +140,18 @@ class Dashboard extends Component {
             });
         }
         return (
-            <div className="row">
-                <div className="col-lg-2 col-6" >
-                    <div className="small-box bg-info" onClick={()=>this.setUserList(this.state.admin)}>
-                        <div className="inner">
-                        <h3>{this.state.admin.length}</h3>
-                        <p>Admin</p>
+                <div className="row">
+                    <div className="col-lg-2 col-6" >
+                        <div className="small-box bg-info" onClick={()=>this.setUserList(this.state.admin)}>
+                            <div className="inner">
+                            <h3>{this.state.admin.length}</h3>
+                            <p>Admin</p>
+                            </div>
+                            <div className="icon">
+                            <i className="ion ion-bag"></i>
+                            </div>
+                            <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
                         </div>
-                        <div className="icon">
-                        <i className="ion ion-bag"></i>
-                        </div>
-                        <a href="#" className="small-box-footer">More info <i className="fas fa-arrow-circle-right"></i></a>
-                    </div>
                     </div>
                     <div className="col-lg-2 col-6">
                         <div className="small-box bg-success" onClick={()=>this.setUserList(this.state.seller)}>
@@ -205,6 +208,7 @@ class Dashboard extends Component {
                         <tr>
                             <th>Profile Image</th>
                             <th>Name</th>
+                            <th>User Role</th>
                             <th>email</th>
                             <th>mobile</th>
                             <th>Register Date</th>
@@ -216,46 +220,49 @@ class Dashboard extends Component {
                     </tbody>
                 </table> : ''}
                 {this.state.showDetails?
-                <div class="">
-                    <div className="row col-12">
-                        <div className="col">
-                            <img src={'/storage/profile/'+user.profile_img} alt="" height="250px" width="200px" srcset="" />
+                <div className="">
+                        <div className="row">
+                            <div className="col-6">
+                                <h4>Profile Picture</h4>
+                                <img src={'/storage/profile/'+user.profile_img} alt="" height="200px" width="250px" srcset="" />
+                            </div>  
+                            <div className="col-6">
+                                <h4>Nid Image</h4>
+                                <img src={'/storage/nidcard/'+user.nid_front_img} alt="" height="200px" width="350" srcset="" />
+                            </div>
+                        </div><br></br>
+                        <div className="row">
+                            <div className="col-6">
+                                <p>Name: {user.name}</p>
+                                <p>Contact: {user.mobile}</p>
+                                <p>Address: {user.address}</p>
+                                <p>Amount: {user.amount}</p>
+                                <p>Nid No: {user.nid}</p>
+                            </div>
+                            <div className="col-6">
+                                <div className="row m-2">
+                                    <div className="col"><p>User Role: {user.role}</p></div>     
+                                </div>
+                                <div className="row m-2">
+                                    <div className="col"><p>Today Date: {commonservices.formatDate(commonservices.dateNow())}</p></div>     
+                                </div>
+                                <div className="row m-2">
+                                    <div className="col"><p>Register At: {commonservices.formatDate(user.created_at)}</p></div>     
+                                </div>
+                                <div className="row m-2">
+                                    <div className="col"><p>Updated At: {commonservices.formatDate(user.updated_at)}</p></div>
+                                </div>
+                                <div className="row">
+                                <div className="col-6">
+                                    <div className="btn btn-success" onClick={this.showDetails}>Close</div>
+                                </div>
+                                <div className="col-6">
+                                {accessTobtn}
+                                </div>
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-5">
-                            <h4>{user.name}</h4>
-                            <p>Address: {user.address}</p>
-                            <p>Amount: {user.amount}</p>
-                            <p>Birth Date: {user.nid}</p>
-                            <p>Contact: {user.mobile}</p>
-                        </div>
-                        <div className="col">
-                            <div className="btn btn-success" onClick={this.showDetails}>Close</div>
-                        </div>
-                        <div className="col">
-                            {accessTobtn}
-                            
-                        </div>
-                        <div className="col-5 mt-2">
-                            <p>Today Date: {commonservices.formatDate(commonservices.dateNow())}</p>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div className="row m-2">
-                        <div className="col"><p>Register At: {commonservices.formatDate(user.created_at)}</p></div>
-                        
-                    </div>
-                    <div className="row m-2">
-                        <div className="col"><p>Updated At: {commonservices.formatDate(user.updated_at)}</p></div>
-                    </div>
-                    <div className="row mt-3">
-                        <h3>Nid Images</h3>
-                    </div>
-                    <div className="row">
-                        <div className="col">
-                            <img src={'/storage/profile/'+user.nid_front_img} alt="" height="250px" width="400px" srcset="" />
-                        </div>
-                    </div>
-                </div>: ''}
+                    </div>: ''}
             </div>
         );
     }

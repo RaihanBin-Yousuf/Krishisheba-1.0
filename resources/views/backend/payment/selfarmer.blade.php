@@ -2,7 +2,7 @@
 @section('content')
 <link href="{{ mix('css/app.css') }}" rel="stylesheet">
     <div class="p-4">
-        <h1>অর্থ গ্রহনের ইতিহাস </h1>
+        <h1 class="color1">অর্থ গ্রহনের ইতিহাস </h1>
         <div class="paymentconfirm" id="react_selfarmer"></div>
     </div>
 @endsection

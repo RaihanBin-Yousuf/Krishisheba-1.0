@@ -13,10 +13,10 @@ export default class Bkashbackend extends Component {
             accept_payment: 1,
             seller_id: this.props.data.seller.id,
             marchent_contact: this.props.data.admin.mobile,
-            amount: parseInt(this.props.data.total_amount),
+            amount: parseInt(this.props.data.total_amount)- parseInt(this.props.data.service_fee),
             seller_name: this.props.data.seller.name,
             service_fee: parseInt(this.props.data.service_fee),
-            total_amount: parseInt(this.props.data.total_amount) + parseInt(this.props.data.service_fee),
+            total_amount: parseInt(this.props.data.total_amount)- parseInt(this.props.data.service_fee),
             
         }
         this.setCount = this.setCount.bind(this);

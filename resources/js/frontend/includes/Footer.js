@@ -12,7 +12,7 @@ export default class Footer extends Component {
             <div>
                 <footer id="footer">
                     <div className="container">
-                        <h3>কৃষিসেবা</h3>
+                        <h2>কৃষিসেবা</h2>
                         <p>প্রযুক্তির উন্নয়নে বিশ্ব যখন এগিয়ে চলছে তার নিজের অদম্য গতিতে , সেই গতিতে পিছিয়ে নেই  আমাদের কৃষিখাত।</p>
                         <div className="social-links">
                             <a href="#" className="twitter"><i className="bx bxl-twitter"></i></a>

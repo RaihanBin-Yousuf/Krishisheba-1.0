@@ -167,13 +167,13 @@ export default class Index extends Component {
             product.total_each_price = product.price_per_unit_with_discount;
             product.total_unit = product.total_weight - product.quantity;
             if(product.weight_unit == 'কেজি') {
-                product.each_service_fee = 9/100;
+                product.each_service_fee = 10/100;
             } else if(product.weight_unit == 'মণ') {
                 product.each_service_fee = 10/100;
             } else if(product.weight_unit == 'পিস') {
-                product.each_service_fee = 15/100;
+                product.each_service_fee = 10/100;
             } else if(product.weight_unit == 'টন') {
-                product.each_service_fee = 30/100;
+                product.each_service_fee = 10/100;
             } 
 
 
@@ -228,10 +228,11 @@ export default class Index extends Component {
                 percentageServiceFee = percentageServiceFee + product.each_service_fee;
             }
         });
+        let TotalPrice = grandSubTotalPrice;
         let grandTotalPrice = grandSubTotalPrice + Math.ceil(grandSubTotalPrice * percentageServiceFee);
         let totalServiceFee = grandTotalPrice-grandSubTotalPrice;
         this.setState({ 
-            ['totalPrice'] : grandTotalPrice, 
+            ['totalPrice'] : TotalPrice, 
             ['serviceFee']: totalServiceFee,
             ['subTotal']: grandSubTotalPrice,
         });
