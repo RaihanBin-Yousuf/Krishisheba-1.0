@@ -114,7 +114,7 @@ Route::view('/profile/updateprofile', 'auth.profile.updateprofile')->name('updat
 Route::view('/profile/password', 'auth.profile.updatepassword')->name('updatepassword')->middleware('auth');
 Route::get('/myorder', [UsersController::class, 'myorder'])->name('myorder');
 Route::get('/buyerorderlist', [UsersController::class, 'buyerorderlist'])->name('buyerorderlist');
-// project task list
+// project work list
 // https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit
 Route::resource('googlemap', GoogleMapController::class);
 
