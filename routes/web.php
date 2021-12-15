@@ -118,7 +118,7 @@ Route::get('/buyerorderlist', [UsersController::class, 'buyerorderlist'])->name(
 // https://docs.google.com/document/d/1oRWt5Q99Nt1JjVuZOKuSTNge8wEcKWHlPjGEhPHrqmU/edit
 Route::resource('googlemap', GoogleMapController::class);
 
-//payment all information
+//payment information
 Route::get('/payment/history', [PaymentController::class, 'paymenthistory'])->name('selfarmer');
 Route::get('/payment/buyer/history', [PaymentController::class, 'buyerpayment'])->name('buyerpaymentlist');
 
